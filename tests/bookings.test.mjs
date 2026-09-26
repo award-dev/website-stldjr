@@ -96,8 +96,11 @@ test("validation errors are field-specific", async () => {
   });
 });
 
-test("same-day and too-soon requests are refused", async () => {
-  await assert.rejects(svc().create({ ...base, date: "2026-10-07", windowId: "pm2" }), (e) => e.code === "slot_taken");
+test("within the notice period is refused; later the same day is allowed", async () => {
+  // now = 9:00 local, 2h notice → 9–11 window is too soon, 3–5 is open
+  await assert.rejects(svc().create({ ...base, date: "2026-10-07", windowId: "am1" }), (e) => e.code === "slot_taken");
+  const { booking } = await svc().create({ ...base, date: "2026-10-07", windowId: "pm2" });
+  assert.equal(booking.status, "confirmed");
 });
 
 test("unverifiable address is rejected before booking", async () => {
