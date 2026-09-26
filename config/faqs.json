@@ -4,21 +4,21 @@
     {
       "id": "pricing",
       "q": "How does junk removal pricing work?",
-      "a": "By volume. The truck holds up to {maxYards} cubic yards, and you pay for how much of it your stuff fills — from $175 for a quarter load to $655 for the whole truck. Heavy materials, Freon items and difficult access can add to it. We confirm the final number before we load anything.",
+      "a": "By volume. The truck holds about {maxYards} cubic yards, and you pay for how much of it your stuff fills — from $175 for a quarter load to $655 for the whole truck. Just a few small items? That's our $125 minimum pickup. Heavy materials, Freon items and difficult access can add to it. We confirm the final number before we load anything.",
       "confirmed": true,
       "home": true
     },
     {
       "id": "load-size",
       "q": "What size load do I need?",
-      "a": "Rough guide: a few big pieces is a 1/4 load. A one-car garage is often a 1/2. A basement or a remodel's worth of debris is usually 3/4. Whole-house cleanouts and demolition jobs tend to fill the truck. Upload photos when you book and we'll tell you if you're off.",
+      "a": "Rough guide: a couple of small items is our $125 minimum pickup. A few big pieces is a 1/4 load. A one-car garage is often a 1/2. A basement or a remodel's worth of debris is usually 3/4. Whole-house cleanouts and demolition jobs tend to fill the truck. Upload photos when you book and we'll tell you if you're off.",
       "confirmed": true,
       "home": true
     },
     {
       "id": "yards",
       "q": "What is 17 cubic yards?",
-      "a": "A full truck. Picture a box about 12 feet long, 6½ feet wide and 6 feet tall — or seven to eight heaped pickup-truck beds.",
+      "a": "A full truck. Our box is 16 feet long, 7 feet wide and 4 feet tall — about 17 cubic yards, or seven to eight heaped pickup-truck beds.",
       "confirmed": true,
       "home": true
     },

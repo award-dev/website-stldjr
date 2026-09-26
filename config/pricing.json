@@ -89,6 +89,7 @@
     }
   ],
   "conditions": [
+    "The minimum pickup is $125 — for just a few small items. Anything more is priced by the load.",
     "Prices are for loading and hauling by volume — how much space your items take up in the truck.",
     "Heavy material (concrete, brick, dirt, roofing shingles) adds about $75 per quarter load. Location, or needing equipment, can add more.",
     "Anything with Freon — refrigerators, freezers, AC units, dehumidifiers — is $25 per item.",
@@ -98,5 +99,17 @@
     "We confirm the final price before we load — in person, or by phone if you're not home. If it's more than you expected, you can say no."
   ],
   "ownerNotes": [],
-  "examplesNote": "Examples are typical, not promises — how things stack changes what fits."
+  "examplesNote": "Examples are typical, not promises — how things stack changes what fits.",
+  "minimum": {
+    "id": "minimum",
+    "label": "Minimum pickup",
+    "short": "Min",
+    "price": 125,
+    "summary": "Just a few small items — a quick in-and-out.",
+    "fits": [
+      "A chair, lamp or small table",
+      "A TV or microwave",
+      "A few bags or boxes"
+    ]
+  }
 }

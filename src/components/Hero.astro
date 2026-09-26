@@ -2,7 +2,7 @@
 import LoadConfigurator from "./LoadConfigurator.astro";
 import NextAvailable from "./NextAvailable.astro";
 import Icon from "./Icon.astro";
-import { business, telHref, loads } from "../lib/site";
+import { business, telHref, loads, minimum } from "../lib/site";
 const fromPrice = loads[0]?.priceLine.amount;
 ---
 <section class="hero dark" aria-labelledby="hero-title">
@@ -26,10 +26,10 @@ const fromPrice = loads[0]?.priceLine.amount;
       <NextAvailable />
 
       <dl class="hero-facts">
-        <div><dt class="meta">Pricing</dt><dd>{fromPrice ? `From ${fromPrice} a load` : "By the load"}</dd></div>
+        <div><dt class="meta">Pricing</dt><dd>{minimum ? `${minimum.priceLine.amount} minimum · ` : ""}{fromPrice ? `loads from ${fromPrice}` : "by the load"}</dd></div>
         {business.trust.insured && <div><dt class="meta">Coverage</dt><dd>Licensed &amp; insured{business.trust.insuranceDetails ? `, ${business.trust.insuranceDetails.replace(/ million policy$/, "M")}` : ""}</dd></div>}
         {business.trust.completedJobs && <div><dt class="meta">Track record</dt><dd>{business.trust.completedJobs} jobs{business.trust.foundedYear ? ` since ${business.trust.foundedYear}` : ""}</dd></div>}
-        <div><dt class="meta">Area</dt><dd>City, County &amp; St. Charles</dd></div>
+        <div><dt class="meta">Area</dt><dd>St. Louis City, St. Louis County &amp; St. Charles County</dd></div>
       </dl>
     </div>
 

@@ -38,6 +38,14 @@ export const mailHref = `mailto:${business.email}`;
 export const maxYards = pricing.maxCubicYards;
 
 export const loads = pricing.loads.map((l) => ({ ...l, priceLine: priceLine(pricing, l), yards: formatYards(l.cubicYards) }));
+const minRaw = process.env.PRICE_MINIMUM_PICKUP;
+const minCfg = (pricingRaw as any).minimum as { id: string; label: string; short: string; price: number; summary: string; fits: string[] } | undefined;
+export const minimum = minCfg
+  ? (() => {
+      const m = { ...minCfg, price: minRaw && Number(minRaw) > 0 ? Math.round(Number(minRaw)) : minCfg.price, minimum: true, fraction: 0.06, cubicYards: null };
+      return { ...m, priceLine: priceLine(pricing, m) };
+    })()
+  : null;
 export const anyPrice = loads.some((l) => l.priceLine.amount);
 
 export function fillTokens(s: string) {

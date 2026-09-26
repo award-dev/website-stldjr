@@ -5,7 +5,7 @@
 import Icon from "./Icon.astro";
 import LoadViz from "./LoadViz.astro";
 import OwnerNote from "./OwnerNote.astro";
-import { services, loads, pricing, business, telHref, booking, areas } from "../lib/site";
+import { services, loads, minimum, pricing, business, telHref, booking, areas } from "../lib/site";
 
 interface Props { mode: "book" | "quote" }
 const { mode } = Astro.props;
@@ -38,7 +38,10 @@ const config = {
   mode,
   steps,
   labels,
-  loads: loads.map((l) => ({ id: l.id, label: l.label, short: l.short, yards: l.yards, fraction: l.fraction, price: l.priceLine.label, priceNote: l.priceLine.note })),
+  loads: [
+    ...(minimum ? [{ id: minimum.id, label: minimum.label, short: minimum.short, yards: "", fraction: minimum.fraction, price: minimum.priceLine.label, priceNote: minimum.priceLine.note }] : []),
+    ...loads.map((l) => ({ id: l.id, label: l.label, short: l.short, yards: l.yards, fraction: l.fraction, price: l.priceLine.label, priceNote: l.priceLine.note })),
+  ],
   services: services.bookingServices,
   propertyTypes,
   zipPrefixes: areas.zipPrefixes,
@@ -91,6 +94,16 @@ const config = {
         <p class="bk-sub">Priced by how much of our {pricing.maxCubicYards}-cubic-yard truck it fills. Your photos help us check.</p>
         <div class="bk-viz"><LoadViz fraction={0.5} labels={false} /></div>
         <div class="choices" role="radiogroup" aria-labelledby="h-load" data-field="load">
+          {minimum && (
+            <label class="choice" data-autoadvance>
+              <input type="radio" name="load" value={minimum.id} required data-fraction={minimum.fraction} />
+              <span class="tick" aria-hidden="true"></span>
+              <span class="load-row">
+                <span><span class="choice-title">{minimum.label}</span><span class="choice-sub">{minimum.summary}</span></span>
+                <span class="load-price">{minimum.priceLine.label}</span>
+              </span>
+            </label>
+          )}
           {loads.map((l) => (
             <label class="choice" data-autoadvance>
               <input type="radio" name="load" value={l.id} required data-fraction={l.fraction} />
@@ -119,7 +132,14 @@ const config = {
         <div class="bk-fields">
           <div class="field">
             <label for="f-address">Street address</label>
-            <input id="f-address" name="address" class="input" autocomplete="street-address" required aria-describedby="e-address" />
+            <div class="addr" data-addr>
+              <!-- autocomplete off: the browser's own list would sit on top of ours -->
+              <input id="f-address" name="address" class="input" autocomplete="off" required placeholder="Start typing — e.g. 1115 Sharon Dr" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="addr-list" aria-describedby="e-address" />
+              <div class="addr-panel" data-addr-panel hidden>
+                <ul id="addr-list" role="listbox" aria-label="Suggested addresses" data-addr-list></ul>
+                <p class="addr-credit" data-addr-credit></p>
+              </div>
+            </div>
             <p class="field-error" id="e-address" data-error="address"></p>
           </div>
           <div class="bk-row">
@@ -350,6 +370,10 @@ const config = {
   .bk-title { font-size: var(--step-4); letter-spacing: -0.04em; line-height: 1.02; outline: none; }
   .bk-sub { color: var(--ink-2); margin-top: -8px; max-width: 52ch; }
   .bk-fields { display: grid; gap: 20px; }
+  .addr { position: relative; }
+  .addr-panel { position: absolute; z-index: 20; left: 0; right: 0; top: calc(100% + 6px); overflow: hidden; background: var(--white); border: 1px solid var(--line-strong); border-radius: var(--r-2); box-shadow: var(--shadow-3); animation: rise-in 180ms var(--ease-out); }
+  .addr-panel ul { list-style: none; margin: 0; padding: 6px; max-height: 300px; overflow-y: auto; }
+  .addr-credit { padding: 4px 12px 6px; border-top: 1px solid var(--line); text-align: right; font-size: 0.68rem; color: var(--ink-3); }
   .bk-row { display: grid; grid-template-columns: 1fr 120px; gap: 12px; }
   .bk-note { margin-top: -4px; }
   .bk-viz { width: min(60%, 300px); margin: -8px auto -12px; }
@@ -504,6 +528,11 @@ const config = {
   .thumb-remove { position: absolute; top: 6px; right: 6px; display: grid; place-items: center; width: 30px; height: 30px; border-radius: 50%; background: rgb(18 19 17 / 0.72); color: #fff; }
   .thumb-remove:active { transform: scale(0.9); }
   .thumb-retry { color: #fff; text-decoration: underline; font-weight: 600; }
+  .addr-opt { display: flex; gap: 10px; align-items: flex-start; min-height: 48px; padding: 10px 12px; border-radius: 8px; cursor: pointer; }
+  .addr-opt svg { flex: none; margin-top: 2px; color: var(--ink-3); }
+  .addr-opt[aria-selected="true"] { background: var(--paper-2); }
+  .addr-main { display: block; font-weight: 560; }
+  .addr-sub { display: block; font-size: 0.85rem; color: var(--ink-3); }
   .up-error { padding: 12px 14px; border-radius: 10px; background: var(--danger-soft); color: #5c140f; font-size: 0.92rem; }
 
   .rv-row { display: grid; grid-template-columns: 96px 1fr auto; gap: 12px; align-items: baseline; padding: 14px 0; border-bottom: 1px solid var(--line); }
@@ -537,5 +566,10 @@ const config = {
 
 <script>
   import { initBooking } from "../scripts/booking";
-  document.querySelectorAll<HTMLElement>("[data-booking]").forEach((el) => initBooking(el));
+  import { initAddressInput } from "../scripts/address-input";
+  document.querySelectorAll<HTMLElement>("[data-booking]").forEach((el) => {
+    initBooking(el);
+    const addr = el.querySelector<HTMLInputElement>("#f-address");
+    if (addr) initAddressInput(addr, { city: el.querySelector("#f-city"), zip: el.querySelector("#f-zip") });
+  });
 </script>

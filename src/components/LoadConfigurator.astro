@@ -2,7 +2,7 @@
 import LoadViz from "./LoadViz.astro";
 import Icon from "./Icon.astro";
 import OwnerNote from "./OwnerNote.astro";
-import { loads, maxYards, anyPrice } from "../lib/site";
+import { loads, maxYards, anyPrice, minimum } from "../lib/site";
 
 interface Props { variant?: "hero" | "full"; initial?: string; idPrefix?: string }
 const { variant = "hero", initial = "half", idPrefix = "cfg" } = Astro.props;
@@ -47,6 +47,12 @@ const payload = loads.map((l) => ({
   </div>
 
   <p class="cfg-summary" data-out="summary">{start.summary}</p>
+  {minimum && (
+    <p class="cfg-min small">
+      Just a few small items? <b>{minimum.priceLine.amount} minimum pickup.</b>
+      <a class="link" href={`/book/?load=${minimum.id}`} data-track="cta_click" data-track-cta="book-minimum" data-track-location={`configurator-${variant}`}>Book it</a>
+    </p>
+  )}
 
   {variant === "full" && (
     <ul role="list" class="cfg-fits" data-out="fits">
@@ -90,6 +96,8 @@ const payload = loads.map((l) => ({
   .ro-unit { font-size: 1rem; font-weight: 500; color: var(--ink-3); letter-spacing: 0; }
   [data-out="price"] { font-size: 1.35rem; line-height: 1.2; padding-top: 5px; }
   .cfg-summary { font-size: 1.05rem; color: var(--ink-2); min-height: 1.55em; }
+  .cfg-min { margin-top: -8px; padding: 10px 12px; border-radius: 10px; background: var(--paper); color: var(--ink-2); }
+  .cfg-min b { color: var(--ink); font-weight: 600; }
   .cfg-fits { display: grid; gap: 8px; }
   @media (min-width: 560px) { .cfg-fits { grid-template-columns: 1fr 1fr; } }
   .cfg-fits li { display: flex; gap: 8px; align-items: flex-start; font-size: 0.95rem; color: var(--ink-2); }

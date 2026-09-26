@@ -39,6 +39,7 @@ const fmtPhone = (s: string) => {
   const d = digits(s);
   return d.length === 10 ? `(${d.slice(0, 3)}) ${d.slice(3, 6)}-${d.slice(6)}` : s;
 };
+const loadText = (l: { label: string; yards: string }) => (l.yards ? `${l.label} · ${l.yards} yd³` : `${l.label} · a few small items`);
 const reduced = () => matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 export function initBooking(root: HTMLElement) {
@@ -322,7 +323,7 @@ export function initBooking(root: HTMLElement) {
       if (el) el.textContent = v || "—";
     };
     set("service", svc?.label || "");
-    set("load", ld ? `${ld.label} · ${ld.yards} yd³` : state.load === "unsure" ? "Not sure yet" : "");
+    set("load", ld ? loadText(ld) : state.load === "unsure" ? "Not sure yet" : "");
     set("price", ld ? ld.price : state.load === "unsure" ? "From your photos" : "");
     set("location", [state.address, state.city].filter(Boolean).join(", "));
     set("when", state.date && state.windowLabel ? `${formatLongDate(state.date).replace(/^(\w{3})\w*/, "$1")} · ${state.windowLabel}` : "");
@@ -627,7 +628,7 @@ export function initBooking(root: HTMLElement) {
     const n = (state.photos || []).length;
     const rows: [string, string, string, string?][] = [
       ["Service", svc?.label || "—", "service"],
-      ["Load", ld ? `${ld.label} · ${ld.yards} yd³` : "Not sure — size it from photos", "load"],
+      ["Load", ld ? loadText(ld) : "Not sure — size it from photos", "load"],
       ["Where", `${state.address || ""}, ${state.city || ""} ${state.zip || ""}${prop ? ` · ${prop.label}` : ""}`, "location"],
       ["Details", `${(state.description || "").slice(0, 140)}${(state.description || "").length > 140 ? "…" : ""} · ${stairs}, ${carry}`, "details"],
       ["Photos", n ? `${n} photo${n === 1 ? "" : "s"}` : "None", "photos"],
@@ -762,7 +763,7 @@ export function initBooking(root: HTMLElement) {
       "form-name": "quote",
       "bot-field": honeypot,
       service: svc?.label || "",
-      load: ld ? `${ld.label} (${ld.yards} yd³)` : "Not sure",
+      load: ld ? loadText(ld) : "Not sure",
       address: state.address || "", city: state.city || "", zip: state.zip || "",
       propertyType: cfg.propertyTypes.find((p) => p.id === state.propertyType)?.label || "",
       description: state.description || "", items: state.items || "", demolitionDetails: state.demolitionDetails || "",

@@ -177,3 +177,12 @@ test("calendar client refuses to start without credentials", () => {
   delete process.env.GOOGLE_CALENDAR_ID;
   assert.throws(() => createCalendarClient(), (e) => e.code === "calendar_unconfigured");
 });
+
+test("minimum pickup can be booked at its own price", async () => {
+  const { booking } = await svc().create({ ...base, load: "minimum" });
+  assert.equal(booking.loadLabel, "Minimum pickup");
+  assert.equal(booking.priceLabel, "$125");
+  const [ev] = await calendar.listEvents(0, Date.parse("2027-01-01"));
+  assert.equal(Date.parse(ev.end.dateTime) - Date.parse(ev.start.dateTime), 30 * 60_000);
+  assert.match(ev.description, /a few small items/);
+});

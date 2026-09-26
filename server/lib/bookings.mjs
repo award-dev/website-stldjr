@@ -24,7 +24,7 @@ export function createBookingService(deps) {
   const { calendar, store, notifier, geocode, pricing, rules, business, services, now = () => new Date(), origin } = deps;
   const tz = business.timezone;
   const serviceIds = services.bookingServices.map((s) => s.id);
-  const loadIds = pricing.loads.map((l) => l.id);
+  const loadIds = [...pricing.loads.map((l) => l.id), ...(pricing.minimum ? [pricing.minimum.id] : [])];
   const serviceLabel = (id) => services.bookingServices.find((s) => s.id === id)?.label || id;
 
   async function busyAround(startMs, endMs) {
@@ -83,7 +83,7 @@ export function createBookingService(deps) {
       `Email: ${rec.customer.email}`,
       "",
       `Service: ${rec.serviceLabel}`,
-      `Load: ${rec.loadLabel} (~${formatYards(rec.cubicYards)} yd³)`,
+      rec.cubicYards ? `Load: ${rec.loadLabel} (~${formatYards(rec.cubicYards)} yd³)` : `Load: ${rec.loadLabel} (a few small items)`,
       `Price: ${rec.priceLabel}`,
       `Arrival window: ${formatLongDate(rec.date)}, ${rec.windowLabel}`,
       "",

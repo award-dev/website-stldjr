@@ -25,7 +25,9 @@ export function getPricing() {
     const n = raw === undefined ? l.price : Number(raw);
     return { ...l, price: Number.isFinite(n) && n > 0 ? Math.round(n) : null };
   });
-  return { ...pricingFile, loads };
+  const minRaw = env("PRICE_MINIMUM_PICKUP");
+  const minimum = pricingFile.minimum && { ...pricingFile.minimum, price: minRaw && Number(minRaw) > 0 ? Math.round(Number(minRaw)) : pricingFile.minimum.price };
+  return { ...pricingFile, loads, minimum };
 }
 
 export function getBookingRules() {

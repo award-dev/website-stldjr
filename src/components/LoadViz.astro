@@ -1,13 +1,13 @@
 ---
-// The truck box in isometric, drawn to scale: 12 × 6.5 × 6 ft ≈ 17 yd³.
+// The truck box in isometric, drawn to scale: 16 × 7 × 4 ft (448 ft³, ≈17 yd³).
 // The green block is the load; LoadConfigurator's script re-draws it.
 import { boxFaces, pts, project, COS, SIN } from "../lib/iso";
 
 interface Props { fraction?: number; tone?: "paper" | "dark"; labels?: boolean; class?: string }
 const { fraction = 0.5, tone = "paper", labels = true, class: cls } = Astro.props;
 
-const L = 12, W = 6.5, H = 6, U = 14;
-const OX = 112, OY = 116; // origin offset inside the viewBox
+const L = 16, W = 7, H = 4, U = 11;
+const OX = 0, OY = 0; // the viewBox is fitted to the drawing below
 const P = (x: number, y: number, z: number) => project([x, y, z], U, OX, OY);
 const line = (a: [number, number, number], b: [number, number, number]) => {
   const [x1, y1] = P(...a); const [x2, y2] = P(...b);
@@ -15,27 +15,45 @@ const line = (a: [number, number, number], b: [number, number, number]) => {
 };
 const fill = boxFaces(0, 0, 0, L * fraction, W, H * 0.92, U, OX, OY);
 
-// Cab (behind the box in this view)
-const G = -1.9; // ground level: the bed sits on the chassis, above the wheels
-const cab = boxFaces(-4.6, 0.45, G + 1.0, 4.1, W - 0.9, 7.3, U, OX, OY);
-const cabWindow = pts([[-4.3, W - 0.45, 3.3], [-1.2, W - 0.45, 3.3], [-1.2, W - 0.45, 5.6], [-3.6, W - 0.45, 5.6]], U, OX, OY);
-const chassis = boxFaces(-4.4, 0.9, G + 0.95, L + 4.0, W - 1.8, -(G + 0.95), U, OX, OY);
+// Cab (behind the box in this view), chassis and wheels
+const G = -2.4; // ground level: the bed sits on the chassis, above the wheels
+const CAB_TOP = H + 1.6;
+const cab = boxFaces(-4.8, 0.5, G + 1.0, 4.5, W - 1.0, CAB_TOP - (G + 1.0), U, OX, OY);
+const cabWindow = pts([[-4.5, W - 0.5, 1.6], [-1.2, W - 0.5, 1.6], [-1.2, W - 0.5, CAB_TOP - 0.5], [-3.8, W - 0.5, CAB_TOP - 0.5]], U, OX, OY);
+const chassis = boxFaces(-4.6, 1.0, G + 0.95, L + 4.4, W - 2.0, -(G + 0.95), U, OX, OY);
 const wheelAt = (x: number) => {
   const [ex, ey] = P(x, W - 0.25, G + 0.95);
   return `matrix(${(COS * U).toFixed(3)} ${(SIN * U).toFixed(3)} 0 ${-U} ${ex.toFixed(1)} ${ey.toFixed(1)})`;
 };
+const wheels = [-2.8, 3.4, 12.6];
 
 const ticks = [0.25, 0.5, 0.75, 1].map((f, i) => {
   const [x, y] = P(L * f, 0, H);
-  const [x2, y2] = P(L * f, 0, H + 0.7);
+  const [x2, y2] = P(L * f, 0, H + 0.8);
   return { x, y, x2, y2, label: ["1/4", "1/2", "3/4", "17 yd³"][i] };
 });
 const dimL = [P(0, W + 1.2, G), P(L, W + 1.2, G)];
 const dimW = [P(L + 1.2, 0, G), P(L + 1.2, W, G)];
+const labelL = { x: (dimL[0][0] + dimL[1][0]) / 2 - 18, y: (dimL[0][1] + dimL[1][1]) / 2 + 16 };
+const labelW = { x: (dimW[0][0] + dimW[1][0]) / 2 + 8, y: (dimW[0][1] + dimW[1][1]) / 2 + 10 };
+
+// Fit the viewBox around everything drawn (labels included).
+const shadow: [number, number, number][] = [[-5.4, -0.3, G], [L + 0.6, -0.3, G], [L + 0.6, W + 0.5, G], [-5.4, W + 0.5, G]];
+const extents = [
+  ...shadow.map((q) => P(...q)),
+  P(-4.8, 0.5, CAB_TOP), P(-0.3, 0.5, CAB_TOP), P(-4.8, W - 0.5, CAB_TOP),
+  ...(labels ? [...ticks.map((t) => [t.x2 - 20, t.y2 - 16] as [number, number]), [labelL.x, labelL.y + 4] as [number, number], [labelW.x + 36, labelW.y + 4] as [number, number], dimL[0], dimW[1]] : []),
+];
+const pad = 8;
+const minX = Math.min(...extents.map((e) => e[0])) - pad;
+const minY = Math.min(...extents.map((e) => e[1])) - pad;
+const maxX = Math.max(...extents.map((e) => e[0])) + pad;
+const maxY = Math.max(...extents.map((e) => e[1])) + pad;
+const viewBox = `${minX.toFixed(0)} ${minY.toFixed(0)} ${(maxX - minX).toFixed(0)} ${(maxY - minY).toFixed(0)}`;
 ---
-<svg class:list={["loadviz", `loadviz--${tone}`, cls]} viewBox="0 -8 330 272" role="img" aria-label={`Truck box, ${Math.round(fraction * 100)}% full`} data-loadviz data-l={L} data-w={W} data-h={H} data-u={U} data-ox={OX} data-oy={OY}>
+<svg class:list={["loadviz", `loadviz--${tone}`, cls]} viewBox={viewBox} role="img" aria-label={`Truck box, ${Math.round(fraction * 100)}% full`} data-loadviz data-l={L} data-w={W} data-h={H} data-u={U} data-ox={OX} data-oy={OY}>
   <!-- ground shadow -->
-  <polygon class="lv-shadow" points={pts([[-5.2, -0.3, G], [L + 0.6, -0.3, G], [L + 0.6, W + 0.5, G], [-5.2, W + 0.5, G]], U, OX, OY)} />
+  <polygon class="lv-shadow" points={pts(shadow, U, OX, OY)} />
   <!-- chassis + cab -->
   <g class="lv-chassis"><polygon points={chassis.top} /><polygon points={chassis.end} /><polygon points={chassis.side} /></g>
   <g class="lv-cab">
@@ -43,7 +61,7 @@ const dimW = [P(L + 1.2, 0, G), P(L + 1.2, W, G)];
     <polygon class="lv-window" points={cabWindow} />
   </g>
   <g class="lv-wheels">
-    {[-2.6, 2.6, 9.2].map((x) => (
+    {wheels.map((x) => (
       <g transform={wheelAt(x)}>
         <circle r="0.95" vector-effect="non-scaling-stroke" />
         <circle r="0.38" class="lv-hub" vector-effect="non-scaling-stroke" />
@@ -76,9 +94,10 @@ const dimW = [P(L + 1.2, 0, G), P(L + 1.2, W, G)];
         </g>
       ))}
       <line x1={dimL[0][0]} y1={dimL[0][1]} x2={dimL[1][0]} y2={dimL[1][1]} class="lv-dim" />
-      <text x={(dimL[0][0] + dimL[1][0]) / 2 - 18} y={(dimL[0][1] + dimL[1][1]) / 2 + 16} class="lv-dim-label">12 ft</text>
+      <text x={labelL.x} y={labelL.y} class="lv-dim-label">16 ft</text>
       <line x1={dimW[0][0]} y1={dimW[0][1]} x2={dimW[1][0]} y2={dimW[1][1]} class="lv-dim" />
-      <text x={(dimW[0][0] + dimW[1][0]) / 2 + 8} y={(dimW[0][1] + dimW[1][1]) / 2 + 10} class="lv-dim-label">6½ ft</text>
+      <text x={P(L, W, H / 2)[0] + 6} y={P(L, W, H / 2)[1] + 4} class="lv-dim-label">4 ft</text>
+      <text x={labelW.x} y={labelW.y} class="lv-dim-label">7 ft</text>
     </g>
   )}
 </svg>

@@ -6,15 +6,15 @@ import LoadGuide from "../components/LoadGuide.astro";
 import FaqList from "../components/FaqList.astro";
 import FinalCta from "../components/FinalCta.astro";
 import OwnerNote from "../components/OwnerNote.astro";
-import { pricing, loads, anyPrice, abs } from "../lib/site";
+import { pricing, loads, minimum, anyPrice, abs } from "../lib/site";
 const schema = anyPrice ? [{
   "@type": "OfferCatalog",
   name: "Junk removal by the load",
-  itemListElement: loads.filter((l) => l.price).map((l) => ({ "@type": "Offer", name: `${l.label} (${l.yards} cubic yards)`, price: l.price, priceCurrency: pricing.currency, seller: { "@id": abs("/#business") } })),
+  itemListElement: [...(minimum ? [{ "@type": "Offer", name: "Minimum pickup (a few small items)", price: minimum.price, priceCurrency: pricing.currency, seller: { "@id": abs("/#business") } }] : []), ...loads.filter((l) => l.price).map((l) => ({ "@type": "Offer", name: `${l.label} (${l.yards} cubic yards)`, price: l.price, priceCurrency: pricing.currency, seller: { "@id": abs("/#business") } }))],
 }] : [];
 ---
 <Base title="Junk Removal Pricing in St. Louis — By the Load" description={`How junk removal pricing works: 1/4, 1/2, 3/4 or a full ${pricing.maxCubicYards}-cubic-yard truck. See what fits in each load and everything that can change the price.`} schema={schema}>
-  <PageHero eyebrow="Pricing" title="You pay for the space it takes up." lede={`Our truck holds ${pricing.maxCubicYards} cubic yards. Pick how much of it you'll fill — a quarter, half, three-quarters, or all of it. That's the price — loading and hauling included.`} crumbs={[{ href: "/pricing/", label: "Pricing" }]} />
+  <PageHero eyebrow="Pricing" title="You pay for the space it takes up." lede={`Our truck holds ${pricing.maxCubicYards} cubic yards. Pick how much of it you'll fill — a quarter, half, three-quarters, or all of it. That's the price — loading and hauling included. Just a few small items? There's a $125 minimum pickup.`} crumbs={[{ href: "/pricing/", label: "Pricing" }]} />
 
   <section class="section">
     <div class="wrap cfg-grid">
@@ -26,6 +26,7 @@ const schema = anyPrice ? [{
           <caption class="sr-only">Load sizes and prices</caption>
           <thead><tr><th scope="col">Load</th><th scope="col">Volume</th><th scope="col">Price</th></tr></thead>
           <tbody>
+            {minimum && <tr><th scope="row">{minimum.label}</th><td>A few small items</td><td>{minimum.priceLine.label}</td></tr>}
             {loads.map((l) => <tr><th scope="row">{l.label}</th><td class="num">{l.yards} yd³</td><td>{l.priceLine.label}</td></tr>)}
           </tbody>
         </table>

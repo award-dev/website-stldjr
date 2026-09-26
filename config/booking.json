@@ -34,7 +34,8 @@
     "half": 90,
     "three-quarter": 120,
     "full": 150,
-    "demolition": 240
+    "demolition": 240,
+    "minimum": 30
   },
   "maxPhotos": 10,
   "cancellationPolicy": "Please give us 24 hours' notice to cancel or reschedule when you can — but we understand plans change.",
