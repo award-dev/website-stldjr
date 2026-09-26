@@ -1,0 +1,71 @@
+---
+import OwnerNote from "./OwnerNote.astro";
+import { areas, telHref, business } from "../lib/site";
+interface Props { full?: boolean }
+const { full = false } = Astro.props;
+---
+<div class="area">
+  <form class="zip" data-zip-check data-prefixes={JSON.stringify(areas.zipPrefixes)} novalidate>
+    <label for={`zip-${full ? "f" : "h"}`} class="label">Check your ZIP</label>
+    <div class="zip-row">
+      <input id={`zip-${full ? "f" : "h"}`} class="input" inputmode="numeric" autocomplete="postal-code" pattern="[0-9]{5}" maxlength="5" placeholder="63110" aria-describedby={`zip-out-${full ? "f" : "h"}`} />
+      <button class="btn" type="submit">Check</button>
+    </div>
+    <p class="zip-out small" id={`zip-out-${full ? "f" : "h"}`} aria-live="polite" data-zip-out></p>
+  </form>
+
+  <div class="regions">
+    {areas.regions.map((r, i) => (
+      <section class="region" id={full ? r.id : undefined} aria-labelledby={`r-${r.id}${full ? "" : "-h"}`} data-reveal style={`--i:${i % 3}`}>
+        <h3 id={`r-${r.id}${full ? "" : "-h"}`} class="region-name">{r.name}</h3>
+        {full && <p class="small muted region-blurb">{r.blurb}</p>}
+        <ul role="list" class="places">
+          {r.places.map((p) => <li>{p}</li>)}
+        </ul>
+      </section>
+    ))}
+  </div>
+  {!areas.confirmed && <OwnerNote>Confirm every region and town in config/service-areas.json — only list places you actually serve.</OwnerNote>}
+</div>
+
+<style>
+  .area { display: grid; gap: 40px; }
+  .zip { display: grid; gap: 10px; max-width: 420px; }
+  .zip-row { display: flex; gap: 8px; }
+  .zip-row .input { flex: 1; font-variant-numeric: tabular-nums; letter-spacing: 0.04em; }
+  .zip-row .btn { min-height: 52px; }
+  .zip-out { min-height: 1.45em; }
+  .zip-out[data-state="yes"] { color: var(--green-ink); font-weight: 560; }
+  .zip-out[data-state="maybe"] { color: var(--warn); }
+  .regions { display: grid; gap: 36px 32px; grid-template-columns: 1fr; }
+  @media (min-width: 560px) { .regions { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 900px) { .regions { grid-template-columns: repeat(3, 1fr); } }
+  .places { grid-template-columns: 1fr 1fr; column-gap: 16px; }
+  .region { border-top: 1px solid var(--line-strong); padding-top: 16px; }
+  .region-name { font-size: var(--step-1); letter-spacing: -0.015em; }
+  .region-blurb { margin-top: 4px; }
+  .places { margin-top: 12px; display: grid; gap: 6px; color: var(--ink-2); font-size: 0.95rem; }
+</style>
+
+<script define:vars={{ phone: business.phoneDisplay, tel: telHref }}>
+  document.querySelectorAll("[data-zip-check]").forEach((form) => {
+    const prefixes = JSON.parse(form.dataset.prefixes || "[]");
+    const input = form.querySelector("input");
+    const out = form.querySelector("[data-zip-out]");
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const zip = input.value.trim();
+      if (!/^\d{5}$/.test(zip)) {
+        out.dataset.state = "maybe";
+        out.textContent = "Enter a 5-digit ZIP code.";
+        return;
+      }
+      const ok = prefixes.some((p) => zip.startsWith(p));
+      out.dataset.state = ok ? "yes" : "maybe";
+      out.innerHTML = ok
+        ? "Looks like you're in our area. <a class='link' href='/book/?zip=" + zip + "'>Book a pickup →</a>"
+        : "That's outside our usual area. Call <a class='link' href='" + tel + "'>" + phone + "</a> — we may still be able to help.";
+      window.stlTrack && window.stlTrack("zip_check", { in_area: ok });
+    });
+  });
+</script>

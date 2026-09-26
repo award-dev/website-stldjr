@@ -1,0 +1,70 @@
+---
+// Real reviews only. Manual entries from config/reviews.json, or live Google
+// reviews via /api/reviews when source is "google-places".
+import Icon from "./Icon.astro";
+import OwnerNote from "./OwnerNote.astro";
+import { reviews, business } from "../lib/site";
+
+type R = { name: string; rating: number; text: string; date?: string | null; url?: string | null };
+const items = (reviews.items as R[]).filter((r) => r.name && r.text && r.rating);
+const profile = business.links.googleReviewUrl || business.links.googleBusinessProfile;
+const fmt = (d?: string | null) => (d ? new Date(d).toLocaleDateString("en-US", { month: "short", year: "numeric" }) : "");
+const live = reviews.source === "google-places";
+---
+<div class="reviews" data-reviews={live ? "live" : undefined}>
+  {items.length > 0 && (
+    <ul role="list" class="rv-list">
+      {items.map((r, i) => (
+        <li class="rv card" data-reveal style={`--i:${i % 3}`}>
+          <p class="rv-stars" aria-label={`${r.rating} out of 5 stars`}>{Array.from({ length: 5 }, (_, s) => <Icon name="star" size={16} class={s < r.rating ? "on" : "off"} />)}</p>
+          <blockquote class="rv-text">{r.text}</blockquote>
+          <p class="rv-meta small"><span class="rv-name">{r.name}</span>{r.date && <span class="muted"> · {fmt(r.date)}</span>}<span class="muted"> · Google</span></p>
+        </li>
+      ))}
+    </ul>
+  )}
+
+  {items.length === 0 && (
+    <div class="rv-empty" data-rv-empty>
+      <p class="h4">We'd rather show you real reviews than write our own.</p>
+      <p class="muted">{profile ? "Read what St. Louis customers say on Google." : "Reviews from our Google Business Profile will appear here."}</p>
+      {profile && <a class="btn btn--ghost" href={profile} target="_blank" rel="noopener">See our Google reviews <Icon name="arrow" class="arrow" /></a>}
+    </div>
+  )}
+
+  {live && <ul role="list" class="rv-list" data-rv-live hidden></ul>}
+
+  {items.length === 0 && !live && (
+    <OwnerNote>Paste real Google reviews into config/reviews.json (word for word), or set source to "google-places" with GOOGLE_PLACES_API_KEY + GOOGLE_PLACE_ID. Also add links.googleReviewUrl.</OwnerNote>
+  )}
+</div>
+
+<style>
+  .reviews { display: grid; gap: 24px; }
+  .rv-list { display: grid; gap: 16px; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); }
+  .rv { padding: 24px; display: grid; gap: 14px; align-content: start; }
+  .rv-stars { display: flex; gap: 2px; color: var(--ink); }
+  .rv-stars :global(.off) { opacity: 0.2; }
+  .rv-text { font-size: 1.02rem; line-height: 1.55; }
+  .rv-name { font-weight: 580; }
+  .rv-empty { display: grid; gap: 12px; justify-items: start; padding: clamp(24px, 4vw, 40px); border: 1px dashed var(--line-strong); border-radius: var(--r-4); }
+</style>
+
+{live && (
+  <script>
+    const list = document.querySelector<HTMLElement>("[data-rv-live]");
+    const empty = document.querySelector<HTMLElement>("[data-rv-empty]");
+    const esc = (s: string) => s.replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]!);
+    fetch("/api/reviews")
+      .then((r) => (r.ok ? r.json() : null))
+      .then((d) => {
+        if (!list || !d || d.status !== "ok" || !d.reviews.length) return;
+        list.innerHTML = d.reviews
+          .map((r: any) => `<li class="card" style="padding:24px;display:grid;gap:14px"><p aria-label="${r.rating} out of 5 stars">${"★".repeat(r.rating)}<span style="opacity:.2">${"★".repeat(5 - r.rating)}</span></p><blockquote>${esc(r.text)}</blockquote><p class="small"><b>${esc(r.name)}</b><span class="muted"> · ${esc(r.relative || "")} · Google</span></p></li>`)
+          .join("");
+        list.hidden = false;
+        if (empty) empty.hidden = true;
+      })
+      .catch(() => {});
+  </script>
+)}

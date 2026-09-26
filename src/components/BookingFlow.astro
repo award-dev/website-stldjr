@@ -1,0 +1,541 @@
+---
+// Guided booking / quote flow. Server-rendered steps, progressively enhanced
+// by src/scripts/booking.ts. Mode "book" schedules against the live calendar;
+// mode "quote" sends the same details (without a time) for a price.
+import Icon from "./Icon.astro";
+import LoadViz from "./LoadViz.astro";
+import OwnerNote from "./OwnerNote.astro";
+import { services, loads, pricing, business, telHref, booking, areas } from "../lib/site";
+
+interface Props { mode: "book" | "quote" }
+const { mode } = Astro.props;
+const isBook = mode === "book";
+
+const steps = isBook
+  ? ["service", "load", "location", "details", "photos", "when", "contact", "review"]
+  : ["service", "load", "location", "details", "photos", "contact", "review"];
+const titles: Record<string, string> = {
+  service: "What do you need done?",
+  load: "About how much?",
+  location: "Where's the job?",
+  details: "Tell us about it.",
+  photos: "Show us what needs to go.",
+  when: "Pick a day and arrival window.",
+  contact: "How do we reach you?",
+  review: isBook ? "Check it over." : "Check it over.",
+};
+const labels: Record<string, string> = { service: "Service", load: "Load size", location: "Location", details: "Details", photos: "Photos", when: "Date & time", contact: "Contact", review: "Review" };
+
+const propertyTypes = [
+  { id: "house", label: "House" },
+  { id: "apartment", label: "Apartment" },
+  { id: "condo", label: "Condo / townhouse" },
+  { id: "business", label: "Business" },
+  { id: "construction", label: "Job site" },
+  { id: "other", label: "Other" },
+];
+const config = {
+  mode,
+  steps,
+  labels,
+  loads: loads.map((l) => ({ id: l.id, label: l.label, short: l.short, yards: l.yards, fraction: l.fraction, price: l.priceLine.label, priceNote: l.priceLine.note })),
+  services: services.bookingServices,
+  propertyTypes,
+  zipPrefixes: areas.zipPrefixes,
+  maxPhotos: booking.maxPhotos,
+  phone: business.phoneDisplay,
+  tel: telHref,
+};
+---
+<div class="bk" data-booking data-config={JSON.stringify(config)}>
+  <div class="bk-top">
+    <div class="bk-progress" aria-hidden="true"><span class="bk-bar" data-progress-bar></span></div>
+    <div class="bk-nav">
+      <button type="button" class="bk-back" data-back hidden><Icon name="back" size={18} /><span>Back</span></button>
+      <p class="bk-count meta" data-step-count>Step 1 of {steps.length}</p>
+    </div>
+    <p class="sr-only" aria-live="polite" data-announce></p>
+  </div>
+
+  <noscript>
+    <div class="bk-noscript">
+      <p class="h4">Online {isBook ? "booking" : "quotes"} need JavaScript.</p>
+      <p>Call <a href={telHref}>{business.phoneDisplay}</a> or email <a href={`mailto:${business.email}`}>{business.email}</a> and we'll get you sorted.</p>
+    </div>
+  </noscript>
+
+  <div class="bk-layout">
+    <form class="bk-form" data-form novalidate autocomplete="on">
+      <!-- honeypot: humans never see this -->
+      <div class="hp" aria-hidden="true"><label>Website <input type="text" name="website" tabindex="-1" autocomplete="off" /></label></div>
+
+      <!-- 1. Service -->
+      <section class="bk-step" data-step="service" aria-labelledby="h-service">
+        <h1 id="h-service" class="bk-title" tabindex="-1">{titles.service}</h1>
+        <p class="bk-sub">Pick the closest fit. You can explain the details in a minute.</p>
+        <div class="choices" role="radiogroup" aria-labelledby="h-service" data-field="service">
+          {services.bookingServices.map((s) => (
+            <label class="choice" data-autoadvance>
+              <input type="radio" name="service" value={s.id} required />
+              <span class="tick" aria-hidden="true"></span>
+              <span><span class="choice-title">{s.label}</span><span class="choice-sub">{s.hint}</span></span>
+            </label>
+          ))}
+        </div>
+        <p class="field-error" data-error="service"></p>
+      </section>
+
+      <!-- 2. Load -->
+      <section class="bk-step" data-step="load" aria-labelledby="h-load" hidden>
+        <h2 id="h-load" class="bk-title" tabindex="-1">{titles.load}</h2>
+        <p class="bk-sub">Priced by how much of our {pricing.maxCubicYards}-cubic-yard truck it fills. Your photos help us check.</p>
+        <div class="bk-viz"><LoadViz fraction={0.5} labels={false} /></div>
+        <div class="choices" role="radiogroup" aria-labelledby="h-load" data-field="load">
+          {loads.map((l) => (
+            <label class="choice" data-autoadvance>
+              <input type="radio" name="load" value={l.id} required data-fraction={l.fraction} />
+              <span class="tick" aria-hidden="true"></span>
+              <span class="load-row">
+                <span><span class="choice-title">{l.label} <span class="num muted load-yd">· {l.yards} yd³</span></span><span class="choice-sub">{l.summary}</span></span>
+                <span class="load-price">{l.priceLine.label}</span>
+              </span>
+            </label>
+          ))}
+          {!isBook && (
+            <label class="choice" data-autoadvance>
+              <input type="radio" name="load" value="unsure" data-fraction="0" />
+              <span class="tick" aria-hidden="true"></span>
+              <span><span class="choice-title">Not sure</span><span class="choice-sub">We'll size it from your photos.</span></span>
+            </label>
+          )}
+        </div>
+        <p class="field-error" data-error="load"></p>
+        <p class="small muted bk-note">Heavy materials, disposal fees and hard access can change the price. <a class="link" href="/pricing/#what-changes-the-price" target="_blank">Details</a></p>
+      </section>
+
+      <!-- 3. Location -->
+      <section class="bk-step" data-step="location" aria-labelledby="h-location" hidden>
+        <h2 id="h-location" class="bk-title" tabindex="-1">{titles.location}</h2>
+        <div class="bk-fields">
+          <div class="field">
+            <label for="f-address">Street address</label>
+            <input id="f-address" name="address" class="input" autocomplete="street-address" required aria-describedby="e-address" />
+            <p class="field-error" id="e-address" data-error="address"></p>
+          </div>
+          <div class="bk-row">
+            <div class="field">
+              <label for="f-city">City</label>
+              <input id="f-city" name="city" class="input" autocomplete="address-level2" required aria-describedby="e-city" />
+              <p class="field-error" id="e-city" data-error="city"></p>
+            </div>
+            <div class="field field--zip">
+              <label for="f-zip">ZIP</label>
+              <input id="f-zip" name="zip" class="input num" inputmode="numeric" autocomplete="postal-code" maxlength="5" required aria-describedby="e-zip h-zip" />
+              <p class="field-error" id="e-zip" data-error="zip"></p>
+            </div>
+          </div>
+          <p class="small zip-hint" id="h-zip" data-zip-hint aria-live="polite"></p>
+          <fieldset class="field">
+            <legend class="label">Property type</legend>
+            <div class="chips" data-field="propertyType">
+              {propertyTypes.map((p) => (
+                <label class="chip"><input type="radio" name="propertyType" value={p.id} required /><span>{p.label}</span></label>
+              ))}
+            </div>
+            <p class="field-error" data-error="propertyType"></p>
+          </fieldset>
+        </div>
+      </section>
+
+      <!-- 4. Details -->
+      <section class="bk-step" data-step="details" aria-labelledby="h-details" hidden>
+        <h2 id="h-details" class="bk-title" tabindex="-1">{titles.details}</h2>
+        <div class="bk-fields">
+          <div class="field">
+            <label for="f-description">What's going?</label>
+            <textarea id="f-description" name="description" class="textarea" rows="3" required placeholder="e.g. Old sectional, a fridge, and about 20 boxes from the basement" aria-describedby="e-description"></textarea>
+            <p class="field-error" id="e-description" data-error="description"></p>
+          </div>
+          <div class="field">
+            <label for="f-items">Rough count or list <span class="muted">(optional)</span></label>
+            <input id="f-items" name="items" class="input" placeholder="e.g. 3 large pieces, 20 boxes" />
+          </div>
+          <div class="field" data-show-if="service=demolition" hidden>
+            <label for="f-demo">What's coming down?</label>
+            <textarea id="f-demo" name="demolitionDetails" class="textarea" rows="3" placeholder="e.g. 12×16 ft wood deck with stairs. Or: kitchen cabinets and counters, keep the flooring."></textarea>
+            <p class="hint">Mention anything that stays, and whether utilities are already off.</p>
+          </div>
+          <fieldset class="field">
+            <legend class="label">Stairs between the stuff and the truck?</legend>
+            <div class="segmented seg-3" style="--seg-count:3;--seg-index:0" data-seg>
+              <span class="seg-thumb" aria-hidden="true"></span>
+              <label><input type="radio" name="stairs" value="none" checked /><span>None</span></label>
+              <label><input type="radio" name="stairs" value="some" /><span>A flight</span></label>
+              <label><input type="radio" name="stairs" value="many" /><span>Several</span></label>
+            </div>
+          </fieldset>
+          <fieldset class="field">
+            <legend class="label">How far from where the truck parks?</legend>
+            <div class="segmented seg-3" style="--seg-count:3;--seg-index:0" data-seg>
+              <span class="seg-thumb" aria-hidden="true"></span>
+              <label><input type="radio" name="carry" value="close" checked /><span>Close<span class="seg-sub">garage, curb</span></span></label>
+              <label><input type="radio" name="carry" value="medium" /><span>Medium<span class="seg-sub">~50 ft</span></span></label>
+              <label><input type="radio" name="carry" value="far" /><span>Far<span class="seg-sub">100 ft +</span></span></label>
+            </div>
+          </fieldset>
+          <details class="more">
+            <summary><span>Access notes &amp; anything unusual <span class="muted">(optional)</span></span></summary>
+            <div class="bk-fields">
+              <div class="field">
+                <label for="f-access">Access</label>
+                <textarea id="f-access" name="access" class="textarea" rows="2" placeholder="Gate code, parking, alley access, where to find it"></textarea>
+              </div>
+              <div class="field">
+                <label for="f-special">Special circumstances</label>
+                <textarea id="f-special" name="special" class="textarea" rows="2" placeholder="Hoarding situation, water damage, heavy items like a piano or safe, tight deadline"></textarea>
+              </div>
+            </div>
+          </details>
+        </div>
+      </section>
+
+      <!-- 5. Photos -->
+      <section class="bk-step" data-step="photos" aria-labelledby="h-photos" hidden>
+        <h2 id="h-photos" class="bk-title" tabindex="-1">{titles.photos}</h2>
+        <p class="bk-sub">A few wide shots are perfect. Optional, but they help us price it right and bring the right crew.</p>
+        <div class="up" data-uploader>
+          <input type="file" accept="image/*" multiple class="sr-only" id="f-photos" data-file-input />
+          <input type="file" accept="image/*" capture="environment" class="sr-only" id="f-camera" data-camera-input />
+          <div class="up-actions">
+            <label for="f-photos" class="up-drop" data-drop>
+              <Icon name="image" size={26} />
+              <span class="up-drop-title">Add photos</span>
+              <span class="small muted">Choose from your library, or drop them here</span>
+            </label>
+            <label for="f-camera" class="up-cam btn btn--ghost btn--lg"><Icon name="camera" size={20} /> Take a photo</label>
+          </div>
+          <ul role="list" class="up-grid" data-thumbs></ul>
+          <p class="small muted" data-photo-count>Up to {booking.maxPhotos} photos.</p>
+        </div>
+      </section>
+
+      {isBook && (
+        <section class="bk-step" data-step="when" aria-labelledby="h-when" hidden>
+          <h2 id="h-when" class="bk-title" tabindex="-1">{titles.when}</h2>
+          <p class="bk-sub">Only open times are shown. The window is when the crew arrives.</p>
+          <div class="when" data-when>
+            <div class="when-state" data-when-loading>
+              <div class="skel-row">{Array.from({ length: 6 }, () => <span class="skel skel-day"></span>)}</div>
+              <div class="skel-row">{Array.from({ length: 4 }, () => <span class="skel skel-slot"></span>)}</div>
+            </div>
+            <div class="when-state" data-when-error hidden>
+              <div class="notice notice--warn">
+                <Icon name="alert" size={20} />
+                <div>
+                  <p class="notice-title">We can't load appointment times right now.</p>
+                  <p>You can call us and we'll get you scheduled — or send this as a quote request and we'll reach out.</p>
+                  <div class="cta-row notice-cta">
+                    <a href={telHref} class="btn btn--sm" data-track="phone_click" data-track-location="booking-calendar-error"><Icon name="phone" size={16} /> Call {business.phoneDisplay}</a>
+                    <button type="button" class="btn btn--ghost btn--sm" data-switch-quote>Send as a quote request</button>
+                    <button type="button" class="btn btn--ghost btn--sm" data-retry-when>Try again</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="when-state" data-when-ready hidden>
+              <p class="demo-banner small" data-demo-banner hidden><b>Demo mode.</b> This calendar is simulated for testing — bookings made here aren't real.</p>
+              <div class="days" role="radiogroup" aria-label="Day" data-days></div>
+              <p class="small muted" data-days-empty hidden>No open windows in the next {booking.horizonDays} days. Call <a class="link" href={telHref}>{business.phoneDisplay}</a> and we'll find a time.</p>
+              <div class="slots-wrap" data-slots-wrap hidden>
+                <p class="label" data-slots-label></p>
+                <div class="slots" role="radiogroup" aria-label="Arrival window" data-slots></div>
+              </div>
+              <p class="field-error" data-error="slot"></p>
+            </div>
+          </div>
+        </section>
+      )}
+
+      <!-- Contact -->
+      <section class="bk-step" data-step="contact" aria-labelledby="h-contact" hidden>
+        <h2 id="h-contact" class="bk-title" tabindex="-1">{titles.contact}</h2>
+        <p class="bk-sub">Only used for this job. No marketing lists.</p>
+        <div class="bk-fields">
+          <div class="field">
+            <label for="f-name">Name</label>
+            <input id="f-name" name="name" class="input" autocomplete="name" required aria-describedby="e-name" />
+            <p class="field-error" id="e-name" data-error="name"></p>
+          </div>
+          <div class="field">
+            <label for="f-phone">Mobile phone</label>
+            <input id="f-phone" name="phone" type="tel" class="input num" inputmode="tel" autocomplete="tel" required aria-describedby="e-phone" />
+            <p class="field-error" id="e-phone" data-error="phone"></p>
+          </div>
+          <div class="field">
+            <label for="f-email">Email</label>
+            <input id="f-email" name="email" type="email" class="input" inputmode="email" autocomplete="email" autocapitalize="off" spellcheck="false" required aria-describedby="e-email" />
+            <p class="field-error" id="e-email" data-error="email"></p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Review -->
+      <section class="bk-step" data-step="review" aria-labelledby="h-review" hidden>
+        <h2 id="h-review" class="bk-title" tabindex="-1">{titles.review}</h2>
+        <dl class="review" data-review></dl>
+        <div class="terms">
+          <p class="label">How pricing works</p>
+          <ul class="terms-list small">
+            {pricing.conditions.map((c) => <li>{c}</li>)}
+          </ul>
+          {isBook && booking.cancellationPolicy && <p class="small"><b>Cancellation:</b> {booking.cancellationPolicy}</p>}
+          {isBook && !booking.cancellationPolicy && <OwnerNote>Add your cancellation/rescheduling policy in config/booking.json → cancellationPolicy.</OwnerNote>}
+          {isBook && (
+            <label class="check">
+              <input type="checkbox" name="acceptedTerms" required aria-describedby="e-terms" />
+              <span class="check-box" aria-hidden="true"><Icon name="check" size={14} /></span>
+              <span>I understand the final price is confirmed on-site before any work starts.</span>
+            </label>
+          )}
+          <p class="field-error" id="e-terms" data-error="acceptedTerms"></p>
+        </div>
+        <div class="submit-error" data-submit-error hidden></div>
+      </section>
+
+      <div class="bk-actions" data-actions>
+        <button type="submit" class="btn btn--green btn--lg btn--block" data-next>
+          <span data-next-label>Continue</span>
+          <span class="spinner" data-spinner hidden></span>
+        </button>
+      </div>
+    </form>
+
+    <aside class="bk-summary" aria-label="Your job so far" data-summary>
+      <p class="meta muted">Your job</p>
+      <dl class="sum-list" data-summary-list>
+        <div><dt>Service</dt><dd data-sum="service">—</dd></div>
+        <div><dt>Load</dt><dd data-sum="load">—</dd></div>
+        <div><dt>Price</dt><dd data-sum="price">—</dd></div>
+        <div><dt>Where</dt><dd data-sum="location">—</dd></div>
+        {isBook && <div><dt>When</dt><dd data-sum="when">—</dd></div>}
+      </dl>
+      <p class="small muted sum-help">Questions? <a class="link" href={telHref} data-track="phone_click" data-track-location="booking-summary">{business.phoneDisplay}</a></p>
+    </aside>
+  </div>
+
+  <!-- Result screens -->
+  <section class="bk-done" data-done hidden aria-labelledby="done-title" tabindex="-1">
+    <div class="done-mark" aria-hidden="true"><svg viewBox="0 0 52 52" width="56" height="56"><circle cx="26" cy="26" r="24" fill="none" /><path d="m15 27 7 7 15-15" fill="none" /></svg></div>
+    <p class="demo-banner small" data-done-demo hidden><b>Demo mode.</b> This booking was made against a simulated calendar and isn't real.</p>
+    <h1 id="done-title" class="h2" data-done-title>You're on the schedule.</h1>
+    <div data-done-body></div>
+  </section>
+</div>
+
+<style>
+  .bk { --summary-w: 320px; display: grid; gap: 20px; }
+  .bk-top { position: sticky; top: var(--header-h); z-index: 5; margin-inline: calc(var(--gutter) * -1); padding: 0 var(--gutter); background: color-mix(in srgb, var(--paper) 92%, transparent); backdrop-filter: blur(10px); }
+  .bk-progress { height: 3px; background: var(--paper-3); border-radius: 2px; overflow: hidden; }
+  .bk-bar { display: block; height: 100%; width: 100%; background: var(--asphalt); transform-origin: left; transform: scaleX(var(--p, 0.125)); transition: transform 500ms var(--ease-out); }
+  .bk-nav { display: flex; align-items: center; justify-content: space-between; min-height: 52px; }
+  .bk-back { display: inline-flex; align-items: center; gap: 6px; min-height: 44px; padding: 0 10px 0 4px; margin-left: -4px; border-radius: 8px; font-weight: 540; }
+  .bk-back:hover { background: var(--paper-2); }
+  .bk-back:active { transform: scale(0.96); }
+  .bk-count { color: var(--ink-3); margin-left: auto; }
+
+  .bk-layout { display: grid; gap: 32px; align-items: start; }
+  @media (min-width: 1020px) { .bk-layout { grid-template-columns: minmax(0, 640px) var(--summary-w); justify-content: space-between; } }
+  .bk-form { display: grid; gap: 24px; min-width: 0; }
+  .bk-step { display: grid; gap: 20px; }
+  .bk-title { font-size: var(--step-4); letter-spacing: -0.04em; line-height: 1.02; outline: none; }
+  .bk-sub { color: var(--ink-2); margin-top: -8px; max-width: 52ch; }
+  .bk-fields { display: grid; gap: 20px; }
+  .bk-row { display: grid; grid-template-columns: 1fr 120px; gap: 12px; }
+  .bk-note { margin-top: -4px; }
+  .bk-viz { width: min(60%, 300px); margin: -8px auto -12px; }
+  .hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+  fieldset.field { border: 0; padding: 0; margin: 0; min-width: 0; }
+  fieldset.field legend { margin-bottom: 10px; padding: 0; }
+
+  .load-row { display: flex; justify-content: space-between; gap: 12px; flex: 1; align-items: center; }
+  .load-yd { font-weight: 500; font-size: 0.9rem; }
+  .load-price { font-weight: 560; font-size: 0.92rem; text-align: right; white-space: nowrap; color: var(--ink-2); }
+
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+  .chip { position: relative; cursor: pointer; }
+  .chip input { position: absolute; opacity: 0; pointer-events: none; }
+  .chip span { display: inline-flex; align-items: center; min-height: 44px; padding: 0 16px; border-radius: 999px; border: 1px solid var(--line-strong); background: var(--white); font-weight: 520; transition: background-color var(--t-fast), color var(--t-fast), border-color var(--t-fast), transform var(--t-fast) var(--ease-out); }
+  .chip:active span { transform: scale(0.96); }
+  .chip input:checked + span { background: var(--asphalt); color: var(--on-dark); border-color: var(--asphalt); }
+  .chip input:focus-visible + span { outline: 2px solid var(--green-ink); outline-offset: 2px; }
+  .zip-hint { margin-top: -10px; color: var(--warn); }
+  .zip-hint:empty { display: none; }
+
+  .more { border-top: 1px solid var(--line); padding-top: 16px; }
+  .more summary { cursor: pointer; font-weight: 540; list-style: none; display: flex; gap: 8px; align-items: center; min-height: 44px; }
+  .more summary::-webkit-details-marker { display: none; }
+  .more summary::before { content: "+"; display: grid; place-items: center; width: 22px; height: 22px; border-radius: 50%; border: 1px solid var(--line-strong); font-size: 0.9rem; transition: transform var(--t-med) var(--ease-out); }
+  .more[open] summary::before { transform: rotate(45deg); }
+  .more .bk-fields { padding-top: 12px; }
+
+  /* Uploader */
+  .up { display: grid; gap: 16px; }
+  .up-actions { display: grid; gap: 10px; }
+  .up-drop { display: grid; justify-items: center; gap: 6px; padding: 32px 20px; border: 1.5px dashed var(--line-strong); border-radius: var(--r-3); background: var(--white); text-align: center; cursor: pointer; transition: border-color var(--t-fast), background-color var(--t-fast), transform var(--t-fast) var(--ease-out); }
+  .up-drop:hover, .up-drop[data-over] { border-color: var(--ink); background: var(--paper-2); }
+  .up-drop:active { transform: scale(0.99); }
+  .up:has(#f-photos:focus-visible) .up-drop, .up:has(#f-camera:focus-visible) .up-cam { outline: 2px solid var(--green-ink); outline-offset: 3px; }
+  .up-drop-title { font-weight: 600; font-size: 1.1rem; }
+  .up-cam { display: flex; }
+  @media (hover: hover) and (pointer: fine) { .up-cam { display: none; } }
+  .up-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(96px, 1fr)); gap: 10px; }
+  .up-grid:empty { display: none; }
+
+  /* When */
+  .when-state { display: grid; gap: 20px; }
+  .skel-row { display: flex; gap: 8px; overflow: hidden; }
+  .skel { flex: none; border-radius: 12px; background: linear-gradient(90deg, var(--paper-2), var(--paper-3), var(--paper-2)); background-size: 200% 100%; animation: shimmer 1.2s linear infinite; }
+  .skel-day { width: 72px; height: 76px; }
+  .skel-slot { width: 140px; height: 56px; }
+  @keyframes shimmer { to { background-position: -200% 0; } }
+  .days { display: flex; gap: 8px; overflow-x: auto; padding: 4px; margin: -4px; scroll-snap-type: x proximity; scrollbar-width: thin; }
+  .slots { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 8px; margin-top: 10px; }
+  .slots-wrap:not([hidden]) { animation: rise-in var(--t-slow) var(--ease-out); }
+  @keyframes rise-in { from { opacity: 0; transform: translateY(8px); } }
+
+  .notice { display: flex; gap: 12px; padding: 18px; border-radius: var(--r-3); background: var(--white); border: 1px solid var(--line); }
+  .notice :global(svg) { flex: none; margin-top: 2px; }
+  .notice--warn { border-color: #e6c98f; background: #fdf8ee; }
+  .notice--warn > :global(svg) { color: var(--warn); }
+  .notice-title { font-weight: 600; margin-bottom: 4px; }
+  .notice-cta { margin-top: 14px; }
+  .demo-banner { padding: 10px 14px; border-radius: 10px; background: #fdf1d8; color: #6b4b00; }
+
+  /* Review */
+  .review { display: grid; border-top: 1px solid var(--line); }
+  .terms { display: grid; gap: 12px; padding: 20px; border-radius: var(--r-3); background: var(--paper-2); }
+  .terms-list { display: grid; gap: 6px; padding-left: 1.1em; color: var(--ink-2); }
+  .check { display: flex; gap: 12px; align-items: flex-start; cursor: pointer; font-weight: 520; padding-top: 6px; }
+  .check input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+  .check-box { flex: none; display: grid; place-items: center; width: 24px; height: 24px; margin-top: -1px; border-radius: 7px; border: 1.5px solid var(--line-strong); background: var(--white); color: transparent; transition: background-color var(--t-fast), border-color var(--t-fast), color var(--t-fast), transform var(--t-fast) var(--ease-out); }
+  .check:active .check-box { transform: scale(0.92); }
+  .check input:checked + .check-box { background: var(--asphalt); border-color: var(--asphalt); color: var(--on-dark); }
+  .check input:focus-visible + .check-box { outline: 2px solid var(--green-ink); outline-offset: 2px; }
+  .submit-error { padding: 16px; border-radius: var(--r-2); background: var(--danger-soft); color: #5c140f; }
+
+  /* Actions: sticky on phones so Continue is always under the thumb */
+  .bk-actions { position: sticky; bottom: 0; z-index: 4; padding: 12px 0 calc(12px + env(safe-area-inset-bottom)); margin-inline: calc(var(--gutter) * -1); padding-inline: var(--gutter); background: linear-gradient(to top, var(--paper) 70%, transparent); }
+  @media (min-width: 1020px) { .bk-actions { position: static; background: none; margin: 0; padding: 8px 0 0; } .bk-actions .btn { width: auto; min-width: 240px; } }
+
+  /* Summary */
+  .bk-summary { display: none; }
+  @media (min-width: 1020px) {
+    .bk-summary { display: grid; gap: 16px; position: sticky; top: calc(var(--header-h) + 80px); padding: 24px; border-radius: var(--r-3); background: var(--white); border: 1px solid var(--line); box-shadow: var(--shadow-1); }
+  }
+  .sum-list { display: grid; gap: 12px; }
+  .sum-list div { display: grid; grid-template-columns: 70px 1fr; gap: 12px; font-size: 0.92rem; }
+  .sum-list dt { color: var(--ink-3); }
+  .sum-list dd { margin: 0; font-weight: 520; overflow-wrap: anywhere; }
+  .sum-help { border-top: 1px solid var(--line); padding-top: 14px; }
+
+  /* Step transition */
+  .bk-step.is-entering { animation: step-in 380ms var(--ease-out) both; }
+  .bk-step.is-entering.back { animation-name: step-in-back; }
+  @keyframes step-in { from { opacity: 0; transform: translateX(24px); } }
+  @keyframes step-in-back { from { opacity: 0; transform: translateX(-24px); } }
+
+  /* Done */
+  .bk-done { display: grid; gap: 20px; max-width: 720px; outline: none; }
+  .bk-done:not([hidden]) { animation: rise-in 600ms var(--ease-out); }
+  .done-mark circle { stroke: var(--green); stroke-width: 2.5; stroke-dasharray: 151; stroke-dashoffset: 151; animation: draw 700ms var(--ease-out) 100ms forwards; }
+  .done-mark path { stroke: var(--asphalt); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 36; stroke-dashoffset: 36; animation: draw 400ms var(--ease-out) 600ms forwards; }
+  .done-mark svg { background: var(--green-soft); border-radius: 50%; }
+  @keyframes draw { to { stroke-dashoffset: 0; } }
+  @media (prefers-reduced-motion: reduce) { .done-mark circle, .done-mark path { stroke-dashoffset: 0; animation: none; } }
+  .bk-noscript { padding: 20px; border-radius: var(--r-3); background: var(--white); border: 1px solid var(--line); }
+</style>
+
+<style is:global>
+  /* Elements rendered by booking.ts */
+  .day {
+    flex: none;
+    display: grid;
+    justify-items: center;
+    gap: 2px;
+    width: 72px;
+    padding: 12px 0;
+    border-radius: 12px;
+    border: 1px solid var(--line-strong);
+    background: var(--white);
+    scroll-snap-align: start;
+    transition: background-color var(--t-fast), color var(--t-fast), border-color var(--t-fast), transform var(--t-fast) var(--ease-out);
+  }
+  .day:active:not(:disabled) { transform: scale(0.95); }
+  .day .d-wd { font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-3); }
+  .day .d-num { font-size: 1.35rem; font-weight: 600; letter-spacing: -0.02em; font-variant-numeric: tabular-nums; }
+  .day .d-mo { font-size: 0.72rem; color: var(--ink-3); }
+  .day[aria-checked="true"] { background: var(--asphalt); color: var(--on-dark); border-color: var(--asphalt); }
+  .day[aria-checked="true"] .d-wd, .day[aria-checked="true"] .d-mo { color: var(--on-dark-3); }
+  .day:disabled { opacity: 0.4; cursor: not-allowed; background: transparent; border-style: dashed; }
+  .slot {
+    display: grid;
+    gap: 2px;
+    min-height: 60px;
+    padding: 10px 14px;
+    border-radius: 12px;
+    border: 1px solid var(--line-strong);
+    background: var(--white);
+    text-align: left;
+    transition: background-color var(--t-fast), border-color var(--t-fast), box-shadow var(--t-fast), transform var(--t-fast) var(--ease-out);
+  }
+  .slot:active:not(:disabled) { transform: scale(0.97); }
+  .slot .s-time { font-weight: 600; font-variant-numeric: tabular-nums; }
+  .slot .s-sub { font-size: 0.78rem; color: var(--ink-3); }
+  .slot[aria-checked="true"] { border-color: var(--ink); box-shadow: inset 0 0 0 1px var(--ink); background: var(--white); }
+  .slot:disabled { opacity: 0.45; text-decoration: line-through; cursor: not-allowed; }
+  .day:focus-visible, .slot:focus-visible { outline: 2px solid var(--green-ink); outline-offset: 2px; }
+
+  .thumb { position: relative; aspect-ratio: 1; border-radius: 12px; overflow: hidden; background: var(--paper-2); animation: rise-in 300ms var(--ease-out); }
+  .thumb img { width: 100%; height: 100%; object-fit: cover; transition: opacity var(--t-med); }
+  .thumb[data-state="uploading"] img { opacity: 0.55; }
+  .thumb-status { position: absolute; inset: auto 6px 6px 6px; display: flex; align-items: center; justify-content: center; gap: 6px; padding: 4px 6px; border-radius: 8px; background: rgb(18 19 17 / 0.75); color: #fff; font-size: 0.72rem; font-weight: 560; }
+  .thumb[data-state="done"] .thumb-status { display: none; }
+  .thumb[data-state="error"] { outline: 2px solid var(--danger); outline-offset: -2px; }
+  .thumb-remove { position: absolute; top: 6px; right: 6px; display: grid; place-items: center; width: 30px; height: 30px; border-radius: 50%; background: rgb(18 19 17 / 0.72); color: #fff; }
+  .thumb-remove:active { transform: scale(0.9); }
+  .thumb-retry { color: #fff; text-decoration: underline; font-weight: 600; }
+  .up-error { padding: 12px 14px; border-radius: 10px; background: var(--danger-soft); color: #5c140f; font-size: 0.92rem; }
+
+  .rv-row { display: grid; grid-template-columns: 96px 1fr auto; gap: 12px; align-items: baseline; padding: 14px 0; border-bottom: 1px solid var(--line); }
+  .rv-row dt { color: var(--ink-3); font-size: 0.9rem; }
+  .rv-row dd { margin: 0; font-weight: 520; overflow-wrap: anywhere; }
+  .rv-row .rv-edit { font-size: 0.88rem; color: var(--green-ink); font-weight: 560; min-height: 32px; padding: 0 4px; }
+  .rv-row .rv-edit:hover { text-decoration: underline; }
+  .rv-price dd { font-size: 1.15rem; font-weight: 600; }
+  .rv-price .rv-note { display: block; font-size: 0.82rem; font-weight: 400; color: var(--ink-3); }
+
+  .alts { display: grid; gap: 8px; margin-top: 12px; }
+  .alts .slot { min-height: 52px; }
+
+  .done-card { display: grid; gap: 4px; padding: 24px; border-radius: var(--r-4); background: var(--white); border: 1px solid var(--line); box-shadow: var(--shadow-2); }
+  .done-when { font-size: var(--step-3); font-weight: 600; letter-spacing: -0.03em; line-height: 1.1; }
+  .done-window { font-size: var(--step-2); font-weight: 500; color: var(--ink-2); font-variant-numeric: tabular-nums; }
+  .done-job { margin-top: 8px; font-family: var(--mono); font-size: 0.8rem; letter-spacing: 0.05em; text-transform: uppercase; color: var(--ink-3); }
+  .done-list { display: grid; gap: 10px; padding: 20px 0 0; margin-top: 16px; border-top: 1px solid var(--line); }
+  .done-list div { display: grid; grid-template-columns: 90px 1fr; gap: 12px; }
+  .done-list dt { color: var(--ink-3); font-size: 0.92rem; }
+  .done-list dd { margin: 0; overflow-wrap: anywhere; }
+  .done-actions { display: grid; gap: 10px; grid-template-columns: 1fr 1fr; }
+  .done-actions .btn { width: 100%; }
+  .done-actions .wide { grid-column: 1 / -1; }
+  .next-steps { display: grid; gap: 12px; counter-reset: n; padding: 0; list-style: none; }
+  .next-steps li { display: grid; grid-template-columns: 32px 1fr; gap: 12px; align-items: start; counter-increment: n; }
+  .next-steps li::before { content: counter(n); display: grid; place-items: center; width: 28px; height: 28px; border-radius: 50%; background: var(--paper-2); font-family: var(--mono); font-size: 0.8rem; font-weight: 600; }
+  .copy-row { display: flex; gap: 8px; }
+  .copy-row input { flex: 1; min-width: 0; font-size: 0.85rem; min-height: 44px; padding: 8px 12px; }
+</style>
+
+<script>
+  import { initBooking } from "../scripts/booking";
+  document.querySelectorAll<HTMLElement>("[data-booking]").forEach((el) => initBooking(el));
+</script>

@@ -1,0 +1,16 @@
+---
+import Base from "../layouts/Base.astro";
+import PageHero from "../components/PageHero.astro";
+import FaqList from "../components/FaqList.astro";
+import FinalCta from "../components/FinalCta.astro";
+import { business, telHref } from "../lib/site";
+---
+<Base title="FAQ — Junk Removal, Demolition & Pricing" description="Answers about junk removal pricing, load sizes, what 17 cubic yards means, what we can't take, booking, same-day service and the areas we cover in St. Louis.">
+  <PageHero eyebrow="FAQ" title="Straight answers." lede="If your question isn't here, call and ask. You'll get a person." crumbs={[{ href: "/faq/", label: "FAQ" }]}>
+    <a href={telHref} class="btn btn--ghost btn--lg" style="width:fit-content">{business.phoneDisplay}</a>
+  </PageHero>
+  <section class="section">
+    <div class="wrap--narrow"><FaqList /></div>
+  </section>
+  <FinalCta />
+</Base>

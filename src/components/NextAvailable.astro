@@ -1,0 +1,55 @@
+---
+// Shows the next open arrival window — only when it comes from the real
+// calendar. Hidden if booking isn't connected. Never invents urgency.
+interface Props { tone?: "dark" | "paper" }
+const { tone = "dark" } = Astro.props;
+---
+<a href="/book/" class:list={["next-avail", `next-avail--${tone}`]} data-next-available hidden data-track="cta_click" data-track-cta="book" data-track-location="next-available">
+  <span class="pulse" aria-hidden="true"></span>
+  <span data-next-text></span>
+</a>
+
+<style>
+  .next-avail {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    width: fit-content;
+    padding: 8px 14px 8px 12px;
+    border-radius: 999px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    text-decoration: none;
+    border: 1px solid var(--asphalt-line);
+    background: rgb(255 255 255 / 0.04);
+    color: var(--on-dark);
+    transition: background-color var(--t-fast);
+  }
+  .next-avail:hover { background: rgb(255 255 255 / 0.08); }
+  .next-avail--paper { border-color: var(--line); background: var(--white); color: var(--ink); }
+  .pulse { width: 8px; height: 8px; border-radius: 50%; background: var(--green); box-shadow: 0 0 0 4px rgb(63 203 92 / 0.2); }
+</style>
+
+<script>
+  import { formatLongDate } from "../../shared/time.js";
+
+  const els = document.querySelectorAll<HTMLAnchorElement>("[data-next-available]");
+  if (els.length) {
+    fetch("/api/availability?summary=1", { headers: { accept: "application/json" } })
+      .then((r) => (r.ok ? r.json() : null))
+      .then((data) => {
+        if (!data || data.status !== "ok" || data.mode !== "live" || !data.next) return;
+        const { date, slot } = data.next;
+        const today = new Intl.DateTimeFormat("en-CA", { timeZone: data.timezone }).format(new Date());
+        const tomorrow = new Intl.DateTimeFormat("en-CA", { timeZone: data.timezone }).format(new Date(Date.now() + 86_400_000));
+        const day = date === tomorrow ? "tomorrow" : formatLongDate(date);
+        const text = date === today ? `Available today, ${slot.label}` : `Next opening: ${day}, ${slot.label}`;
+        els.forEach((el) => {
+          el.querySelector("[data-next-text]")!.textContent = text;
+          el.href = `/book/?date=${date}`;
+          el.hidden = false;
+        });
+      })
+      .catch(() => {});
+  }
+</script>

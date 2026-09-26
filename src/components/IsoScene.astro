@@ -1,0 +1,143 @@
+---
+// Isometric line-and-tone illustration used as a stand-in for before/after
+// job photos. Deterministic (seeded), so every build renders the same scene.
+import { boxFaces, pts, project, rng } from "../lib/iso";
+
+type Kind = "garage" | "basement" | "construction" | "yard" | "interior-demo" | "estate";
+interface Props { kind: Kind; state: "before" | "after"; seed?: number }
+const { kind, state, seed = 7 } = Astro.props;
+
+const X = 16, Y = 11, Z = 8, U = 15;
+const P = (x: number, y: number, z: number) => project([x, y, z], U, 0, 0);
+const poly = (list: [number, number, number][]) => pts(list, U, 0, 0);
+
+function shade(hex: string, amt: number) {
+  const n = parseInt(hex.slice(1), 16);
+  const c = [n >> 16, (n >> 8) & 255, n & 255].map((v) => Math.max(0, Math.min(255, Math.round(v + amt))));
+  return `rgb(${c.join(" ")})`;
+}
+
+const outdoor = kind === "yard";
+const floorTone = outdoor ? "#cdd2c1" : kind === "construction" ? "#ddd2bd" : "#e2ded5";
+const wallA = "#eeebe4";
+const wallB = "#e5e1d8";
+
+type Box = { x: number; y: number; z: number; dx: number; dy: number; dz: number; c: string; order: number };
+const boxes: Box[] = [];
+const r = rng(seed * 97 + kind.length * 13);
+const palettes: Record<Kind, string[]> = {
+  garage: ["#d6cbb6", "#c9bea8", "#b8b0a2", "#8f8a80", "#e1dbcd", "#9c6a52"],
+  basement: ["#d6cbb6", "#cfc4ae", "#e1dbcd", "#9d978b", "#b9b1a1"],
+  construction: ["#d9c9a8", "#cdbb96", "#e6e2da", "#bdb7ab", "#a59f93"],
+  yard: ["#8a7a62", "#9b8b70", "#7c7b72", "#b0a58f", "#6f6a5f"],
+  "interior-demo": ["#e6e2da", "#d0c8b8", "#bdb7ab", "#cdbb96"],
+  estate: ["#c9bea8", "#b7a58a", "#8e7d67", "#d6cbb6", "#e1dbcd", "#6f7a6a"],
+};
+const pal = palettes[kind];
+
+if (state === "before") {
+  const cell = 2.2;
+  for (let i = 0; i < 6; i++) {
+    for (let j = 0; j < 4; j++) {
+      const density = kind === "estate" || kind === "garage" ? 0.86 : 0.66;
+      if (r() > density) continue;
+      const cx = 1 + i * cell, cy = 1.3 + j * cell;
+      if (cx + cell > X - 0.5 || cy + cell > Y - 0.4) continue;
+      let z = 0;
+      const stack = 1 + Math.floor(r() * (kind === "yard" ? 1.6 : 3));
+      for (let k = 0; k < stack; k++) {
+        const dx = 1.1 + r() * 0.9, dy = 1.1 + r() * 0.9, dz = 0.7 + r() * 1.2;
+        boxes.push({ x: cx + r() * (cell - dx - 0.1), y: cy + r() * (cell - dy - 0.1), z, dx, dy, dz, c: pal[Math.floor(r() * pal.length)], order: i + j });
+        z += dz;
+      }
+    }
+  }
+  // Long pieces: lumber, drywall, branches
+  if (kind === "construction" || kind === "yard" || kind === "interior-demo") {
+    for (let k = 0; k < 5; k++) {
+      boxes.push({ x: 2.5 + r() * 2, y: 8.6 + k * 0.1, z: k * 0.35, dx: 7 + r() * 3, dy: 1.2, dz: 0.3, c: pal[k % pal.length], order: 20 + k });
+    }
+  }
+  boxes.sort((a, b) => a.order - b.order || a.z - b.z);
+}
+
+const faces = boxes.map((b) => ({ ...boxFaces(b.x, b.y, b.z, b.dx, b.dy, b.dz, U, 0, 0), c: b.c }));
+
+// Architectural details per scene
+const lines: { x1: number; y1: number; x2: number; y2: number; cls?: string }[] = [];
+const L = (a: [number, number, number], b: [number, number, number], cls?: string) => {
+  const [x1, y1] = P(...a); const [x2, y2] = P(...b); lines.push({ x1, y1, x2, y2, cls });
+};
+const rects: { points: string; cls: string }[] = [];
+
+if (!outdoor) {
+  for (let x = 4; x < X; x += 4) L([x, 0, 0], [x, Y, 0], "joint");
+  L([0, Y / 2, 0], [X, Y / 2, 0], "joint");
+}
+if (kind === "garage") {
+  rects.push({ points: poly([[2.5, 0, 0], [13.5, 0, 0], [13.5, 0, 7], [2.5, 0, 7]]), cls: "door" });
+  for (let z = 1.4; z < 7; z += 1.4) L([2.5, 0, z], [13.5, 0, z], "panel");
+}
+if (kind === "basement") {
+  rects.push({ points: poly([[10, 0, 5.6], [13.6, 0, 5.6], [13.6, 0, 7.2], [10, 0, 7.2]]), cls: "window" });
+  L([0, 0, 7.5], [X, 0, 7.5], "pipe");
+  L([0, 0.1, 7.1], [0, Y, 7.1], "pipe");
+}
+if (kind === "construction" || (kind === "interior-demo" && state === "after")) {
+  for (let x = 0.7; x < X; x += 1.33) L([x, 0, 0], [x, 0, Z], "stud");
+  L([0, 0, Z - 0.2], [X, 0, Z - 0.2], "stud");
+  L([0, 0, 0.15], [X, 0, 0.15], "stud");
+}
+if (kind === "interior-demo" && state === "before") {
+  // base + upper cabinets
+  const base = boxFaces(1, 0, 0, 13, 2, 3, U, 0, 0);
+  const upper = boxFaces(1, 0, 4.6, 13, 1.2, 2.6, U, 0, 0);
+  faces.unshift({ ...upper, c: "#cdbb96" }, { ...base, c: "#b7a58a" });
+}
+if (kind === "estate") {
+  rects.push({ points: poly([[9.5, 0, 3], [13.5, 0, 3], [13.5, 0, 6.5], [9.5, 0, 6.5]]), cls: "window" });
+  rects.push({ points: poly([[0, 3.5, 3.6], [0, 6, 3.6], [0, 6, 5.4], [0, 3.5, 5.4]]), cls: "frame" });
+}
+if (outdoor) {
+  for (let x = 0.5; x <= X; x += 0.8) L([x, 0, 0], [x, 0, 4.2], "fence");
+  L([0, 0, 1], [X, 0, 1], "rail");
+  L([0, 0, 3.5], [X, 0, 3.5], "rail");
+}
+
+const [minX] = P(0, Y, 0);
+const [maxX] = P(X, 0, 0);
+const [, minY] = P(0, 0, Z);
+const [, maxY] = P(X, Y, 0);
+const pad = 10;
+const vb = `${(minX - pad).toFixed(0)} ${(minY - pad).toFixed(0)} ${(maxX - minX + pad * 2).toFixed(0)} ${(maxY - minY + pad * 2).toFixed(0)}`;
+---
+<svg class="scene" viewBox={vb} preserveAspectRatio="xMidYMid meet" aria-hidden="true" focusable="false">
+  <rect x={minX - 200} y={minY - 200} width={maxX - minX + 400} height={maxY - minY + 400} fill={outdoor ? "#e7e9df" : "#f1efe9"} />
+  {!outdoor && <polygon points={poly([[0, 0, 0], [X, 0, 0], [X, 0, Z], [0, 0, Z]])} fill={wallA} class="edge" />}
+  {!outdoor && <polygon points={poly([[0, 0, 0], [0, Y, 0], [0, Y, Z], [0, 0, Z]])} fill={wallB} class="edge" />}
+  <polygon points={poly([[0, 0, 0], [X, 0, 0], [X, Y, 0], [0, Y, 0]])} fill={floorTone} class="edge" />
+  {rects.map((rc) => <polygon points={rc.points} class={rc.cls} />)}
+  {lines.map((l) => <line x1={l.x1} y1={l.y1} x2={l.x2} y2={l.y2} class={l.cls} />)}
+  {faces.map((f) => (
+    <g class="box">
+      <polygon points={f.side} fill={shade(f.c, -26)} />
+      <polygon points={f.end} fill={shade(f.c, -12)} />
+      <polygon points={f.top} fill={shade(f.c, 14)} />
+    </g>
+  ))}
+</svg>
+
+<style>
+  .scene { width: 100%; height: 100%; display: block; }
+  .edge { stroke: rgb(18 19 17 / 0.16); stroke-width: 0.8; }
+  .box polygon { stroke: rgb(18 19 17 / 0.28); stroke-width: 0.6; stroke-linejoin: round; }
+  .joint { stroke: rgb(18 19 17 / 0.07); stroke-width: 0.8; }
+  .door { fill: #e3dfd6; stroke: rgb(18 19 17 / 0.22); stroke-width: 0.8; }
+  .panel { stroke: rgb(18 19 17 / 0.14); stroke-width: 0.8; }
+  .window { fill: #dfe4e2; stroke: rgb(18 19 17 / 0.25); stroke-width: 0.8; }
+  .frame { fill: #d7cfbf; stroke: rgb(18 19 17 / 0.25); stroke-width: 0.8; }
+  .pipe { stroke: #9a948a; stroke-width: 1.6; }
+  .stud { stroke: #c9b48e; stroke-width: 2.4; }
+  .fence { stroke: #a8a293; stroke-width: 2; }
+  .rail { stroke: #a8a293; stroke-width: 1.2; }
+</style>

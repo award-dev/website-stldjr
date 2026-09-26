@@ -9,7 +9,7 @@ export default async (req) => {
   const service = url.searchParams.get("service") || "junk";
   const load = url.searchParams.get("load") || "half";
   const rules = getBookingRules();
-  if (!rules.enabled) return json({ status: "unavailable", code: "booking_disabled", message: "Online booking is paused. Call us to schedule." }, 503);
+  if (!rules.enabled) return json({ status: "unavailable", code: "booking_disabled", message: "Online booking is paused. Call us to schedule." });
   try {
     const svc = await bookingService(req);
     const days = await svc.availability({ service, load });
@@ -18,7 +18,11 @@ export default async (req) => {
     // Short edge cache for the homepage "next available" badge only.
     return json(body, 200, url.searchParams.get("summary") === "1" ? { "cache-control": "public, max-age=60" } : {});
   } catch (err) {
-    return fail(err);
+    // "Not connected" is a normal state for this endpoint, not a server fault:
+    // answer 200 so the page can show its fallback without console noise.
+    const res = fail(err);
+    if (res.status === 503) return json({ ...(await res.json()), status: "unavailable" }, 200);
+    return res;
   }
 };
 

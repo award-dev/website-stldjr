@@ -1,0 +1,35 @@
+---
+import Photo from "./Photo.astro";
+import OwnerNote from "./OwnerNote.astro";
+import { media } from "../lib/site";
+const items = media.work;
+const missing = items.some((i) => !i.src);
+---
+<div class="gallery">
+  {items.map((it, i) => (
+    <Photo src={it.src} alt={it.alt} caption={it.caption} ratio={i === 0 ? "4 / 3" : "1 / 1"} class={`g g${i}`} tone="dark" overlay />
+  ))}
+</div>
+{missing && <OwnerNote class="gallery-note">Add real crew, truck and job photos in config/media.json → work. No stock photos, no AI people.</OwnerNote>}
+
+<style>
+  .gallery { display: grid; gap: 12px; grid-template-columns: repeat(2, 1fr); }
+  .gallery :global(.g0) { grid-column: 1 / -1; }
+  @media (min-width: 900px) {
+    .gallery {
+      gap: 16px;
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: repeat(3, 230px);
+      grid-template-areas: "a a b c" "a a d d" "e e f f";
+    }
+    .gallery :global(.g) { height: 100%; }
+    .gallery :global(.g img), .gallery :global(.g .photo-ph) { height: 100%; aspect-ratio: auto; }
+    .gallery :global(.g0) { grid-area: a; }
+    .gallery :global(.g1) { grid-area: b; }
+    .gallery :global(.g2) { grid-area: c; }
+    .gallery :global(.g3) { grid-area: d; }
+    .gallery :global(.g4) { grid-area: e; }
+    .gallery :global(.g5) { grid-area: f; }
+  }
+  :global(.gallery-note) { margin-top: 20px; }
+</style>

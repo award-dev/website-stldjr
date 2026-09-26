@@ -1,0 +1,22 @@
+---
+import Base from "../layouts/Base.astro";
+import BookingFlow from "../components/BookingFlow.astro";
+---
+<Base title="Get a Free Quote" description="Send a few photos and details and get a price for junk removal, cleanouts or demolition in St. Louis. No commitment." hideMobileBar>
+  <div class="wrap book-page">
+    <BookingFlow mode="quote" />
+  </div>
+
+  <!-- Netlify Forms reads this static form at deploy time; the flow above posts to it. -->
+  <form name="quote" method="POST" data-netlify="true" netlify-honeypot="bot-field" hidden aria-hidden="true">
+    <input name="bot-field" />
+    <input name="service" /><input name="load" /><input name="address" /><input name="city" /><input name="zip" />
+    <input name="propertyType" /><textarea name="description"></textarea><input name="items" /><textarea name="demolitionDetails"></textarea>
+    <input name="stairs" /><input name="carry" /><textarea name="access"></textarea><textarea name="special"></textarea>
+    <input name="name" /><input name="phone" /><input name="email" /><textarea name="photos"></textarea>
+  </form>
+</Base>
+
+<style>
+  .book-page { padding: 8px 0 64px; min-height: 70vh; }
+</style>

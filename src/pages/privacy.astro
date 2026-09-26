@@ -1,0 +1,21 @@
+---
+import LegalPage from "../components/LegalPage.astro";
+import { business, mailHref, telHref } from "../lib/site";
+---
+<LegalPage title="Privacy Policy" description={`How ${business.name} collects and uses information from this website.`} path="/privacy/">
+  <h2>What we collect</h2>
+  <p>When you book or request a quote, we collect what you give us: your name, phone number, email, the job address, a description of the job, and any photos you upload. We use it to schedule, price and do the job, and to contact you about it.</p>
+  <h2>Where it goes</h2>
+  <ul>
+    <li><b>Our scheduling calendar</b> (Google Calendar) holds your appointment details so our crew knows where to go.</li>
+    <li><b>Our hosting provider</b> stores booking records and photos.</li>
+    <li><b>Email/SMS providers</b> deliver confirmations and updates, if those are turned on.</li>
+  </ul>
+  <p>We don't sell your information, and we don't add you to marketing lists.</p>
+  <h2>Analytics</h2>
+  <p>We may use privacy-respecting analytics to count page views and see which parts of the site work. We don't send your name, phone, email or address to analytics tools.</p>
+  <h2>Saved progress</h2>
+  <p>The booking form saves your progress in your own browser (local storage) so you don't lose it if you leave the page. It's cleared when your booking goes through.</p>
+  <h2>Your choices</h2>
+  <p>To see, correct or delete information we hold about you, email <a href={mailHref}>{business.email}</a> or call <a href={telHref}>{business.phoneDisplay}</a>.</p>
+</LegalPage>

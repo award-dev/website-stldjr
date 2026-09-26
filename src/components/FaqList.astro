@@ -1,0 +1,25 @@
+---
+import Schema from "./Schema.astro";
+import OwnerNote from "./OwnerNote.astro";
+import { faqs, faqById, showOwnerNotes } from "../lib/site";
+interface Props { ids?: string[]; homeOnly?: boolean; schema?: boolean }
+const { ids, homeOnly = false, schema = true } = Astro.props;
+const list = ids ? ids.map(faqById).filter(Boolean) as typeof faqs : homeOnly ? faqs.filter((f) => (f as any).home) : faqs;
+const ld = { "@context": "https://schema.org", "@type": "FAQPage", mainEntity: list.map((f) => ({ "@type": "Question", name: f.q, acceptedAnswer: { "@type": "Answer", text: f.a } })) };
+---
+<div class="faq">
+  {list.map((f) => (
+    <details class="acc" id={`faq-${f.id}`}>
+      <summary>{f.q}<span class="acc-icon" aria-hidden="true"></span></summary>
+      <div class="acc-body">
+        <p>{f.a}</p>
+        {showOwnerNotes && !f.confirmed && <OwnerNote>Draft answer — confirm this matches your policy (config/faqs.json → "{f.id}").</OwnerNote>}
+      </div>
+    </details>
+  ))}
+</div>
+{schema && <Schema data={ld} />}
+
+<style>
+  .faq :global(.owner-note) { margin-top: 12px; }
+</style>

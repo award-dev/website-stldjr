@@ -69,8 +69,8 @@ export function computeAvailability({ now, rules, hours, tz, busy, service, load
         // The job must also finish before close.
         const finish = start + duration * 60_000;
         const closeMs = zonedToUtc(date, open[1], tz).getTime();
-        const available = start >= earliest && finish <= closeMs && slotIsFree(rules, busy, start, duration, ignoreId);
-        day.slots.push({ id: w.id, start: new Date(start).toISOString(), end: new Date(end).toISOString(), label: formatWindow(w.start, w.end), available });
+        const reason = start < earliest ? "notice" : finish > closeMs ? "closing" : !slotIsFree(rules, busy, start, duration, ignoreId) ? "booked" : null;
+        day.slots.push({ id: w.id, start: new Date(start).toISOString(), end: new Date(end).toISOString(), label: formatWindow(w.start, w.end), available: !reason, ...(reason ? { reason } : {}) });
       }
     }
     days.push(day);

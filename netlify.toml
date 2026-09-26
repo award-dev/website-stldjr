@@ -1,0 +1,80 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "22"
+
+[functions]
+  node_bundler = "esbuild"
+  included_files = ["config/**"]
+
+# Long-cache fingerprinted assets and fonts
+[[headers]]
+  for = "/_astro/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+[[headers]]
+  for = "/fonts/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "geolocation=(), microphone=(), camera=(self)"
+    X-Frame-Options = "SAMEORIGIN"
+
+[[headers]]
+  for = "/booking/*"
+  [headers.values]
+    X-Robots-Tag = "noindex"
+    Referrer-Policy = "no-referrer"
+
+# Legacy URLs from the previous site
+[[redirects]]
+  from = "/services/"
+  to = "/junk-removal/"
+  status = 301
+[[redirects]]
+  from = "/services/full-service-junk-removal/"
+  to = "/junk-removal/"
+  status = 301
+[[redirects]]
+  from = "/services/dumpster-rental/"
+  to = "/construction-debris-removal/"
+  status = 301
+[[redirects]]
+  from = "/services/commercial-cleanouts/"
+  to = "/cleanouts/"
+  status = 301
+[[redirects]]
+  from = "/services/residential-cleanouts/"
+  to = "/cleanouts/"
+  status = 301
+[[redirects]]
+  from = "/service-area/*"
+  to = "/service-area/"
+  status = 301
+[[redirects]]
+  from = "/gallery/"
+  to = "/about/"
+  status = 301
+[[redirects]]
+  from = "/contact/"
+  to = "/about/#contact"
+  status = 301
+[[redirects]]
+  from = "/thank-you/"
+  to = "/"
+  status = 301
+[[redirects]]
+  from = "/privacy-policy/"
+  to = "/privacy/"
+  status = 301
+[[redirects]]
+  from = "/terms-of-service/"
+  to = "/terms/"
+  status = 301

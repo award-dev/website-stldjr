@@ -1,0 +1,77 @@
+---
+// Three steps, each with a small, literal UI vignette of that step.
+import { loads } from "../lib/site";
+---
+<ol role="list" class="how">
+  <li class="step" data-reveal style="--i:0">
+    <div class="vignette">
+      <div class="v-photos" aria-hidden="true">
+        <span class="v-ph"></span><span class="v-ph"></span><span class="v-ph v-ph--add">+</span>
+      </div>
+      <p class="v-chip" aria-hidden="true"><span class="v-dot"></span>Old couch, treadmill, 12 boxes</p>
+    </div>
+    <p class="step-num meta num">01</p>
+    <h3 class="step-title">Tell us what needs to go.</h3>
+    <p class="step-text">A few words and a couple of photos from your phone. That's usually all we need.</p>
+  </li>
+  <li class="step" data-reveal style="--i:1">
+    <div class="vignette">
+      <div class="v-seg" aria-hidden="true">
+        {loads.map((l, i) => <span class:list={{ on: i === 1 }}>{l.short}</span>)}
+      </div>
+      <div class="v-times" aria-hidden="true"><span>8 – 10</span><span class="on">10 – 12</span><span>12 – 2</span></div>
+    </div>
+    <p class="step-num meta num">02</p>
+    <h3 class="step-title">Choose your load size and time.</h3>
+    <p class="step-text">See the price for each size, then pick an arrival window that's actually open.</p>
+  </li>
+  <li class="step" data-reveal style="--i:2">
+    <div class="vignette">
+      <ul class="v-list" aria-hidden="true">
+        <li><span class="v-check">✓</span>Price confirmed with you</li>
+        <li><span class="v-check">✓</span>Carried out &amp; loaded</li>
+        <li><span class="v-check">✓</span>Swept up</li>
+      </ul>
+    </div>
+    <p class="step-num meta num">03</p>
+    <h3 class="step-title">We show up and clear it out.</h3>
+    <p class="step-text">We confirm the price before we lift anything, load it all, and leave the space clean.</p>
+  </li>
+</ol>
+
+<style>
+  .how { display: grid; gap: 40px; counter-reset: s; }
+  @media (min-width: 900px) { .how { grid-template-columns: repeat(3, 1fr); gap: 24px; } }
+  .step { display: grid; gap: 10px; align-content: start; }
+  .vignette {
+    display: grid;
+    align-content: center;
+    gap: 12px;
+    height: 180px;
+    padding: 24px;
+    margin-bottom: 14px;
+    border-radius: var(--r-3);
+    background: var(--asphalt-2);
+    border: 1px solid var(--asphalt-line);
+  }
+  .step-num { color: var(--green); }
+  .step-title { font-size: var(--step-2); letter-spacing: -0.022em; }
+  .step-text { color: var(--on-dark-2); max-width: 38ch; }
+
+  .v-photos { display: flex; gap: 8px; }
+  .v-ph { width: 64px; height: 64px; border-radius: 10px; background: linear-gradient(135deg, #3a3c37, #2a2c28); border: 1px solid var(--asphalt-line); }
+  .v-ph--add { display: grid; place-items: center; background: none; border-style: dashed; color: var(--on-dark-3); font-size: 1.4rem; }
+  .v-chip { display: inline-flex; align-items: center; gap: 8px; width: fit-content; padding: 8px 12px; border-radius: 10px; background: var(--asphalt-3); font-size: 0.85rem; color: var(--on-dark-2); }
+  .v-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green); }
+
+  .v-seg { display: grid; grid-template-columns: repeat(4, 1fr); padding: 3px; border-radius: 10px; background: var(--asphalt-3); }
+  .v-seg span { display: grid; place-items: center; height: 34px; border-radius: 8px; font-size: 0.85rem; font-weight: 560; color: var(--on-dark-3); }
+  .v-seg .on { background: var(--paper); color: var(--ink); }
+  .v-times { display: flex; gap: 6px; }
+  .v-times span { flex: 1; display: grid; place-items: center; height: 34px; border-radius: 8px; border: 1px solid var(--asphalt-line); font-family: var(--mono); font-size: 0.75rem; color: var(--on-dark-3); }
+  .v-times .on { border-color: var(--green); color: var(--on-dark); background: rgb(63 203 92 / 0.12); }
+
+  .v-list { list-style: none; padding: 0; display: grid; gap: 10px; }
+  .v-list li { display: flex; align-items: center; gap: 10px; font-size: 0.92rem; color: var(--on-dark-2); }
+  .v-check { display: grid; place-items: center; width: 22px; height: 22px; border-radius: 50%; background: var(--green); color: var(--asphalt); font-size: 0.75rem; font-weight: 700; }
+</style>

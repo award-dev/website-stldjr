@@ -1,0 +1,140 @@
+---
+import Base from "../layouts/Base.astro";
+import Hero from "../components/Hero.astro";
+import LoadGuide from "../components/LoadGuide.astro";
+import NeedSelector from "../components/NeedSelector.astro";
+import BeforeAfter from "../components/BeforeAfter.astro";
+import HowItWorks from "../components/HowItWorks.astro";
+import WorkGallery from "../components/WorkGallery.astro";
+import ServiceSplit from "../components/ServiceSplit.astro";
+import ServiceAreaBlock from "../components/ServiceAreaBlock.astro";
+import Reviews from "../components/Reviews.astro";
+import FaqList from "../components/FaqList.astro";
+import FinalCta from "../components/FinalCta.astro";
+import { business, pricing } from "../lib/site";
+---
+<Base
+  title={`Junk Removal & Demolition in St. Louis, MO | ${business.name}`}
+  fullTitle
+  description="St. Louis junk removal, demolition and cleanouts, priced by the load. See what a 1/4, 1/2, 3/4 or full 17-yard truck costs and book online in minutes."
+>
+  <Hero />
+
+  <section class="section" aria-labelledby="guide-title">
+    <div class="wrap">
+      <div class="section-head section-head--split">
+        <div class="stack">
+          <p class="eyebrow">Load sizes</p>
+          <h2 id="guide-title" class="h2">Not sure what size you need?</h2>
+        </div>
+        <p class="lede">Everything is priced by how much of our {pricing.maxCubicYards}-cubic-yard truck it fills. Here's roughly what fits. Guess wrong and we'll tell you on-site — before we load, not after.</p>
+      </div>
+      <LoadGuide />
+      <p class="small muted guide-note">{pricing.examplesNote} Heavy materials, disposal fees and hard access can change the price. <a class="link" href="/pricing/#what-changes-the-price">See everything that affects price</a>.</p>
+    </div>
+  </section>
+
+  <section class="section paper-2" id="services" aria-labelledby="needs-title">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">What needs to go?</p>
+        <h2 id="needs-title" class="h2">Start with the problem. We'll sort out the rest.</h2>
+      </div>
+      <NeedSelector />
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="ba-title">
+    <div class="wrap">
+      <div class="section-head section-head--split">
+        <div class="stack">
+          <p class="eyebrow">Before / after</p>
+          <h2 id="ba-title" class="h2">Same room. Different afternoon.</h2>
+        </div>
+        <p class="lede">Garages, basements, job sites, whole houses. Drag to see the difference.</p>
+      </div>
+      <BeforeAfter />
+    </div>
+  </section>
+
+  <section class="section dark" id="how-it-works" aria-labelledby="how-title">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">How it works</p>
+        <h2 id="how-title" class="h2">Three steps. The heavy one is ours.</h2>
+      </div>
+      <HowItWorks />
+      <div class="cta-row how-cta">
+        <a href="/book/" class="btn btn--green btn--lg" data-track="cta_click" data-track-cta="book" data-track-location="how">Book a pickup</a>
+        <a href="/quote/" class="btn btn--ghost btn--lg" data-track="cta_click" data-track-cta="quote" data-track-location="how">Send photos for a quote</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="work-title">
+    <div class="wrap">
+      <div class="section-head section-head--split">
+        <div class="stack">
+          <p class="eyebrow">On the job</p>
+          <h2 id="work-title" class="h2">Real crew. Real truck. Real St. Louis jobs.</h2>
+        </div>
+        <p class="lede">No stock photos here. Just the people and the truck that'll show up at your door.</p>
+      </div>
+      <WorkGallery />
+    </div>
+  </section>
+
+  <section class="section dark" aria-labelledby="split-title">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">What we do</p>
+        <h2 id="split-title" class="h2">Two trades. One truck.</h2>
+        <p class="lede">Hauling and demolition from one crew means a tear-out and its debris leave in the same visit.</p>
+      </div>
+      <ServiceSplit />
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="area-title">
+    <div class="wrap">
+      <div class="section-head section-head--split">
+        <div class="stack">
+          <p class="eyebrow">Service area</p>
+          <h2 id="area-title" class="h2">City, County, and across the river to St. Charles.</h2>
+        </div>
+        <p class="lede">If you're near a place on this list, we can get to you. <a class="link" href="/service-area/">See the full service area</a>.</p>
+      </div>
+      <ServiceAreaBlock />
+    </div>
+  </section>
+
+  <section class="section paper-2" aria-labelledby="reviews-title">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Reviews</p>
+        <h2 id="reviews-title" class="h2">What customers say.</h2>
+      </div>
+      <Reviews />
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="faq-title">
+    <div class="wrap faq-grid">
+      <div class="section-head">
+        <p class="eyebrow">FAQ</p>
+        <h2 id="faq-title" class="h2">Straight answers.</h2>
+        <p><a class="link" href="/faq/">All questions</a></p>
+      </div>
+      <FaqList homeOnly />
+    </div>
+  </section>
+
+  <FinalCta />
+</Base>
+
+<style>
+  .guide-note { margin-top: 24px; max-width: 80ch; }
+  .how-cta { margin-top: 56px; }
+  .faq-grid { display: grid; gap: 0 64px; }
+  @media (min-width: 900px) { .faq-grid { grid-template-columns: 0.8fr 1.2fr; align-items: start; } .faq-grid .section-head { position: sticky; top: calc(var(--header-h) + 32px); } }
+</style>

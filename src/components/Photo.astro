@@ -1,0 +1,43 @@
+---
+// A photo slot from config/media.json. Real image when src is set; otherwise
+// a labelled placeholder so unfinished content never passes as real.
+import { showOwnerNotes } from "../lib/site";
+interface Props { src?: string | null; alt: string; caption?: string; ratio?: string; class?: string; eager?: boolean; tone?: "paper" | "dark"; sizes?: string; overlay?: boolean }
+const { src, alt, caption, ratio = "4 / 3", class: cls, eager = false, tone = "paper", sizes = "(min-width: 900px) 33vw, 100vw", overlay = false } = Astro.props;
+---
+<figure class:list={["photo", { "photo--overlay": overlay }, cls]} style={`--ratio:${ratio}`}>
+  {src ? (
+    <img src={src} alt={alt} loading={eager ? "eager" : "lazy"} decoding="async" sizes={sizes} />
+  ) : (
+    <div class:list={["ph", "photo-ph", { "ph--dark": tone === "dark" }]} role="img" aria-label={`Photo coming soon: ${alt}`}>
+      <span class="crop crop--tl" aria-hidden="true"></span><span class="crop crop--br" aria-hidden="true"></span>
+      <span class="ph-label meta">Photo coming soon</span>
+      {showOwnerNotes && <span class="ph-alt">{alt}</span>}
+    </div>
+  )}
+  {caption && <figcaption class="small">{caption}</figcaption>}
+</figure>
+
+<style>
+  .photo { display: grid; gap: 10px; margin: 0; }
+  .photo img, .photo-ph { width: 100%; aspect-ratio: var(--ratio); object-fit: cover; border-radius: var(--r-3); }
+  .photo-ph { display: grid; place-content: center; justify-items: center; gap: 8px; padding: 24px; text-align: center; }
+  .ph-label { opacity: 0.8; }
+  .ph-alt { font-size: 0.8rem; max-width: 32ch; line-height: 1.4; opacity: 0.75; }
+  .crop { position: absolute; width: 18px; height: 18px; border-color: currentColor; border-style: solid; opacity: 0.45; }
+  .crop--tl { top: 14px; left: 14px; border-width: 1px 0 0 1px; }
+  .crop--br { right: 14px; bottom: 14px; border-width: 0 1px 1px 0; }
+  figcaption { color: var(--ink-3); }
+  .photo--overlay { position: relative; }
+  .photo--overlay figcaption {
+    position: absolute;
+    left: 12px;
+    bottom: 12px;
+    padding: 6px 10px;
+    border-radius: 8px;
+    background: rgb(18 19 17 / 0.72);
+    color: var(--on-dark);
+    backdrop-filter: blur(6px);
+  }
+  :global(.dark) figcaption { color: var(--on-dark-3); }
+</style>

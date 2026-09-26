@@ -1,0 +1,188 @@
+---
+import IsoScene from "./IsoScene.astro";
+import OwnerNote from "./OwnerNote.astro";
+import { media } from "../lib/site";
+
+const pairs = media.beforeAfter;
+const anyPlaceholder = pairs.some((p) => !p.before.src || !p.after.src);
+---
+<div class="ba" data-ba>
+  <div class="ba-tabs" role="tablist" aria-label="Job type">
+    {pairs.map((p, i) => (
+      <button type="button" role="tab" id={`ba-tab-${p.id}`} aria-controls={`ba-panel-${p.id}`} aria-selected={i === 0 ? "true" : "false"} tabindex={i === 0 ? 0 : -1} data-ba-tab>
+        {p.label}
+      </button>
+    ))}
+  </div>
+
+  {pairs.map((p, i) => (
+    <div class="ba-panel" role="tabpanel" id={`ba-panel-${p.id}`} aria-labelledby={`ba-tab-${p.id}`} hidden={i !== 0} data-ba-panel>
+      <div class="ba-stage" style="--pos: 50%" data-ba-stage>
+        <div class="ba-layer ba-before">
+          {p.before.src ? <img src={p.before.src} alt={p.before.alt} loading="lazy" decoding="async" /> : <IsoScene kind={p.id as any} state="before" seed={i + 3} />}
+        </div>
+        <div class="ba-layer ba-after">
+          {p.after.src ? <img src={p.after.src} alt={p.after.alt} loading="lazy" decoding="async" /> : <IsoScene kind={p.id as any} state="after" seed={i + 3} />}
+        </div>
+        <span class="ba-tag ba-tag--before meta" aria-hidden="true">Before</span>
+        <span class="ba-tag ba-tag--after meta" aria-hidden="true">After</span>
+        <div class="ba-handle" aria-hidden="true"><span class="ba-knob"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m9 7-5 5 5 5M15 7l5 5-5 5" /></svg></span></div>
+        <input class="ba-range" type="range" min="0" max="100" value="50" step="1" aria-label={`Compare before and after: ${p.caption}`} aria-valuetext="50% after" data-ba-range />
+        {(!p.before.src || !p.after.src) && <span class="ba-illus meta">Illustration</span>}
+      </div>
+      <div class="ba-caption">
+        <p class="h4">{p.caption}</p>
+        <p class="small muted">{p.before.src ? `${p.before.alt} → ${p.after.alt}` : "Drag to compare. Real job photos go here."}</p>
+      </div>
+    </div>
+  ))}
+  {anyPlaceholder && <OwnerNote>Add real before/after photos in config/media.json → beforeAfter (put files in public/photos/). Illustrations show until then.</OwnerNote>}
+</div>
+
+<style>
+  .ba { display: grid; gap: 20px; }
+  .ba-tabs {
+    display: flex;
+    gap: 6px;
+    overflow-x: auto;
+    scrollbar-width: none;
+    margin-inline: calc(var(--gutter) * -1);
+    padding-inline: var(--gutter);
+    scroll-snap-type: x proximity;
+  }
+  .ba-tabs::-webkit-scrollbar { display: none; }
+  .ba-tabs button {
+    flex: none;
+    min-height: 44px;
+    padding: 0 18px;
+    border-radius: 999px;
+    border: 1px solid var(--line-strong);
+    font-weight: 540;
+    font-size: 0.95rem;
+    color: var(--ink-2);
+    scroll-snap-align: start;
+    transition: background-color var(--t-fast), color var(--t-fast), border-color var(--t-fast), transform var(--t-fast) var(--ease-out);
+  }
+  .ba-tabs button:hover { background: var(--white); }
+  .ba-tabs button:active { transform: scale(0.96); }
+  .ba-tabs button[aria-selected="true"] { background: var(--asphalt); border-color: var(--asphalt); color: var(--on-dark); }
+  @media (min-width: 900px) { .ba-tabs { margin-inline: 0; padding-inline: 0; } }
+
+  .ba-panel { display: grid; gap: 16px; }
+  .ba-panel:not([hidden]) { animation: fade var(--t-slow) var(--ease-out); }
+  @keyframes fade { from { opacity: 0; } }
+
+  .ba-stage {
+    position: relative;
+    aspect-ratio: 4 / 3;
+    border-radius: var(--r-4);
+    overflow: hidden;
+    background: var(--paper-2);
+    touch-action: pan-y;
+    user-select: none;
+    box-shadow: var(--shadow-2);
+  }
+  @media (min-width: 1020px) {
+    .ba { grid-template-columns: 240px 1fr; column-gap: 48px; align-items: start; }
+    .ba-tabs { flex-direction: column; gap: 4px; position: sticky; top: calc(var(--header-h) + 24px); }
+    .ba-tabs button { text-align: left; border-color: transparent; border-radius: 10px; font-size: 1.02rem; min-height: 48px; }
+    .ba-panel { grid-column: 2; grid-row: 1; }
+    .ba :global(.owner-note) { grid-column: 2; }
+  }
+  .ba-layer { position: absolute; inset: 0; background: #f1efe9; }
+  .ba-layer img { width: 100%; height: 100%; object-fit: cover; }
+  .ba-after { clip-path: inset(0 0 0 var(--pos)); }
+  .ba-handle {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: var(--pos);
+    width: 2px;
+    margin-left: -1px;
+    background: var(--white);
+    box-shadow: 0 0 0 1px rgb(18 19 17 / 0.08);
+    pointer-events: none;
+  }
+  .ba-knob {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--white);
+    color: var(--ink);
+    box-shadow: var(--shadow-2);
+    translate: -50% -50%;
+    transition: scale var(--t-fast) var(--ease-out);
+  }
+  .ba-stage:active .ba-knob, .ba-range:focus-visible ~ .ba-handle .ba-knob { scale: 1.08; }
+  .ba-range {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    opacity: 0;
+    cursor: ew-resize;
+    touch-action: pan-y;
+  }
+  .ba-stage:has(.ba-range:focus-visible) { outline: 2px solid var(--green-ink); outline-offset: 3px; }
+  .ba-tag {
+    position: absolute;
+    top: 14px;
+    padding: 6px 10px;
+    border-radius: 6px;
+    background: rgb(18 19 17 / 0.72);
+    color: var(--on-dark);
+    backdrop-filter: blur(6px);
+    pointer-events: none;
+  }
+  .ba-tag--before { left: 14px; }
+  .ba-tag--after { right: 14px; background: var(--green); color: var(--asphalt); }
+  .ba-illus { position: absolute; right: 14px; bottom: 14px; padding: 5px 8px; border-radius: 6px; background: rgb(255 255 255 / 0.8); color: var(--ink-3); pointer-events: none; }
+  .ba-caption { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 4px 24px; }
+</style>
+
+<script>
+  import { track } from "../scripts/analytics";
+
+  document.querySelectorAll<HTMLElement>("[data-ba]").forEach((root) => {
+    const tabs = [...root.querySelectorAll<HTMLButtonElement>("[data-ba-tab]")];
+    const panels = [...root.querySelectorAll<HTMLElement>("[data-ba-panel]")];
+
+    const select = (i: number, focus = false) => {
+      tabs.forEach((t, j) => {
+        t.setAttribute("aria-selected", String(i === j));
+        t.tabIndex = i === j ? 0 : -1;
+      });
+      panels.forEach((p, j) => (p.hidden = i !== j));
+      if (focus) tabs[i].focus();
+      tabs[i].scrollIntoView({ block: "nearest", inline: "nearest", behavior: "smooth" });
+    };
+    tabs.forEach((t, i) => {
+      t.addEventListener("click", () => select(i));
+      t.addEventListener("keydown", (e) => {
+        const k = e.key;
+        if (k === "ArrowRight" || k === "ArrowLeft" || k === "Home" || k === "End") {
+          e.preventDefault();
+          const n = k === "Home" ? 0 : k === "End" ? tabs.length - 1 : (i + (k === "ArrowRight" ? 1 : -1) + tabs.length) % tabs.length;
+          select(n, true);
+        }
+      });
+    });
+
+    root.querySelectorAll<HTMLElement>("[data-ba-stage]").forEach((stage) => {
+      const range = stage.querySelector<HTMLInputElement>("[data-ba-range]")!;
+      let tracked = false;
+      const apply = () => {
+        stage.style.setProperty("--pos", `${range.value}%`);
+        range.setAttribute("aria-valuetext", `${100 - Number(range.value)}% after`);
+        if (!tracked) { tracked = true; track("before_after_drag"); }
+      };
+      range.addEventListener("input", apply);
+    });
+  });
+</script>

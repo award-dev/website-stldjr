@@ -1,0 +1,35 @@
+---
+import Schema from "./Schema.astro";
+import { abs } from "../lib/site";
+interface Props { eyebrow?: string; title: string; lede?: string; crumbs?: { href: string; label: string }[] }
+const { eyebrow, title, lede, crumbs = [] } = Astro.props;
+const trail = [{ href: "/", label: "Home" }, ...crumbs];
+const ld = { "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: trail.map((c, i) => ({ "@type": "ListItem", position: i + 1, name: c.label, item: abs(c.href) })) };
+---
+<section class="ph-hero dark">
+  <div class="wrap">
+    {crumbs.length > 0 && (
+      <nav aria-label="Breadcrumb" class="crumbs">
+        <ol role="list">
+          {trail.map((c, i) => <li>{i < trail.length - 1 ? <a href={c.href}>{c.label}</a> : <span aria-current="page">{c.label}</span>}</li>)}
+        </ol>
+      </nav>
+    )}
+    {eyebrow && <p class="eyebrow">{eyebrow}</p>}
+    <h1 class="h1">{title}</h1>
+    {lede && <p class="lede">{lede}</p>}
+    <slot />
+  </div>
+</section>
+{crumbs.length > 0 && <Schema data={ld} />}
+
+<style>
+  .ph-hero { padding: clamp(40px, 6vw, 80px) 0 clamp(48px, 7vw, 96px); position: relative; overflow: hidden; }
+  .ph-hero::before { content: ""; position: absolute; inset: 0; background: linear-gradient(rgb(255 255 255 / 0.04) 1px, transparent 1px) 0 0 / 48px 48px, linear-gradient(90deg, rgb(255 255 255 / 0.04) 1px, transparent 1px) 0 0 / 48px 48px; mask-image: radial-gradient(ellipse 60% 80% at 85% 30%, #000 10%, transparent 70%); pointer-events: none; }
+  .wrap { position: relative; display: grid; gap: 20px; }
+  .ph-hero h1 { max-width: 16ch; }
+  .crumbs ol { display: flex; flex-wrap: wrap; gap: 8px; font-size: 0.85rem; color: var(--on-dark-3); }
+  .crumbs li + li::before { content: "/"; margin-right: 8px; opacity: 0.5; }
+  .crumbs a { text-decoration: none; color: var(--on-dark-2); }
+  .crumbs a:hover { color: var(--on-dark); text-decoration: underline; }
+</style>

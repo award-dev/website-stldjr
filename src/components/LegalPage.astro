@@ -1,0 +1,17 @@
+---
+import Base from "../layouts/Base.astro";
+import PageHero from "./PageHero.astro";
+import OwnerNote from "./OwnerNote.astro";
+interface Props { title: string; description: string; path: string; updated?: string }
+const { title, description, path, updated } = Astro.props;
+---
+<Base title={title} description={description}>
+  <PageHero title={title} crumbs={[{ href: path, label: title }]} />
+  <section class="section">
+    <div class="wrap--narrow prose">
+      <OwnerNote>Template for review. Have this checked by a qualified professional before launch and set the effective date.</OwnerNote>
+      {updated && <p class="small muted">Last updated: {updated}</p>}
+      <slot />
+    </div>
+  </section>
+</Base>

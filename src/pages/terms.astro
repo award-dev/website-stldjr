@@ -1,0 +1,16 @@
+---
+import LegalPage from "../components/LegalPage.astro";
+import { business, pricing, booking } from "../lib/site";
+---
+<LegalPage title="Terms of Service" description={`Terms for booking junk removal, cleanouts and demolition with ${business.name}.`} path="/terms/">
+  <h2>Bookings</h2>
+  <p>An online booking reserves an arrival window. The crew arrives within that window; the job itself may run past it.</p>
+  <h2>Pricing</h2>
+  <ul>{pricing.conditions.map((c) => <li>{c}</li>)}</ul>
+  <h2>Items we can't take</h2>
+  <p>We don't take hazardous materials, including paint and solvents, chemicals, fuel, asbestos and medical waste. Tell us about anything unusual before we arrive.</p>
+  <h2>Demolition</h2>
+  <p>For demolition work, you're responsible for telling us about anything structural, anything being kept, and for having utilities to the work area shut off unless we agree otherwise in writing.</p>
+  <h2>Rescheduling and cancelling</h2>
+  <p>{booking.cancellationPolicy || "Use the link in your confirmation to reschedule or cancel, or call us."}</p>
+</LegalPage>

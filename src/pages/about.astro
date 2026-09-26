@@ -1,0 +1,77 @@
+---
+import Base from "../layouts/Base.astro";
+import PageHero from "../components/PageHero.astro";
+import Photo from "../components/Photo.astro";
+import OwnerNote from "../components/OwnerNote.astro";
+import FinalCta from "../components/FinalCta.astro";
+import { business, telHref, mailHref, media, hoursSummary, pricing } from "../lib/site";
+const team = media.work.find((w) => w.id === "team")!;
+const truck = media.work.find((w) => w.id === "truck")!;
+const t = business.trust;
+const facts = [
+  t.foundedYear && { k: "In business since", v: String(t.foundedYear) },
+  t.completedJobs && { k: "Jobs completed", v: String(t.completedJobs) },
+  t.insured && { k: "Insurance", v: t.insuranceDetails || "Insured" },
+  t.licenseDetails && { k: "Licensing", v: t.licenseDetails },
+  { k: "Truck capacity", v: `${pricing.maxCubicYards} cubic yards` },
+  { k: "Based in", v: "St. Louis, Missouri" },
+].filter(Boolean) as { k: string; v: string }[];
+---
+<Base title="About Us — St. Louis Junk Removal & Demolition Crew" description="Who we are: a St. Louis crew that hauls junk, clears out whole houses and handles light demolition — with upfront, load-based pricing and online booking.">
+  <PageHero eyebrow="About" title="A St. Louis crew with a truck and a simple rule." lede="Tell people the price before you start, show up when you said, and leave the place cleaner than you found it." crumbs={[{ href: "/about/", label: "About" }]} />
+
+  <section class="section">
+    <div class="wrap about-grid">
+      <div class="prose">
+        <h2 class="h2" style="margin-top:0">Hauling and demolition, from one crew.</h2>
+        <p>Most messes come in two parts: the thing that has to come out, and the pile it leaves behind. We handle both. That means a deck tear-out, a kitchen gut or a garage cleanout gets done in one visit, by one crew, on one bill.</p>
+        <p>We price by the load because it's the fairest way we know to do it. You can see what a quarter, half, three-quarter or full truck costs before you ever call — and we confirm it on-site, before anything moves.</p>
+        <p>And because nobody wants to play phone tag to schedule a pickup, you can book an actual arrival window online in a few minutes.</p>
+        <OwnerNote>Add your story here — who started the company, when, and why. Real names and a real photo of the crew do more for trust than anything else on this site.</OwnerNote>
+      </div>
+      <Photo src={team.src} alt={team.alt} caption={team.caption} ratio="4 / 5" />
+    </div>
+  </section>
+
+  <section class="section paper-2">
+    <div class="wrap">
+      <div class="section-head"><p class="eyebrow">The specifics</p><h2 class="h2">Facts, not adjectives.</h2></div>
+      <dl class="facts">
+        {facts.map((f) => <div><dt class="meta muted">{f.k}</dt><dd class="h3">{f.v}</dd></div>)}
+      </dl>
+      <OwnerNote class="facts-note">Only verified facts appear here. Add founding year, insurance details, licensing and completed-job count in config/business.json → trust.</OwnerNote>
+    </div>
+  </section>
+
+  <section class="section" id="contact">
+    <div class="wrap contact-grid">
+      <div class="stack" style="--stack: 16px">
+        <p class="eyebrow">Contact</p>
+        <h2 class="h2">Talk to us.</h2>
+        <p class="lede">Call for anything that doesn't fit a form. Or skip the call and book online.</p>
+        <div class="cta-row"><a href="/book/" class="btn btn--green btn--lg">Book a pickup</a><a href="/quote/" class="btn btn--ghost btn--lg">Get a quote</a></div>
+      </div>
+      <dl class="contact">
+        <div><dt class="meta muted">Phone</dt><dd><a href={telHref} class="h3 num">{business.phoneDisplay}</a></dd></div>
+        <div><dt class="meta muted">Email</dt><dd><a href={mailHref} class="h4">{business.email}</a></dd></div>
+        <div><dt class="meta muted">Hours</dt><dd>{hoursSummary().map((h) => <p class="num">{h.days} · {h.hours}</p>)}</dd></div>
+      </dl>
+      <Photo src={truck.src} alt={truck.alt} caption={truck.caption} ratio="16 / 9" class="truck-photo" />
+    </div>
+  </section>
+  <FinalCta />
+</Base>
+<style>
+  .about-grid, .contact-grid { display: grid; gap: 48px; align-items: start; }
+  @media (min-width: 1020px) { .about-grid { grid-template-columns: 1.2fr 0.8fr; gap: 80px; } .contact-grid { grid-template-columns: 1fr 1fr; } }
+  :global(.truck-photo) { grid-column: 1 / -1; }
+  .facts { display: grid; gap: 1px; background: var(--line-strong); border-block: 1px solid var(--line-strong); grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+  .facts div { background: var(--paper-2); padding: 28px 24px 28px 0; display: grid; gap: 10px; }
+  .facts dd { margin: 0; }
+  :global(.facts-note) { margin-top: 20px; }
+  .contact { display: grid; gap: 24px; }
+  .contact div { display: grid; gap: 6px; border-top: 1px solid var(--line); padding-top: 16px; }
+  .contact dd { margin: 0; }
+  .contact a { text-decoration: none; }
+  .contact a:hover { text-decoration: underline; }
+</style>

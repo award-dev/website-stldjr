@@ -1,0 +1,61 @@
+---
+import Icon from "./Icon.astro";
+import { services, loads } from "../lib/site";
+const loadShort = (id: string) => loads.find((l) => l.id === id)?.label ?? "";
+const pageName = (path: string) => services.groups.find((g) => g.path === path)?.name ?? "";
+---
+<ol role="list" class="needs">
+  {services.needs.map((n, i) => (
+    <li class="need" data-reveal style={`--i:${i}`}>
+      <span class="need-num meta num">0{i + 1}</span>
+      <div class="need-body">
+        <h3 class="need-title">{n.prompt}</h3>
+        <p class="need-detail">{n.detail}</p>
+        <p class="need-meta meta">Usually a {loadShort(n.load).toLowerCase()} · <a href={n.page + "/"}>{pageName(n.page)}</a></p>
+      </div>
+      <a class="need-go" href={`/book/?service=${n.service}&load=${n.load}`} aria-label={`Book: ${n.prompt}`} data-track="service_select" data-track-cta={n.service} data-track-location="needs">
+        <span class="need-go-label">Book this</span><Icon name="arrow" size={20} />
+      </a>
+    </li>
+  ))}
+</ol>
+
+<style>
+  .needs { border-top: 1px solid var(--line); }
+  .need {
+    position: relative;
+    display: grid;
+    grid-template-columns: 44px 1fr auto;
+    gap: 8px 20px;
+    align-items: start;
+    padding: 28px 0;
+    border-bottom: 1px solid var(--line);
+  }
+  @media (min-width: 900px) { .need { grid-template-columns: 80px 1fr auto; padding: 36px 0; align-items: center; } }
+  .need-num { color: var(--ink-3); padding-top: 6px; }
+  .need-title { font-size: var(--step-3); letter-spacing: -0.03em; }
+  .need-detail { margin-top: 8px; color: var(--ink-2); max-width: 52ch; }
+  .need-meta { margin-top: 14px; color: var(--ink-3); }
+  .need-meta a { color: var(--ink); text-decoration: underline; text-decoration-color: var(--line-strong); }
+  .need-meta a:hover { text-decoration-color: currentColor; }
+  .need-go {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    height: 52px;
+    padding: 0 16px;
+    border-radius: 999px;
+    border: 1px solid var(--line-strong);
+    text-decoration: none;
+    font-weight: 560;
+    transition: background-color var(--t-med) var(--ease-out), color var(--t-med) var(--ease-out), border-color var(--t-med), transform var(--t-fast) var(--ease-out);
+  }
+  .need-go:active { transform: scale(0.96); }
+  .need-go-label { display: none; }
+  @media (min-width: 640px) { .need-go { padding: 0 22px; } .need-go-label { display: inline; } }
+  @media (hover: hover) and (pointer: fine) {
+    .need:hover .need-go { background: var(--asphalt); color: var(--on-dark); border-color: var(--asphalt); }
+    .need-go :global(svg) { transition: transform var(--t-med) var(--ease-out); }
+    .need:hover .need-go :global(svg) { transform: translateX(3px); }
+  }
+</style>
