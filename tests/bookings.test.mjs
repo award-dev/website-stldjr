@@ -34,15 +34,15 @@ beforeEach(() => { calendar = createMockCalendar(); store = memoryStore(); sent 
 test("creates a booking, calendar event and signed manage link", async () => {
   const { booking, notifications } = await svc().create(base);
   assert.equal(booking.status, "confirmed");
-  assert.equal(booking.windowLabel, "8 – 10 AM");
+  assert.equal(booking.windowLabel, "9 – 11 AM");
   assert.equal(booking.customer.phone, "(314) 555-0100");
   assert.match(booking.id, /^STL-/);
   assert.equal(notifications.customerEmail, true);
   const events = await calendar.listEvents(Date.parse("2026-10-08T00:00:00Z"), Date.parse("2026-10-09T12:00:00Z"));
   assert.equal(events.length, 1);
   const ev = events[0];
-  assert.equal(ev.start.dateTime, "2026-10-08T13:00:00.000Z");
-  assert.equal(ev.end.dateTime, "2026-10-08T14:30:00.000Z"); // 90 min half load
+  assert.equal(ev.start.dateTime, "2026-10-08T14:00:00.000Z");
+  assert.equal(ev.end.dateTime, "2026-10-08T15:30:00.000Z"); // 90 min half load
   assert.equal(ev.extendedProperties.private.bookingId, booking.id);
   assert.equal(ev.extendedProperties.private.source, "website");
   assert.match(ev.summary, /1\/2 Load · Junk removal — Pat Example/);
@@ -131,7 +131,7 @@ test("reschedule moves the event and ignores its own slot", async () => {
   const moved = await s.reschedule(booking.id, t, { date: "2026-10-08", windowId: "am2" });
   assert.equal(moved.booking.windowId, "am2");
   const [ev] = await calendar.listEvents(0, Date.parse("2027-01-01"));
-  assert.equal(ev.start.dateTime, "2026-10-08T15:00:00.000Z");
+  assert.equal(ev.start.dateTime, "2026-10-08T16:00:00.000Z");
   assert.equal(sent.at(-1).kind, "rescheduled");
 });
 

@@ -4,7 +4,7 @@
     {
       "id": "pricing",
       "q": "How does junk removal pricing work?",
-      "a": "By volume. The truck holds up to {maxYards} cubic yards, and you pay for how much of it your stuff fills — a quarter, half, three-quarters or the whole thing. Heavy materials, items with disposal fees and difficult access can change the price. We confirm the final number on-site, before we load anything.",
+      "a": "By volume. The truck holds up to {maxYards} cubic yards, and you pay for how much of it your stuff fills — from $175 for a quarter load to $655 for the whole truck. Heavy materials, Freon items and difficult access can add to it. We confirm the final number before we load anything.",
       "confirmed": true,
       "home": true
     },
@@ -23,6 +23,13 @@
       "home": true
     },
     {
+      "id": "insured",
+      "q": "Are you licensed and insured?",
+      "a": "Yes. We're licensed and fully insured with a $3 million policy.",
+      "confirmed": true,
+      "home": true
+    },
+    {
       "id": "furniture",
       "q": "Do you remove furniture?",
       "a": "Yes. Couches, sectionals, mattresses, dressers, tables, desks, office furniture — from wherever it is in the building.",
@@ -31,27 +38,27 @@
     {
       "id": "appliances",
       "q": "Do you remove appliances?",
-      "a": "Yes — refrigerators, freezers, washers, dryers, stoves, dishwashers, water heaters. Appliances with refrigerant can carry a disposal fee.",
+      "a": "Yes — refrigerators, freezers, washers, dryers, stoves, dishwashers, water heaters. Anything with Freon (fridges, freezers, AC units) is $25 per item.",
       "confirmed": true
     },
     {
       "id": "construction-debris",
       "q": "Do you remove construction debris?",
-      "a": "Yes. Drywall, lumber, cabinets, flooring, fixtures and general remodel waste. Heavy materials like concrete, brick, tile and shingles are limited by weight and quoted separately.",
-      "confirmed": false
+      "a": "Yes. Drywall, lumber, cabinets, flooring, fixtures and general remodel waste. Concrete, brick, dirt and shingles too — heavy materials add about $75 per quarter load, and location or equipment needs can add more.",
+      "confirmed": true
     },
     {
       "id": "demolition",
       "q": "Do you do demolition?",
-      "a": "Yes — light and interior demolition: decks, sheds, hot tubs, kitchens, bathrooms, and interior walls and flooring. We haul the debris away in the same job. Get a quote with photos so we can price the labor.",
-      "confirmed": false,
+      "a": "Yes — full interior guts, selective deconstruction, interior demolition, kitchens, bathrooms, sheds, decks, hot tubs and more. If the job needs a permit, we handle it. The debris leaves with us in the same job.",
+      "confirmed": true,
       "home": true
     },
     {
       "id": "home",
       "q": "Do I need to be home?",
-      "a": "Someone should be there when we arrive so we can confirm what's going and the price before we start. If that's hard to arrange, call us at {phone} and we'll work something out.",
-      "confirmed": false
+      "a": "No. Make sure we can get to everything and tell us where it is in the access notes when you book. We'll call to confirm the price before we load.",
+      "confirmed": true
     },
     {
       "id": "inside",
@@ -62,15 +69,15 @@
     {
       "id": "not-accepted",
       "q": "What can't you take?",
-      "a": "Hazardous materials — paint and solvents, chemicals, fuel, asbestos, medical waste, and anything else that needs special handling. If you're not sure about something, ask before you book.",
-      "confirmed": false,
+      "a": "Tires, batteries, liquid paint, and hazardous materials — chemicals, solvents, fuel, asbestos, medical waste. If you're not sure about something, ask before you book.",
+      "confirmed": true,
       "home": true
     },
     {
       "id": "same-day",
       "q": "Do you offer same-day service?",
-      "a": "When the schedule allows. Booking only shows times that are actually open — if there's a slot today, you'll see it. If not, call {phone} and we'll tell you the soonest we can get there.",
-      "confirmed": false
+      "a": "Yes, when the schedule allows. Online booking needs 12 hours' notice, so for today, call {phone} and we'll tell you the soonest we can get there.",
+      "confirmed": true
     },
     {
       "id": "booking",
@@ -82,19 +89,31 @@
       "id": "more-than-expected",
       "q": "What if I have more junk than I booked for?",
       "a": "No problem. We'll show you where it lands in the truck and give you the updated price before we load. You can add to the load or keep things back — your call.",
-      "confirmed": false
+      "confirmed": true
     },
     {
       "id": "estimates",
       "q": "Do you give estimates?",
-      "a": "Yes. Send a quote request with photos and we'll get back to you with a price. For junk removal, the load-size prices on this site are the estimate, confirmed on-site.",
-      "confirmed": false
+      "a": "Yes, free. Send a quote request with photos and we'll get back to you with a price. For junk removal, the load prices on this site are your estimate, confirmed before we load.",
+      "confirmed": true
     },
     {
       "id": "areas",
       "q": "What areas do you serve?",
-      "a": "St. Louis City, St. Louis County and St. Charles County. See the service area page for the neighborhoods and towns we cover — if you're just outside, call and ask.",
-      "confirmed": false
+      "a": "St. Louis City, St. Louis County and St. Charles County. See the service area page for the towns we cover — if you're just outside, call and ask.",
+      "confirmed": true
+    },
+    {
+      "id": "recycling",
+      "q": "Where does everything go?",
+      "a": "To a landfill facility that sorts and separates materials, so what can be recycled is pulled out instead of buried.",
+      "confirmed": true
+    },
+    {
+      "id": "cancel",
+      "q": "What if I need to cancel or reschedule?",
+      "a": "Use the link in your confirmation, or call {phone}. We ask for 24 hours' notice when you can — but we understand plans change.",
+      "confirmed": true
     }
   ]
 }

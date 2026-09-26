@@ -2,7 +2,8 @@
 import LoadConfigurator from "./LoadConfigurator.astro";
 import NextAvailable from "./NextAvailable.astro";
 import Icon from "./Icon.astro";
-import { business, telHref } from "../lib/site";
+import { business, telHref, loads } from "../lib/site";
+const fromPrice = loads[0]?.priceLine.amount;
 ---
 <section class="hero dark" aria-labelledby="hero-title">
   <div class="wrap hero-grid">
@@ -25,8 +26,9 @@ import { business, telHref } from "../lib/site";
       <NextAvailable />
 
       <dl class="hero-facts">
-        <div><dt class="meta">Pricing</dt><dd>By the load. ¼ to full.</dd></div>
-        <div><dt class="meta">Truck</dt><dd class="num">17 cubic yards</dd></div>
+        <div><dt class="meta">Pricing</dt><dd>{fromPrice ? `From ${fromPrice} a load` : "By the load"}</dd></div>
+        {business.trust.insured && <div><dt class="meta">Coverage</dt><dd>Licensed &amp; insured{business.trust.insuranceDetails ? `, ${business.trust.insuranceDetails.replace(/ million policy$/, "M")}` : ""}</dd></div>}
+        {business.trust.completedJobs && <div><dt class="meta">Track record</dt><dd>{business.trust.completedJobs} jobs{business.trust.foundedYear ? ` since ${business.trust.foundedYear}` : ""}</dd></div>}
         <div><dt class="meta">Area</dt><dd>City, County &amp; St. Charles</dd></div>
       </dl>
     </div>
@@ -65,18 +67,18 @@ import { business, telHref } from "../lib/site";
   .hero-phone:hover { color: var(--on-dark); }
   .hero-facts {
     display: grid;
-    grid-template-columns: repeat(3, auto);
+    grid-template-columns: repeat(2, auto);
     justify-content: start;
-    gap: 12px 36px;
+    gap: 16px 40px;
     margin-top: 16px;
     padding-top: 24px;
     border-top: 1px solid var(--asphalt-line);
   }
+  @media (min-width: 1280px) { .hero-facts { grid-template-columns: repeat(4, auto); gap: 16px 32px; } }
   .hero-facts dt { color: var(--on-dark-3); margin-bottom: 6px; }
   .hero-facts dd { margin: 0; font-size: 0.95rem; color: var(--on-dark); }
   @media (max-width: 559px) {
     .hero-facts { grid-template-columns: 1fr 1fr; }
-    .hero-facts div:last-child { grid-column: 1 / -1; }
   }
   .hero-tool { position: relative; }
 

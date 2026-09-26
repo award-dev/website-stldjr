@@ -61,6 +61,7 @@ const social = [
         <li><a href="/accessibility/">Accessibility</a></li>
       </ul>
     </div>
+    {business.analytics.provider === "ga4" && !business.analytics.ga4MeasurementId && <OwnerNote>Add your Google Analytics Measurement ID (G-…) in config/business.json → analytics.ga4MeasurementId.</OwnerNote>}
     {showOwnerNotes && social.length === 0 && <OwnerNote>Add your Google Business Profile and social links in config/business.json → links.</OwnerNote>}
   </div>
 </footer>

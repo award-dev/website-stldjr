@@ -831,8 +831,8 @@ export function initBooking(root: HTMLElement) {
       </div>
       <h2 class="h4">What happens next</h2>
       <ol class="next-steps">
-        <li><span>The crew arrives during your window. Someone should be there to point things out.</span></li>
-        <li><span>We look at everything, confirm the price with you, and only start once you say go.</span></li>
+        <li><span>The crew arrives during your window. You don't need to be home — just make sure we can get to everything.</span></li>
+        <li><span>We look at everything and confirm the price with you — in person or by phone — before we load.</span></li>
         <li><span>We load, haul, and sweep up. Plans change? Use the reschedule or cancel link above.</span></li>
       </ol>`,
       data.mode === "demo",

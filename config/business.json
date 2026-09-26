@@ -20,35 +20,54 @@
   "timezone": "America/Chicago",
   "hours": {
     "$comment": "24h HH:MM. null = closed. Used for display, schema.org, and as the outer bound for booking windows. CONFIRM before launch.",
-    "confirmed": false,
-    "mon": ["08:00", "18:00"],
-    "tue": ["08:00", "18:00"],
-    "wed": ["08:00", "18:00"],
-    "thu": ["08:00", "18:00"],
-    "fri": ["08:00", "18:00"],
-    "sat": ["08:00", "16:00"],
+    "confirmed": true,
+    "mon": [
+      "08:00",
+      "17:00"
+    ],
+    "tue": [
+      "08:00",
+      "17:00"
+    ],
+    "wed": [
+      "08:00",
+      "17:00"
+    ],
+    "thu": [
+      "08:00",
+      "17:00"
+    ],
+    "fri": [
+      "08:00",
+      "17:00"
+    ],
+    "sat": null,
     "sun": null
   },
   "trust": {
     "$comment": "Only verifiable facts. null = not shown to customers.",
-    "foundedYear": null,
-    "insured": null,
-    "insuranceDetails": null,
+    "foundedYear": 2023,
+    "insured": true,
+    "insuranceDetails": "$3 million policy",
     "licenseDetails": null,
-    "completedJobs": null,
-    "typicalResponse": null
+    "completedJobs": "1,000+",
+    "typicalResponse": null,
+    "licensed": true,
+    "recycling": "Loads go to a landfill facility that sorts and separates materials."
   },
   "links": {
-    "googleBusinessProfile": null,
-    "googleReviewUrl": null,
-    "facebook": null,
+    "googleBusinessProfile": "https://share.google/da1eQETPclbhERQmB",
+    "googleReviewUrl": "https://share.google/da1eQETPclbhERQmB",
+    "facebook": "https://www.facebook.com/share/1DkQDMFkQF/",
     "instagram": null,
     "nextdoor": null
   },
   "analytics": {
     "$comment": "provider: null | 'plausible' | 'ga4'. Nothing third-party loads while null.",
-    "provider": null,
+    "provider": "ga4",
     "plausibleDomain": null,
     "ga4MeasurementId": null
-  }
+  },
+  "founder": "Aaron Ward",
+  "notifyEmail": "award@stlouishjr.com"
 }

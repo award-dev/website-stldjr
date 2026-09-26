@@ -61,7 +61,7 @@ const payload = loads.map((l) => ({
     <a href={`/quote/?load=${start.id}`} class="btn btn--ghost btn--lg" data-link="quote" data-track="cta_click" data-track-cta="quote" data-track-location={`configurator-${variant}`}>Get a quote</a>
   </div>
   <p class="cfg-fine small muted">
-    Final price confirmed on-site, before we load. <a class="link" href="/pricing/#what-changes-the-price">What can change it</a>
+    Final price confirmed with you before we load. <a class="link" href="/pricing/#what-changes-the-price">What can change it</a>
   </p>
   {!anyPrice && <OwnerNote>Set load prices in config/pricing.json (or PRICE_* env vars). Until then, prices show as “Priced on-site.”</OwnerNote>}
 </div>

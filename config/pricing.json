@@ -10,7 +10,7 @@
       "short": "1/4",
       "fraction": 0.25,
       "cubicYards": 4.25,
-      "price": null,
+      "price": 175,
       "summary": "A few big pieces or one small room.",
       "fits": [
         "A couch and a couple of chairs",
@@ -31,7 +31,7 @@
       "short": "1/2",
       "fraction": 0.5,
       "cubicYards": 8.5,
-      "price": null,
+      "price": 340,
       "summary": "A one-car garage or a packed spare room.",
       "fits": [
         "A sectional, a dining set and boxes",
@@ -51,7 +51,7 @@
       "short": "3/4",
       "fraction": 0.75,
       "cubicYards": 12.75,
-      "price": null,
+      "price": 515,
       "summary": "Several rooms, or a remodel's worth of debris.",
       "fits": [
         "A basement of furniture and boxes",
@@ -71,7 +71,7 @@
       "short": "Full",
       "fraction": 1,
       "cubicYards": 17,
-      "price": null,
+      "price": 655,
       "summary": "The whole truck. Estates, big moves, demo jobs.",
       "fits": [
         "A whole-house estate cleanout",
@@ -90,16 +90,13 @@
   ],
   "conditions": [
     "Prices are for loading and hauling by volume — how much space your items take up in the truck.",
-    "Heavy material (concrete, dirt, brick, roofing shingles) is limited by weight, not just volume, and may be priced separately.",
-    "Items with special disposal fees — like mattresses, tires, refrigerators and other appliances with refrigerant — can carry an added charge.",
+    "Heavy material (concrete, brick, dirt, roofing shingles) adds about $75 per quarter load. Location, or needing equipment, can add more.",
+    "Anything with Freon — refrigerators, freezers, AC units, dehumidifiers — is $25 per item.",
+    "We can't take tires, batteries, liquid paint or hazardous materials.",
     "Difficult access (long carries, several flights of stairs, tight crawlspaces) can add labor.",
     "Demolition labor is quoted separately from hauling.",
-    "We confirm the final price on-site, before we start. If it's more than you expected, you can say no."
+    "We confirm the final price before we load — in person, or by phone if you're not home. If it's more than you expected, you can say no."
   ],
-  "ownerNotes": [
-    "Set each load's price (whole dollars).",
-    "Review the conditions above — edit anything that doesn't match how you charge.",
-    "List any add-on fees (mattress, tire, refrigerant) you want shown."
-  ],
+  "ownerNotes": [],
   "examplesNote": "Examples are typical, not promises — how things stack changes what fits."
 }

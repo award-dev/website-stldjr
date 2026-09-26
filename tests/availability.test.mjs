@@ -5,7 +5,7 @@ import { computeAvailability, busyFromEvents, nextAvailable, slotIsFree } from "
 const TZ = "America/Chicago";
 const hours = { mon: ["08:00", "18:00"], tue: ["08:00", "18:00"], wed: ["08:00", "18:00"], thu: ["08:00", "18:00"], fri: ["08:00", "18:00"], sat: ["08:00", "16:00"], sun: null };
 const rules = {
-  horizonDays: 7, minNoticeHours: 12, sameDay: false, crews: 1, bufferMinutes: 30,
+  horizonDays: 7, minNoticeHours: 12, sameDay: false, crews: 1, bufferMinutes: 30, jobsMustFinishByClose: true,
   windows: [ { id: "am1", start: "08:00", end: "10:00" }, { id: "am2", start: "10:00", end: "12:00" }, { id: "pm1", start: "12:00", end: "14:00" }, { id: "pm2", start: "14:00", end: "16:00" } ],
   durationMinutes: { quarter: 60, half: 90, "three-quarter": 120, full: 150, demolition: 240 },
 };
@@ -64,6 +64,12 @@ test("crew capacity allows parallel jobs", () => {
   assert.equal(slotIsFree(rules, busy, start, 60), false);
   assert.equal(slotIsFree({ ...rules, crews: 2 }, busy, start, 60), true);
   assert.equal(slotIsFree(rules, busy, start, 60, "x"), true, "ignores own event when rescheduling");
+});
+
+test("jobs may run past close when the rule is off", () => {
+  const days = computeAvailability({ now, rules: { ...rules, jobsMustFinishByClose: false }, hours, tz: TZ, busy: [], service: "demolition", load: "full" });
+  const sat = days.find((d) => d.weekday === "sat");
+  assert.deepEqual(sat.slots.map((s) => s.available), [true, true, true, true]);
 });
 
 test("nextAvailable finds the first open window", () => {

@@ -1,56 +1,37 @@
 # Launch checklist (owner)
 
-Everything below is marked on the site with a purple **OWNER** note while
-`showOwnerNotes` is `true` in `config/business.json`. Work through the list,
-then set `showOwnerNotes` to `false`.
+Purple **OWNER** notes on the site mark what's still missing. When the list
+below is done, set `showOwnerNotes` to `false` in `config/business.json`.
 
-Nothing on the site was invented: no prices, reviews, statistics, licenses,
-years in business or policies. Where the business hasn't supplied something,
-the site either leaves it out or shows a clearly-marked placeholder.
+## Done (entered from the owner's answers)
 
-## Must do
+- [x] Prices: $175 / $340 / $515 / $655, shown as "From $X"
+- [x] Pricing conditions: heavy material ~$75 per quarter load, Freon $25/item,
+      no tires, batteries, liquid paint or hazardous materials
+- [x] Hours: Mon–Fri 8am–5pm, closed weekends
+- [x] Service area confirmed as listed
+- [x] Policies: not home required (price confirmed by phone), same-day when
+      the schedule allows, free estimates, permits handled, 24-hour notice preferred
+- [x] Arrival windows 9–11, 11–1, 1–3, 3–5; jobs can run past 5pm
+- [x] Licensed & insured ($3M), founded 2023, 1,000+ jobs, founder Aaron Ward
+- [x] Google Business Profile + Facebook links; About story
+- [x] Company notification email: award@stlouishjr.com
 
-- [ ] **Prices** — `config/pricing.json → loads[].price` (whole dollars), or
-      `PRICE_*` environment variables. Choose `priceMode`: `"from"` or `"flat"`.
-      Until set, every load shows "Priced on-site".
-- [ ] **Pricing conditions** — review `config/pricing.json → conditions`.
-- [ ] **Business hours** — `config/business.json → hours`, then set `"confirmed": true`
-      (this also adds hours to Google's structured data).
-- [ ] **Service area** — `config/service-areas.json`. Remove anywhere you
-      don't go; set `"confirmed": true`.
-- [ ] **FAQ policies** — answers marked `"confirmed": false` in
-      `config/faqs.json` describe policy (what you can't take, do people need
-      to be home, same-day, demolition scope, heavy materials). Edit, then set
-      `"confirmed": true`.
-- [ ] **Demolition & debris scope** — confirm the lists in `config/services.json`
-      (permits, concrete/brick/dirt/shingles).
-- [ ] **Connect booking** — see `docs/BOOKING.md` (Google Calendar +
-      `BOOKING_SIGNING_SECRET`). Check `/api/status`.
-- [ ] **Quote notifications** — Netlify → Forms → `quote` → add an email notification.
-- [ ] **Legal pages** — have `/privacy`, `/terms` reviewed; add a cancellation
-      policy (`config/booking.json → cancellationPolicy`).
+## Still to do
 
-## Should do
-
-- [ ] **Photos** — real job, crew and truck photos in `public/photos/`, wired
-      in `config/media.json` (6 before/after pairs, 6 work photos). The
-      before/after slider shows labelled illustrations until then.
-- [ ] **Reviews** — paste real Google reviews into `config/reviews.json`
-      word for word, or switch to live reviews (`source: "google-places"` +
-      `GOOGLE_PLACES_API_KEY` + `GOOGLE_PLACE_ID`).
-- [ ] **Links** — Google Business Profile, review link, Facebook, Instagram in
-      `config/business.json → links`.
-- [ ] **Trust facts** — only if verifiable: founding year, insurance,
-      licensing, completed jobs (`config/business.json → trust`).
-- [ ] **Email confirmations** — Resend account + verified domain
-      (`RESEND_API_KEY`, `EMAIL_FROM`).
-- [ ] **Analytics** — `config/business.json → analytics` (`plausible` or `ga4`).
-- [ ] **About page story** — replace the owner note in `src/pages/about.astro`.
-
-## Carried over from the old site — confirm
-
-- The previous site offered **dumpster rental** and claimed **"licensed &
-  insured"** and **"eco-friendly disposal"**. None of that is on the new site
-  because it couldn't be verified. Add it back only if true.
-- Old URLs (`/services/...`, `/service-area/<suburb>/`, `/gallery/`,
-  `/contact/`, etc.) 301-redirect to their new equivalents (`netlify.toml`).
+- [ ] **Netlify project** + point the Squarespace domain's nameservers at Netlify DNS.
+- [ ] **Google Calendar** (award@stlouishjr.com) — see `docs/BOOKING.md`. If
+      stlouishjr.com is Google Workspace, the admin must allow sharing
+      calendars with external users so the service account can be added.
+- [ ] **Netlify env vars:** `GOOGLE_CALENDAR_ID`, `GOOGLE_CALENDAR_CREDENTIALS`,
+      `BOOKING_SIGNING_SECRET`, `RESEND_API_KEY`, `EMAIL_FROM`.
+- [ ] **Resend** — verify stlouishjr.com (add its DNS records in Netlify DNS
+      after the nameserver move). `EMAIL_FROM` e.g. `bookings@stlouishjr.com`.
+- [ ] **Quote notifications** — Netlify → Forms → `quote` → email to award@stlouishjr.com.
+- [ ] **Google Analytics** — Measurement ID (`G-…`) into
+      `config/business.json → analytics.ga4MeasurementId`.
+- [ ] **Photos** — before/after pairs + truck/crew/work photos (`config/media.json`).
+- [ ] **Review text** — paste real Google reviews into `config/reviews.json`, or
+      enable live reviews with `GOOGLE_PLACES_API_KEY` + `GOOGLE_PLACE_ID`.
+- [ ] **Instagram / Nextdoor** links, if any.
+- [ ] **Legal review** of `/privacy` and `/terms`.

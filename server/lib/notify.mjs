@@ -51,7 +51,7 @@ function htmlEmail(heading, rows, footer) {
 }
 
 export function createNotifier({ business, fetchImpl = fetch } = {}) {
-  const companyEmail = env("COMPANY_NOTIFY_EMAIL") || business.email;
+  const companyEmail = env("COMPANY_NOTIFY_EMAIL") || business.notifyEmail || business.email;
   const companySms = env("COMPANY_NOTIFY_SMS");
 
   return {

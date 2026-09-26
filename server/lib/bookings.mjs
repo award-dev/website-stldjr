@@ -55,7 +55,7 @@ export function createBookingService(deps) {
     const todayLocal = new Intl.DateTimeFormat("en-CA", { timeZone: tz }).format(t);
     const tooSoon = start < t + (rules.minNoticeHours || 0) * 3_600_000 || (!rules.sameDay && input.date === todayLocal);
     const tooLate = start > t + rules.horizonDays * DAY;
-    if (tooSoon || tooLate || start + duration * 60_000 > w.closeAt.getTime()) {
+    if (tooSoon || tooLate || (rules.jobsMustFinishByClose && start + duration * 60_000 > w.closeAt.getTime())) {
       throw new BookingError("slot_taken", 409, "That time is no longer available.", { alternatives: await alternatives(input, ignoreId) });
     }
     const { busy } = await busyAround(start - DAY, start + DAY);

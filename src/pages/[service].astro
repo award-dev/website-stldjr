@@ -48,7 +48,7 @@ const schema = [{
           </li>
         ))}
       </ul>
-      {g.ownerNotes?.map((n) => <OwnerNote class="svc-note">{n}</OwnerNote>)}
+      {((g as any).ownerNotes as string[] | undefined)?.map((n) => <OwnerNote class="svc-note">{n}</OwnerNote>)}
     </div>
   </section>
 

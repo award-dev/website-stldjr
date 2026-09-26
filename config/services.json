@@ -100,7 +100,7 @@
           "text": "Empty or full. We take the contents, then the shed."
         }
       ],
-      "howPriced": "Priced by volume: 1/4, 1/2, 3/4 or a full 17-cubic-yard truck. Some items — mattresses, tires, anything with refrigerant — can carry a disposal fee. You'll see the price before we load.",
+      "howPriced": "Priced by volume: 1/4, 1/2, 3/4 or a full 17-cubic-yard truck, starting at $175. Anything with Freon (fridges, freezers, AC units) is $25 per item. You'll hear the final price before we load.",
       "notes": [
         {
           "title": "From wherever it is",
@@ -109,6 +109,10 @@
         {
           "title": "Not sure what size?",
           "text": "Upload a few photos when you book. If you picked the wrong load, we'll tell you before we start — not after."
+        },
+        {
+          "title": "What we can't take",
+          "text": "Tires, batteries, liquid paint and hazardous materials. Not sure about something? Ask before you book."
         }
       ],
       "faqIds": [
@@ -183,11 +187,19 @@
       "metaDescription": "Light and interior demolition in St. Louis: decks, sheds, hot tubs, kitchens and bathrooms. We tear it out and haul it away in the same job. Get a quote.",
       "eyebrow": "Demolition · St. Louis",
       "headline": "We tear it out. Then we haul it off.",
-      "intro": "Most demolition leaves you with a second problem: the debris. We do both halves. Light and interior demolition, done carefully, with the mess loaded on our truck before we leave.",
+      "intro": "Most demolition leaves you with a second problem: the debris. We do both halves — from a single shed to a full interior gut — and the mess is loaded on our truck before we leave.",
       "items": [
         {
+          "name": "Full interior guts",
+          "text": "Down to the studs and subfloor, ready for your contractor."
+        },
+        {
+          "name": "Selective deconstruction",
+          "text": "Careful removal of just what's going, around what's staying."
+        },
+        {
           "name": "Interior demolition",
-          "text": "Walls, drywall, flooring, ceilings and fixtures — down to what you want to keep."
+          "text": "Walls, drywall, flooring, ceilings and fixtures."
         },
         {
           "name": "Kitchen demolition",
@@ -208,14 +220,14 @@
         {
           "name": "Hot tub removal",
           "text": "Cut down on-site when that's the only way out."
-        },
-        {
-          "name": "Light demolition",
-          "text": "Fences, playsets, small outbuildings and similar."
         }
       ],
       "howPriced": "Demolition is quoted per job — labor depends on what's coming down and how. Hauling the debris is priced by the load. Send photos and we'll give you a real number.",
       "notes": [
+        {
+          "title": "Permits handled",
+          "text": "If your job needs a permit, we pull it. You don't have to deal with the city."
+        },
         {
           "title": "Tell us what stays",
           "text": "Mark what's structural, what's being reused, and what's off-limits. We plan around it."
@@ -230,9 +242,6 @@
         "estimates",
         "pricing",
         "construction-debris"
-      ],
-      "ownerNotes": [
-        "Confirm which demolition jobs you take on and whether permits are handled by you or the customer."
       ]
     },
     {
@@ -265,7 +274,7 @@
           "text": "For contractors who'd rather not manage a dumpster. Call to set it up."
         }
       ],
-      "howPriced": "Priced by the load. Heavy materials — concrete, brick, tile, dirt, shingles — hit weight limits before the truck is full, so they're quoted separately.",
+      "howPriced": "Priced by the load, starting at $175 for a quarter. Heavy materials — concrete, brick, dirt, shingles — add about $75 per quarter load; location or equipment needs can add more.",
       "notes": [
         {
           "title": "Contractors",
@@ -273,7 +282,7 @@
         },
         {
           "title": "Heavy stuff",
-          "text": "Tell us about concrete, brick, tile or shingles up front. They're priced by weight."
+          "text": "Yes, we take concrete, brick, dirt and shingles. Mention them when you book so we bring the right setup."
         }
       ],
       "faqIds": [
@@ -281,9 +290,6 @@
         "pricing",
         "load-size",
         "more-than-expected"
-      ],
-      "ownerNotes": [
-        "Confirm whether you take concrete, brick, dirt and shingles, and how you price them."
       ]
     }
   ]

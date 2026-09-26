@@ -1,43 +1,93 @@
 {
   "$comment": "Only list places you actually serve. confirmed:false shows an owner note. zipPrefixes drive the soft 'outside our usual area' check in booking — it never blocks a booking.",
-  "confirmed": false,
-  "zipPrefixes": ["630", "631", "633"],
+  "confirmed": true,
+  "zipPrefixes": [
+    "630",
+    "631",
+    "633"
+  ],
   "regions": [
     {
       "id": "city",
       "name": "St. Louis City",
       "blurb": "Brick two-flats, narrow gangways and alley access — we know the drill.",
-      "places": ["Downtown", "Soulard", "Tower Grove", "The Hill", "Southampton", "Central West End", "Dogtown", "Bevo Mill"]
+      "places": [
+        "Downtown",
+        "Soulard",
+        "Tower Grove",
+        "The Hill",
+        "Southampton",
+        "Central West End",
+        "Dogtown",
+        "Bevo Mill"
+      ]
     },
     {
       "id": "county-central",
       "name": "Central County",
       "blurb": "Close in, quick to reach.",
-      "places": ["Clayton", "University City", "Webster Groves", "Kirkwood", "Maplewood", "Brentwood", "Richmond Heights", "Creve Coeur"]
+      "places": [
+        "Clayton",
+        "University City",
+        "Webster Groves",
+        "Kirkwood",
+        "Maplewood",
+        "Brentwood",
+        "Richmond Heights",
+        "Creve Coeur"
+      ]
     },
     {
       "id": "county-west",
       "name": "West County",
       "blurb": "Big basements, bigger garages.",
-      "places": ["Chesterfield", "Ballwin", "Manchester", "Town and Country", "Ellisville", "Wildwood", "Maryland Heights"]
+      "places": [
+        "Chesterfield",
+        "Ballwin",
+        "Manchester",
+        "Town and Country",
+        "Ellisville",
+        "Wildwood",
+        "Maryland Heights"
+      ]
     },
     {
       "id": "county-south",
       "name": "South County",
       "blurb": "From the river to I-44.",
-      "places": ["Sunset Hills", "Affton", "Oakville", "Mehlville", "Crestwood", "Fenton", "Lemay"]
+      "places": [
+        "Sunset Hills",
+        "Affton",
+        "Oakville",
+        "Mehlville",
+        "Crestwood",
+        "Fenton",
+        "Lemay"
+      ]
     },
     {
       "id": "county-north",
       "name": "North County",
       "blurb": "Across the whole north side.",
-      "places": ["Florissant", "Hazelwood", "Bridgeton", "Ferguson", "Black Jack"]
+      "places": [
+        "Florissant",
+        "Hazelwood",
+        "Bridgeton",
+        "Ferguson",
+        "Black Jack"
+      ]
     },
     {
       "id": "st-charles",
       "name": "St. Charles County",
       "blurb": "Across the Missouri.",
-      "places": ["St. Charles", "St. Peters", "O'Fallon", "Wentzville", "Lake Saint Louis"]
+      "places": [
+        "St. Charles",
+        "St. Peters",
+        "O'Fallon",
+        "Wentzville",
+        "Lake Saint Louis"
+      ]
     }
   ]
 }

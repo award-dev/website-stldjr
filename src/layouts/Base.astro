@@ -47,6 +47,7 @@ const org = {
   ],
   ...(business.hours.confirmed ? { openingHoursSpecification: openingHoursSchema() } : {}),
   ...(business.trust.foundedYear ? { foundingDate: String(business.trust.foundedYear) } : {}),
+  ...(business.founder ? { founder: { "@type": "Person", name: business.founder } } : {}),
   ...(sameAs.length ? { sameAs } : {}),
   ...(anyPrice ? { priceRange: "$$" } : {}),
 };
