@@ -1,0 +1,26 @@
+{
+  "$comment": "Booking rules. Read by the availability/booking functions. Windows are arrival windows, in business-local time.",
+  "enabled": true,
+  "horizonDays": 21,
+  "minNoticeHours": 12,
+  "sameDay": false,
+  "crews": 1,
+  "bufferMinutes": 30,
+  "windows": [
+    { "id": "am1", "start": "08:00", "end": "10:00" },
+    { "id": "am2", "start": "10:00", "end": "12:00" },
+    { "id": "pm1", "start": "12:00", "end": "14:00" },
+    { "id": "pm2", "start": "14:00", "end": "16:00" }
+  ],
+  "durationMinutes": {
+    "$comment": "On-site time per load size, excluding the arrival window.",
+    "quarter": 60,
+    "half": 90,
+    "three-quarter": 120,
+    "full": 150,
+    "demolition": 240
+  },
+  "maxPhotos": 10,
+  "cancellationPolicy": null,
+  "eventColorId": "10"
+}

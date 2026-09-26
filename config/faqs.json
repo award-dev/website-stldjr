@@ -1,0 +1,100 @@
+{
+  "$comment": "confirmed:false marks answers that describe company policy and need the owner's sign-off. They render with an owner note while business.showOwnerNotes is true. Tokens: {phone} {maxYards}.",
+  "items": [
+    {
+      "id": "pricing",
+      "q": "How does junk removal pricing work?",
+      "a": "By volume. The truck holds up to {maxYards} cubic yards, and you pay for how much of it your stuff fills — a quarter, half, three-quarters or the whole thing. Heavy materials, items with disposal fees and difficult access can change the price. We confirm the final number on-site, before we load anything.",
+      "confirmed": true,
+      "home": true
+    },
+    {
+      "id": "load-size",
+      "q": "What size load do I need?",
+      "a": "Rough guide: a few big pieces is a 1/4 load. A one-car garage is often a 1/2. A basement or a remodel's worth of debris is usually 3/4. Whole-house cleanouts and demolition jobs tend to fill the truck. Upload photos when you book and we'll tell you if you're off.",
+      "confirmed": true,
+      "home": true
+    },
+    {
+      "id": "yards",
+      "q": "What is 17 cubic yards?",
+      "a": "A full truck. Picture a box about 12 feet long, 6½ feet wide and 6 feet tall — or seven to eight heaped pickup-truck beds.",
+      "confirmed": true,
+      "home": true
+    },
+    {
+      "id": "furniture",
+      "q": "Do you remove furniture?",
+      "a": "Yes. Couches, sectionals, mattresses, dressers, tables, desks, office furniture — from wherever it is in the building.",
+      "confirmed": true
+    },
+    {
+      "id": "appliances",
+      "q": "Do you remove appliances?",
+      "a": "Yes — refrigerators, freezers, washers, dryers, stoves, dishwashers, water heaters. Appliances with refrigerant can carry a disposal fee.",
+      "confirmed": true
+    },
+    {
+      "id": "construction-debris",
+      "q": "Do you remove construction debris?",
+      "a": "Yes. Drywall, lumber, cabinets, flooring, fixtures and general remodel waste. Heavy materials like concrete, brick, tile and shingles are limited by weight and quoted separately.",
+      "confirmed": false
+    },
+    {
+      "id": "demolition",
+      "q": "Do you do demolition?",
+      "a": "Yes — light and interior demolition: decks, sheds, hot tubs, kitchens, bathrooms, and interior walls and flooring. We haul the debris away in the same job. Get a quote with photos so we can price the labor.",
+      "confirmed": false,
+      "home": true
+    },
+    {
+      "id": "home",
+      "q": "Do I need to be home?",
+      "a": "Someone should be there when we arrive so we can confirm what's going and the price before we start. If that's hard to arrange, call us at {phone} and we'll work something out.",
+      "confirmed": false
+    },
+    {
+      "id": "inside",
+      "q": "Do you take things out of the house, or just from the curb?",
+      "a": "From wherever it is. Basements, attics, upper floors, backyards. Let us know about stairs and long carries when you book so we bring the right crew.",
+      "confirmed": true
+    },
+    {
+      "id": "not-accepted",
+      "q": "What can't you take?",
+      "a": "Hazardous materials — paint and solvents, chemicals, fuel, asbestos, medical waste, and anything else that needs special handling. If you're not sure about something, ask before you book.",
+      "confirmed": false,
+      "home": true
+    },
+    {
+      "id": "same-day",
+      "q": "Do you offer same-day service?",
+      "a": "When the schedule allows. Booking only shows times that are actually open — if there's a slot today, you'll see it. If not, call {phone} and we'll tell you the soonest we can get there.",
+      "confirmed": false
+    },
+    {
+      "id": "booking",
+      "q": "How does booking work?",
+      "a": "Pick what you need gone and roughly how much, add your address and a few photos, choose an open arrival window, and confirm. You'll get a confirmation with links to reschedule or cancel.",
+      "confirmed": true
+    },
+    {
+      "id": "more-than-expected",
+      "q": "What if I have more junk than I booked for?",
+      "a": "No problem. We'll show you where it lands in the truck and give you the updated price before we load. You can add to the load or keep things back — your call.",
+      "confirmed": false
+    },
+    {
+      "id": "estimates",
+      "q": "Do you give estimates?",
+      "a": "Yes. Send a quote request with photos and we'll get back to you with a price. For junk removal, the load-size prices on this site are the estimate, confirmed on-site.",
+      "confirmed": false
+    },
+    {
+      "id": "areas",
+      "q": "What areas do you serve?",
+      "a": "St. Louis City, St. Louis County and St. Charles County. See the service area page for the neighborhoods and towns we cover — if you're just outside, call and ask.",
+      "confirmed": false
+    }
+  ]
+}

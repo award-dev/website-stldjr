@@ -1,0 +1,290 @@
+{
+  "$comment": "Services are grouped by what the customer needs, not as a directory. Each group gets one page. bookingService maps to the booking flow's service step.",
+  "bookingServices": [
+    {
+      "id": "junk",
+      "label": "Junk removal",
+      "hint": "Furniture, appliances, household and business junk"
+    },
+    {
+      "id": "cleanout",
+      "label": "Cleanout",
+      "hint": "Garage, basement, estate, move-out, whole property"
+    },
+    {
+      "id": "demolition",
+      "label": "Demolition",
+      "hint": "Sheds, decks, hot tubs, kitchens, bathrooms, interiors"
+    },
+    {
+      "id": "debris",
+      "label": "Construction debris",
+      "hint": "Drywall, lumber, flooring, remodel leftovers"
+    },
+    {
+      "id": "other",
+      "label": "Something else",
+      "hint": "Tell us about it — we'll say if we can help"
+    }
+  ],
+  "needs": [
+    {
+      "id": "few-items",
+      "prompt": "A few big things",
+      "detail": "The old couch. A dead fridge. The treadmill that became a coat rack.",
+      "service": "junk",
+      "load": "quarter",
+      "page": "/junk-removal"
+    },
+    {
+      "id": "whole-space",
+      "prompt": "A whole garage, basement or house",
+      "detail": "Years of stuff, one appointment. We sort, carry, load and sweep.",
+      "service": "cleanout",
+      "load": "half",
+      "page": "/cleanouts"
+    },
+    {
+      "id": "remodel",
+      "prompt": "Remodel or job-site debris",
+      "detail": "Drywall, lumber, cabinets, flooring, tile — off your site and out of your way.",
+      "service": "debris",
+      "load": "three-quarter",
+      "page": "/construction-debris-removal"
+    },
+    {
+      "id": "tear-out",
+      "prompt": "Something that has to be torn out",
+      "detail": "A rotting deck, a leaning shed, a hot tub nobody uses, a dated kitchen.",
+      "service": "demolition",
+      "load": "full",
+      "page": "/demolition"
+    }
+  ],
+  "groups": [
+    {
+      "id": "junk-removal",
+      "path": "/junk-removal",
+      "bookingService": "junk",
+      "suggestedLoad": "quarter",
+      "name": "Junk Removal",
+      "navLabel": "Junk removal",
+      "metaTitle": "Junk Removal in St. Louis, MO — Priced by the Load",
+      "metaDescription": "Junk removal and hauling in St. Louis. Furniture, appliances, hot tubs and household or business junk — priced by how much truck you fill. Book online.",
+      "eyebrow": "Junk removal · St. Louis",
+      "headline": "If it's in the way, it's on the truck.",
+      "intro": "Furniture, appliances, mattresses, exercise equipment, office clutter, the pile behind the garage. You point, we carry it out, load it and haul it off. You pay for the space it takes up in the truck — nothing else to figure out.",
+      "items": [
+        {
+          "name": "Residential junk removal",
+          "text": "Single items to whole rooms — from any floor, not just the curb."
+        },
+        {
+          "name": "Commercial junk removal",
+          "text": "Offices, retail, rentals and warehouses. Scheduled around your hours."
+        },
+        {
+          "name": "Furniture removal",
+          "text": "Couches, sectionals, recliners, beds, dressers, desks, tables."
+        },
+        {
+          "name": "Appliance removal",
+          "text": "Refrigerators, freezers, washers, dryers, stoves, water heaters."
+        },
+        {
+          "name": "Hot tub removal",
+          "text": "Disconnected, cut down if needed, and hauled away."
+        },
+        {
+          "name": "Shed removal",
+          "text": "Empty or full. We take the contents, then the shed."
+        }
+      ],
+      "howPriced": "Priced by volume: 1/4, 1/2, 3/4 or a full 17-cubic-yard truck. Some items — mattresses, tires, anything with refrigerant — can carry a disposal fee. You'll see the price before we load.",
+      "notes": [
+        {
+          "title": "From wherever it is",
+          "text": "Basement, attic, third floor, backyard. Tell us about stairs and distance when you book so we plan the right crew."
+        },
+        {
+          "title": "Not sure what size?",
+          "text": "Upload a few photos when you book. If you picked the wrong load, we'll tell you before we start — not after."
+        }
+      ],
+      "faqIds": [
+        "pricing",
+        "furniture",
+        "appliances",
+        "inside",
+        "not-accepted"
+      ]
+    },
+    {
+      "id": "cleanouts",
+      "path": "/cleanouts",
+      "bookingService": "cleanout",
+      "suggestedLoad": "half",
+      "name": "Cleanouts",
+      "navLabel": "Cleanouts",
+      "metaTitle": "Garage, Basement & Estate Cleanouts in St. Louis",
+      "metaDescription": "Garage, basement, estate, move-out and property cleanouts across St. Louis. One crew, one appointment, priced by the load. Upload photos and book online.",
+      "eyebrow": "Cleanouts · St. Louis",
+      "headline": "Years of stuff. One appointment.",
+      "intro": "Whole-space cleanouts are mostly carrying. Lots of it. We bring the crew, load everything you want gone, and leave the space broom-swept so you can see the floor again.",
+      "items": [
+        {
+          "name": "Garage cleanouts",
+          "text": "Get the car back in. Shelving, tools, bins, old bikes — all of it."
+        },
+        {
+          "name": "Basement cleanouts",
+          "text": "Up the stairs and out — furniture, boxes, old storage, all of it."
+        },
+        {
+          "name": "Estate cleanouts",
+          "text": "Handled with care and patience. Set aside what the family keeps; we take the rest."
+        },
+        {
+          "name": "Move-out cleanouts",
+          "text": "For renters, landlords and sellers on a deadline."
+        },
+        {
+          "name": "Property cleanouts",
+          "text": "Rentals, foreclosures, and whole houses — inside and out."
+        }
+      ],
+      "howPriced": "Cleanouts are priced by the load like everything else. Bigger jobs often run a full truck or more — if it's more than one load, the second is priced the same way.",
+      "notes": [
+        {
+          "title": "Estates take a lighter touch",
+          "text": "Tell us what's staying and what's going. We work around the family, not the other way round."
+        },
+        {
+          "title": "Broom-swept when we leave",
+          "text": "We sweep the space we cleared."
+        }
+      ],
+      "faqIds": [
+        "load-size",
+        "more-than-expected",
+        "home",
+        "same-day",
+        "areas"
+      ]
+    },
+    {
+      "id": "demolition",
+      "path": "/demolition",
+      "bookingService": "demolition",
+      "suggestedLoad": "full",
+      "name": "Demolition",
+      "navLabel": "Demolition",
+      "metaTitle": "Demolition Contractor in St. Louis — Decks, Sheds, Interiors",
+      "metaDescription": "Light and interior demolition in St. Louis: decks, sheds, hot tubs, kitchens and bathrooms. We tear it out and haul it away in the same job. Get a quote.",
+      "eyebrow": "Demolition · St. Louis",
+      "headline": "We tear it out. Then we haul it off.",
+      "intro": "Most demolition leaves you with a second problem: the debris. We do both halves. Light and interior demolition, done carefully, with the mess loaded on our truck before we leave.",
+      "items": [
+        {
+          "name": "Interior demolition",
+          "text": "Walls, drywall, flooring, ceilings and fixtures — down to what you want to keep."
+        },
+        {
+          "name": "Kitchen demolition",
+          "text": "Cabinets, counters, backsplash, flooring and appliances out, ready for the remodel."
+        },
+        {
+          "name": "Bathroom demolition",
+          "text": "Tubs, showers, vanities, toilets, tile and subfloor."
+        },
+        {
+          "name": "Deck demolition",
+          "text": "Boards, framing, railings and stairs, taken down and hauled."
+        },
+        {
+          "name": "Shed demolition",
+          "text": "Wood and metal sheds, dismantled and removed with the contents."
+        },
+        {
+          "name": "Hot tub removal",
+          "text": "Cut down on-site when that's the only way out."
+        },
+        {
+          "name": "Light demolition",
+          "text": "Fences, playsets, small outbuildings and similar."
+        }
+      ],
+      "howPriced": "Demolition is quoted per job — labor depends on what's coming down and how. Hauling the debris is priced by the load. Send photos and we'll give you a real number.",
+      "notes": [
+        {
+          "title": "Tell us what stays",
+          "text": "Mark what's structural, what's being reused, and what's off-limits. We plan around it."
+        },
+        {
+          "title": "Utilities first",
+          "text": "Water, gas and electric to the area need to be shut off and capped before demo. Ask us if you're not sure."
+        }
+      ],
+      "faqIds": [
+        "demolition",
+        "estimates",
+        "pricing",
+        "construction-debris"
+      ],
+      "ownerNotes": [
+        "Confirm which demolition jobs you take on and whether permits are handled by you or the customer."
+      ]
+    },
+    {
+      "id": "construction-debris",
+      "path": "/construction-debris-removal",
+      "bookingService": "debris",
+      "suggestedLoad": "three-quarter",
+      "name": "Construction Debris Removal",
+      "navLabel": "Construction debris",
+      "metaTitle": "Construction Debris Removal & Cleanup in St. Louis",
+      "metaDescription": "Construction debris removal and job-site cleanup in St. Louis. Drywall, lumber, cabinets, flooring and remodel waste loaded and hauled — no dumpster sitting in the driveway.",
+      "eyebrow": "Construction debris · St. Louis",
+      "headline": "No dumpster in the driveway for two weeks.",
+      "intro": "For homeowners mid-remodel and contractors between phases. We show up, load the pile, and take it — no permit for a dumpster on the street, no waiting for a swap.",
+      "items": [
+        {
+          "name": "Construction debris removal",
+          "text": "Drywall, lumber, trim, doors, windows, cabinets and packaging."
+        },
+        {
+          "name": "Construction cleanup",
+          "text": "End-of-job cleanup so the space is ready for the next trade or the walkthrough."
+        },
+        {
+          "name": "Remodel waste",
+          "text": "Old flooring, carpet and pad, fixtures, vanities and tubs."
+        },
+        {
+          "name": "Recurring job-site pickups",
+          "text": "For contractors who'd rather not manage a dumpster. Call to set it up."
+        }
+      ],
+      "howPriced": "Priced by the load. Heavy materials — concrete, brick, tile, dirt, shingles — hit weight limits before the truck is full, so they're quoted separately.",
+      "notes": [
+        {
+          "title": "Contractors",
+          "text": "Call us to set up regular pickups across multiple sites."
+        },
+        {
+          "title": "Heavy stuff",
+          "text": "Tell us about concrete, brick, tile or shingles up front. They're priced by weight."
+        }
+      ],
+      "faqIds": [
+        "construction-debris",
+        "pricing",
+        "load-size",
+        "more-than-expected"
+      ],
+      "ownerNotes": [
+        "Confirm whether you take concrete, brick, dirt and shingles, and how you price them."
+      ]
+    }
+  ]
+}
