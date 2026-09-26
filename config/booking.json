@@ -2,7 +2,7 @@
   "$comment": "Booking rules. Read by the availability/booking functions. Windows are arrival windows, in business-local time.",
   "enabled": true,
   "horizonDays": 21,
-  "minNoticeHours": 12,
+  "minNoticeHours": 2,
   "sameDay": true,
   "crews": 1,
   "bufferMinutes": 30,

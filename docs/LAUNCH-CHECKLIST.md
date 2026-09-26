@@ -10,7 +10,7 @@ below is done, set `showOwnerNotes` to `false` in `config/business.json`.
       no tires, batteries, liquid paint or hazardous materials
 - [x] Hours: Mon–Fri 8am–5pm, closed weekends
 - [x] Service area confirmed as listed
-- [x] Policies: not home required (price confirmed by phone), same-day when
+- [x] Policies: not home required (price confirmed by phone), same-day bookable online with 2 hours notice when
       the schedule allows, free estimates, permits handled, 24-hour notice preferred
 - [x] Arrival windows 9–11, 11–1, 1–3, 3–5; jobs can run past 5pm
 - [x] Licensed & insured ($3M), founded 2023, 1,000+ jobs, founder Aaron Ward

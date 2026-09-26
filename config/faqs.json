@@ -76,7 +76,7 @@
     {
       "id": "same-day",
       "q": "Do you offer same-day service?",
-      "a": "Yes, when the schedule allows. Online booking needs 12 hours' notice, so for today, call {phone} and we'll tell you the soonest we can get there.",
+      "a": "Yes, when the schedule allows. Online booking shows any open window at least 2 hours out — if there's one today, you'll see it. Or call {phone} and we'll tell you the soonest we can get there.",
       "confirmed": true
     },
     {
