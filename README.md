@@ -35,9 +35,46 @@ npm run check                     # type check
 | FAQ | `config/faqs.json` |
 | Reviews | `config/reviews.json` |
 | Photos (before/after, work) | `config/media.json` + `public/photos/` |
+| Homepage hero video | `config/media.json → heroVideo` + `public/videos/` (see below) |
 
 Commit a change and Netlify rebuilds. Secrets and optional overrides are
 environment variables — see [`.env.example`](.env.example).
+
+## Hero video
+
+The homepage hero can play a muted, looping background video behind the copy
+and the load configurator. The intended footage is a 15–20s seamless loop of
+two crew members loading the Isuzu dump truck. Put these files in
+`public/videos/` and rebuild. Paths are set in `config/media.json →
+heroVideo`. Each file is used only if it exists; with none, the hero keeps its
+plain background.
+
+| File | What | Target |
+| --- | --- | --- |
+| `hero-1080.webm` / `hero-1080.mp4` | Tablet + desktop (≥768px), 16:9 | 1920×1080, ~3–5 MB |
+| `hero-mobile.webm` / `hero-mobile.mp4` | Phones (<768px), portrait 9:16 crop | 720×1280, ~1–2 MB |
+| `hero-poster.jpg` | First frame of the 16:9 encode | 1920×1080, <150 KB |
+| `hero-poster-mobile.jpg` | First frame of the 9:16 encode | 720×1280, <80 KB |
+
+No audio track. On desktop, the left ~40% of the frame sits under the headline
+behind a dark scrim, and the right side is mostly behind the configurator
+card, so frame the action center-right. The mobile crop shows behind the
+headline only.
+
+```sh
+ffmpeg -i master.mov -an -vf "scale=1920:-2,fps=30" -c:v libvpx-vp9 -b:v 0 -crf 36 -row-mt 1 public/videos/hero-1080.webm
+ffmpeg -i master.mov -an -vf "scale=1920:-2,fps=30" -c:v libx264 -crf 26 -preset slow -pix_fmt yuv420p -movflags +faststart public/videos/hero-1080.mp4
+ffmpeg -i master.mov -an -vf "crop=ih*9/16:ih,scale=720:1280,fps=30" -c:v libvpx-vp9 -b:v 0 -crf 38 -row-mt 1 public/videos/hero-mobile.webm
+ffmpeg -i master.mov -an -vf "crop=ih*9/16:ih,scale=720:1280,fps=30" -c:v libx264 -crf 27 -preset slow -pix_fmt yuv420p -movflags +faststart public/videos/hero-mobile.mp4
+ffmpeg -i public/videos/hero-1080.mp4 -frames:v 1 -q:v 5 public/videos/hero-poster.jpg
+ffmpeg -i public/videos/hero-mobile.mp4 -frames:v 1 -q:v 5 public/videos/hero-poster-mobile.jpg
+```
+
+The poster `<img>` is the first paint (and LCP). Video sources are attached
+after `load` and picked by viewport, WebM first, then MP4. Visitors with
+reduced motion, Save-Data or 2G get only the poster and never download the
+video. The video pauses off-screen, and a pause button appears once it plays
+(WCAG 2.2.2).
 
 ## Deploying (Netlify)
 
