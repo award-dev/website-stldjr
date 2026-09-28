@@ -374,6 +374,7 @@ section { position: relative; }
   border-radius: 999px;
 }
 .hero-media .ph-photo { aspect-ratio: 5/4; border-radius: 0; }
+.hero-anim { display: block; width: 100%; height: auto; aspect-ratio: 4 / 3; background: #d6f0fb; }
 
 /* ---- Trust bar ---- */
 .trust-bar { background: var(--color-charcoal-900); padding: 22px 0; }
