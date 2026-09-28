@@ -1,6 +1,6 @@
 {
   "$comment": "Company facts. Anything set to null renders as a clearly-marked owner placeholder (while showOwnerNotes is true) or is omitted. Never fill these with guesses.",
-  "showOwnerNotes": true,
+  "showOwnerNotes": false,
   "name": "STL Demolition & Junk Removal",
   "legalName": null,
   "shortName": "STL Demolition",

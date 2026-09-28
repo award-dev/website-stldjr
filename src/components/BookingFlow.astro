@@ -13,7 +13,11 @@ const isBook = mode === "book";
 
 const steps = isBook
   ? ["service", "load", "location", "details", "photos", "when", "contact", "review"]
-  : ["service", "load", "location", "details", "photos", "contact", "review"];
+  : // Quotes ask for contact right after the two one-tap steps, so a lead
+    // that stops partway is still reachable (see "quote-started" in quote.astro).
+    ["service", "load", "contact", "location", "details", "photos", "review"];
+// Quotes only need a ZIP to price; the rest of the job details are optional.
+const opt = isBook ? "" : " (optional)";
 const titles: Record<string, string> = {
   service: "What do you need done?",
   load: "About how much?",
@@ -129,12 +133,13 @@ const config = {
       <!-- 3. Location -->
       <section class="bk-step" data-step="location" aria-labelledby="h-location" hidden>
         <h2 id="h-location" class="bk-title" tabindex="-1">{titles.location}</h2>
+        {!isBook && <p class="bk-sub">A ZIP is enough to price it. Add the street address if it's handy.</p>}
         <div class="bk-fields">
           <div class="field">
-            <label for="f-address">Street address</label>
+            <label for="f-address">Street address{opt && <span class="muted">{opt}</span>}</label>
             <div class="addr" data-addr>
               <!-- autocomplete off: the browser's own list would sit on top of ours -->
-              <input id="f-address" name="address" class="input" autocomplete="off" required placeholder="Start typing — e.g. 1115 Sharon Dr" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="addr-list" aria-describedby="e-address" />
+              <input id="f-address" name="address" class="input" autocomplete="off" required={isBook} placeholder="Start typing — e.g. 1115 Sharon Dr" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="addr-list" aria-describedby="e-address" />
               <div class="addr-panel" data-addr-panel hidden>
                 <ul id="addr-list" role="listbox" aria-label="Suggested addresses" data-addr-list></ul>
                 <p class="addr-credit" data-addr-credit></p>
@@ -144,8 +149,8 @@ const config = {
           </div>
           <div class="bk-row">
             <div class="field">
-              <label for="f-city">City</label>
-              <input id="f-city" name="city" class="input" autocomplete="address-level2" required aria-describedby="e-city" />
+              <label for="f-city">City{opt && <span class="muted">{opt}</span>}</label>
+              <input id="f-city" name="city" class="input" autocomplete="address-level2" required={isBook} aria-describedby="e-city" />
               <p class="field-error" id="e-city" data-error="city"></p>
             </div>
             <div class="field field--zip">
@@ -156,10 +161,10 @@ const config = {
           </div>
           <p class="small zip-hint" id="h-zip" data-zip-hint aria-live="polite"></p>
           <fieldset class="field">
-            <legend class="label">Property type</legend>
+            <legend class="label">Property type{opt && <span class="muted">{opt}</span>}</legend>
             <div class="chips" data-field="propertyType">
               {propertyTypes.map((p) => (
-                <label class="chip"><input type="radio" name="propertyType" value={p.id} required /><span>{p.label}</span></label>
+                <label class="chip"><input type="radio" name="propertyType" value={p.id} required={isBook} /><span>{p.label}</span></label>
               ))}
             </div>
             <p class="field-error" data-error="propertyType"></p>
@@ -172,8 +177,8 @@ const config = {
         <h2 id="h-details" class="bk-title" tabindex="-1">{titles.details}</h2>
         <div class="bk-fields">
           <div class="field">
-            <label for="f-description">What's going?</label>
-            <textarea id="f-description" name="description" class="textarea" rows="3" required placeholder="e.g. Old sectional, a fridge, and about 20 boxes from the basement" aria-describedby="e-description"></textarea>
+            <label for="f-description">What's going?{opt && <span class="muted">{opt}</span>}</label>
+            <textarea id="f-description" name="description" class="textarea" rows="3" required={isBook} placeholder="e.g. Old sectional, a fridge, and about 20 boxes from the basement" aria-describedby="e-description"></textarea>
             <p class="field-error" id="e-description" data-error="description"></p>
           </div>
           <div class="field">
@@ -279,7 +284,7 @@ const config = {
       <!-- Contact -->
       <section class="bk-step" data-step="contact" aria-labelledby="h-contact" hidden>
         <h2 id="h-contact" class="bk-title" tabindex="-1">{titles.contact}</h2>
-        <p class="bk-sub">Only used for this job. No marketing lists.</p>
+        <p class="bk-sub">{isBook ? "Only used for this job. No marketing lists." : "This is where we'll send your price. We keep it once you continue, so we can still reach you if you get cut off. Only used for this job — no marketing lists."}</p>
         <div class="bk-fields">
           <div class="field">
             <label for="f-name">Name</label>

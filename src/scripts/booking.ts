@@ -188,14 +188,16 @@ export function initBooking(root: HTMLElement) {
   }
 
   // ---------- validation ----------
+  // Quotes only require service, load, contact and ZIP; the rest is optional.
+  const bookOnly = (check: () => string | null) => () => (isBook ? check() : null);
   const rules: Record<string, () => string | null> = {
     service: () => (state.service ? null : "Choose what you need done."),
     load: () => (state.load ? null : "Choose a load size."),
-    address: () => (/\d/.test(state.address || "") && (state.address || "").trim().length >= 5 ? null : "Enter the street address, including the house number."),
-    city: () => ((state.city || "").trim().length >= 2 ? null : "Enter the city."),
+    address: bookOnly(() => (/\d/.test(state.address || "") && (state.address || "").trim().length >= 5 ? null : "Enter the street address, including the house number.")),
+    city: bookOnly(() => ((state.city || "").trim().length >= 2 ? null : "Enter the city.")),
     zip: () => (/^\d{5}$/.test((state.zip || "").trim()) ? null : "Enter a 5-digit ZIP code."),
-    propertyType: () => (state.propertyType ? null : "Choose a property type."),
-    description: () => ((state.description || "").trim().length >= 3 ? null : "Tell us a little about what's going."),
+    propertyType: bookOnly(() => (state.propertyType ? null : "Choose a property type.")),
+    description: bookOnly(() => ((state.description || "").trim().length >= 3 ? null : "Tell us a little about what's going.")),
     name: () => ((state.name || "").trim().length >= 2 ? null : "Enter your name."),
     phone: () => (digits(state.phone || "").length === 10 ? null : "Enter a 10-digit phone number."),
     email: () => (/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test((state.email || "").trim()) ? null : "Enter an email address so we can confirm."),
@@ -285,6 +287,7 @@ export function initBooking(root: HTMLElement) {
     const name = cfg.steps[idx];
     if (!validateStep(name)) return;
     if (name === "review") return submit();
+    if (name === "contact" && !isBook) sendQuoteStarted();
     track(isBook ? "booking_step_complete" : "quote_step_complete", { step: name });
     show(Math.min(idx + 1, cfg.steps.length - 1), 1);
   }
@@ -629,8 +632,8 @@ export function initBooking(root: HTMLElement) {
     const rows: [string, string, string, string?][] = [
       ["Service", svc?.label || "—", "service"],
       ["Load", ld ? loadText(ld) : "Not sure — size it from photos", "load"],
-      ["Where", `${state.address || ""}, ${state.city || ""} ${state.zip || ""}${prop ? ` · ${prop.label}` : ""}`, "location"],
-      ["Details", `${(state.description || "").slice(0, 140)}${(state.description || "").length > 140 ? "…" : ""} · ${stairs}, ${carry}`, "details"],
+      ["Where", `${[state.address, state.city].filter(Boolean).join(", ")} ${state.zip || ""}`.trim() + (prop ? ` · ${prop.label}` : ""), "location"],
+      ["Details", [`${(state.description || "").slice(0, 140)}${(state.description || "").length > 140 ? "…" : ""}`, `${stairs}, ${carry}`].filter(Boolean).join(" · "), "details"],
       ["Photos", n ? `${n} photo${n === 1 ? "" : "s"}` : "None", "photos"],
     ];
     if (isBook) rows.push(["When", state.date ? `${formatLongDate(state.date)}, ${state.windowLabel} (arrival window)` : "—", "when"]);
@@ -754,6 +757,28 @@ export function initBooking(root: HTMLElement) {
       else location.href = "/quote/";
     }
   });
+
+  // Early lead capture: once someone gives their contact details on the
+  // quote flow, post what we have to the "quote-started" Netlify form so the
+  // owner can follow up if they never finish. Sent once per phone number.
+  function sendQuoteStarted() {
+    const key = digits(state.phone || "");
+    if (!key || state.startedSent === key) return;
+    state.startedSent = key;
+    save();
+    const svc = cfg.services.find((s) => s.id === state.service);
+    const ld = cfg.loads.find((l) => l.id === state.load);
+    const body = new URLSearchParams({
+      "form-name": "quote-started",
+      "bot-field": (form.elements.namedItem("website") as HTMLInputElement).value,
+      service: svc?.label || "",
+      load: ld ? loadText(ld) : "Not sure",
+      name: state.name || "", phone: fmtPhone(state.phone || ""), email: state.email || "",
+    });
+    fetch("/", { method: "POST", headers: { "content-type": "application/x-www-form-urlencoded" }, body, keepalive: true })
+      .then((r) => track("quote_lead_captured", { result: r.ok ? "ok" : `http_${r.status}` }))
+      .catch(() => track("quote_lead_captured", { result: "network" }));
+  }
 
   async function submitQuote(honeypot: string) {
     setBusy(true, "Sending…");

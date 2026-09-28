@@ -15,6 +15,13 @@ import BookingFlow from "../components/BookingFlow.astro";
     <input name="stairs" /><input name="carry" /><textarea name="access"></textarea><textarea name="special"></textarea>
     <input name="name" /><input name="phone" /><input name="email" /><textarea name="photos"></textarea>
   </form>
+
+  <!-- Early lead: sent once the visitor gives contact details, before they finish.
+       A matching "quote" submission follows if they complete the request. -->
+  <form name="quote-started" method="POST" data-netlify="true" netlify-honeypot="bot-field" hidden aria-hidden="true">
+    <input name="bot-field" />
+    <input name="service" /><input name="load" /><input name="name" /><input name="phone" /><input name="email" />
+  </form>
 </Base>
 
 <style>

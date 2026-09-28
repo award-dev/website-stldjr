@@ -35,6 +35,12 @@ Quote requests (`/quote`) are posted to **Netlify Forms** (form name
 `quote`) — no credentials needed. Turn on email notifications for it in
 Netlify → Forms → quote → Form notifications.
 
+The quote flow asks for contact details at step 3. When the visitor continues
+past that step, a short **`quote-started`** form (service, load, name, phone,
+email) is posted right away, so you can follow up with people who don't finish.
+Turn on notifications for `quote-started` too. A finished request also arrives
+as `quote`, so one customer can show up in both.
+
 ## Setting up Google Calendar (≈15 minutes)
 
 1. Go to <https://console.cloud.google.com/>, create a project (e.g. "STL website").

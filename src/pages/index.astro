@@ -11,7 +11,10 @@ import ServiceAreaBlock from "../components/ServiceAreaBlock.astro";
 import Reviews from "../components/Reviews.astro";
 import FaqList from "../components/FaqList.astro";
 import FinalCta from "../components/FinalCta.astro";
-import { business, pricing } from "../lib/site";
+import { business, pricing, media } from "../lib/site";
+// Hide the work gallery until at least one real photo exists, rather than
+// showing a wall of "Photo coming soon" tiles to customers.
+const hasWorkPhotos = media.work.some((i) => i.src);
 ---
 <Base
   title={`Junk Removal & Demolition in St. Louis, MO | ${business.name}`}
@@ -71,6 +74,7 @@ import { business, pricing } from "../lib/site";
     </div>
   </section>
 
+  {hasWorkPhotos && (
   <section class="section" aria-labelledby="work-title">
     <div class="wrap">
       <div class="section-head section-head--split">
@@ -83,6 +87,7 @@ import { business, pricing } from "../lib/site";
       <WorkGallery />
     </div>
   </section>
+  )}
 
   <section class="section dark" aria-labelledby="split-title">
     <div class="wrap">
