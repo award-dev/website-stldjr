@@ -1,5 +1,5 @@
 {
-  "$comment": "Photo slots. Drop real, compressed images (WebP/JPEG, ~1600px wide) into public/photos/ and set src to '/photos/<file>'. While src is null, a labeled placeholder shows so nothing looks finished that isn't. Write alt text that describes the actual photo.",
+  "$comment": "Photo slots. beforeAfter keeps its illustrations by the owner's choice (a src here replaces one). Drop real, compressed images (WebP/JPEG, ~1600px wide) into public/photos/ and set src to '/photos/<file>'. While src is null, a labeled placeholder shows so nothing looks finished that isn't. Write alt text that describes the actual photo.",
   "beforeAfter": [
     { "id": "garage", "label": "Garage", "caption": "Two-car garage cleanout", "before": { "src": null, "alt": "Garage packed with boxes, bikes and old furniture before cleanout" }, "after": { "src": null, "alt": "The same garage, empty and swept" } },
     { "id": "basement", "label": "Basement", "caption": "Basement cleanout", "before": { "src": null, "alt": "Basement crowded with furniture and storage boxes" }, "after": { "src": null, "alt": "Cleared basement floor after the crew hauled everything out" } },
