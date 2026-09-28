@@ -6,9 +6,9 @@ Marketing site and booking product for **STL Demolition & Junk Removal**
 - **Static, fast pages** built with [Astro](https://astro.build) — no client
   framework; each interactive piece is a small TypeScript module.
 - **Load-based pricing configurator** (1/4 → full 17 yd³ truck, drawn to scale).
-- **Guided booking** against the real Google Calendar, with photo upload,
+- **Guided booking** into Haul-off Ops (the CRM) — or the site's own Google Calendar engine — with photo upload,
   inline validation, saved progress, reschedule/cancel links and honest error
-  states. **Quote requests** go to Netlify Forms.
+  states. **Quote requests** go to the CRM and Netlify Forms.
 - **Everything business-critical is config**, not code: `config/*.json`.
 - **No invented content.** Missing facts show as purple "OWNER" notes until
   supplied — see [`docs/LAUNCH-CHECKLIST.md`](docs/LAUNCH-CHECKLIST.md).

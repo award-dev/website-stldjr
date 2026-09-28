@@ -6,7 +6,8 @@ import { track } from "./analytics";
 import { toast } from "./toast";
 import { initLoadViz } from "./loadviz";
 import { formatLongDate } from "../../shared/time.js";
-import { googleCalendarLink } from "../../shared/ics.js";
+import { buildIcs, googleCalendarLink } from "../../shared/ics.js";
+import { bookingApi, localManageUrl, notifyBooking, usingCrm } from "./crm";
 
 type Load = { id: string; label: string; short: string; yards: string; fraction: number; price: string; priceNote: string };
 type Cfg = {
@@ -28,7 +29,7 @@ type Day = { date: string; weekday: string; open: boolean; slots: Slot[] };
 
 const FIELD_STEP: Record<string, string> = {
   service: "service", load: "load", address: "location", city: "location", zip: "location", propertyType: "location",
-  description: "details", slot: "when", name: "contact", phone: "contact", email: "contact", acceptedTerms: "review",
+  description: "details", slot: "when", date: "when", windowId: "when", name: "contact", phone: "contact", email: "contact", acceptedTerms: "review",
 };
 
 const TEXT_FIELDS = ["address", "city", "zip", "description", "items", "demolitionDetails", "access", "special", "name", "phone", "email"];
@@ -413,8 +414,8 @@ export function initBooking(root: HTMLElement) {
     const job = (async () => {
       try {
         const blob = await compress(file);
-        if (blob.size > 5 * 1024 * 1024) throw Object.assign(new Error("too big"), { friendly: "That photo is too large. Try a smaller one, or continue without it." });
-        const res = await fetch("/api/uploads", { method: "POST", body: blob, headers: { "content-type": blob.type || file.type || "image/jpeg" }, signal: ctrl.signal });
+        if (blob.size > 4 * 1024 * 1024) throw Object.assign(new Error("too big"), { friendly: "That photo is too large. Try a smaller one, or continue without it." });
+        const res = await fetch(bookingApi("/uploads"), { method: "POST", body: blob, headers: { "content-type": blob.type || file.type || "image/jpeg" }, signal: ctrl.signal });
         const data = await res.json().catch(() => ({}));
         if (!res.ok || data.status !== "ok") throw Object.assign(new Error("upload"), { friendly: res.status === 415 ? data.message : undefined });
         id = data.id;
@@ -488,7 +489,7 @@ export function initBooking(root: HTMLElement) {
     if (!force && availability && availabilityKey === key) return renderDays();
     whenState("loading");
     try {
-      const res = await fetch(`/api/availability?service=${encodeURIComponent(state.service || "junk")}&load=${encodeURIComponent(state.load || "half")}`, { headers: { accept: "application/json" } });
+      const res = await fetch(bookingApi(`/availability?service=${encodeURIComponent(state.service || "junk")}&load=${encodeURIComponent(state.load || "half")}`), { headers: { accept: "application/json" } });
       const data = await res.json();
       if (data.status !== "ok") throw new Error(data.code || "unavailable");
       availability = { days: data.days, mode: data.mode };
@@ -683,6 +684,26 @@ export function initBooking(root: HTMLElement) {
     return submitQuote(honeypot);
   }
 
+  // The CRM made the booking: keep the customer on our manage page, give them
+  // our calendar file, and have the site send its confirmation emails.
+  async function fromCrm(data: any) {
+    const b = data.booking;
+    const u = new URL(b.manageUrl, location.origin);
+    const id = u.searchParams.get("id") || b.id;
+    const t = u.searchParams.get("t") || "";
+    b.manageUrl = localManageUrl(b.manageUrl);
+    if (b.windowStart) {
+      b.ics = buildIcs({
+        uid: `${b.id}@stlouishjr.com`, start: b.windowStart, end: b.windowEnd,
+        title: `STL Demolition & Junk Removal: ${b.loadLabel} ${b.serviceLabel.toLowerCase()} (arrival window)`,
+        description: `Arrival window ${b.windowLabel}. Booking ${b.id}. Manage: ${b.manageUrl} · ${cfg.phone}`,
+        location: `${b.address}, ${b.city}, MO ${b.zip}`, url: b.manageUrl,
+      });
+    }
+    const sent = await notifyBooking("confirmed", id, t);
+    data.notifications = { customerEmail: Boolean(sent && sent.customerEmail) };
+  }
+
   async function submitBooking(honeypot: string) {
     setBusy(true, "Booking…");
     const payload = {
@@ -695,7 +716,7 @@ export function initBooking(root: HTMLElement) {
     let res: Response;
     let data: any = {};
     try {
-      res = await fetch("/api/bookings", { method: "POST", headers: { "content-type": "application/json", accept: "application/json" }, body: JSON.stringify(payload) });
+      res = await fetch(bookingApi("/bookings"), { method: "POST", headers: { "content-type": "application/json", accept: "application/json" }, body: JSON.stringify(payload) });
       data = await res.json().catch(() => ({}));
     } catch {
       setBusy(false, "Confirm booking");
@@ -708,6 +729,7 @@ export function initBooking(root: HTMLElement) {
       done = true;
       clearSaved();
       track("booking_complete", { service: state.service, load: state.load, mode: data.mode });
+      if (usingCrm()) await fromCrm(data);
       return renderBooked(data);
     }
     track("booking_error", { code: data.code || `http_${res.status}` });
@@ -771,9 +793,44 @@ export function initBooking(root: HTMLElement) {
       name: state.name || "", phone: fmtPhone(state.phone || ""), email: state.email || "",
       photos: (state.photos || []).map((p) => new URL(p.url, location.origin).toString()).join("\n"),
     });
+    // With the CRM on, the request goes to its Leads inbox as a job to quote.
+    // The Netlify form still gets a copy for the email notification; if the
+    // CRM can't be reached, that copy alone still delivers the request.
+    let crmOk = false;
+    if (usingCrm()) {
+      try {
+        const r = await fetch(bookingApi("/quote"), {
+          method: "POST",
+          headers: { "content-type": "application/json", accept: "application/json" },
+          body: JSON.stringify({
+            service: state.service, load: state.load || "unsure", address: state.address, city: state.city, zip: state.zip,
+            propertyType: state.propertyType, description: state.description, items: state.items, demolitionDetails: state.demolitionDetails,
+            access: state.access, stairs: state.stairs, carry: state.carry, special: state.special,
+            name: state.name, phone: state.phone, email: state.email, photos: (state.photos || []).map((p) => p.id), website: honeypot,
+          }),
+        });
+        const d = await r.json().catch(() => ({}));
+        if (r.status === 422 && d.fields) {
+          setBusy(false, "Send quote request");
+          const first = Object.keys(d.fields)[0];
+          show(cfg.steps.indexOf(FIELD_STEP[first] || "review"), -1);
+          setTimeout(() => Object.entries(d.fields).forEach(([f, m]) => setError(f, String(m))), 60);
+          toast(d.message || "Some details need fixing.", { tone: "error" });
+          return;
+        }
+        crmOk = r.status === 201 && d.status === "ok";
+        if (!crmOk) track("quote_error", { code: d.code || `crm_http_${r.status}` });
+      } catch {
+        track("quote_error", { code: "crm_network" });
+      }
+      body.set("photos", `${(state.photos || []).length} photo(s) — see the lead in Haul-off Ops`);
+    }
     try {
-      const res = await fetch("/", { method: "POST", headers: { "content-type": "application/x-www-form-urlencoded" }, body });
-      if (!res.ok) throw new Error(String(res.status));
+      const res = await fetch("/", { method: "POST", headers: { "content-type": "application/x-www-form-urlencoded" }, body }).catch((e) => {
+        if (crmOk) return null;
+        throw e;
+      });
+      if (!crmOk && (!res || !res.ok)) throw new Error(String(res?.status));
       done = true;
       clearSaved();
       track("quote_complete", { service: state.service, load: state.load });

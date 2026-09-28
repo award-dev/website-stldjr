@@ -32,10 +32,11 @@ const { tone = "dark" } = Astro.props;
 
 <script>
   import { formatLongDate } from "../../shared/time.js";
+  import { bookingApi } from "../scripts/crm";
 
   const els = document.querySelectorAll<HTMLAnchorElement>("[data-next-available]");
   if (els.length) {
-    fetch("/api/availability?summary=1", { headers: { accept: "application/json" } })
+    fetch(bookingApi("/availability?summary=1"), { headers: { accept: "application/json" } })
       .then((r) => (r.ok ? r.json() : null))
       .then((data) => {
         if (!data || data.status !== "ok" || data.mode !== "live" || !data.next) return;

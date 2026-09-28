@@ -4,7 +4,7 @@ import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import MobileBar from "../components/MobileBar.astro";
 import Schema from "../components/Schema.astro";
-import { business, abs, allPlaces, openingHoursSchema, anyPrice } from "../lib/site";
+import { business, booking, abs, allPlaces, openingHoursSchema, anyPrice } from "../lib/site";
 
 interface Props {
   title: string;
@@ -55,7 +55,7 @@ const org = {
 const analytics = business.analytics;
 ---
 <!doctype html>
-<html lang="en-US">
+<html lang="en-US" data-booking-api={booking.crm?.apiBase || undefined}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />

@@ -82,6 +82,7 @@ import { business, telHref } from "../lib/site";
   import { toast } from "../scripts/toast";
   import { track } from "../scripts/analytics";
   import { formatLongDate } from "../../shared/time.js";
+  import { bookingApi, notifyBooking } from "../scripts/crm";
 
   const root = document.querySelector<HTMLElement>("[data-manage]")!;
   const $ = <T extends HTMLElement = HTMLElement>(s: string) => root.querySelector<T>(s) ?? document.querySelector<T>(s)!;
@@ -128,7 +129,7 @@ import { business, telHref } from "../lib/site";
   async function init() {
     if (!id || !t) return state("error");
     try {
-      const { res, data } = await api(`/api/booking?id=${encodeURIComponent(id)}&t=${encodeURIComponent(t)}`);
+      const { res, data } = await api(bookingApi(`/booking?id=${encodeURIComponent(id)}&t=${encodeURIComponent(t)}`));
       if (res.status === 404) return state("error");
       if (data.status !== "ok") return state("error", "Online booking management isn't available right now. Call us and we'll sort it out.");
       render(data.booking);
@@ -145,11 +146,12 @@ import { business, telHref } from "../lib/site";
   $("[data-m-cancel]").addEventListener("click", openCancel);
   dlg.addEventListener("close", async () => {
     if (dlg.returnValue !== "confirm") return;
-    const { data } = await api("/api/booking/cancel", { id, t });
+    const { data } = await api(bookingApi("/booking/cancel"), { id, t });
     if (data.status === "ok") {
       render(data.booking);
       toast("Booking cancelled.");
       track("booking_cancel");
+      notifyBooking("cancelled", id, t);
     } else toast(data.message || "We couldn't cancel online. Please call us.", { tone: "error" });
   });
 
@@ -162,7 +164,7 @@ import { business, telHref } from "../lib/site";
     $("[data-m-resched]").hidden = false;
     $("[data-rs-status]").textContent = "Loading open times…";
     days.innerHTML = slots.innerHTML = "";
-    const { data } = await api(`/api/booking/availability?id=${encodeURIComponent(id)}&t=${encodeURIComponent(t)}`);
+    const { data } = await api(bookingApi(`/booking/availability?id=${encodeURIComponent(id)}&t=${encodeURIComponent(t)}`));
     if (data.status !== "ok") {
       $("[data-rs-status]").innerHTML = `We can't load appointment times right now. Call <a class="link" href="${root.dataset.tel}">${root.dataset.phone}</a> and we'll reschedule you.`;
       return;
@@ -193,11 +195,12 @@ import { business, telHref } from "../lib/site";
   });
   confirmBtn.addEventListener("click", async () => {
     confirmBtn.disabled = true;
-    const { data } = await api("/api/booking/reschedule", { id, t, ...pick });
+    const { data } = await api(bookingApi("/booking/reschedule"), { id, t, ...pick });
     if (data.status === "ok") {
       render(data.booking);
       toast(`Moved to ${data.booking.dateLabel}, ${data.booking.windowLabel}.`);
       track("booking_reschedule");
+      notifyBooking("rescheduled", id, t);
     } else if (data.code === "slot_taken") {
       toast("That time was just booked. Pick another.", { tone: "error" });
       ($("[data-m-reschedule]") as HTMLButtonElement).click();

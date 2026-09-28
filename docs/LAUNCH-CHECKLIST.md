@@ -20,7 +20,8 @@ below is done, set `showOwnerNotes` to `false` in `config/business.json`.
 ## Still to do
 
 - [ ] **Netlify project** + point the Squarespace domain's nameservers at Netlify DNS.
-- [ ] **Google Calendar** (award@stlouishjr.com) — see `docs/BOOKING.md`. If
+- [x] **Bookings → Haul-off Ops** (2026-09-28; see `docs/BOOKING.md`). Superseded:
+- [x] **Google Calendar** (award@stlouishjr.com) — see `docs/BOOKING.md`. If
       stlouishjr.com is Google Workspace, the admin must allow sharing
       calendars with external users so the service account can be added.
 - [ ] **Netlify env vars:** `GOOGLE_CALENDAR_ID`, `GOOGLE_CALENDAR_CREDENTIALS`,

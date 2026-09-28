@@ -2,6 +2,10 @@
   "$comment": "Booking rules. Read by the availability/booking functions. Windows are arrival windows, in business-local time.",
   "enabled": true,
   "horizonDays": 21,
+  "crm": {
+    "$comment": "Where online bookings go. apiBase set: the booking flow, manage page and quotes talk to Haul-off Ops (the CRM) at this address, and jobs land on its schedule. null: the site's own engine and Google Calendar (netlify/functions/*). Scheduling rules (windows, days, notice, prices) then live in the CRM: Settings -> Online booking.",
+    "apiBase": "https://www.hauloffops.com/api/book/stldemoandjunkremoval"
+  },
   "minNoticeHours": 2,
   "sameDay": true,
   "crews": 1,

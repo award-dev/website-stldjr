@@ -6,7 +6,37 @@ reschedule or cancel from a signed link. **Nothing is faked.** Until the
 credentials below are set, the booking page says "We can't load appointment
 times right now" and offers the phone number and a quote request instead.
 
-## Architecture
+## Where bookings go now: Haul-off Ops
+
+Since 2026-09-28 bookings go to **Haul-off Ops** (the CRM, www.hauloffops.com),
+not Google Calendar. `config/booking.json → crm.apiBase` is set to
+`https://www.hauloffops.com/api/book/stldemoandjunkremoval`, and the layout
+puts it on `<html data-booking-api>`. With it set:
+
+- The booking flow, the "next opening" badge and the manage page
+  (`/booking/?id=&t=`) call the CRM **from the browser** (it allows any
+  origin). `src/scripts/crm.ts` picks the base; the CRM answers the same routes
+  in the same shapes as `netlify/functions/*`.
+- A booking is a **Booked job** on the CRM schedule, with a lead in its Leads
+  inbox (source "website"). The CRM counts jobs the office books by hand, so
+  those times close on the website too.
+- **Scheduling rules and prices live in the CRM:** Settings → Online booking
+  (windows 9–11 / 11–1 / 1–3 / 3–5, one job each; Mon–Fri; 2 hours' notice;
+  21 days out; $125 / $175 / $340 / $515 / $655; ZIPs 630, 631, 633). Change
+  them there. `config/booking.json` windows and `config/pricing.json` still
+  drive what the site *shows*, so keep prices in step.
+- **Emails:** the CRM has no mail set up, so after the CRM confirms, moves or
+  cancels a booking the page calls `/api/crm-notify` (`server/lib/crm.mjs`).
+  That reads the booking back from the CRM with its token and sends the same
+  customer + company emails as before, from bookings@stlouishjr.com. It only
+  sends when the CRM's state matches, and never twice for one state.
+- **Quotes** go to the CRM (`/quote`, a job to quote plus a lead) and still to
+  the Netlify `quote` form for its email notification. If the CRM can't be
+  reached, the Netlify copy alone delivers it.
+- Google Calendar is no longer written or read. The code below is kept:
+  **to go back, set `crm.apiBase` to `null` and deploy.**
+
+## Architecture (the site's own engine, used when crm.apiBase is null)
 
 ```
 Browser (Astro static pages + small TS modules)
