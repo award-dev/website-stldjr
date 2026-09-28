@@ -1,0 +1,48 @@
+{
+  "$comment": "Booking rules. Read by the availability/booking functions. Windows are arrival windows, in business-local time.",
+  "enabled": true,
+  "horizonDays": 21,
+  "crm": {
+    "$comment": "Where online bookings go. apiBase set: the booking flow, manage page and quotes talk to Haul-off Ops (the CRM) at this address, and jobs land on its schedule. null: the site's own engine and Google Calendar (netlify/functions/*). Scheduling rules (windows, days, notice, prices) then live in the CRM: Settings -> Online booking.",
+    "apiBase": "https://www.hauloffops.com/api/book/stldemoandjunkremoval"
+  },
+  "minNoticeHours": 2,
+  "sameDay": true,
+  "crews": 1,
+  "bufferMinutes": 30,
+  "windows": [
+    {
+      "id": "am1",
+      "start": "09:00",
+      "end": "11:00"
+    },
+    {
+      "id": "am2",
+      "start": "11:00",
+      "end": "13:00"
+    },
+    {
+      "id": "pm1",
+      "start": "13:00",
+      "end": "15:00"
+    },
+    {
+      "id": "pm2",
+      "start": "15:00",
+      "end": "17:00"
+    }
+  ],
+  "durationMinutes": {
+    "$comment": "On-site time per load size, excluding the arrival window.",
+    "quarter": 60,
+    "half": 90,
+    "three-quarter": 120,
+    "full": 150,
+    "demolition": 240,
+    "minimum": 30
+  },
+  "maxPhotos": 10,
+  "cancellationPolicy": "Please give us 24 hours' notice to cancel or reschedule when you can — but we understand plans change.",
+  "eventColorId": "10",
+  "jobsMustFinishByClose": false
+}

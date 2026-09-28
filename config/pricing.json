@@ -1,0 +1,115 @@
+{
+  "$comment": "Load-based pricing. price: whole US dollars or null. null prices display as 'priced on-site' — never invent numbers. The same file is read by the booking server, so the client can't change the price.",
+  "currency": "USD",
+  "priceMode": "from",
+  "maxCubicYards": 17,
+  "loads": [
+    {
+      "id": "quarter",
+      "label": "1/4 Load",
+      "short": "1/4",
+      "fraction": 0.25,
+      "cubicYards": 4.25,
+      "price": 175,
+      "summary": "A few big pieces or one small room.",
+      "fits": [
+        "A couch and a couple of chairs",
+        "A washer and dryer",
+        "A mattress set and a dresser",
+        "About two heaped pickup beds"
+      ],
+      "goodFor": [
+        "A few large pieces",
+        "Small cleanouts",
+        "Furniture",
+        "Appliances"
+      ]
+    },
+    {
+      "id": "half",
+      "label": "1/2 Load",
+      "short": "1/2",
+      "fraction": 0.5,
+      "cubicYards": 8.5,
+      "price": 340,
+      "summary": "A one-car garage or a packed spare room.",
+      "fits": [
+        "A sectional, a dining set and boxes",
+        "A one-car garage of mixed stuff",
+        "A small bathroom tear-out",
+        "About four heaped pickup beds"
+      ],
+      "goodFor": [
+        "Garage cleanouts",
+        "Larger furniture removal",
+        "Moderate household junk"
+      ]
+    },
+    {
+      "id": "three-quarter",
+      "label": "3/4 Load",
+      "short": "3/4",
+      "fraction": 0.75,
+      "cubicYards": 12.75,
+      "price": 515,
+      "summary": "Several rooms, or a remodel's worth of debris.",
+      "fits": [
+        "A basement of furniture and boxes",
+        "Kitchen cabinets, counters and drywall",
+        "A small shed, taken down",
+        "A room-by-room downsizing"
+      ],
+      "goodFor": [
+        "Large cleanouts",
+        "Remodeling debris",
+        "Multiple rooms"
+      ]
+    },
+    {
+      "id": "full",
+      "label": "Full Load",
+      "short": "Full",
+      "fraction": 1,
+      "cubicYards": 17,
+      "price": 655,
+      "summary": "The whole truck. Estates, big moves, demo jobs.",
+      "fits": [
+        "A whole-house estate cleanout",
+        "A packed two-car garage",
+        "A deck, demolished and hauled",
+        "A full renovation's debris"
+      ],
+      "goodFor": [
+        "Major cleanouts",
+        "Large moves",
+        "Construction debris",
+        "Estate cleanouts",
+        "Large demolition projects"
+      ]
+    }
+  ],
+  "conditions": [
+    "The minimum pickup is $125 — for just a few small items. Anything more is priced by the load.",
+    "Prices are for loading and hauling by volume — how much space your items take up in the truck.",
+    "Heavy material (concrete, brick, dirt, roofing shingles) adds about $75 per quarter load. Location, or needing equipment, can add more.",
+    "Anything with Freon — refrigerators, freezers, AC units, dehumidifiers — is $25 per item.",
+    "We can't take tires, batteries, liquid paint or hazardous materials.",
+    "Difficult access (long carries, several flights of stairs, tight crawlspaces) can add labor.",
+    "Demolition labor is quoted separately from hauling.",
+    "We confirm the final price before we load — in person, or by phone if you're not home. If it's more than you expected, you can say no."
+  ],
+  "ownerNotes": [],
+  "examplesNote": "Examples are typical, not promises — how things stack changes what fits.",
+  "minimum": {
+    "id": "minimum",
+    "label": "Minimum pickup",
+    "short": "Min",
+    "price": 125,
+    "summary": "Just a few small items — a quick in-and-out.",
+    "fits": [
+      "A chair, lamp or small table",
+      "A TV or microwave",
+      "A few bags or boxes"
+    ]
+  }
+}

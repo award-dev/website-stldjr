@@ -1,0 +1,81 @@
+---
+import Base from "../layouts/Base.astro";
+import PageHero from "../components/PageHero.astro";
+import Photo from "../components/Photo.astro";
+import OwnerNote from "../components/OwnerNote.astro";
+import FinalCta from "../components/FinalCta.astro";
+import { business, telHref, mailHref, media, hoursSummary, pricing } from "../lib/site";
+const team = media.work.find((w) => w.id === "team")!;
+const truck = media.work.find((w) => w.id === "truck")!;
+const t = business.trust;
+const facts = [
+  t.foundedYear && { k: "In business since", v: String(t.foundedYear) },
+  t.completedJobs && { k: "Jobs completed", v: String(t.completedJobs) },
+  t.insured && { k: "Insurance", v: t.insuranceDetails ? `Fully insured, ${t.insuranceDetails}` : "Insured" },
+  t.licensed && { k: "Licensing", v: t.licenseDetails || "Licensed" },
+  { k: "Truck capacity", v: `${pricing.maxCubicYards} cubic yards` },
+  { k: "Based in", v: "St. Louis, Missouri" },
+].filter(Boolean) as { k: string; v: string }[];
+---
+<Base title="About Us — St. Louis Junk Removal & Demolition Crew" description="Founded in 2023 by Aaron Ward: a licensed, insured St. Louis crew for junk removal, cleanouts and demolition — 1,000+ jobs and counting.">
+  <PageHero eyebrow="About" title="Started to take the weight off. Literally." lede="Aaron Ward started STL Demolition & Junk Removal in 2023 with one idea: make the heavy, stressful part of a mess someone else's job — and keep St. Louis neighborhoods clear of the junk piles that drag a block down." crumbs={[{ href: "/about/", label: "About" }]} />
+
+  <section class="section">
+    <div class="wrap about-grid">
+      <div class="prose">
+        <h2 class="h2" style="margin-top:0">Why we do this.</h2>
+        <p>Every job starts the same way: someone who's been staring at a problem for too long. A basement that filled up over twenty years. A parent's house that has to be emptied before it can be sold. A deck that's one bad winter from falling down. A remodel stalled behind a pile of drywall.</p>
+        <p>That weight is real — on your back and on your mind. Aaron started STL Demolition &amp; Junk Removal in 2023 so people in St. Louis would have someone reliable to hand it to. Show up on time, tell people the price before anything moves, do the heavy lifting, and leave the place better than we found it.</p>
+        <p>It's also about the neighborhood. Bulky trash dumped in alleys and piled on curbs makes a block feel forgotten. Every couch, fridge and busted-up deck we haul away the right way is one less eyesore on a St. Louis street. Our loads go to a facility that sorts and separates materials, so what can be recycled doesn't just get buried.</p>
+        <p>More than 1,000 jobs later, that's still the whole idea: clear the mess, lighten the load, and help keep St. Louis clean — one truck at a time.</p>
+        <h3 class="h4">Hauling and demolition, from one crew.</h3>
+        <p>Most messes come in two parts: the thing that has to come out, and the pile it leaves behind. We handle both — a deck tear-out, a kitchen gut or a garage cleanout gets done in one visit, by one crew, on one bill. If a job needs a permit, we pull it.</p>
+        <p>We price by the load because it's the fairest way we know. You can see what a quarter, half, three-quarter or full truck costs before you ever call, and you can book an actual arrival window online in a few minutes.</p>
+        <p class="signoff">— Aaron Ward, founder</p>
+      </div>
+      <Photo src={team.src} alt={team.alt} caption={team.caption} ratio="4 / 5" />
+    </div>
+  </section>
+
+  <section class="section paper-2">
+    <div class="wrap">
+      <div class="section-head"><p class="eyebrow">The specifics</p><h2 class="h2">Facts, not adjectives.</h2></div>
+      <dl class="facts">
+        {facts.map((f) => <div><dt class="meta muted">{f.k}</dt><dd class="h3">{f.v}</dd></div>)}
+      </dl>
+    </div>
+  </section>
+
+  <section class="section" id="contact">
+    <div class="wrap contact-grid">
+      <div class="stack" style="--stack: 16px">
+        <p class="eyebrow">Contact</p>
+        <h2 class="h2">Talk to us.</h2>
+        <p class="lede">Call for anything that doesn't fit a form. Or skip the call and book online.</p>
+        <div class="cta-row"><a href="/book/" class="btn btn--green btn--lg">Book a pickup</a><a href="/quote/" class="btn btn--ghost btn--lg">Get a quote</a></div>
+      </div>
+      <dl class="contact">
+        <div><dt class="meta muted">Phone</dt><dd><a href={telHref} class="h3 num">{business.phoneDisplay}</a></dd></div>
+        <div><dt class="meta muted">Email</dt><dd><a href={mailHref} class="h4">{business.email}</a></dd></div>
+        <div><dt class="meta muted">Hours</dt><dd>{hoursSummary().map((h) => <p class="num">{h.days} · {h.hours}</p>)}</dd></div>
+      </dl>
+      <Photo src={truck.src} alt={truck.alt} caption={truck.caption} ratio="16 / 9" class="truck-photo" />
+    </div>
+  </section>
+  <FinalCta />
+</Base>
+<style>
+  .about-grid, .contact-grid { display: grid; gap: 48px; align-items: start; }
+  @media (min-width: 1020px) { .about-grid { grid-template-columns: 1.2fr 0.8fr; gap: 80px; } .contact-grid { grid-template-columns: 1fr 1fr; } }
+  :global(.truck-photo) { grid-column: 1 / -1; }
+  .facts { display: grid; gap: 1px; background: var(--line-strong); border-block: 1px solid var(--line-strong); grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+  .facts div { background: var(--paper-2); padding: 28px 24px 28px 0; display: grid; gap: 10px; }
+  .facts dd { margin: 0; }
+  :global(.facts-note) { margin-top: 20px; }
+  .signoff { font-weight: 560; }
+  .contact { display: grid; gap: 24px; }
+  .contact div { display: grid; gap: 6px; border-top: 1px solid var(--line); padding-top: 16px; }
+  .contact dd { margin: 0; }
+  .contact a { text-decoration: none; }
+  .contact a:hover { text-decoration: underline; }
+</style>

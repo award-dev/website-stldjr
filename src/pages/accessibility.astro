@@ -1,0 +1,8 @@
+---
+import LegalPage from "../components/LegalPage.astro";
+import { business, mailHref, telHref } from "../lib/site";
+---
+<LegalPage title="Accessibility" description={`Accessibility commitment for the ${business.name} website.`} path="/accessibility/">
+  <p>We want everyone to be able to book with us. This site is built to meet WCAG 2.2 Level AA: it works with a keyboard and screen readers, respects reduced-motion settings, uses sufficient color contrast, and labels every form field.</p>
+  <p>If something doesn't work for you, tell us and we'll fix it — and we'll take your booking by phone in the meantime. Call <a href={telHref}>{business.phoneDisplay}</a> or email <a href={mailHref}>{business.email}</a>.</p>
+</LegalPage>

@@ -1,0 +1,273 @@
+---
+import LoadConfigurator from "./LoadConfigurator.astro";
+import NextAvailable from "./NextAvailable.astro";
+import Icon from "./Icon.astro";
+import { existsSync } from "node:fs";
+import { join } from "node:path";
+import { business, telHref, loads, minimum, media } from "../lib/site";
+const fromPrice = loads[0]?.priceLine.amount;
+
+// Background video from config/media.json. Only files that exist in public/
+// are used; with none, the hero keeps its plain background.
+const hv = media.heroVideo;
+const has = (p?: string | null) => !!p && existsSync(join(process.cwd(), "public", p));
+const encodes = (e: { webm?: string | null; mp4?: string | null }) =>
+  [
+    { src: e.webm, type: "video/webm" },
+    { src: e.mp4, type: "video/mp4" },
+  ].filter((x): x is { src: string; type: string } => has(x.src));
+const desktop = encodes(hv.desktop);
+const mobile = encodes(hv.mobile);
+// Both sizes present: pick per viewport. Only one: serve it everywhere.
+const sources = desktop.length && mobile.length
+  ? [...mobile.map((x) => ({ ...x, media: "(max-width: 767px)" })), ...desktop.map((x) => ({ ...x, media: "(min-width: 768px)" }))]
+  : [...desktop, ...mobile].map((x) => ({ ...x, media: undefined }));
+const poster = has(hv.poster) ? hv.poster : has(hv.posterMobile) ? hv.posterMobile : null;
+const posterMobile = poster !== hv.posterMobile && has(hv.posterMobile) ? hv.posterMobile : null;
+const hasMedia = sources.length > 0 || !!poster;
+---
+<section class:list={["hero", "dark", { "hero--media": hasMedia }]} aria-labelledby="hero-title">
+  {hasMedia && (
+    <div class="hero-bg" aria-hidden="true">
+      {poster && (
+        <picture>
+          {posterMobile && <source media="(max-width: 767px)" srcset={posterMobile} width="720" height="1280" />}
+          <img class="hero-bg-poster" src={poster} width="1920" height="1080" alt="" fetchpriority="high" />
+        </picture>
+      )}
+      {sources.length > 0 && (
+        <video class="hero-bg-video" muted loop playsinline disablepictureinpicture preload="none" tabindex="-1" data-hero-video>
+          {sources.map((x) => <source data-src={x.src} type={x.type} data-media={x.media} />)}
+        </video>
+      )}
+    </div>
+  )}
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <p class="eyebrow">St. Louis · Demolition + Junk Removal</p>
+      <h1 id="hero-title" class="display">
+        Point at the mess.
+        <span class="hero-accent">We'll handle the rest.</span>
+      </h1>
+      <p class="lede">
+        Junk removal, demolition and cleanouts across St. Louis. You pay for how much of the truck you fill — pick a size, see the price, book a time.
+      </p>
+      <div class="cta-row hero-ctas">
+        <a href="/book/" class="btn btn--green btn--lg" data-track="cta_click" data-track-cta="book" data-track-location="hero">Book a pickup <Icon name="arrow" class="arrow" /></a>
+        <a href="/quote/" class="btn btn--ghost btn--lg" data-track="cta_click" data-track-cta="quote" data-track-location="hero">Get a quote</a>
+      </div>
+      <a href={telHref} class="phone-link hero-phone" data-track="phone_click" data-track-location="hero">
+        <Icon name="phone" size={16} /> Or call <span class="num">{business.phoneDisplay}</span>
+      </a>
+      <NextAvailable />
+
+      <dl class="hero-facts">
+        <div><dt class="meta">Pricing</dt><dd>{minimum ? `${minimum.priceLine.amount} minimum · ` : ""}{fromPrice ? `loads from ${fromPrice}` : "by the load"}</dd></div>
+        {business.trust.insured && <div><dt class="meta">Coverage</dt><dd>Licensed &amp; insured{business.trust.insuranceDetails ? `, ${business.trust.insuranceDetails.replace(/ million policy$/, "M")}` : ""}</dd></div>}
+        {business.trust.completedJobs && <div><dt class="meta">Track record</dt><dd>{business.trust.completedJobs} jobs{business.trust.foundedYear ? ` since ${business.trust.foundedYear}` : ""}</dd></div>}
+        <div><dt class="meta">Area</dt><dd>St. Louis City, St. Louis County &amp; St. Charles County</dd></div>
+      </dl>
+    </div>
+
+    <div class="hero-tool">
+      <LoadConfigurator variant="hero" idPrefix="hero" />
+    </div>
+  </div>
+  {sources.length > 0 && (
+    <button class="hero-video-toggle" type="button" aria-pressed="false" aria-label="Pause background video" data-hero-video-toggle hidden>
+      <svg class="icon-pause" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1" /><rect x="14" y="5" width="4" height="14" rx="1" /></svg>
+      <svg class="icon-play" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13a1 1 0 0 0 1.52.85l10.5-6.5a1 1 0 0 0 0-1.7L9.52 4.65A1 1 0 0 0 8 5.5z" /></svg>
+    </button>
+  )}
+</section>
+
+<script>
+  // Hero background video. The poster <img> is the first paint and the
+  // fallback. Sources are attached only after window load, and never under
+  // reduced motion or Save-Data. Each <source data-media> picks the phone or
+  // desktop encode. The video pauses off-screen, and the toggle is the WCAG
+  // 2.2.2 pause control.
+  const video = document.querySelector<HTMLVideoElement>("[data-hero-video]");
+  const toggle = document.querySelector<HTMLButtonElement>("[data-hero-video-toggle]");
+  if (video) {
+    const reduce = matchMedia("(prefers-reduced-motion: reduce)");
+    const conn = (navigator as Navigator & { connection?: { saveData?: boolean; effectiveType?: string } }).connection;
+    const lowData = conn?.saveData === true || /(^|-)2g$/.test(conn?.effectiveType ?? "");
+    let loaded = false;
+    let userPaused = false;
+    let inView = true;
+
+    const play = () => {
+      if (userPaused || !inView || reduce.matches) return;
+      video.play().catch(() => { /* autoplay blocked: the poster stays */ });
+    };
+    const load = () => {
+      if (loaded) return;
+      loaded = true;
+      video.querySelectorAll<HTMLSourceElement>("source[data-src]").forEach((s) => {
+        const m = s.dataset.media;
+        if (m && !matchMedia(m).matches) s.remove();
+        else s.src = s.dataset.src!;
+      });
+      video.muted = true; // the property, not just the attribute, for iOS autoplay
+      video.preload = "auto";
+      video.load();
+      play();
+    };
+    const setToggle = (paused: boolean) => {
+      toggle?.setAttribute("aria-pressed", String(paused));
+      toggle?.setAttribute("aria-label", paused ? "Play background video" : "Pause background video");
+    };
+
+    video.addEventListener("playing", () => {
+      video.classList.add("is-playing");
+      if (toggle) toggle.hidden = false;
+    });
+    toggle?.addEventListener("click", () => {
+      userPaused = !video.paused;
+      if (userPaused) video.pause();
+      else play();
+      setToggle(userPaused);
+    });
+    new IntersectionObserver(([e]) => {
+      inView = e.isIntersecting;
+      if (!loaded) return;
+      if (inView) play();
+      else video.pause();
+    }).observe(video);
+    reduce.addEventListener("change", () => {
+      if (reduce.matches) video.pause();
+      else if (!lowData) loaded ? play() : load();
+    });
+
+    if (!lowData && !reduce.matches) {
+      if (document.readyState === "complete") load();
+      else addEventListener("load", load, { once: true });
+    }
+  }
+</script>
+
+<style>
+  .hero {
+    position: relative;
+    padding: clamp(40px, 7vw, 96px) 0 clamp(56px, 8vw, 112px);
+    overflow: hidden;
+  }
+  /* Measurement grid, faint, fading out — blueprint without the cliché blue */
+  .hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(rgb(255 255 255 / 0.045) 1px, transparent 1px) 0 0 / 48px 48px,
+      linear-gradient(90deg, rgb(255 255 255 / 0.045) 1px, transparent 1px) 0 0 / 48px 48px;
+    mask-image: radial-gradient(ellipse 80% 70% at 70% 40%, #000 20%, transparent 75%);
+    pointer-events: none;
+  }
+  /* Background media: poster -> video -> contrast scrim, all absolutely
+     positioned behind the content so loading them never shifts layout. */
+  .hero--media { isolation: isolate; }
+  .hero--media::before { display: none; }
+  .hero-bg { position: absolute; inset: 0; z-index: -1; }
+  /* Stacked layout: the hero runs far past one screen, so keep the media to
+     the first screen and fade it into the asphalt behind the configurator. */
+  @media (max-width: 1019px) {
+    .hero-bg {
+      bottom: auto;
+      height: min(100%, 100svh, 900px);
+      mask-image: linear-gradient(#000 72%, transparent);
+    }
+  }
+  .hero-bg-poster,
+  .hero-bg-video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 60% 50%;
+  }
+  .hero-bg-video { opacity: 0; transition: opacity 800ms var(--ease-out); }
+  .hero-bg-video.is-playing { opacity: 1; }
+  .hero-bg::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(180deg, rgb(18 19 17 / 0.5) 0%, rgb(18 19 17 / 0) 28%, rgb(18 19 17 / 0) 72%, rgb(18 19 17 / 0.6) 100%),
+      rgb(18 19 17 / 0.7);
+  }
+  @media (min-width: 1020px) {
+    .hero-bg::after {
+      background:
+        linear-gradient(180deg, rgb(18 19 17 / 0.45) 0%, rgb(18 19 17 / 0) 26%, rgb(18 19 17 / 0) 74%, rgb(18 19 17 / 0.55) 100%),
+        linear-gradient(90deg, rgb(18 19 17 / 0.9) 0%, rgb(18 19 17 / 0.8) 40%, rgb(18 19 17 / 0.5) 70%, rgb(18 19 17 / 0.4) 100%);
+    }
+  }
+  .hero--media .hero-copy { text-shadow: 0 1px 14px rgb(18 19 17 / 0.5); }
+  .hero--media .lede, .hero--media .hero-phone { color: rgb(243 241 236 / 0.86); }
+  .hero--media .hero-accent, .hero--media .hero-facts dt, .hero--media .eyebrow { color: var(--on-dark-2); }
+  .hero--media .hero-facts { border-top-color: rgb(255 255 255 / 0.18); }
+
+  .hero-video-toggle {
+    position: absolute;
+    right: 16px;
+    bottom: 16px;
+    width: 36px;
+    height: 36px;
+    display: inline-grid;
+    place-items: center;
+    padding: 0;
+    border-radius: 999px;
+    border: 1px solid rgb(255 255 255 / 0.28);
+    background: rgb(18 19 17 / 0.6);
+    color: var(--on-dark);
+    cursor: pointer;
+    transition: background-color var(--t-fast) var(--ease-out);
+  }
+  .hero-video-toggle[hidden] { display: none; }
+  .hero-video-toggle:hover { background: rgb(18 19 17 / 0.85); }
+  .hero-video-toggle .icon-play,
+  .hero-video-toggle[aria-pressed="true"] .icon-pause { display: none; }
+  .hero-video-toggle[aria-pressed="true"] .icon-play { display: block; }
+  @media (prefers-reduced-motion: reduce) {
+    .hero-bg-video, .hero-video-toggle { display: none !important; }
+  }
+
+  .hero-grid { position: relative; display: grid; gap: 48px; align-items: center; }
+  @media (min-width: 1020px) { .hero-grid { grid-template-columns: 1.05fr 0.95fr; gap: 64px; } }
+  .hero-copy { display: grid; gap: 24px; align-content: start; }
+  .hero h1 { max-width: 11em; }
+  .hero-accent { display: block; color: var(--on-dark-3); text-wrap: balance; }
+  .hero .lede { max-width: 46ch; }
+  .hero-ctas { margin-top: 8px; }
+  .hero-phone { color: var(--on-dark-2); font-weight: 500; width: fit-content; }
+  .hero-phone:hover { color: var(--on-dark); }
+  .hero-facts {
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    justify-content: start;
+    gap: 16px 40px;
+    margin-top: 16px;
+    padding-top: 24px;
+    border-top: 1px solid var(--asphalt-line);
+  }
+  @media (min-width: 1280px) { .hero-facts { grid-template-columns: repeat(4, auto); gap: 16px 32px; } }
+  .hero-facts dt { color: var(--on-dark-3); margin-bottom: 6px; }
+  .hero-facts dd { margin: 0; font-size: 0.95rem; color: var(--on-dark); }
+  @media (max-width: 559px) {
+    .hero-facts { grid-template-columns: 1fr 1fr; }
+  }
+  .hero-tool { position: relative; }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .hero-copy > *, .hero-tool {
+      animation: rise 800ms var(--ease-out) both;
+    }
+    .hero-copy > :nth-child(2) { animation-delay: 60ms; }
+    .hero-copy > :nth-child(3) { animation-delay: 120ms; }
+    .hero-copy > :nth-child(n + 4) { animation-delay: 180ms; }
+    .hero-tool { animation-delay: 220ms; animation-duration: 1000ms; }
+  }
+  @keyframes rise { from { opacity: 0; transform: translateY(16px); } }
+</style>

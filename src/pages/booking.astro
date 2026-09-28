@@ -1,0 +1,215 @@
+---
+// Manage a booking from its signed link: /booking/?id=STL-XXXX&t=signature
+import Base from "../layouts/Base.astro";
+import Icon from "../components/Icon.astro";
+import { business, telHref } from "../lib/site";
+---
+<Base title="Your Booking" description="View, reschedule or cancel your STL Demolition & Junk Removal booking." noindex hideMobileBar>
+  <div class="wrap manage" data-manage data-tel={telHref} data-phone={business.phoneDisplay}>
+    <div data-m-loading class="m-loading"><span class="spinner"></span> Loading your booking…</div>
+
+    <div data-m-error hidden class="m-error">
+      <h1 class="h2">We couldn't find that booking.</h1>
+      <p class="lede" data-m-error-text>Check that you used the full link from your confirmation, or call us.</p>
+      <div class="cta-row"><a class="btn" href={telHref}><Icon name="phone" size={16} /> Call {business.phoneDisplay}</a><a class="btn btn--ghost" href="/book/">Make a new booking</a></div>
+    </div>
+
+    <div data-m-view hidden class="m-view">
+      <p class="eyebrow" data-m-status>Booking</p>
+      <h1 class="h2" data-m-title>Your booking</h1>
+      <div class="done-card">
+        <p class="done-when" data-m-date></p>
+        <p class="done-window" data-m-window></p>
+        <p class="done-job" data-m-job></p>
+        <dl class="done-list" data-m-list></dl>
+      </div>
+      <div class="m-actions" data-m-actions>
+        <button type="button" class="btn btn--green" data-m-reschedule>Reschedule</button>
+        <button type="button" class="btn btn--ghost" data-m-cancel>Cancel booking</button>
+        <a class="btn btn--ghost" href={telHref}>Call us</a>
+      </div>
+
+      <section class="m-resched" data-m-resched hidden aria-labelledby="rs-title">
+        <h2 id="rs-title" class="h4">Pick a new time</h2>
+        <p class="small muted" data-rs-status>Loading open times…</p>
+        <div class="days" role="radiogroup" aria-label="Day" data-rs-days></div>
+        <div class="slots" role="radiogroup" aria-label="Arrival window" data-rs-slots></div>
+        <div class="cta-row"><button type="button" class="btn btn--green" data-rs-confirm disabled>Confirm new time</button><button type="button" class="btn btn--ghost" data-rs-close>Never mind</button></div>
+      </section>
+    </div>
+  </div>
+
+  <dialog class="modal" data-cancel-dialog aria-labelledby="cx-title">
+    <form method="dialog" class="modal-body">
+      <h2 id="cx-title" class="h4">Cancel this booking?</h2>
+      <p class="muted">Your arrival window will be released. You can always book again.</p>
+      <div class="cta-row">
+        <button value="confirm" class="btn" data-cx-confirm>Yes, cancel it</button>
+        <button value="keep" class="btn btn--ghost" autofocus>Keep booking</button>
+      </div>
+    </form>
+  </dialog>
+</Base>
+
+<style>
+  .manage { padding: 40px 0 96px; max-width: 720px; min-height: 60vh; }
+  .m-loading { display: flex; gap: 12px; align-items: center; color: var(--ink-3); }
+  .m-error, .m-view { display: grid; gap: 20px; }
+  .m-actions { display: flex; flex-wrap: wrap; gap: 10px; }
+  .m-resched { display: grid; gap: 16px; padding: 24px; border-radius: var(--r-3); background: var(--white); border: 1px solid var(--line); }
+  .days { display: flex; gap: 8px; overflow-x: auto; padding: 4px; margin: -4px; }
+  .slots { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 8px; }
+  .done-card { display: grid; gap: 4px; padding: 24px; border-radius: var(--r-4); background: var(--white); border: 1px solid var(--line); box-shadow: var(--shadow-2); }
+  .done-when { font-size: var(--step-3); font-weight: 600; letter-spacing: -0.03em; }
+  .done-window { font-size: var(--step-2); color: var(--ink-2); }
+  .done-job { margin-top: 8px; font-family: var(--mono); font-size: 0.8rem; letter-spacing: 0.05em; text-transform: uppercase; color: var(--ink-3); }
+  .done-list { display: grid; gap: 10px; padding-top: 16px; margin-top: 16px; border-top: 1px solid var(--line); }
+  .done-list div { display: grid; grid-template-columns: 90px 1fr; gap: 12px; }
+  .done-list dt { color: var(--ink-3); }
+  .done-list dd { margin: 0; overflow-wrap: anywhere; }
+  [data-cancelled] .done-when, [data-cancelled] .done-window { text-decoration: line-through; color: var(--ink-3); }
+</style>
+<style is:global>
+  .manage .day { flex: none; display: grid; justify-items: center; width: 72px; padding: 12px 0; border-radius: 12px; border: 1px solid var(--line-strong); background: var(--white); }
+  .manage .day .d-wd, .manage .day .d-mo { font-size: 0.72rem; color: var(--ink-3); }
+  .manage .day .d-num { font-size: 1.3rem; font-weight: 600; }
+  .manage .day[aria-checked="true"] { background: var(--asphalt); color: var(--on-dark); }
+  .manage .slot { min-height: 56px; padding: 10px 14px; border-radius: 12px; border: 1px solid var(--line-strong); background: var(--white); text-align: left; font-weight: 600; }
+  .manage .slot[aria-checked="true"] { border-color: var(--ink); box-shadow: inset 0 0 0 1px var(--ink); }
+</style>
+
+<script>
+  import { toast } from "../scripts/toast";
+  import { track } from "../scripts/analytics";
+  import { formatLongDate } from "../../shared/time.js";
+  import { bookingApi, notifyBooking } from "../scripts/crm";
+
+  const root = document.querySelector<HTMLElement>("[data-manage]")!;
+  const $ = <T extends HTMLElement = HTMLElement>(s: string) => root.querySelector<T>(s) ?? document.querySelector<T>(s)!;
+  const q = new URLSearchParams(location.search);
+  const id = q.get("id") || "";
+  const t = q.get("t") || "";
+  const esc = (s: string) => String(s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]!);
+  let booking: any = null;
+  let pick: { date?: string; windowId?: string } = {};
+
+  function state(s: "loading" | "error" | "view", msg?: string) {
+    $("[data-m-loading]").hidden = s !== "loading";
+    $("[data-m-error]").hidden = s !== "error";
+    $("[data-m-view]").hidden = s !== "view";
+    if (msg) $("[data-m-error-text]").textContent = msg;
+  }
+
+  function render(b: any) {
+    booking = b;
+    const cancelled = b.status === "cancelled";
+    root.toggleAttribute("data-cancelled", cancelled);
+    $("[data-m-status]").textContent = cancelled ? "Cancelled" : `Booking ${b.id}`;
+    $("[data-m-title]").textContent = cancelled ? "This booking is cancelled." : "You're on the schedule.";
+    $("[data-m-date]").textContent = b.dateLabel;
+    $("[data-m-window]").textContent = `${b.windowLabel} arrival window`;
+    $("[data-m-job]").textContent = `${b.loadLabel} · ${b.serviceLabel}`;
+    $("[data-m-list]").innerHTML = [
+      ["Address", `${b.address}, ${b.city} ${b.zip}`],
+      ["Price", b.priceLabel],
+      ["Name", b.customer.name],
+      ["Phone", b.customer.phone],
+      ["Email", b.customer.email],
+    ].map(([k, v]) => `<div><dt>${k}</dt><dd>${esc(v)}</dd></div>`).join("");
+    $("[data-m-actions]").hidden = cancelled;
+    $("[data-m-resched]").hidden = true;
+  }
+
+  async function api(path: string, body?: unknown) {
+    const res = await fetch(path, body ? { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify(body) } : {});
+    const data = await res.json().catch(() => ({}));
+    return { res, data };
+  }
+
+  async function init() {
+    if (!id || !t) return state("error");
+    try {
+      const { res, data } = await api(bookingApi(`/booking?id=${encodeURIComponent(id)}&t=${encodeURIComponent(t)}`));
+      if (res.status === 404) return state("error");
+      if (data.status !== "ok") return state("error", "Online booking management isn't available right now. Call us and we'll sort it out.");
+      render(data.booking);
+      state("view");
+      if (location.hash === "#cancel" && data.booking.status === "confirmed") openCancel();
+    } catch {
+      state("error", "We couldn't reach our booking system. Check your connection and try again.");
+    }
+  }
+
+  // Cancel
+  const dlg = document.querySelector<HTMLDialogElement>("[data-cancel-dialog]")!;
+  function openCancel() { dlg.showModal(); }
+  $("[data-m-cancel]").addEventListener("click", openCancel);
+  dlg.addEventListener("close", async () => {
+    if (dlg.returnValue !== "confirm") return;
+    const { data } = await api(bookingApi("/booking/cancel"), { id, t });
+    if (data.status === "ok") {
+      render(data.booking);
+      toast("Booking cancelled.");
+      track("booking_cancel");
+      notifyBooking("cancelled", id, t);
+    } else toast(data.message || "We couldn't cancel online. Please call us.", { tone: "error" });
+  });
+
+  // Reschedule
+  const days = $("[data-rs-days]");
+  const slots = $("[data-rs-slots]");
+  const confirmBtn = $<HTMLButtonElement>("[data-rs-confirm]");
+  let avail: any[] = [];
+  $("[data-m-reschedule]").addEventListener("click", async () => {
+    $("[data-m-resched]").hidden = false;
+    $("[data-rs-status]").textContent = "Loading open times…";
+    days.innerHTML = slots.innerHTML = "";
+    const { data } = await api(bookingApi(`/booking/availability?id=${encodeURIComponent(id)}&t=${encodeURIComponent(t)}`));
+    if (data.status !== "ok") {
+      $("[data-rs-status]").innerHTML = `We can't load appointment times right now. Call <a class="link" href="${root.dataset.tel}">${root.dataset.phone}</a> and we'll reschedule you.`;
+      return;
+    }
+    avail = data.days.filter((d: any) => d.slots.some((s: any) => s.available));
+    $("[data-rs-status]").textContent = avail.length ? "Only open times are shown." : "No open windows right now — call us.";
+    days.innerHTML = avail.map((d: any) => {
+      const [y, m, dd] = d.date.split("-").map(Number);
+      const dt = new Date(Date.UTC(y, m - 1, dd, 12));
+      return `<button type="button" class="day" role="radio" aria-checked="false" data-date="${d.date}" aria-label="${formatLongDate(d.date)}"><span class="d-wd">${dt.toLocaleDateString("en-US", { weekday: "short", timeZone: "UTC" })}</span><span class="d-num">${dd}</span><span class="d-mo">${dt.toLocaleDateString("en-US", { month: "short", timeZone: "UTC" })}</span></button>`;
+    }).join("");
+  });
+  days.addEventListener("click", (e) => {
+    const b = (e.target as Element).closest<HTMLElement>(".day");
+    if (!b) return;
+    pick = { date: b.dataset.date };
+    confirmBtn.disabled = true;
+    days.querySelectorAll(".day").forEach((x) => x.setAttribute("aria-checked", String(x === b)));
+    const d = avail.find((x) => x.date === b.dataset.date);
+    slots.innerHTML = d.slots.filter((s: any) => s.available).map((s: any) => `<button type="button" class="slot" role="radio" aria-checked="false" data-window="${s.id}">${esc(s.label)}</button>`).join("");
+  });
+  slots.addEventListener("click", (e) => {
+    const b = (e.target as Element).closest<HTMLElement>(".slot");
+    if (!b) return;
+    pick.windowId = b.dataset.window;
+    slots.querySelectorAll(".slot").forEach((x) => x.setAttribute("aria-checked", String(x === b)));
+    confirmBtn.disabled = false;
+  });
+  confirmBtn.addEventListener("click", async () => {
+    confirmBtn.disabled = true;
+    const { data } = await api(bookingApi("/booking/reschedule"), { id, t, ...pick });
+    if (data.status === "ok") {
+      render(data.booking);
+      toast(`Moved to ${data.booking.dateLabel}, ${data.booking.windowLabel}.`);
+      track("booking_reschedule");
+      notifyBooking("rescheduled", id, t);
+    } else if (data.code === "slot_taken") {
+      toast("That time was just booked. Pick another.", { tone: "error" });
+      ($("[data-m-reschedule]") as HTMLButtonElement).click();
+    } else {
+      toast(data.message || "We couldn't reschedule online. Please call us.", { tone: "error" });
+      confirmBtn.disabled = false;
+    }
+  });
+  $("[data-rs-close]").addEventListener("click", () => ($("[data-m-resched]").hidden = true));
+
+  init();
+</script>

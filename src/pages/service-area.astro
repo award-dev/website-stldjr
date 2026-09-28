@@ -1,0 +1,25 @@
+---
+import Base from "../layouts/Base.astro";
+import PageHero from "../components/PageHero.astro";
+import ServiceAreaBlock from "../components/ServiceAreaBlock.astro";
+import FinalCta from "../components/FinalCta.astro";
+import { business, telHref, areas } from "../lib/site";
+---
+<Base title="Service Area — Junk Removal & Demolition Across St. Louis" description="Junk removal, cleanouts and demolition in St. Louis City, St. Louis County and St. Charles County — from Soulard to Chesterfield to O'Fallon. Check your ZIP.">
+  <PageHero eyebrow="Service area" title="From the riverfront to the far side of the Missouri." lede="We work across St. Louis City, St. Louis County and St. Charles County." crumbs={[{ href: "/service-area/", label: "Service area" }]} />
+  <section class="section">
+    <div class="wrap">
+      <ServiceAreaBlock full />
+    </div>
+  </section>
+  <section class="section--tight paper-2">
+    <div class="wrap edge">
+      <h2 class="h3">Just outside the list?</h2>
+      <p class="lede">If you're close to anywhere on this list, call <a class="link" href={telHref}>{business.phoneDisplay}</a> and ask.</p>
+    </div>
+  </section>
+  <FinalCta />
+</Base>
+<style>
+  .edge { display: grid; gap: 12px; max-width: 720px; }
+</style>

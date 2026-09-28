@@ -1,0 +1,55 @@
+---
+import LoadViz from "./LoadViz.astro";
+import { loads, minimum } from "../lib/site";
+---
+{minimum && (
+  <div class="g-min" data-reveal>
+    <div>
+      <p class="g-good meta">Smallest job</p>
+      <h3 class="g-label">{minimum.label} · {minimum.priceLine.amount}</h3>
+      <p class="g-min-text">{minimum.summary} {minimum.fits.join(", ")}.</p>
+    </div>
+    <a class="g-link" href={`/book/?load=${minimum.id}`} data-track="cta_click" data-track-cta="book" data-track-location="guide-minimum">Book a minimum pickup<span aria-hidden="true"> →</span></a>
+  </div>
+)}
+<ol role="list" class="guide">
+  {loads.map((l, i) => (
+    <li class="g-item" data-reveal style={`--i:${i}`}>
+      <div class="g-viz"><LoadViz fraction={l.fraction} labels={false} /></div>
+      <div class="g-head">
+        <h3 class="g-label">{l.label}</h3>
+        <p class="g-yards meta num">{l.yards} yd³</p>
+      </div>
+      <p class="g-price">{l.priceLine.label}</p>
+      <p class="g-good meta">Great for</p>
+      <ul role="list" class="g-list">
+        {l.goodFor.map((g) => <li>{g}</li>)}
+      </ul>
+      <a class="g-link" href={`/book/?load=${l.id}`} data-track="cta_click" data-track-cta="book" data-track-location={`guide-${l.id}`}>Book a {l.short} load<span aria-hidden="true"> →</span></a>
+    </li>
+  ))}
+</ol>
+
+<style>
+  .guide { display: grid; gap: 12px; grid-template-columns: 1fr; }
+  @media (min-width: 640px) { .guide { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 1100px) { .guide { grid-template-columns: repeat(4, 1fr); } }
+  .g-min { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px 24px; margin-bottom: 12px; padding: 20px 24px; border-radius: var(--r-3); background: var(--white); border: 1px dashed var(--line-strong); }
+  .g-min .g-good { margin-top: 0; }
+  .g-min .g-label { margin-top: 4px; }
+  .g-min-text { margin-top: 4px; color: var(--ink-2); font-size: 0.95rem; }
+  .g-min .g-link { margin-top: 0; }
+  .g-item { display: flex; flex-direction: column; padding: 20px 20px 24px; border-radius: var(--r-3); background: var(--white); border: 1px solid var(--line); }
+  .g-viz { margin: -6px -6px 8px; }
+  .g-viz :global(svg) { max-height: 150px; margin-inline: auto; }
+  .g-head { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; }
+  .g-label { font-size: var(--step-2); letter-spacing: -0.025em; }
+  .g-yards { color: var(--ink-3); }
+  .g-price { margin-top: 4px; font-weight: 560; color: var(--ink-2); }
+  .g-good { margin-top: 20px; color: var(--ink-3); }
+  .g-list { margin-top: 8px; display: grid; gap: 6px; align-content: start; font-size: 0.95rem; color: var(--ink-2); flex: 1; }
+  .g-list li { padding-left: 14px; position: relative; }
+  .g-list li::before { content: ""; position: absolute; left: 0; top: 0.65em; width: 6px; height: 1px; background: var(--ink-3); }
+  .g-link { margin-top: 20px; font-weight: 560; text-decoration: none; color: var(--green-ink); }
+  .g-link:hover { text-decoration: underline; }
+</style>

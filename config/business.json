@@ -1,0 +1,73 @@
+{
+  "$comment": "Company facts. Anything set to null renders as a clearly-marked owner placeholder (while showOwnerNotes is true) or is omitted. Never fill these with guesses.",
+  "showOwnerNotes": true,
+  "name": "STL Demolition & Junk Removal",
+  "legalName": null,
+  "shortName": "STL Demolition",
+  "tagline": "Point at the mess. We'll handle the rest.",
+  "siteUrl": "https://stlouishjr.com",
+  "phone": "+13143797955",
+  "phoneDisplay": "(314) 379-7955",
+  "email": "award@stlouishjr.com",
+  "address": {
+    "public": false,
+    "street": null,
+    "city": "St. Louis",
+    "region": "MO",
+    "postalCode": null,
+    "country": "US"
+  },
+  "timezone": "America/Chicago",
+  "hours": {
+    "$comment": "24h HH:MM. null = closed. Used for display, schema.org, and as the outer bound for booking windows. CONFIRM before launch.",
+    "confirmed": true,
+    "mon": [
+      "08:00",
+      "17:00"
+    ],
+    "tue": [
+      "08:00",
+      "17:00"
+    ],
+    "wed": [
+      "08:00",
+      "17:00"
+    ],
+    "thu": [
+      "08:00",
+      "17:00"
+    ],
+    "fri": [
+      "08:00",
+      "17:00"
+    ],
+    "sat": null,
+    "sun": null
+  },
+  "trust": {
+    "$comment": "Only verifiable facts. null = not shown to customers.",
+    "foundedYear": 2023,
+    "insured": true,
+    "insuranceDetails": "$3 million policy",
+    "licenseDetails": null,
+    "completedJobs": "1,000+",
+    "typicalResponse": null,
+    "licensed": true,
+    "recycling": "Loads go to a landfill facility that sorts and separates materials."
+  },
+  "links": {
+    "googleBusinessProfile": "https://share.google/da1eQETPclbhERQmB",
+    "googleReviewUrl": "https://share.google/da1eQETPclbhERQmB",
+    "facebook": "https://www.facebook.com/share/1DkQDMFkQF/",
+    "instagram": null,
+    "nextdoor": null
+  },
+  "analytics": {
+    "$comment": "provider: null | 'plausible' | 'ga4'. Nothing third-party loads while null.",
+    "provider": "ga4",
+    "plausibleDomain": null,
+    "ga4MeasurementId": "G-H29WPD0J40"
+  },
+  "founder": "Aaron Ward",
+  "notifyEmail": "award@stlouishjr.com"
+}

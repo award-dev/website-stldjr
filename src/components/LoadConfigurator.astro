@@ -1,0 +1,154 @@
+---
+import LoadViz from "./LoadViz.astro";
+import Icon from "./Icon.astro";
+import OwnerNote from "./OwnerNote.astro";
+import { loads, maxYards, anyPrice, minimum } from "../lib/site";
+
+interface Props { variant?: "hero" | "full"; initial?: string; idPrefix?: string }
+const { variant = "hero", initial = "half", idPrefix = "cfg" } = Astro.props;
+const start = loads.find((l) => l.id === initial) ?? loads[1];
+const startIndex = loads.indexOf(start);
+const payload = loads.map((l) => ({
+  id: l.id, label: l.label, short: l.short, fraction: l.fraction, yards: l.yards,
+  price: l.priceLine.label, priceNote: l.priceLine.note, summary: l.summary, fits: l.fits,
+}));
+---
+<div class:list={["cfg", `cfg--${variant}`]} data-configurator data-loads={JSON.stringify(payload)}>
+  <div class="cfg-head">
+    <span class="meta">Load size</span>
+    <span class="meta muted num">Truck holds {maxYards} yd³</span>
+  </div>
+
+  <div class="cfg-viz">
+    <LoadViz fraction={start.fraction} />
+  </div>
+
+  <fieldset class="segmented" style={`--seg-count:${loads.length};--seg-index:${startIndex}`} data-seg>
+    <legend class="sr-only">Choose a load size</legend>
+    <span class="seg-thumb" aria-hidden="true"></span>
+    {loads.map((l) => (
+      <label>
+        <input type="radio" name={`${idPrefix}-load`} value={l.id} checked={l.id === start.id} />
+        <span>{l.short}<span class="seg-sub num">{l.yards} yd³</span></span>
+      </label>
+    ))}
+  </fieldset>
+
+  <div class="cfg-readout" aria-live="polite" aria-atomic="true">
+    <div class="ro">
+      <span class="meta muted">Volume</span>
+      <span class="ro-value num"><span data-out="yards">{start.yards}</span><span class="ro-unit"> yd³</span></span>
+    </div>
+    <div class="ro">
+      <span class="meta muted">Price</span>
+      <span class="ro-value" data-out="price">{start.priceLine.label}</span>
+      <span class="ro-note small muted" data-out="priceNote">{start.priceLine.note}</span>
+    </div>
+  </div>
+
+  <p class="cfg-summary" data-out="summary">{start.summary}</p>
+  {minimum && (
+    <p class="cfg-min small">
+      Just a few small items? <b>{minimum.priceLine.amount} minimum pickup.</b>
+      <a class="link" href={`/book/?load=${minimum.id}`} data-track="cta_click" data-track-cta="book-minimum" data-track-location={`configurator-${variant}`}>Book it</a>
+    </p>
+  )}
+
+  {variant === "full" && (
+    <ul role="list" class="cfg-fits" data-out="fits">
+      {start.fits.map((f) => <li><Icon name="check" size={16} />{f}</li>)}
+    </ul>
+  )}
+
+  <div class="cfg-cta">
+    <a href={`/book/?load=${start.id}`} class="btn btn--green btn--lg" data-link="book" data-track="cta_click" data-track-cta="book" data-track-location={`configurator-${variant}`}>
+      <span data-out="bookLabel">Book a {start.short} load</span><Icon name="arrow" class="arrow" />
+    </a>
+    <a href={`/quote/?load=${start.id}`} class="btn btn--ghost btn--lg" data-link="quote" data-track="cta_click" data-track-cta="quote" data-track-location={`configurator-${variant}`}>Get a quote</a>
+  </div>
+  <p class="cfg-fine small muted">
+    Final price confirmed with you before we load. <a class="link" href="/pricing/#what-changes-the-price">What can change it</a>
+  </p>
+  {!anyPrice && <OwnerNote>Set load prices in config/pricing.json (or PRICE_* env vars). Until then, prices show as “Priced on-site.”</OwnerNote>}
+</div>
+
+<style>
+  .cfg {
+    display: grid;
+    gap: 18px;
+    padding: 20px;
+    background: var(--white);
+    color: var(--ink);
+    border-radius: var(--r-4);
+    box-shadow: var(--shadow-3);
+  }
+  @media (min-width: 560px) { .cfg { padding: 28px; } }
+  /* The card is paper even inside dark sections */
+  .cfg :global(.btn--ghost) { --btn-fg: var(--ink); --btn-bd: var(--line-strong); }
+  .cfg :global(.link) { color: var(--green-ink); }
+  .cfg :global(.owner-note) { color: var(--owner); border-color: color-mix(in srgb, var(--owner) 55%, transparent); background: color-mix(in srgb, var(--owner) 7%, transparent); }
+  .cfg-head { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
+  .cfg-viz { margin: -4px -8px 0; }
+  .cfg-viz :global(svg) { max-height: 260px; margin-inline: auto; }
+  .cfg-readout { display: grid; grid-template-columns: 0.8fr 1.2fr; gap: 16px; padding-top: 4px; }
+  .ro { display: grid; gap: 4px; align-content: start; }
+  .ro-value { font-size: 1.9rem; font-weight: 600; letter-spacing: -0.035em; line-height: 1.05; }
+  .ro-unit { font-size: 1rem; font-weight: 500; color: var(--ink-3); letter-spacing: 0; }
+  [data-out="price"] { font-size: 1.35rem; line-height: 1.2; padding-top: 5px; }
+  .cfg-summary { font-size: 1.05rem; color: var(--ink-2); min-height: 1.55em; }
+  .cfg-min { margin-top: -8px; padding: 10px 12px; border-radius: 10px; background: var(--paper); color: var(--ink-2); }
+  .cfg-min b { color: var(--ink); font-weight: 600; }
+  .cfg-fits { display: grid; gap: 8px; }
+  @media (min-width: 560px) { .cfg-fits { grid-template-columns: 1fr 1fr; } }
+  .cfg-fits li { display: flex; gap: 8px; align-items: flex-start; font-size: 0.95rem; color: var(--ink-2); }
+  .cfg-fits :global(svg) { flex: none; margin-top: 3px; color: var(--green-ink); }
+  .cfg-cta { display: grid; gap: 10px; }
+  @media (min-width: 560px) { .cfg-cta { grid-template-columns: 1.3fr 1fr; } }
+  .cfg-fine { margin-top: -4px; }
+
+  /* Text swap: quick fade + lift, communicates "this changed" without drama */
+  [data-out].is-swapping { opacity: 0; transform: translateY(4px); }
+  [data-out] { display: inline-block; transition: opacity 160ms var(--ease-out), transform 220ms var(--ease-out); }
+  .cfg-summary[data-out], .cfg-fits[data-out], .ro-note[data-out] { display: block; }
+</style>
+
+<script>
+  import { track } from "../scripts/analytics";
+  import { initLoadViz } from "../scripts/loadviz";
+
+  type L = { id: string; label: string; short: string; fraction: number; yards: string; price: string; priceNote: string; summary: string; fits: string[] };
+  const check = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg>';
+
+  document.querySelectorAll<HTMLElement>("[data-configurator]").forEach((root) => {
+    const loads: L[] = JSON.parse(root.dataset.loads || "[]");
+    const seg = root.querySelector<HTMLElement>("[data-seg]")!;
+    const viz = initLoadViz(root.querySelector("[data-loadviz]")!);
+    const out = (k: string) => root.querySelector<HTMLElement>(`[data-out="${k}"]`);
+    const esc = (s: string) => s.replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]!);
+
+    function swap(el: HTMLElement | null, apply: () => void) {
+      if (!el) return;
+      if (matchMedia("(prefers-reduced-motion: reduce)").matches) return apply();
+      el.classList.add("is-swapping");
+      setTimeout(() => { apply(); el.classList.remove("is-swapping"); }, 140);
+    }
+
+    seg.addEventListener("change", (e) => {
+      const id = (e.target as HTMLInputElement).value;
+      const i = loads.findIndex((l) => l.id === id);
+      const l = loads[i];
+      if (!l) return;
+      seg.style.setProperty("--seg-index", String(i));
+      viz.set(l.fraction);
+      swap(out("yards"), () => (out("yards")!.textContent = l.yards));
+      swap(out("price"), () => (out("price")!.textContent = l.price));
+      swap(out("priceNote"), () => (out("priceNote")!.textContent = l.priceNote));
+      swap(out("summary"), () => (out("summary")!.textContent = l.summary));
+      swap(out("fits"), () => (out("fits")!.innerHTML = l.fits.map((f) => `<li>${check}${esc(f)}</li>`).join("")));
+      out("bookLabel")!.textContent = `Book a ${l.short} load`;
+      root.querySelector<HTMLAnchorElement>('[data-link="book"]')!.href = `/book/?load=${l.id}`;
+      root.querySelector<HTMLAnchorElement>('[data-link="quote"]')!.href = `/quote/?load=${l.id}`;
+      track("pricing_select", { load: l.id });
+    });
+  });
+</script>

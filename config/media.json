@@ -1,0 +1,26 @@
+{
+  "$comment": "Photo slots. beforeAfter keeps its illustrations by the owner's choice (a src here replaces one). Drop real, compressed images (WebP/JPEG, ~1600px wide) into public/photos/ and set src to '/photos/<file>'. While src is null, a labeled placeholder shows so nothing looks finished that isn't. Write alt text that describes the actual photo.",
+  "heroVideo": {
+    "$comment": "Homepage hero background video: a 15-20s seamless loop, no audio. Put the files in public/videos/ at these paths and rebuild. Each file is used only if it exists, so until they're there the hero keeps its normal background. 'mobile' is a portrait 9:16 crop served to screens under 768px; 'desktop' is 16:9. The posters are the first frame of each encode (JPEG). Specs and ffmpeg commands: README > Hero video.",
+    "poster": "/videos/hero-poster.jpg",
+    "posterMobile": "/videos/hero-poster-mobile.jpg",
+    "desktop": { "webm": "/videos/hero-1080.webm", "mp4": "/videos/hero-1080.mp4" },
+    "mobile": { "webm": "/videos/hero-mobile.webm", "mp4": "/videos/hero-mobile.mp4" }
+  },
+  "beforeAfter": [
+    { "id": "garage", "label": "Garage", "caption": "Two-car garage cleanout", "before": { "src": null, "alt": "Garage packed with boxes, bikes and old furniture before cleanout" }, "after": { "src": null, "alt": "The same garage, empty and swept" } },
+    { "id": "basement", "label": "Basement", "caption": "Basement cleanout", "before": { "src": null, "alt": "Basement crowded with furniture and storage boxes" }, "after": { "src": null, "alt": "Cleared basement floor after the crew hauled everything out" } },
+    { "id": "construction", "label": "Job site", "caption": "Remodel debris haul-off", "before": { "src": null, "alt": "Pile of drywall, lumber and cabinets from a remodel" }, "after": { "src": null, "alt": "Clean driveway after debris removal" } },
+    { "id": "yard", "label": "Yard", "caption": "Backyard cleanup", "before": { "src": null, "alt": "Backyard with an old shed, brush and scrap" }, "after": { "src": null, "alt": "Open backyard after the shed and debris were removed" } },
+    { "id": "interior-demo", "label": "Interior demo", "caption": "Kitchen tear-out", "before": { "src": null, "alt": "Dated kitchen with cabinets and counters before demolition" }, "after": { "src": null, "alt": "Kitchen stripped to studs and subfloor, debris removed" } },
+    { "id": "estate", "label": "Estate", "caption": "Estate cleanout", "before": { "src": null, "alt": "Living room full of a lifetime of belongings" }, "after": { "src": null, "alt": "Empty living room, ready for listing" } }
+  ],
+  "work": [
+    { "id": "truck", "src": null, "alt": "STL Demolition & Junk Removal truck parked at a St. Louis job", "caption": "The truck. 17 cubic yards." },
+    { "id": "loading", "src": null, "alt": "Crew carrying a couch down front steps", "caption": "Carrying, not dragging." },
+    { "id": "demo", "src": null, "alt": "Crew member removing deck boards with a pry bar", "caption": "Deck coming down." },
+    { "id": "hands", "src": null, "alt": "Gloved hands loading drywall scraps into the truck", "caption": "Loaded tight. Fewer trips." },
+    { "id": "sweep", "src": null, "alt": "Crew sweeping a cleared garage floor", "caption": "Swept before we go." },
+    { "id": "team", "src": null, "alt": "The STL Demolition & Junk Removal crew", "caption": "The crew." }
+  ]
+}

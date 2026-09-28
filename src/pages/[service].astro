@@ -1,0 +1,117 @@
+---
+import Base from "../layouts/Base.astro";
+import PageHero from "../components/PageHero.astro";
+import LoadConfigurator from "../components/LoadConfigurator.astro";
+import FaqList from "../components/FaqList.astro";
+import FinalCta from "../components/FinalCta.astro";
+import OwnerNote from "../components/OwnerNote.astro";
+import Icon from "../components/Icon.astro";
+import { services, business, telHref, abs, allPlaces } from "../lib/site";
+
+export function getStaticPaths() {
+  return services.groups.map((g) => ({ params: { service: g.path.slice(1) }, props: { g } }));
+}
+const { g } = Astro.props;
+const others = services.groups.filter((x) => x.id !== g.id);
+const schema = [{
+  "@type": "Service",
+  name: g.name,
+  serviceType: g.name,
+  description: g.metaDescription,
+  provider: { "@id": abs("/#business") },
+  areaServed: [{ "@type": "City", name: "St. Louis" }, ...allPlaces.slice(0, 20).map((p) => ({ "@type": "Place", name: `${p}, MO` }))],
+  hasOfferCatalog: { "@type": "OfferCatalog", name: g.name, itemListElement: g.items.map((i) => ({ "@type": "Offer", itemOffered: { "@type": "Service", name: i.name } })) },
+  url: abs(g.path + "/"),
+}];
+---
+<Base title={g.metaTitle} description={g.metaDescription} schema={schema}>
+  <PageHero eyebrow={g.eyebrow} title={g.headline} lede={g.intro} crumbs={[{ href: g.path + "/", label: g.name }]}>
+    <div class="cta-row">
+      <a href={`/book/?service=${g.bookingService}&load=${g.suggestedLoad}`} class="btn btn--green btn--lg" data-track="cta_click" data-track-cta="book" data-track-location={`service-${g.id}`}>Book {g.name.toLowerCase()} <Icon name="arrow" class="arrow" /></a>
+      <a href={`/quote/?service=${g.bookingService}`} class="btn btn--ghost btn--lg" data-track="cta_click" data-track-cta="quote" data-track-location={`service-${g.id}`}>Get a quote</a>
+      <a href={telHref} class="phone-link call" data-track="phone_click" data-track-location={`service-${g.id}`}><Icon name="phone" size={16} /> <span class="num">{business.phoneDisplay}</span></a>
+    </div>
+  </PageHero>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">What we take care of</p>
+        <h2 class="h2">{g.name}, done properly.</h2>
+      </div>
+      <ul role="list" class="items">
+        {g.items.map((it, i) => (
+          <li class="item" data-reveal style={`--i:${i % 3}`}>
+            <span class="meta num muted">{String(i + 1).padStart(2, "0")}</span>
+            <h3 class="h4">{it.name}</h3>
+            <p class="muted">{it.text}</p>
+          </li>
+        ))}
+      </ul>
+      {((g as any).ownerNotes as string[] | undefined)?.map((n) => <OwnerNote class="svc-note">{n}</OwnerNote>)}
+    </div>
+  </section>
+
+  <section class="section paper-2">
+    <div class="wrap price-grid">
+      <div class="stack" style="--stack: 20px">
+        <p class="eyebrow">How it's priced</p>
+        <h2 class="h2">Know the number before we lift anything.</h2>
+        <p class="lede">{g.howPriced}</p>
+        <div class="notes">
+          {g.notes.map((n) => (
+            <div class="note">
+              <h3 class="h4">{n.title}</h3>
+              <p class="muted">{n.text}</p>
+            </div>
+          ))}
+        </div>
+        <p><a class="link" href="/pricing/">Full pricing details</a></p>
+      </div>
+      <LoadConfigurator variant="full" initial={g.suggestedLoad} idPrefix={`svc-${g.id}`} />
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap faq-grid">
+      <div class="section-head">
+        <p class="eyebrow">Questions</p>
+        <h2 class="h2">About {g.name.toLowerCase()}.</h2>
+      </div>
+      <FaqList ids={g.faqIds} />
+    </div>
+  </section>
+
+  <section class="section--tight paper-2">
+    <div class="wrap">
+      <p class="meta muted others-label">Also from the same crew</p>
+      <ul role="list" class="others">
+        {others.map((o) => <li><a href={o.path + "/"}><span>{o.name}</span><Icon name="arrow" size={18} /></a></li>)}
+      </ul>
+    </div>
+  </section>
+
+  <FinalCta />
+</Base>
+
+<style>
+  .call { color: var(--on-dark-2); margin-left: 8px; }
+  .items { display: grid; gap: 0 32px; border-top: 1px solid var(--line); grid-template-columns: 1fr; }
+  @media (min-width: 640px) { .items { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 1020px) { .items { grid-template-columns: repeat(3, 1fr); } }
+  .item { display: grid; gap: 10px; align-content: start; padding: 28px 0 32px; border-bottom: 1px solid var(--line); }
+  :global(.svc-note) { margin-top: 20px; }
+  .price-grid { display: grid; gap: 48px; align-items: start; }
+  @media (min-width: 1020px) { .price-grid { grid-template-columns: 1fr 1fr; gap: 64px; } }
+  .notes { display: grid; gap: 20px; padding-top: 8px; }
+  .note { border-top: 1px solid var(--line-strong); padding-top: 16px; display: grid; gap: 6px; }
+  .faq-grid { display: grid; gap: 0 64px; }
+  @media (min-width: 900px) { .faq-grid { grid-template-columns: 0.8fr 1.2fr; align-items: start; } }
+  .others-label { margin-bottom: 14px; }
+  .others { display: grid; gap: 1px; background: var(--line-strong); border-block: 1px solid var(--line-strong); }
+  @media (min-width: 900px) { .others { grid-template-columns: repeat(3, 1fr); } }
+  .others a { display: flex; justify-content: space-between; align-items: center; padding: 22px 4px; background: var(--paper-2); font-size: var(--step-2); font-weight: 580; letter-spacing: -0.02em; text-decoration: none; }
+  @media (min-width: 900px) { .others a { padding: 24px; } }
+  .others a :global(svg) { transition: transform var(--t-med) var(--ease-out); }
+  .others a:hover :global(svg) { transform: translateX(4px); }
+</style>

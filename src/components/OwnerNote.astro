@@ -1,0 +1,12 @@
+---
+// Visible only while business.showOwnerNotes is true. Marks content the
+// business owner must supply or confirm. Never shown as a real claim.
+import { showOwnerNotes } from "../lib/site";
+interface Props { class?: string }
+const { class: cls } = Astro.props;
+---
+{showOwnerNotes && (
+  <p class:list={["owner-note", cls]} data-owner-note>
+    <span><b>Owner:</b> <slot /></span>
+  </p>
+)}

@@ -1,0 +1,91 @@
+---
+import { business, services, areas, telHref, mailHref, hoursSummary, showOwnerNotes } from "../lib/site";
+import OwnerNote from "./OwnerNote.astro";
+const year = new Date().getFullYear();
+const links = business.links;
+const social = [
+  { label: "Google", href: links.googleBusinessProfile },
+  { label: "Facebook", href: links.facebook },
+  { label: "Instagram", href: links.instagram },
+  { label: "Nextdoor", href: links.nextdoor },
+].filter((s) => s.href);
+---
+<footer class="footer dark">
+  <div class="wrap">
+    <div class="top">
+      <div class="brand-col">
+        <img src="/logo-mark-320.png" width="120" height="64" alt={business.name} loading="lazy" decoding="async" />
+        <p class="statement">Junk removal and demolition for St. Louis. Priced by the load. Booked in a few minutes.</p>
+        <div class="cta-row">
+          <a href="/book/" class="btn btn--green" data-track="cta_click" data-track-cta="book" data-track-location="footer">Book a pickup</a>
+          <a href={telHref} class="phone-link" data-track="phone_click" data-track-location="footer"><span class="num">{business.phoneDisplay}</span></a>
+        </div>
+      </div>
+
+      <nav class="cols" aria-label="Footer">
+        <div>
+          <h2 class="meta col-title">Services</h2>
+          <ul role="list">
+            {services.groups.map((g) => <li><a href={g.path + "/"}>{g.name}</a></li>)}
+            <li><a href="/pricing/">Pricing</a></li>
+          </ul>
+        </div>
+        <div>
+          <h2 class="meta col-title">Service area</h2>
+          <ul role="list">
+            {areas.regions.map((r) => <li><a href={`/service-area/#${r.id}`}>{r.name}</a></li>)}
+          </ul>
+        </div>
+        <div>
+          <h2 class="meta col-title">Contact</h2>
+          <ul role="list">
+            <li><a href={telHref} data-track="phone_click" data-track-location="footer-contact" class="num">{business.phoneDisplay}</a></li>
+            <li><a href={mailHref}>{business.email}</a></li>
+            <li><a href="/quote/">Get a quote</a></li>
+            <li><a href="/faq/">FAQ</a></li>
+          </ul>
+          <dl class="hours">
+            {hoursSummary().map((h) => <div><dt>{h.days}</dt><dd class="num">{h.hours}</dd></div>)}
+          </dl>
+          {!business.hours.confirmed && <OwnerNote>Confirm business hours in config/business.json.</OwnerNote>}
+        </div>
+      </nav>
+    </div>
+
+    <div class="bottom">
+      <p class="small muted">© {year} {business.legalName || business.name}. St. Louis, Missouri.</p>
+      <ul role="list" class="legal">
+        {social.map((s) => <li><a href={s.href!} rel="noopener" target="_blank">{s.label}</a></li>)}
+        <li><a href="/privacy/">Privacy</a></li>
+        <li><a href="/terms/">Terms</a></li>
+        <li><a href="/accessibility/">Accessibility</a></li>
+      </ul>
+    </div>
+    {business.analytics.provider === "ga4" && !business.analytics.ga4MeasurementId && <OwnerNote>Add your Google Analytics Measurement ID (G-…) in config/business.json → analytics.ga4MeasurementId.</OwnerNote>}
+    {showOwnerNotes && social.length === 0 && <OwnerNote>Add your Google Business Profile and social links in config/business.json → links.</OwnerNote>}
+  </div>
+</footer>
+
+<style>
+  .footer { padding: clamp(56px, 8vw, 96px) 0 calc(28px + env(safe-area-inset-bottom)); }
+  .top { display: grid; gap: 48px; }
+  @media (min-width: 900px) { .top { grid-template-columns: 1fr 1.4fr; gap: 64px; } }
+  .brand-col { display: grid; gap: 20px; align-content: start; max-width: 380px; }
+  .brand-col img { width: 108px; }
+  .statement { color: var(--on-dark-2); font-size: 1.02rem; }
+  .cols { display: grid; grid-template-columns: repeat(2, 1fr); gap: 36px 24px; }
+  @media (min-width: 640px) { .cols { grid-template-columns: repeat(3, 1fr); } }
+  .col-title { color: var(--on-dark-3); margin-bottom: 14px; }
+  .cols ul { display: grid; gap: 10px; }
+  .cols a { color: var(--on-dark); text-decoration: none; font-size: 0.95rem; }
+  .cols a:hover { text-decoration: underline; }
+  .hours { display: grid; gap: 4px; margin-top: 18px; font-size: 0.85rem; color: var(--on-dark-2); }
+  .hours div { display: flex; gap: 10px; }
+  .hours dt { min-width: 64px; color: var(--on-dark-3); }
+  .hours dd { margin: 0; }
+  .bottom { display: flex; flex-wrap: wrap; gap: 12px 24px; justify-content: space-between; align-items: center; margin-top: 56px; padding-top: 24px; border-top: 1px solid var(--asphalt-line); }
+  .legal { display: flex; flex-wrap: wrap; gap: 8px 20px; font-size: 0.85rem; }
+  .legal a { color: var(--on-dark-2); text-decoration: none; }
+  .legal a:hover { color: var(--on-dark); text-decoration: underline; }
+  .footer :global(.owner-note) { margin-top: 16px; }
+</style>

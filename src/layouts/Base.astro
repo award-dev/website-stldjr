@@ -1,0 +1,142 @@
+---
+import "../styles/global.css";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import MobileBar from "../components/MobileBar.astro";
+import Schema from "../components/Schema.astro";
+import { business, booking, abs, allPlaces, openingHoursSchema, anyPrice } from "../lib/site";
+
+interface Props {
+  title: string;
+  description: string;
+  ogImage?: string;
+  noindex?: boolean;
+  schema?: Record<string, unknown>[];
+  hideMobileBar?: boolean;
+  fullTitle?: boolean;
+}
+const { title, description, ogImage = "/og-default.png", noindex = false, schema = [], hideMobileBar = false, fullTitle = false } = Astro.props;
+const canonical = abs(Astro.url.pathname);
+const pageTitle = fullTitle ? title : `${title} | ${business.name}`;
+const links = business.links;
+const sameAs = [links.googleBusinessProfile, links.facebook, links.instagram, links.nextdoor].filter(Boolean);
+
+const org = {
+  "@context": "https://schema.org",
+  "@type": "HomeAndConstructionBusiness",
+  "@id": abs("/#business"),
+  name: business.name,
+  url: business.siteUrl,
+  logo: abs("/logo-badge.png"),
+  image: abs("/og-default.png"),
+  telephone: business.phone,
+  email: business.email,
+  slogan: business.tagline,
+  address: {
+    "@type": "PostalAddress",
+    ...(business.address.public && business.address.street ? { streetAddress: business.address.street, postalCode: business.address.postalCode } : {}),
+    addressLocality: business.address.city,
+    addressRegion: business.address.region,
+    addressCountry: business.address.country,
+  },
+  areaServed: [
+    { "@type": "City", name: "St. Louis", containedInPlace: { "@type": "State", name: "Missouri" } },
+    { "@type": "AdministrativeArea", name: "St. Louis County, MO" },
+    { "@type": "AdministrativeArea", name: "St. Charles County, MO" },
+    ...allPlaces.map((p) => ({ "@type": "Place", name: `${p}, MO` })),
+  ],
+  ...(business.hours.confirmed ? { openingHoursSpecification: openingHoursSchema() } : {}),
+  ...(business.trust.foundedYear ? { foundingDate: String(business.trust.foundedYear) } : {}),
+  ...(business.founder ? { founder: { "@type": "Person", name: business.founder } } : {}),
+  ...(sameAs.length ? { sameAs } : {}),
+  ...(anyPrice ? { priceRange: "$$" } : {}),
+};
+
+const analytics = business.analytics;
+---
+<!doctype html>
+<html lang="en-US" data-booking-api={booking.crm?.apiBase || undefined}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <script is:inline>document.documentElement.classList.add("js")</script>
+    <title>{pageTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
+    <meta name="theme-color" content="#121311" />
+    <meta name="format-detection" content="telephone=no" />
+    <link rel="preload" href="/fonts/geist.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+    <link rel="apple-touch-icon" href="/favicon-180.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={business.name} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={abs(ogImage)} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content="en_US" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={abs(ogImage)} />
+    <meta name="geo.region" content="US-MO" />
+    <meta name="geo.placename" content="St. Louis" />
+
+    <Schema data={org} />
+    {schema.map((s) => <Schema data={{ "@context": "https://schema.org", ...s }} />)}
+
+    {analytics.provider === "plausible" && analytics.plausibleDomain && (
+      <script is:inline defer data-domain={analytics.plausibleDomain} src="https://plausible.io/js/script.tagged-events.js"></script>
+    )}
+    {analytics.provider === "ga4" && analytics.ga4MeasurementId && (
+      <>
+        <script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${analytics.ga4MeasurementId}`}></script>
+        <script is:inline define:vars={{ id: analytics.ga4MeasurementId }}>
+          window.dataLayer = window.dataLayer || [];
+          window.gtag = function () { window.dataLayer.push(arguments); };
+          window.gtag("js", new Date());
+          // Manage links carry a private token in the query string; never send it.
+          var strip = function (u) { return u.replace(/(\/booking\/)\?.*$/, "$1"); };
+          window.gtag("config", id, { anonymize_ip: true, page_location: strip(location.href), page_referrer: strip(document.referrer) });
+        </script>
+      </>
+    )}
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <Header />
+    <main id="main" tabindex="-1">
+      <slot />
+    </main>
+    <Footer />
+    <MobileBar hide={hideMobileBar} />
+    <div class="toaster" aria-live="polite" aria-atomic="false" data-toaster></div>
+
+    <script>
+      import { initAutoTracking } from "../scripts/analytics";
+      initAutoTracking();
+
+      // Reveal-on-scroll. Content is visible without JS and under reduced motion.
+      const els = document.querySelectorAll<HTMLElement>("[data-reveal]");
+      if ("IntersectionObserver" in window && !matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        const io = new IntersectionObserver(
+          (entries) => entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add("is-in"); io.unobserve(e.target); } }),
+          { rootMargin: "0px 0px -8% 0px", threshold: 0.08 },
+        );
+        els.forEach((el) => io.observe(el));
+      } else {
+        els.forEach((el) => el.classList.add("is-in"));
+      }
+    </script>
+  </body>
+</html>
+
+<style>
+  main:focus { outline: none; }
+</style>

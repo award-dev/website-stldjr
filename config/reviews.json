@@ -1,0 +1,5 @@
+{
+  "$comment": "Real reviews only. source: 'manual' uses the items below (copy them from your Google Business Profile, word for word). source: 'google-places' fetches live reviews server-side (needs GOOGLE_PLACES_API_KEY + GOOGLE_PLACE_ID). Leave items empty rather than inventing any.",
+  "source": "manual",
+  "items": []
+}
