@@ -101,7 +101,9 @@ const analytics = business.analytics;
           window.dataLayer = window.dataLayer || [];
           window.gtag = function () { window.dataLayer.push(arguments); };
           window.gtag("js", new Date());
-          window.gtag("config", id, { anonymize_ip: true });
+          // Manage links carry a private token in the query string; never send it.
+          var strip = function (u) { return u.replace(/(\/booking\/)\?.*$/, "$1"); };
+          window.gtag("config", id, { anonymize_ip: true, page_location: strip(location.href), page_referrer: strip(document.referrer) });
         </script>
       </>
     )}

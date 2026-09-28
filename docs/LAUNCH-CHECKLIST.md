@@ -28,7 +28,7 @@ below is done, set `showOwnerNotes` to `false` in `config/business.json`.
 - [ ] **Resend** — verify stlouishjr.com (add its DNS records in Netlify DNS
       after the nameserver move). `EMAIL_FROM` e.g. `bookings@stlouishjr.com`.
 - [ ] **Quote notifications** — Netlify → Forms → `quote` → email to award@stlouishjr.com.
-- [ ] **Google Analytics** — Measurement ID (`G-…`) into
+- [x] **Google Analytics** — Measurement ID (`G-…`) into
       `config/business.json → analytics.ga4MeasurementId`.
 - [ ] **Photos** — truck/crew/work photos (`config/media.json` → work). Before/after sliders keep the illustrations by choice; real pairs can still be added to `beforeAfter`.
 - [ ] **Hero video** — loop + posters into `public/videos/` (README → Hero video).
