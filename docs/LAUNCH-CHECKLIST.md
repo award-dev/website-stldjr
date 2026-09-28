@@ -31,6 +31,7 @@ below is done, set `showOwnerNotes` to `false` in `config/business.json`.
 - [ ] **Google Analytics** — Measurement ID (`G-…`) into
       `config/business.json → analytics.ga4MeasurementId`.
 - [ ] **Photos** — truck/crew/work photos (`config/media.json` → work). Before/after sliders keep the illustrations by choice; real pairs can still be added to `beforeAfter`.
+- [ ] **Hero video** — loop + posters into `public/videos/` (README → Hero video).
 - [ ] **Review text** — paste real Google reviews into `config/reviews.json`, or
       enable live reviews with `GOOGLE_PLACES_API_KEY` + `GOOGLE_PLACE_ID`.
 - [ ] **Instagram / Nextdoor** links, if any.

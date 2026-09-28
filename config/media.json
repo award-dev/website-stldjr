@@ -1,5 +1,12 @@
 {
   "$comment": "Photo slots. beforeAfter keeps its illustrations by the owner's choice (a src here replaces one). Drop real, compressed images (WebP/JPEG, ~1600px wide) into public/photos/ and set src to '/photos/<file>'. While src is null, a labeled placeholder shows so nothing looks finished that isn't. Write alt text that describes the actual photo.",
+  "heroVideo": {
+    "$comment": "Homepage hero background video: a 15-20s seamless loop, no audio. Put the files in public/videos/ at these paths and rebuild. Each file is used only if it exists, so until they're there the hero keeps its normal background. 'mobile' is a portrait 9:16 crop served to screens under 768px; 'desktop' is 16:9. The posters are the first frame of each encode (JPEG). Specs and ffmpeg commands: README > Hero video.",
+    "poster": "/videos/hero-poster.jpg",
+    "posterMobile": "/videos/hero-poster-mobile.jpg",
+    "desktop": { "webm": "/videos/hero-1080.webm", "mp4": "/videos/hero-1080.mp4" },
+    "mobile": { "webm": "/videos/hero-mobile.webm", "mp4": "/videos/hero-mobile.mp4" }
+  },
   "beforeAfter": [
     { "id": "garage", "label": "Garage", "caption": "Two-car garage cleanout", "before": { "src": null, "alt": "Garage packed with boxes, bikes and old furniture before cleanout" }, "after": { "src": null, "alt": "The same garage, empty and swept" } },
     { "id": "basement", "label": "Basement", "caption": "Basement cleanout", "before": { "src": null, "alt": "Basement crowded with furniture and storage boxes" }, "after": { "src": null, "alt": "Cleared basement floor after the crew hauled everything out" } },
