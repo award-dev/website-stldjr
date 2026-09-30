@@ -18,7 +18,7 @@
   "work": [
     { "id": "truck", "src": "/photos/truck.webp", "alt": "White box truck with a high-sided black dump bed, company logo and phone number on the door, parked on a residential street", "caption": "The truck. 17 cubic yards." },
     { "id": "loading", "src": null, "alt": "Crew carrying a couch down front steps", "caption": "Carrying, not dragging." },
-    { "id": "demo", "src": null, "alt": "Crew member removing deck boards with a pry bar", "caption": "Deck coming down." },
+    { "id": "demo", "src": "/photos/demo.webp", "alt": "Room gutted to the bare brick wall and floorboards after interior demolition, old pipes and wiring exposed", "caption": "Stripped to the brick." },
     { "id": "hands", "src": null, "alt": "Gloved hands loading drywall scraps into the truck", "caption": "Loaded tight. Fewer trips." },
     { "id": "sweep", "src": null, "alt": "Crew sweeping a cleared garage floor", "caption": "Swept before we go." },
     { "id": "team", "src": "/photos/team.webp", "alt": "Two crew members standing in the street in front of the white Isuzu junk removal truck", "caption": "The crew." }
