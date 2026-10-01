@@ -17,10 +17,10 @@
   ],
   "work": [
     { "id": "truck", "src": "/photos/truck.webp", "alt": "White box truck with a high-sided black dump bed, company logo and phone number on the door, parked on a residential street", "caption": "The truck. 17 cubic yards." },
-    { "id": "loading", "src": null, "alt": "Crew carrying a couch down front steps", "caption": "Carrying, not dragging." },
+    { "id": "loading", "src": "/photos/loading.webp", "alt": "Two crew members carrying a brown leather couch overhead down the driveway to the truck", "caption": "Carrying, not dragging." },
     { "id": "demo", "src": "/photos/demo.webp", "alt": "Kitchen gutted to the bare brick wall and floorboards after interior demolition, old pipes and wiring exposed", "caption": "Kitchen Demo" },
     { "id": "hands", "src": "/photos/hands.webp", "alt": "Truck bed packed with full bags of construction debris", "caption": "Loaded tight. Fewer trips." },
-    { "id": "sweep", "src": null, "alt": "Crew sweeping a cleared garage floor", "caption": "Swept before we go." },
+    { "id": "sweep", "src": "/photos/sweep.webp", "alt": "Crew member in work gloves sweeping debris into a dustpan on a cleared living room floor", "caption": "Swept before we go." },
     { "id": "team", "src": "/photos/team.webp", "alt": "Two crew members standing in the street in front of the white Isuzu junk removal truck", "caption": "The crew." }
   ]
 }
