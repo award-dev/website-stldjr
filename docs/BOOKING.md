@@ -22,7 +22,7 @@ puts it on `<html data-booking-api>`. With it set:
   those times close on the website too.
 - **Scheduling rules and prices live in the CRM:** Settings → Online booking
   (windows 9–11 / 11–1 / 1–3 / 3–5, one job each; Mon–Fri; 2 hours' notice;
-  21 days out; $125 / $175 / $340 / $515 / $655; ZIPs 630, 631, 633). Change
+  21 days out; $125 / $181 / $362 / $543 / $724.50; ZIPs 630, 631, 633). Change
   them there. `config/booking.json` windows and `config/pricing.json` still
   drive what the site *shows*, so keep prices in step.
 - **Emails:** the CRM has no mail set up, so after the CRM confirms, moves or

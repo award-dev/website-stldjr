@@ -12,6 +12,9 @@ const env = (k) => {
   return v === undefined || v === "" ? undefined : v;
 };
 
+// Prices keep their cents (e.g. 724.50); they display rounded to the dollar.
+const toCents = (n) => Math.round(n * 100) / 100;
+
 const PRICE_ENV = {
   quarter: "PRICE_QUARTER_LOAD",
   half: "PRICE_HALF_LOAD",
@@ -23,10 +26,10 @@ export function getPricing() {
   const loads = pricingFile.loads.map((l) => {
     const raw = env(PRICE_ENV[l.id]);
     const n = raw === undefined ? l.price : Number(raw);
-    return { ...l, price: Number.isFinite(n) && n > 0 ? Math.round(n) : null };
+    return { ...l, price: Number.isFinite(n) && n > 0 ? toCents(n) : null };
   });
   const minRaw = env("PRICE_MINIMUM_PICKUP");
-  const minimum = pricingFile.minimum && { ...pricingFile.minimum, price: minRaw && Number(minRaw) > 0 ? Math.round(Number(minRaw)) : pricingFile.minimum.price };
+  const minimum = pricingFile.minimum && { ...pricingFile.minimum, price: minRaw && Number(minRaw) > 0 ? toCents(Number(minRaw)) : pricingFile.minimum.price };
   return { ...pricingFile, loads, minimum };
 }
 

@@ -4,7 +4,7 @@
     {
       "id": "pricing",
       "q": "How does junk removal pricing work?",
-      "a": "By volume. The truck holds about {maxYards} cubic yards, and you pay for how much of it your stuff fills — from $175 for a quarter load to $655 for the whole truck. Just a few small items? That's our $125 minimum pickup. Heavy materials, Freon items and difficult access can add to it. We confirm the final number before we load anything.",
+      "a": "By volume. The truck holds about {maxYards} cubic yards, and you pay for how much of it your stuff fills — from $181 for a quarter load to $725 for the whole truck. Just a few small items? That's our $125 minimum pickup. Heavy materials, Freon items and difficult access can add to it. We confirm the final number before we load anything.",
       "confirmed": true,
       "home": true
     },

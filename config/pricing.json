@@ -1,5 +1,5 @@
 {
-  "$comment": "Load-based pricing. price: whole US dollars or null. null prices display as 'priced on-site' — never invent numbers. The same file is read by the booking server, so the client can't change the price.",
+  "$comment": "Load-based pricing. price: US dollars (cents allowed; shown rounded to the dollar) or null. null prices display as 'priced on-site' — never invent numbers. The same file is read by the booking server, so the client can't change the price.",
   "currency": "USD",
   "priceMode": "from",
   "maxCubicYards": 17,
@@ -10,7 +10,7 @@
       "short": "1/4",
       "fraction": 0.25,
       "cubicYards": 4.25,
-      "price": 175,
+      "price": 181,
       "summary": "A few big pieces or one small room.",
       "fits": [
         "A couch and a couple of chairs",
@@ -31,7 +31,7 @@
       "short": "1/2",
       "fraction": 0.5,
       "cubicYards": 8.5,
-      "price": 340,
+      "price": 362,
       "summary": "A one-car garage or a packed spare room.",
       "fits": [
         "A sectional, a dining set and boxes",
@@ -51,7 +51,7 @@
       "short": "3/4",
       "fraction": 0.75,
       "cubicYards": 12.75,
-      "price": 515,
+      "price": 543,
       "summary": "Several rooms, or a remodel's worth of debris.",
       "fits": [
         "A basement of furniture and boxes",
@@ -71,7 +71,7 @@
       "short": "Full",
       "fraction": 1,
       "cubicYards": 17,
-      "price": 655,
+      "price": 724.5,
       "summary": "The whole truck. Estates, big moves, demo jobs.",
       "fits": [
         "A whole-house estate cleanout",
