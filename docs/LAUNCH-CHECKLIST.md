@@ -8,7 +8,7 @@ below is done, set `showOwnerNotes` to `false` in `config/business.json`.
 - [x] Prices: $175 / $340 / $515 / $655, shown as "From $X"
 - [x] Pricing conditions: heavy material ~$75 per quarter load, Freon $25/item,
       no tires, batteries, liquid paint or hazardous materials
-- [x] Hours: Mon–Fri 8am–5pm, closed weekends
+- [x] Hours: Mon–Fri 7am–5pm, closed weekends (matches Google Business Profile)
 - [x] Service area confirmed as listed
 - [x] Policies: not home required (price confirmed by phone), same-day bookable online with 2 hours notice when
       the schedule allows, free estimates, permits handled, 24-hour notice preferred

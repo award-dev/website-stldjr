@@ -22,23 +22,23 @@
     "$comment": "24h HH:MM. null = closed. Used for display, schema.org, and as the outer bound for booking windows. CONFIRM before launch.",
     "confirmed": true,
     "mon": [
-      "08:00",
+      "07:00",
       "17:00"
     ],
     "tue": [
-      "08:00",
+      "07:00",
       "17:00"
     ],
     "wed": [
-      "08:00",
+      "07:00",
       "17:00"
     ],
     "thu": [
-      "08:00",
+      "07:00",
       "17:00"
     ],
     "fri": [
-      "08:00",
+      "07:00",
       "17:00"
     ],
     "sat": null,
