@@ -1,70 +1,88 @@
 ---
-// Real reviews only. Manual entries from config/reviews.json, or live Google
-// reviews via /api/reviews when source is "google-places".
-import Icon from "./Icon.astro";
-import OwnerNote from "./OwnerNote.astro";
-import { reviews, business } from "../lib/site";
+// Real reviews only: Google reviews (word for word, credited) or manual entries from config/reviews.json.
+// Google: fetched at build time (src/lib/reviews.ts); if that failed, loaded in the browser from /api/reviews.
+import { reviews, business } from '../lib/site';
+import { googleReviews, type GoogleReview } from '../lib/reviews';
 
-type R = { name: string; rating: number; text: string; date?: string | null; url?: string | null };
-const items = (reviews.items as R[]).filter((r) => r.name && r.text && r.rating);
-const profile = business.links.googleReviewUrl || business.links.googleBusinessProfile;
-const fmt = (d?: string | null) => (d ? new Date(d).toLocaleDateString("en-US", { month: "short", year: "numeric" }) : "");
-const live = reviews.source === "google-places";
+interface Props { limit?: number }
+const { limit = 6 } = Astro.props;
+const live = reviews.source === 'google-places';
+const g = live ? await googleReviews() : null;
+const manual = (reviews.items as GoogleReview[]).filter((r) => r.name && r.text && r.rating);
+const items = (g ? g.reviews : live ? [] : manual).slice(0, limit);
+const readUrl = g?.url || business.links.googleBusinessProfile;
+const writeUrl = business.links.googleReviewUrl;
+const fmt = (r: GoogleReview) => r.relative || (r.date ? new Date(r.date).toLocaleDateString('en-US', { month: 'short', year: 'numeric' }) : '');
+const star = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3.5 2.6 5.3 5.9.8-4.3 4.1 1 5.8L12 16.7l-5.2 2.8 1-5.8-4.3-4.1 5.9-.8L12 3.5Z"/></svg>';
+const stars = (n: number) => Array.from({ length: 5 }, (_, i) => `<span class="${i < n ? 'on' : 'off'}">${star}</span>`).join('');
+const arrow = '<svg class="arrow" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg>';
 ---
-<div class="reviews" data-reviews={live ? "live" : undefined}>
-  {items.length > 0 && (
-    <ul role="list" class="rv-list">
-      {items.map((r, i) => (
-        <li class="rv card" data-reveal style={`--i:${i % 3}`}>
-          <p class="rv-stars" aria-label={`${r.rating} out of 5 stars`}>{Array.from({ length: 5 }, (_, s) => <Icon name="star" size={16} class={s < r.rating ? "on" : "off"} />)}</p>
-          <blockquote class="rv-text">{r.text}</blockquote>
-          <p class="rv-meta small"><span class="rv-name">{r.name}</span>{r.date && <span class="muted"> · {fmt(r.date)}</span>}<span class="muted"> · Google</span></p>
-        </li>
-      ))}
-    </ul>
-  )}
+<div class="rv" data-reviews={live && !g ? 'live' : undefined} data-limit={limit}>
+  <div class="rv__summary" data-rv-summary hidden={!g?.rating}>
+    <p class="rv__score"><span data-rv-rating>{g?.rating?.toFixed(1)}</span><span class="rv__stars" aria-hidden="true" set:html={stars(Math.round(g?.rating ?? 5))} /></p>
+    <p class="muted"><span class="sr-only">Rated <span data-rv-rating-sr>{g?.rating?.toFixed(1)}</span> out of 5 </span>on Google<span data-rv-count>{g?.count ? ` from ${g.count} reviews` : ''}</span></p>
+  </div>
 
-  {items.length === 0 && (
-    <div class="rv-empty" data-rv-empty>
-      <p class="h4">We'd rather show you real reviews than write our own.</p>
-      <p class="muted">{profile ? "Read what St. Louis customers say on Google." : "Reviews from our Google Business Profile will appear here."}</p>
-      {profile && <a class="btn btn--ghost" href={profile} target="_blank" rel="noopener">See our Google reviews <Icon name="arrow" class="arrow" /></a>}
-    </div>
-  )}
+  <ul class="rv__list" data-rv-list>
+    {items.map((r, i) => (
+      <li class="rv__card" data-reveal style={`--d:${(i % 3) * 70}ms`}>
+        <p class="rv__stars" aria-label={`${r.rating} out of 5 stars`} set:html={stars(r.rating)} />
+        <blockquote class="rv__text">{r.text}</blockquote>
+        <p class="rv__meta"><span class="rv__name">{r.name}</span><span class="muted">{fmt(r) && ` · ${fmt(r)}`} · Google</span></p>
+      </li>
+    ))}
+  </ul>
 
-  {live && <ul role="list" class="rv-list" data-rv-live hidden></ul>}
-
-  {items.length === 0 && !live && (
-    <OwnerNote>Paste real Google reviews into config/reviews.json (word for word), or set source to "google-places" with GOOGLE_PLACES_API_KEY + GOOGLE_PLACE_ID. Also add links.googleReviewUrl.</OwnerNote>
-  )}
+  <div class="btn-row rv__links">
+    {readUrl && <a class="btn btn-ghost" href={readUrl} target="_blank" rel="noopener">Read all reviews on Google<span class="sr-only"> (opens in a new tab)</span><Fragment set:html={arrow} /></a>}
+    {writeUrl && <a class="btn btn-ghost" href={writeUrl} target="_blank" rel="noopener">Leave us a review<span class="sr-only"> (opens in a new tab)</span></a>}
+  </div>
 </div>
 
-<style>
-  .reviews { display: grid; gap: 24px; }
-  .rv-list { display: grid; gap: 16px; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); }
-  .rv { padding: 24px; display: grid; gap: 14px; align-content: start; }
-  .rv-stars { display: flex; gap: 2px; color: var(--ink); }
-  .rv-stars :global(.off) { opacity: 0.2; }
-  .rv-text { font-size: 1.02rem; line-height: 1.55; }
-  .rv-name { font-weight: 580; }
-  .rv-empty { display: grid; gap: 12px; justify-items: start; padding: clamp(24px, 4vw, 40px); border: 1px dashed var(--line-strong); border-radius: var(--r-4); }
+<style is:global>
+  /* Global (prefixed with .rv) so cards added by the browser fallback get the same styles. */
+  .rv { display: grid; gap: 28px; }
+  .rv .rv__summary { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 18px; }
+  .rv .rv__summary[hidden] { display: none; }
+  .rv .rv__score { display: flex; align-items: center; gap: 14px; font-family: var(--font-display); font-weight: 700; font-size: clamp(2.4rem, 1.8rem + 2vw, 3.4rem); letter-spacing: -0.04em; line-height: 1; }
+  .rv .rv__list { list-style: none; margin: 0; padding: 0; display: grid; gap: 16px; grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr)); }
+  .rv .rv__list:empty { display: none; }
+  .rv .rv__card { display: grid; gap: 16px; align-content: start; padding: 28px; border-radius: var(--radius-lg); background: var(--color-card); box-shadow: inset 0 0 0 1px var(--color-line); }
+  .rv .rv__stars { display: flex; gap: 2px; }
+  .rv .rv__stars svg { width: 18px; height: 18px; fill: var(--color-accent-ink); }
+  .rv .rv__score .rv__stars svg { width: 24px; height: 24px; }
+  .rv .rv__stars .off svg { fill: rgb(255 255 255 / .18); }
+  .rv .rv__text { margin: 0; font-size: 1.05rem; line-height: 1.6; color: #e3ddd5; }
+  .rv .rv__meta { font-size: 14px; }
+  .rv .rv__name { font-weight: 600; }
 </style>
 
-{live && (
+{live && !g && (
   <script>
-    const list = document.querySelector<HTMLElement>("[data-rv-live]");
-    const empty = document.querySelector<HTMLElement>("[data-rv-empty]");
-    const esc = (s: string) => s.replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]!);
-    fetch("/api/reviews")
-      .then((r) => (r.ok ? r.json() : null))
-      .then((d) => {
-        if (!list || !d || d.status !== "ok" || !d.reviews.length) return;
-        list.innerHTML = d.reviews
-          .map((r: any) => `<li class="card" style="padding:24px;display:grid;gap:14px"><p aria-label="${r.rating} out of 5 stars">${"★".repeat(r.rating)}<span style="opacity:.2">${"★".repeat(5 - r.rating)}</span></p><blockquote>${esc(r.text)}</blockquote><p class="small"><b>${esc(r.name)}</b><span class="muted"> · ${esc(r.relative || "")} · Google</span></p></li>`)
-          .join("");
-        list.hidden = false;
-        if (empty) empty.hidden = true;
-      })
-      .catch(() => {});
+    // The build couldn't reach Google: load the reviews here instead.
+    const root = document.querySelector<HTMLElement>('[data-reviews="live"]');
+    const list = root?.querySelector<HTMLElement>('[data-rv-list]');
+    const esc = (s: string) => s.replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]!);
+    const star = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3.5 2.6 5.3 5.9.8-4.3 4.1 1 5.8L12 16.7l-5.2 2.8 1-5.8-4.3-4.1 5.9-.8L12 3.5Z"/></svg>';
+    const stars = (n: number) => Array.from({ length: 5 }, (_, i) => `<span class="${i < n ? 'on' : 'off'}">${star}</span>`).join('');
+    if (root && list) {
+      fetch('/api/reviews')
+        .then((r) => (r.ok ? r.json() : null))
+        .then((d) => {
+          if (!d || d.status !== 'ok') return;
+          const limit = Number(root.dataset.limit) || 6;
+          list.innerHTML = d.reviews.filter((r: any) => r.text).slice(0, limit)
+            .map((r: any) => `<li class="rv__card"><p class="rv__stars" aria-label="${r.rating} out of 5 stars">${stars(r.rating)}</p><blockquote class="rv__text">${esc(r.text)}</blockquote><p class="rv__meta"><span class="rv__name">${esc(r.name)}</span><span class="muted">${r.relative ? ' · ' + esc(r.relative) : ''} · Google</span></p></li>`)
+            .join('');
+          const sum = root.querySelector<HTMLElement>('[data-rv-summary]');
+          if (sum && d.rating) {
+            root.querySelectorAll('[data-rv-rating],[data-rv-rating-sr]').forEach((e) => (e.textContent = Number(d.rating).toFixed(1)));
+            const c = root.querySelector('[data-rv-count]');
+            if (c && d.count) c.textContent = ` from ${d.count} reviews`;
+            sum.hidden = false;
+          }
+        })
+        .catch(() => {});
+    }
   </script>
 )}
