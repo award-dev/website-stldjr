@@ -16,14 +16,16 @@ export const content = {
   /** Five-second intro loader (once per visit). The last word is accented. */
   intro: {
     enabled: true,
-    drawing: 'house' as 'house' | 'none',
+    /** 'truck' replaces the logo with the animated dump truck; 'house' draws a blueprint house behind the headline. */
+    drawing: 'truck' as 'house' | 'truck' | 'none',
     words: ['Point', 'at', 'the', 'mess.'],
+    // Timed to the truck: it pulls up, gets loaded, dumps (38–61%) and lowers the bed (61–80%).
     stages: [
       [0, 'Backing up the truck'],
-      [0.24, 'Carrying it out'],
-      [0.48, 'Loading the truck'],
-      [0.72, 'Sweeping up'],
-      [0.97, 'Hauled away'],
+      [0.22, 'Loading it up'],
+      [0.38, 'Dumping the load'],
+      [0.62, 'Lowering the bed'],
+      [0.85, 'Hauled away'],
     ] as [number, string][],
   },
 

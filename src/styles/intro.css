@@ -113,6 +113,82 @@ html.js:not(.intro-seen) { overflow: hidden; }
 .intro__skip:hover { background: rgb(255 255 255 / .12); color: #fff; }
 .intro__skip svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
 
+/* Dump truck (drawing: 'truck'). Every part runs on the same build clock (var(--build)), so the
+   keyframe percentages below are shares of the build: tilt from ~38%, peak ~55%, back down by ~80%. */
+.intro__brand {
+  margin: -12px 0 -6px; font-family: var(--font-display); font-style: italic; font-weight: 700;
+  font-size: clamp(12px, 1.4vw, 15px); letter-spacing: .14em; text-transform: uppercase; color: #d6cfc6;
+  animation: intro-logo-in .9s var(--ease-out-expo) .5s both;
+}
+.intro__truck {
+  width: clamp(250px, 64vw, 420px); height: auto; overflow: visible; margin-bottom: -6px;
+  fill: none; stroke: #f4efe8; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round;
+  filter: drop-shadow(0 18px 40px rgb(0 0 0 / .6)) drop-shadow(0 0 26px rgb(var(--accent-rgb) / .22));
+}
+.intro__truck * { transform-box: view-box; }
+.tk-body { animation: tk-drive var(--build) cubic-bezier(.2, .8, .2, 1) both; }
+@keyframes tk-drive {
+  0% { transform: translateX(-120px); opacity: 0; }
+  6% { opacity: 1; }
+  20% { transform: translateX(6px); }
+  24%, 80% { transform: none; }
+  83% { transform: translateY(2px); }
+  87%, 100% { transform: none; }
+}
+.tk-ground { stroke: rgb(244 239 232 / .16); stroke-width: 1.5; }
+.tk-line { stroke-width: 3.2; }
+.tk-window { fill: rgb(244 239 232 / .08); stroke-width: 2.4; }
+.tk-dim { stroke: rgb(244 239 232 / .45); stroke-width: 2.4; }
+.tk-wheel circle { fill: var(--color-bg); stroke-width: 3.2; }
+.tk-wheel .tk-hub { fill: rgb(244 239 232 / .15); stroke-width: 2.2; }
+.tk-wheel path { stroke: rgb(244 239 232 / .5); stroke-width: 2.4; }
+.tk-wheel { transform-box: fill-box; transform-origin: center; animation: tk-roll var(--build) cubic-bezier(.2, .8, .2, 1) both; }
+@keyframes tk-roll { 0% { transform: rotate(-200deg); } 22%, 100% { transform: rotate(0); } }
+
+.tk-panel { fill: #14110f; stroke-width: 3.2; }
+.tk-chrome { fill: #9a958e; stroke: none; opacity: .85; }
+.tk-stl {
+  font-family: var(--font-display); font-style: italic; font-weight: 800; font-size: 54px; letter-spacing: -1px;
+  fill: var(--color-accent); stroke: #f4efe8; stroke-width: 2.4; paint-order: stroke; transform: skewX(-12deg); transform-origin: 150px 100px;
+}
+/* The bed pivots on its rear bottom corner (36,152). */
+.tk-bed { transform-origin: 36px 152px; animation: tk-tilt var(--build) cubic-bezier(.45, 0, .25, 1) both; }
+@keyframes tk-tilt {
+  0%, 38% { transform: rotate(0); }
+  55%, 61% { transform: rotate(-32deg); }
+  78% { transform: rotate(0.6deg); }
+  82%, 100% { transform: rotate(0); }
+}
+/* Tailgate hangs from its top hinge: it swings open as the bed rises. */
+.tk-gate { stroke-width: 5; transform-origin: 36px 58px; animation: tk-gate var(--build) cubic-bezier(.45, 0, .25, 1) both; }
+@keyframes tk-gate { 0%, 40% { transform: rotate(0); } 55%, 61% { transform: rotate(40deg); } 76%, 100% { transform: rotate(0); } }
+/* Hydraulic ram extends with the tilt. */
+.tk-ram { stroke: var(--color-accent-ink); stroke-width: 6; transform-origin: 232px 152px; animation: tk-ram var(--build) cubic-bezier(.45, 0, .25, 1) both; }
+@keyframes tk-ram { 0%, 38% { transform: rotate(0) scaleY(1); } 55%, 61% { transform: rotate(-30deg) scaleY(10.5); } 78%, 100% { transform: rotate(0) scaleY(1); } }
+
+/* Junk: drops in while the truck parks, slides out the back when the bed tilts. */
+.tk-junk .j { fill: #1d1915; stroke-width: 2.6; }
+.tk-junk .is-accent { stroke: var(--color-accent-ink); }
+.tk-junk { animation: tk-dump var(--build) cubic-bezier(.5, 0, .7, .4) both; }
+@keyframes tk-dump {
+  0%, 44% { transform: none; opacity: 1; }
+  60% { transform: translate(-170px, 30px) rotate(-12deg); opacity: 1; }
+  66%, 100% { transform: translate(-215px, 70px) rotate(-18deg); opacity: 0; }
+}
+.tk-junk .j { animation: tk-drop .45s cubic-bezier(.3, 0, .4, 1.4) both; }
+.tk-junk .j1 { animation-delay: .95s; }
+.tk-junk .j2 { animation-delay: 1.1s; }
+.tk-junk .j3 { animation-delay: 1.25s; }
+.tk-junk .j4 { animation-delay: 1.38s; }
+@keyframes tk-drop { from { translate: 0 -110px; opacity: 0; } 40% { opacity: 1; } }
+
+.tk-dust circle { fill: rgb(244 239 232 / .14); stroke: none; transform-box: fill-box; transform-origin: center; animation: tk-dust var(--build) ease-out both; }
+.tk-dust circle:nth-child(2) { animation-delay: .08s; }
+.tk-dust circle:nth-child(3) { animation-delay: .14s; }
+@keyframes tk-dust { 0%, 57% { transform: scale(0); opacity: 0; } 62% { opacity: 1; } 78%, 100% { transform: scale(2.4); opacity: 0; } }
+
 @media (prefers-reduced-motion: reduce) {
   .intro__glow, .intro__grid, .intro__logo { animation: none; }
+  .intro__truck *, .tk-junk .j { animation: none !important; }
+  .tk-dust { display: none; }
 }

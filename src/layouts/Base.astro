@@ -56,7 +56,9 @@ const og = ogImage ? await getImage({ src: jobImage(ogImage), width: 1200, heigh
 // Link-preview card: the finished loading screen (logo, "Building your next project"), same on every page.
 const card = await getImage({ src: shareCard, width: 1200, height: 630, format: 'jpg', quality: 88 });
 const cardUrl = new URL(card.src, site.url).href;
-const cardAlt = `${site.name} logo with the words ${content.intro.words.join(' ')}`;
+const cardAlt = content.intro.drawing === 'truck'
+  ? `${site.name}: a dump truck with STL on the bed and the words ${content.intro.words.join(' ')}`
+  : `${site.name} logo with the words ${content.intro.words.join(' ')}`;
 const analytics = cfg.analytics;
 const ogUrl = og ? new URL(og.src, site.url).href : cardUrl;
 const introLogo = await getImage({ src: logoMeta, width: 360, format: 'webp', quality: 90 });
@@ -147,7 +149,7 @@ const graph = { '@context': 'https://schema.org', '@graph': [business, website, 
     )}
   </head>
   <body>
-    {showIntro && <Intro client:load logo={introLogo.src} words={content.intro.words} stages={content.intro.stages} drawing={content.intro.drawing} />}
+    {showIntro && <Intro client:load brand={site.name} logo={introLogo.src} words={content.intro.words} stages={content.intro.stages} drawing={content.intro.drawing} />}
     <a href="#main" class="skip">Skip to content</a>
     <Header />
     <main id="main" tabindex="-1"><slot /></main>

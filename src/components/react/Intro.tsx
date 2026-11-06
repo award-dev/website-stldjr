@@ -35,6 +35,47 @@ const PLAN: { d: string; from: number; to: number; accent?: boolean; dim?: boole
 ];
 
 const DEFAULT_WORDS = ['Building', 'your', 'next', 'project'];
+
+/**
+ * Dump truck in the logo's style (white outline, green italic STL, cab facing right). The whole sequence runs
+ * on CSS keyframes over the build time (intro.css): drive in, junk drops into the bed, the bed tilts on its rear
+ * hinge with the tailgate swinging open, the junk slides out, and the bed comes back down.
+ */
+function DumpTruck() {
+  return (
+    <svg className="intro__truck" viewBox="0 0 400 230" aria-hidden="true">
+      <g className="tk-dust">
+        <circle cx="14" cy="190" r="14" /><circle cx="36" cy="196" r="10" /><circle cx="-6" cy="196" r="9" />
+      </g>
+      <g className="tk-body">
+        <path className="tk-ground" d="M-40 199 H440" />
+        {/* chassis and cab */}
+        <path className="tk-line" d="M28 152 H366" />
+        <path className="tk-line" d="M274 152 V72 Q274 60 286 60 H322 Q334 60 340 71 L363 114 Q367 122 367 132 V152" />
+        <path className="tk-window" d="M287 74 H320 Q326 74 329 80 L344 108 H287 Z" />
+        <path className="tk-dim" d="M300 124 H316" />
+        {/* hydraulic ram: grows as the bed tilts */}
+        <path className="tk-ram" d="M232 152 V142" />
+        {/* dump bed, hinged at its rear bottom corner */}
+        <g className="tk-bed">
+          <g className="tk-junk">
+            <rect className="j j1" x="58" y="28" width="34" height="36" rx="3" />
+            <path className="j j2" d="M100 64 V40 Q100 30 110 30 H156 Q166 30 166 40 V64 M100 46 H166" />
+            <rect className="j j3 is-accent" x="174" y="38" width="28" height="26" rx="3" />
+            <path className="j j4" d="M210 64 L224 26 L232 29 L219 64" />
+          </g>
+          <rect className="tk-panel" x="36" y="54" width="228" height="98" rx="10" />
+          <rect className="tk-chrome" x="64" y="122" width="172" height="7" rx="3.5" />
+          <text className="tk-stl" x="150" y="112" textAnchor="middle">STL</text>
+          <path className="tk-gate" d="M36 58 V148" />
+        </g>
+        {/* wheels */}
+        <g className="tk-wheel"><circle cx="92" cy="172" r="25" /><circle className="tk-hub" cx="92" cy="172" r="9" /><path d="M92 147 V163 M92 181 V197 M67 172 H83 M101 172 H117" /></g>
+        <g className="tk-wheel"><circle cx="312" cy="172" r="25" /><circle className="tk-hub" cx="312" cy="172" r="9" /><path d="M312 147 V163 M312 181 V197 M287 172 H303 M321 172 H337" /></g>
+      </g>
+    </svg>
+  );
+}
 const clamp = (v: number) => Math.min(1, Math.max(0, v));
 /** Read the bar's live scaleX so the percentage always matches what is drawn. */
 const barScale = (el: HTMLElement | null) => {
@@ -43,7 +84,7 @@ const barScale = (el: HTMLElement | null) => {
   return m ? clamp(Number(m[1])) : 0;
 };
 
-export default function Intro({ logo, words = DEFAULT_WORDS, stages = DEFAULT_STAGES, drawing = 'house' }: { logo: string; words?: string[]; stages?: [number, string][]; drawing?: 'house' | 'none' }) {
+export default function Intro({ logo, words = DEFAULT_WORDS, stages = DEFAULT_STAGES, drawing = 'house', brand }: { brand?: string; logo: string; words?: string[]; stages?: [number, string][]; drawing?: 'house' | 'truck' | 'none' }) {
   const [active, setActive] = useState(true);
   const [skipped, setSkipped] = useState(false);
   const [p, setP] = useState(0);
@@ -120,7 +161,8 @@ export default function Intro({ logo, words = DEFAULT_WORDS, stages = DEFAULT_ST
       </svg>}
 
       <div className="intro__center">
-        <img className="intro__logo" src={logo} alt="" width={180} height={196} decoding="async" />
+        {drawing === 'truck' ? <DumpTruck /> : <img className="intro__logo" src={logo} alt="" width={180} height={196} decoding="async" />}
+        {drawing === 'truck' && brand && <p className="intro__brand">{brand}</p>}
         <p className="intro__title">
           {words.map((w, i) => (
             <span key={w} className="intro__word">
