@@ -1,15 +1,19 @@
 ---
-import { Image } from 'astro:assets';
+import { Image, getImage } from 'astro:assets';
 import Base from '../layouts/Base.astro';
 import PageHero from '../components/PageHero.astro';
+import Reviews from '../components/Reviews.astro';
 import { jobImage, projectFor, fitWidths, PHOTO_QUALITY } from '../lib/images';
 import { site, primaryAction, secondaryAction } from '../data/site';
 import { content } from '../data/content';
 import { business, pricing, hoursSummary } from '../lib/site';
-import Reviews from '../components/Reviews.astro';
+import portrait from '../assets/brand/aaron-family.jpg';
+import videoPoster from '../assets/brand/buyers-club-vendor-team.jpg';
+import locateFaithLogo from '../assets/brand/locatefaith-logo.svg';
 
 const a = content.about;
 const truck = projectFor('crew/truck.webp');
+const sweep = projectFor('cleanouts/sweep.webp');
 const t = business.trust;
 const facts = [
   t.foundedYear && ['In business since', String(t.foundedYear)],
@@ -17,9 +21,10 @@ const facts = [
   t.insured && ['Insurance', t.insuranceDetails ? `Fully insured, ${t.insuranceDetails}` : 'Insured'],
   t.licensed && ['Licensing', t.licenseDetails || 'Licensed'],
   ['Truck capacity', `${pricing.maxCubicYards} cubic yards`],
-  ['Based in', `${site.city}, Missouri`],
+  ['Based in', 'Florissant, Missouri'],
 ].filter(Boolean) as [string, string][];
 const crumbs = [{ name: 'Home', href: '/' }, { name: 'About', href: '/about/' }];
+const portraitUrl = new URL((await getImage({ src: portrait, width: 1200, format: 'jpg', quality: 82 })).src, site.url).href;
 const aboutPage = {
   '@type': 'AboutPage',
   name: a.metaTitle,
@@ -29,25 +34,111 @@ const aboutPage = {
     '@type': 'Person',
     name: site.owner,
     jobTitle: 'Founder',
+    image: portraitUrl,
+    description: a.lead,
     worksFor: { '@id': `${site.url}/#business` },
   },
 };
+const v = a.vendor;
+const arrow = '<svg class="arrow" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg>';
+const ext = '<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8" /></svg>';
 ---
-<Base title={a.metaTitle} description={a.description} breadcrumbs={crumbs} schema={[aboutPage]} ogImage={a.photo}>
-  <PageHero title={a.title} lead={a.lead} crumbs={crumbs} photo={a.photo} />
+<Base title={a.metaTitle} description={a.description} breadcrumbs={crumbs} schema={[aboutPage]}>
+  <PageHero title={a.title} lead={a.lead} crumbs={crumbs} image={portrait} imageAlt={a.portraitAlt} imagePosition={a.portraitPosition}>
+    <div class="btn-row">
+      <a href="#family" class="btn btn-accent">Read my story<Fragment set:html={arrow} /></a>
+      <a href="#buyers-club" class="btn btn-ghost">
+        <svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M8 5.5v13l11-6.5z" /></svg>
+        Watch the interview
+      </a>
+    </div>
+  </PageHero>
 
-  <section class="section-tight" aria-labelledby="why-h">
-    <div class="shell story">
-      <div class="story__text">
-        <h2 id="why-h" class="display-md" data-reveal>Why we do this</h2>
-        {a.story.map((p, i) => <p data-reveal style={`--d:${i * 60}ms`}>{p}</p>)}
-        <p class="signoff" data-reveal>{site.owner}, founder</p>
+  {/* Family */}
+  <section class="section-tight" id="family" aria-labelledby="family-h">
+    <div class="shell family">
+      <div class="family__text">
+        <p class="tag" data-reveal><span class="dot"></span>Family-oriented</p>
+        <h2 id="family-h" class="display-lg" data-reveal>{a.family.title}</h2>
+        <blockquote class="pull" data-reveal style="--d:80ms"><p>{a.family.quote}</p></blockquote>
+        {a.family.body.map((p, i) => <p class="body" data-reveal style={`--d:${120 + i * 60}ms`}>{p}</p>)}
       </div>
-      <ul class="trades">
-        {a.twoTrades.map(([h, p], i) => (
-          <li data-reveal style={`--d:${i * 80}ms`}><h3 class="title">{h}</h3><p class="muted">{p}</p></li>
+      <ul class="values">
+        {a.family.values.map(([h, p], i) => (
+          <li data-reveal style={`--d:${i * 80}ms`}>
+            <span class="values__n" aria-hidden="true">0{i + 1}</span>
+            <h3 class="title">{h}</h3>
+            <p class="muted">{p}</p>
+          </li>
         ))}
       </ul>
+    </div>
+  </section>
+
+  {/* Story */}
+  <section class="section-tight" aria-labelledby="story-h">
+    <div class="shell story">
+      <div class="media story__photo" data-reveal>
+        <Image src={jobImage(sweep.file)} alt={sweep.alt} widths={fitWidths(jobImage(sweep.file), [480, 800, 1200])} quality={PHOTO_QUALITY} sizes="(min-width: 1024px) 520px, 100vw" />
+      </div>
+      <div class="story__text">
+        <h2 id="story-h" class="display-md" data-reveal>{a.story.title}</h2>
+        {a.story.body.map((p, i) => <p class="body" data-reveal style={`--d:${i * 60}ms`}>{p}</p>)}
+        <p class="signoff" data-reveal>— Aaron</p>
+        <ul class="cards">
+          {a.story.cards.map(([h, p], i) => <li data-reveal style={`--d:${i * 80}ms`}><h3 class="title">{h}</h3><p class="muted">{p}</p></li>)}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  {/* Faith */}
+  <section class="section-tight" id="faith" aria-labelledby="faith-h">
+    <div class="shell">
+      <div class="faith" data-reveal>
+        <div class="faith__glow" aria-hidden="true"></div>
+        <div class="faith__copy">
+          <p class="tag"><span class="dot"></span>Christian-owned</p>
+          <h2 id="faith-h" class="display-lg">{a.faith.title}</h2>
+          {a.faith.body.map((p) => <p class="body">{p}</p>)}
+        </div>
+        <div class="faith__side">
+          <figure class="verse">
+            <svg class="verse__mark" viewBox="0 0 40 56" aria-hidden="true"><path d="M17 0h6v16h17v6H23v34h-6V22H0v-6h17z" /></svg>
+            <blockquote><p>“{a.faith.verse.text}”</p></blockquote>
+            <figcaption>{a.faith.verse.ref}</figcaption>
+          </figure>
+          <a class="lf" href={a.faith.listing} target="_blank" rel="noopener">
+            <img src={locateFaithLogo.src} width="220" height="40" alt="LocateFaith" loading="lazy" />
+            <span class="lf__text">Find us in the LocateFaith directory of Christian-owned businesses</span>
+            <span class="lf__go" aria-hidden="true" set:html={ext} />
+            <span class="sr-only"> (opens in a new tab)</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* Buyers Club Vendor Team */}
+  <section class="section-tight" id="buyers-club" aria-labelledby="vendor-h">
+    <div class="shell vendor">
+      <div class="vendor__copy" data-reveal>
+        <p class="tag"><span class="dot"></span>Featured interview</p>
+        <h2 id="vendor-h" class="display-md">{v.title}</h2>
+        <p class="body">{v.body}</p>
+        <a class="link-arrow" href={`https://www.youtube.com/watch?v=${v.youtubeId}`} target="_blank" rel="noopener">Watch on YouTube<Fragment set:html={arrow} /><span class="sr-only"> (opens in a new tab)</span></a>
+      </div>
+      <div class="vendor__video" data-reveal style="--d:100ms">
+        {/* Click-to-load: no YouTube requests or cookies until the visitor presses play. */}
+        <div class="vframe">
+        <button type="button" class="yt" data-yt={v.youtubeId} data-yt-title={v.videoTitle} aria-label={`Play video: ${v.videoTitle}`}>
+          <Image src={videoPoster} alt="" widths={[640, 960, 1280]} sizes="(min-width: 1024px) 720px, 100vw" quality={80} class="yt__poster" />
+          <span class="yt__shade" aria-hidden="true"></span>
+          <span class="yt__play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5.5v13l11-6.5z" /></svg></span>
+          <span class="yt__label" aria-hidden="true">Buyers Club Vendor Team</span>
+        </button>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -55,7 +146,7 @@ const aboutPage = {
     <div class="shell">
       <div class="head" data-reveal><h2 id="facts-h" class="display-md">Facts, not adjectives</h2></div>
       <dl class="facts">
-        {facts.map(([k, v], i) => <div data-reveal style={`--d:${(i % 3) * 70}ms`}><dt>{k}</dt><dd>{v}</dd></div>)}
+        {facts.map(([k, val], i) => <div data-reveal style={`--d:${(i % 3) * 70}ms`}><dt>{k}</dt><dd>{val}</dd></div>)}
       </dl>
     </div>
   </section>
@@ -89,13 +180,63 @@ const aboutPage = {
 </Base>
 
 <style>
-  .story { display: grid; gap: 48px 80px; align-items: start; }
-  @media (min-width: 1024px) { .story { grid-template-columns: 7fr 5fr; } .trades { position: sticky; top: calc(var(--nav-h) + 24px); } }
-  .story__text { display: grid; gap: 22px; max-width: 68ch; }
-  .story__text p { color: #d6cfc6; font-size: 1.075rem; }
-  .story__text .signoff { color: var(--color-accent-ink); font-weight: 600; }
-  .trades { list-style: none; margin: 0; padding: 0; display: grid; gap: 16px; }
-  .trades li { display: grid; gap: 10px; padding: 28px; border-radius: var(--radius-lg); background: var(--color-card); box-shadow: inset 0 0 0 1px var(--color-line); }
+  .body { color: #d6cfc6; font-size: 1.075rem; max-width: 64ch; }
+
+  /* Family */
+  .family { display: grid; gap: 48px 80px; align-items: start; }
+  @media (min-width: 1024px) { .family { grid-template-columns: 7fr 5fr; } .values { position: sticky; top: calc(var(--nav-h) + 24px); } }
+  .family__text { display: grid; gap: 22px; }
+  .pull { margin: 8px 0; padding-left: 24px; border-left: 3px solid var(--color-accent); }
+  .pull p { font-family: var(--font-display); font-weight: 600; font-size: clamp(1.4rem, 1.1rem + 1.2vw, 2.1rem); line-height: 1.2; letter-spacing: -0.02em; }
+  .values { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; }
+  .values li { display: grid; grid-template-columns: auto 1fr; gap: 4px 18px; align-items: baseline; padding: 24px 26px; border-radius: var(--radius-lg); background: var(--color-card); box-shadow: inset 0 0 0 1px var(--color-line); }
+  .values__n { grid-row: span 2; font-family: var(--font-display); font-weight: 700; font-size: 2.2rem; line-height: 1; color: transparent; -webkit-text-stroke: 1px var(--color-accent-ink); }
+
+  /* Story */
+  .story { display: grid; gap: 40px 72px; align-items: start; }
+  @media (min-width: 1024px) { .story { grid-template-columns: 5fr 7fr; } .story__photo { position: sticky; top: calc(var(--nav-h) + 24px); } }
+  .story__photo { aspect-ratio: 4 / 5; }
+  .story__text { display: grid; gap: 20px; }
+  .signoff { font-family: var(--font-display); font-style: italic; font-weight: 700; font-size: 1.6rem; color: var(--color-accent-ink); }
+  .cards { list-style: none; margin: 12px 0 0; padding: 0; display: grid; gap: 14px; }
+  @media (min-width: 640px) { .cards { grid-template-columns: 1fr 1fr; } }
+  .cards li { display: grid; gap: 10px; padding: 26px; border-radius: var(--radius-lg); background: var(--color-card); box-shadow: inset 0 0 0 1px var(--color-line); }
+
+  /* Faith */
+  .faith { position: relative; isolation: isolate; overflow: hidden; display: grid; gap: 40px 64px; padding: clamp(28px, 5vw, 64px); border-radius: var(--radius-xl); background: linear-gradient(160deg, #151a14, var(--color-card) 55%); box-shadow: inset 0 0 0 1px rgb(var(--accent-rgb) / .22); }
+  @media (min-width: 1024px) { .faith { grid-template-columns: 7fr 5fr; align-items: center; } }
+  .faith__glow { position: absolute; z-index: -1; width: 640px; height: 640px; right: -200px; top: -260px; border-radius: 50%; background: radial-gradient(circle, rgb(var(--accent-rgb) / .22), transparent 65%); filter: blur(40px); }
+  .faith__copy { display: grid; gap: 22px; }
+  .faith__side { display: grid; gap: 16px; }
+  .verse { margin: 0; display: grid; gap: 14px; padding: 28px; border-radius: var(--radius-lg); background: rgb(0 0 0 / .25); box-shadow: inset 0 0 0 1px var(--color-line); }
+  .verse__mark { width: 22px; height: auto; fill: var(--color-accent-ink); }
+  .verse blockquote { margin: 0; }
+  .verse p { font-family: var(--font-display); font-weight: 600; font-size: clamp(1.25rem, 1.05rem + .8vw, 1.65rem); line-height: 1.25; letter-spacing: -0.02em; }
+  .verse figcaption { font-size: 14px; color: var(--color-muted); }
+  .lf { position: relative; display: grid; gap: 14px; padding: 24px 72px 24px 26px; border-radius: var(--radius-lg); background: var(--color-card-2); box-shadow: inset 0 0 0 1px var(--color-line); transition: transform .45s var(--ease-out-expo), box-shadow .3s; }
+  .lf:hover { transform: translateY(-3px); box-shadow: inset 0 0 0 1px rgb(var(--accent-rgb) / .5); }
+  .lf img { height: 30px; width: auto; }
+  .lf__text { font-size: 15px; color: #d6cfc6; }
+  .lf__go { position: absolute; right: 22px; top: 50%; translate: 0 -50%; width: 40px; height: 40px; display: grid; place-items: center; border-radius: 50%; background: rgb(255 255 255 / .1); }
+  .lf__go :global(svg) { width: 18px; height: 18px; }
+  .lf:hover .lf__go { background: var(--color-accent); color: var(--color-on-accent); }
+
+  /* Buyers Club */
+  .vendor { display: grid; gap: 32px 64px; align-items: center; }
+  @media (min-width: 1024px) { .vendor { grid-template-columns: 5fr 7fr; } }
+  .vendor__copy { display: grid; gap: 20px; justify-items: start; }
+  .vframe { position: relative; width: 100%; aspect-ratio: 16 / 9; border-radius: var(--radius-lg); overflow: hidden; background: #000; box-shadow: 0 40px 120px -40px rgb(0 0 0 / .9), 0 0 0 1px rgb(255 255 255 / .08); }
+  .yt { position: absolute; inset: 0; display: block; width: 100%; height: 100%; padding: 0; border: 0; cursor: pointer; background: #000; }
+  .yt :global(.yt__poster) { width: 100%; height: 100%; object-fit: cover; transition: transform 1.2s var(--ease-out-expo); }
+  .yt:hover :global(.yt__poster) { transform: scale(1.04); }
+  .yt__shade { position: absolute; inset: 0; background: linear-gradient(to top, rgb(0 0 0 / .55), transparent 45%); }
+  .yt__play { position: absolute; left: 50%; top: 50%; translate: -50% -50%; width: 84px; height: 84px; display: grid; place-items: center; border-radius: 50%; background: var(--color-accent); box-shadow: 0 0 0 0 rgb(var(--accent-rgb) / .6); animation: yt-pulse 2.2s ease-out infinite; transition: scale .35s var(--ease-out-expo); }
+  .yt:hover .yt__play { scale: 1.08; }
+  .yt__play svg { width: 34px; height: 34px; margin-left: 4px; fill: var(--color-on-accent); }
+  @keyframes yt-pulse { 70% { box-shadow: 0 0 0 22px rgb(var(--accent-rgb) / 0); } 100% { box-shadow: 0 0 0 0 rgb(var(--accent-rgb) / 0); } }
+  .yt__label { position: absolute; left: 20px; bottom: 16px; font-size: 14px; font-weight: 600; color: #fff; }
+  .vframe :global(iframe) { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+
   .facts { margin: 0; display: grid; gap: 12px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); }
   .facts div { display: grid; gap: 10px; padding: 26px 28px; border-radius: var(--radius-lg); background: var(--color-card); box-shadow: inset 0 0 0 1px var(--color-line); }
   .facts dt { font-size: 14px; color: var(--color-muted); }
@@ -108,4 +249,26 @@ const aboutPage = {
   .hours div { display: flex; gap: 16px; }
   .hours dt { min-width: 80px; color: var(--color-muted); }
   .hours dd { margin: 0; font-variant-numeric: tabular-nums; }
+  @media (prefers-reduced-motion: reduce) { .yt__play { animation: none; } }
 </style>
+
+<script>
+  // Swap the poster for the YouTube player (privacy-enhanced domain) only when the visitor presses play.
+  function initVideo() {
+    document.querySelectorAll<HTMLButtonElement>('[data-yt]').forEach((btn) => {
+      if (btn.dataset.ready) return;
+      btn.dataset.ready = '1';
+      btn.addEventListener('click', () => {
+        const f = document.createElement('iframe');
+        f.src = `https://www.youtube-nocookie.com/embed/${btn.dataset.yt}?autoplay=1&rel=0&modestbranding=1`;
+        f.title = btn.dataset.ytTitle || 'Video';
+        f.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+        f.allowFullscreen = true;
+        f.referrerPolicy = 'strict-origin-when-cross-origin';
+        btn.replaceWith(f);
+        f.focus();
+      }, { once: true });
+    });
+  }
+  document.addEventListener('astro:page-load', initVideo);
+</script>
