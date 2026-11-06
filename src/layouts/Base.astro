@@ -15,6 +15,8 @@ import Intro from '../components/react/Intro.tsx';
 import logoMeta from '../assets/brand/logo.png';
 // Link-preview card: made by scripts/og-card.mjs from the finished intro screen (a placeholder until then).
 import shareCard from '../assets/brand/og-card.png';
+import truckBed from '../assets/brand/intro-truck-bed.png';
+import truckBase from '../assets/brand/intro-truck-base.png';
 
 interface Crumb { name: string; href: string }
 interface Props {
@@ -57,11 +59,14 @@ const og = ogImage ? await getImage({ src: jobImage(ogImage), width: 1200, heigh
 const card = await getImage({ src: shareCard, width: 1200, height: 630, format: 'jpg', quality: 88 });
 const cardUrl = new URL(card.src, site.url).href;
 const cardAlt = content.intro.drawing === 'truck'
-  ? `${site.name}: a dump truck with STL on the bed and the words ${content.intro.words.join(' ')}`
+  ? `${site.name} logo truck with the words ${content.intro.words.join(' ')}`
   : `${site.name} logo with the words ${content.intro.words.join(' ')}`;
 const analytics = cfg.analytics;
 const ogUrl = og ? new URL(og.src, site.url).href : cardUrl;
 const introLogo = await getImage({ src: logoMeta, width: 360, format: 'webp', quality: 90 });
+const introTruck = content.intro.drawing === 'truck'
+  ? { bed: (await getImage({ src: truckBed, format: 'webp', quality: 90 })).src, base: (await getImage({ src: truckBase, format: 'webp', quality: 90 })).src }
+  : undefined;
 
 const businessId = `${site.url}/#business`;
 const business = {
@@ -149,7 +154,7 @@ const graph = { '@context': 'https://schema.org', '@graph': [business, website, 
     )}
   </head>
   <body>
-    {showIntro && <Intro client:load brand={site.name} logo={introLogo.src} words={content.intro.words} stages={content.intro.stages} drawing={content.intro.drawing} />}
+    {showIntro && <Intro client:load truck={introTruck} logo={introLogo.src} words={content.intro.words} stages={content.intro.stages} drawing={content.intro.drawing} />}
     <a href="#main" class="skip">Skip to content</a>
     <Header />
     <main id="main" tabindex="-1"><slot /></main>

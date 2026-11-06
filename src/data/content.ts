@@ -16,16 +16,16 @@ export const content = {
   /** Five-second intro loader (once per visit). The last word is accented. */
   intro: {
     enabled: true,
-    /** 'truck' replaces the logo with the animated dump truck; 'house' draws a blueprint house behind the headline. */
+    /** 'truck' tilts the logo truck's dump bed (scripts/intro-truck.mjs); 'house' draws a blueprint house behind the headline. */
     drawing: 'truck' as 'house' | 'truck' | 'none',
     words: ['Point', 'at', 'the', 'mess.'],
-    // Timed to the truck: it pulls up, gets loaded, dumps (38–61%) and lowers the bed (61–80%).
+    // Timed to the truck: the bed tilts up (34–52%), holds, and comes back down (60–81%).
     stages: [
       [0, 'Backing up the truck'],
-      [0.22, 'Loading it up'],
-      [0.38, 'Dumping the load'],
-      [0.62, 'Lowering the bed'],
-      [0.85, 'Hauled away'],
+      [0.2, 'Loading it up'],
+      [0.34, 'Dumping the load'],
+      [0.6, 'Lowering the bed'],
+      [0.84, 'Hauled away'],
     ] as [number, string][],
   },
 
