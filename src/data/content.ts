@@ -59,22 +59,59 @@ export const content = {
     faqs: homeFaqs,
   },
 
+  /** About page: written in Aaron's voice. Facts here come from the owner, config/business.json and his LocateFaith listing. */
   about: {
-    title: 'Started to take the weight off',
-    metaTitle: 'About Us: Aaron Ward and the St. Louis Crew',
-    description: 'Founded in 2023 by Aaron Ward: a licensed, insured St. Louis crew for junk removal, cleanouts and demolition, with 1,000+ jobs and counting.',
-    lead: 'Aaron Ward started STL Demolition & Junk Removal in 2023 with one idea: make the heavy, stressful part of a mess someone else’s job, and keep St. Louis neighborhoods clear of the junk piles that drag a block down.',
-    photo: 'crew/team.webp',
-    story: [
-      'Every job starts the same way: someone who’s been staring at a problem for too long. A basement that filled up over twenty years. A parent’s house that has to be emptied before it can be sold. A deck that’s one bad winter from falling down. A remodel stalled behind a pile of drywall.',
-      'That weight is real, on your back and on your mind. Aaron started the company so people in St. Louis would have someone reliable to hand it to: show up on time, tell people the price before anything moves, do the heavy lifting, and leave the place better than we found it.',
-      'It’s also about the neighborhood. Bulky trash dumped in alleys and piled on curbs makes a block feel forgotten. Every couch, fridge and busted-up deck we haul away the right way is one less eyesore on a St. Louis street. Our loads go to a facility that sorts and separates materials, so what can be recycled doesn’t just get buried.',
-      'More than 1,000 jobs later, that’s still the whole idea: clear the mess, lighten the load, and help keep St. Louis clean, one truck at a time.',
-    ],
-    twoTrades: [
-      ['Hauling and demolition, one crew', 'Most messes come in two parts: the thing that has to come out, and the pile it leaves behind. A deck tear-out, a kitchen gut or a garage cleanout gets done in one visit, by one crew, on one bill. If a job needs a permit, we pull it.'],
-      ['Priced by the load', 'It’s the fairest way we know. You can see what a quarter, half, three-quarter or full truck costs before you ever call, and book an actual arrival window online in a few minutes.'],
-    ] as [string, string][],
+    title: 'Hi, I’m Aaron.',
+    metaTitle: 'About Aaron Ward: Family, Faith & Hard Work',
+    description: 'Meet Aaron Ward, founder of STL Demolition & Junk Removal: a family-first, Christian-owned St. Louis business with 1,000+ jobs since 2023.',
+    lead: 'I started STL Demolition & Junk Removal in 2023 to take the heaviest part of a mess off people’s hands. Family comes first for me, faith keeps me honest, and both shape how this business runs.',
+    /** Portrait in src/assets/brand/ */
+    portrait: 'aaron-family.jpg',
+    portraitAlt: 'Aaron Ward smiling on the beach at sunset with his family',
+    portraitPosition: 'center 38%',
+    family: {
+      title: 'Family first. Always.',
+      quote: 'Every house we walk into belongs to somebody’s family. We treat it like it’s ours.',
+      body: [
+        'That photo up top is my why. Every early start and every heavy load is about the people I get to come home to.',
+        'So I run this business the way I’d want someone to treat my own family: show up when we said we would, tell you the price before anything moves, and leave your place cleaner than we found it.',
+        'A lot of our jobs land on hard days: an estate after a loss, a move that came too fast, a parent downsizing out of the house they raised everyone in. We slow down, listen, and handle your family’s things with care.',
+      ],
+      values: [
+        ['On time', 'You get a real arrival window, and we stick to it.'],
+        ['Price first', 'You hear the final number before we lift a thing.'],
+        ['Broom-swept', 'We sweep the space we cleared before we leave.'],
+      ] as [string, string][],
+    },
+    story: {
+      title: 'Why I started this',
+      body: [
+        'Every job starts the same way: someone who’s been staring at a problem for too long. A basement that filled up over twenty years. A deck that’s one bad winter from falling down. A remodel stalled behind a pile of drywall.',
+        'That weight is real, on your back and on your mind. I wanted people in St. Louis to have someone reliable to hand it to.',
+        'It’s about the neighborhood too. Junk dumped in alleys and piled on curbs makes a block feel forgotten. Every couch, fridge and busted-up deck we haul away the right way is one less eyesore on a St. Louis street, and our loads go to a facility that sorts out what can be recycled.',
+        'More than 1,000 jobs later, that’s still the whole idea: clear the mess, lighten the load, and help keep St. Louis clean, one truck at a time.',
+      ],
+      cards: [
+        ['Hauling and demolition, one crew', 'Most messes come in two parts: the thing that has to come out, and the pile it leaves behind. We do both in one visit, on one bill. If a job needs a permit, we pull it.'],
+        ['Priced by the load', 'It’s the fairest way I know. You can see what a quarter, half, three-quarter or full truck costs before you ever call.'],
+      ] as [string, string][],
+    },
+    faith: {
+      title: 'Built on faith',
+      body: [
+        'Faith is a big part of who I am, and it’s a big part of how this company runs. It’s why honesty isn’t a policy here; it’s just how we work. Fair prices, straight answers, and doing the job right even when nobody’s watching.',
+        'It’s also why we’re proud to be listed on LocateFaith, a directory of Christian-owned local businesses. If you’re looking to support businesses that share your faith, you’ll find us there.',
+      ],
+      verse: { text: 'Whatever you do, work heartily, as for the Lord and not for men.', ref: 'Colossians 3:23' },
+      listing: 'https://locatefaith.com/business/stl-demolition-and-junk-removal',
+    },
+    vendor: {
+      title: 'On the Buyers Club Vendor Team',
+      body: 'I sat down with Buyers Club to talk about the business as part of their Vendor Team: how we work, what we haul and tear out, and why we do it the way we do.',
+      youtubeId: 'NwVk6lFT58M',
+      videoTitle: 'Buyers Club Vendor Team: STL Demolition & Junk Removal',
+      channel: 'https://www.youtube.com/@buyersclub8471',
+    },
   },
 
   featureSection: null as null | {
