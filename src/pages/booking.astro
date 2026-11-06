@@ -4,19 +4,20 @@ import Base from "../layouts/Base.astro";
 import Icon from "../components/Icon.astro";
 import { business, telHref } from "../lib/site";
 ---
-<Base title="Your Booking" description="View, reschedule or cancel your STL Demolition & Junk Removal booking." noindex hideMobileBar>
-  <div class="wrap manage" data-manage data-tel={telHref} data-phone={business.phoneDisplay}>
+<Base title="Your Booking" description="View, reschedule or cancel your STL Demolition & Junk Removal booking." noindex hideMobileBar cta={false} intro={false}>
+  <div class="shell manage" data-manage data-tel={telHref} data-phone={business.phoneDisplay}>
+    <h1 class="sr-only">Manage your booking</h1>
     <div data-m-loading class="m-loading"><span class="spinner"></span> Loading your booking…</div>
 
     <div data-m-error hidden class="m-error">
-      <h1 class="h2">We couldn't find that booking.</h1>
+      <h2 class="h2">We couldn't find that booking.</h2>
       <p class="lede" data-m-error-text>Check that you used the full link from your confirmation, or call us.</p>
       <div class="cta-row"><a class="btn" href={telHref}><Icon name="phone" size={16} /> Call {business.phoneDisplay}</a><a class="btn btn--ghost" href="/book/">Make a new booking</a></div>
     </div>
 
     <div data-m-view hidden class="m-view">
       <p class="eyebrow" data-m-status>Booking</p>
-      <h1 class="h2" data-m-title>Your booking</h1>
+      <h2 class="h2" data-m-title>Your booking</h2>
       <div class="done-card">
         <p class="done-when" data-m-date></p>
         <p class="done-window" data-m-window></p>
@@ -73,9 +74,9 @@ import { business, telHref } from "../lib/site";
   .manage .day { flex: none; display: grid; justify-items: center; width: 72px; padding: 12px 0; border-radius: 12px; border: 1px solid var(--line-strong); background: var(--white); }
   .manage .day .d-wd, .manage .day .d-mo { font-size: 0.72rem; color: var(--ink-3); }
   .manage .day .d-num { font-size: 1.3rem; font-weight: 600; }
-  .manage .day[aria-checked="true"] { background: var(--asphalt); color: var(--on-dark); }
+  .manage .day[aria-checked="true"] { background: var(--color-accent); color: var(--color-on-accent); border-color: var(--color-accent); }
   .manage .slot { min-height: 56px; padding: 10px 14px; border-radius: 12px; border: 1px solid var(--line-strong); background: var(--white); text-align: left; font-weight: 600; }
-  .manage .slot[aria-checked="true"] { border-color: var(--ink); box-shadow: inset 0 0 0 1px var(--ink); }
+  .manage .slot[aria-checked="true"] { border-color: var(--color-accent); box-shadow: inset 0 0 0 1px var(--color-accent); }
 </style>
 
 <script>

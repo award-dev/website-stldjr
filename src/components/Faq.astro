@@ -1,0 +1,26 @@
+---
+import type { Faq } from '../data/site';
+interface Props { items: Faq[] }
+const { items } = Astro.props;
+---
+<div class="faq">
+  {items.map((f, i) => (
+    <details class="faq__item" open={i === 0}>
+      <summary><h3>{f.q}</h3><span class="faq__icon" aria-hidden="true"></span></summary>
+      <p>{f.a}</p>
+    </details>
+  ))}
+</div>
+<style>
+  .faq { border-top: 1px solid var(--color-line); }
+  .faq__item { border-bottom: 1px solid var(--color-line); }
+  .faq summary { display: flex; align-items: center; justify-content: space-between; gap: 24px; padding: 24px 0; cursor: pointer; list-style: none; }
+  .faq summary::-webkit-details-marker { display: none; }
+  .faq h3 { font-size: clamp(1.1rem, 1rem + .5vw, 1.4rem); letter-spacing: -0.02em; line-height: 1.25; font-weight: 600; }
+  .faq__icon { position: relative; flex-shrink: 0; width: 36px; height: 36px; border-radius: 50%; background: rgb(255 255 255 / .07); transition: transform .4s var(--ease-out-expo), background-color .25s; }
+  .faq__icon::before, .faq__icon::after { content: ''; position: absolute; left: 50%; top: 50%; width: 14px; height: 2px; margin: -1px 0 0 -7px; border-radius: 2px; background: currentColor; }
+  .faq__icon::after { transform: rotate(90deg); transition: transform .4s var(--ease-out-expo); }
+  .faq__item[open] .faq__icon { background: var(--color-accent); color: var(--color-on-accent); }
+  .faq__item[open] .faq__icon::after { transform: rotate(0); }
+  .faq p { padding: 0 56px 26px 0; color: #cfc7bd; max-width: 62ch; }
+</style>

@@ -1,0 +1,38 @@
+---
+// One landscape video (an interview, a "featured in" segment) beside short copy. Driven by content.featureSection.
+import FeatureVideo from './react/FeatureVideo.tsx';
+import { reelVideo } from '../lib/media';
+import { featureVideos } from '../data/videos';
+import { content } from '../data/content';
+
+const cfg = content.featureSection;
+const source = featureVideos[0];
+const video = cfg && source ? await reelVideo(source) : null;
+const mins = (iso?: string) => { const m = iso?.match(/PT(?:(\d+)M)?(?:(\d+)S)?/); return m ? `${m[1] ?? 0}:${String(m[2] ?? 0).padStart(2, '0')}` : undefined; };
+const arrow = '<svg class="arrow" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg>';
+---
+{cfg && video && (
+  <section class="section-tight fs" aria-labelledby="fs-h">
+    <div class="shell fs__grid">
+      <div class="fs__text" data-reveal>
+        <p class="tag"><span class="dot"></span>{cfg.tag}</p>
+        <h2 id="fs-h" class="display-md">{cfg.title}</h2>
+        <p class="lead">{cfg.lead}</p>
+        {cfg.bullets.length > 0 && <ul class="fs__list">{cfg.bullets.map((b) => <li>{b}</li>)}</ul>}
+        {cfg.link && <a class="link-arrow" href={cfg.link.href} target="_blank" rel="noopener">{cfg.link.label}<span class="sr-only"> (opens in a new tab)</span><Fragment set:html={arrow} /></a>}
+      </div>
+      <div class="fs__video" data-reveal style="--d:120ms">
+        <FeatureVideo client:visible video={video} duration={mins(source.duration)} />
+      </div>
+    </div>
+  </section>
+)}
+<style>
+  .fs__grid { display: grid; gap: 40px 64px; align-items: center; }
+  @media (min-width: 1024px) { .fs__grid { grid-template-columns: 5fr 7fr; } }
+  .fs__text { display: grid; gap: 22px; justify-items: start; }
+  .fs__list { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+  .fs__list li { position: relative; padding-left: 26px; color: #d6cfc6; }
+  .fs__list li::before { content: ''; position: absolute; left: 0; top: .55em; width: 12px; height: 2px; border-radius: 2px; background: var(--color-accent-ink); }
+  .fs__video { min-width: 0; }
+</style>

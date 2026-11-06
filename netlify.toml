@@ -15,6 +15,10 @@
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
 [[headers]]
+  for = "/videos/*"
+  [headers.values]
+    Cache-Control = "public, max-age=2592000"
+[[headers]]
   for = "/fonts/*"
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
@@ -33,26 +37,40 @@
     X-Robots-Tag = "noindex"
     Referrer-Policy = "no-referrer"
 
-# Legacy URLs from the previous site
+# Service pages moved under /services/ in the rebuild
 [[redirects]]
-  from = "/services/"
-  to = "/junk-removal/"
+  from = "/junk-removal/"
+  to = "/services/junk-removal/"
   status = 301
 [[redirects]]
+  from = "/cleanouts/"
+  to = "/services/cleanouts/"
+  status = 301
+[[redirects]]
+  from = "/demolition/"
+  to = "/services/demolition/"
+  status = 301
+[[redirects]]
+  from = "/construction-debris-removal/"
+  to = "/services/construction-debris-removal/"
+  status = 301
+
+# Legacy URLs from the previous (Squarespace) site
+[[redirects]]
   from = "/services/full-service-junk-removal/"
-  to = "/junk-removal/"
+  to = "/services/junk-removal/"
   status = 301
 [[redirects]]
   from = "/services/dumpster-rental/"
-  to = "/construction-debris-removal/"
+  to = "/services/construction-debris-removal/"
   status = 301
 [[redirects]]
   from = "/services/commercial-cleanouts/"
-  to = "/cleanouts/"
+  to = "/services/cleanouts/"
   status = 301
 [[redirects]]
   from = "/services/residential-cleanouts/"
-  to = "/cleanouts/"
+  to = "/services/cleanouts/"
   status = 301
 [[redirects]]
   from = "/service-area/*"
@@ -60,11 +78,7 @@
   status = 301
 [[redirects]]
   from = "/gallery/"
-  to = "/about/"
-  status = 301
-[[redirects]]
-  from = "/contact/"
-  to = "/about/#contact"
+  to = "/projects/"
   status = 301
 [[redirects]]
   from = "/thank-you/"

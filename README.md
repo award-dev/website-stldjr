@@ -3,15 +3,15 @@
 Marketing site and booking product for **STL Demolition & Junk Removal**
 (stlouishjr.com), St. Louis, MO.
 
-- **Static, fast pages** built with [Astro](https://astro.build) — no client
-  framework; each interactive piece is a small TypeScript module.
+- **Dark, media-first design** built with [Astro](https://astro.build) + Tailwind 4, with small
+  React islands for the intro loader, photo gallery/lightbox and (when there is footage) video reels.
+  Rebuilt with the business-site-builder skill's design system.
 - **Load-based pricing configurator** (1/4 → full 17 yd³ truck, drawn to scale).
-- **Guided booking** into Haul-off Ops (the CRM) — or the site's own Google Calendar engine — with photo upload,
+- **Guided booking** into Haul-off Ops (the CRM), or the site's own Google Calendar engine, with photo upload,
   inline validation, saved progress, reschedule/cancel links and honest error
   states. **Quote requests** go to the CRM and Netlify Forms.
 - **Everything business-critical is config**, not code: `config/*.json`.
-- **No invented content.** Missing facts show as purple "OWNER" notes until
-  supplied — see [`docs/LAUNCH-CHECKLIST.md`](docs/LAUNCH-CHECKLIST.md).
+- **No invented content, no stock photos.** Sections with no real media hide themselves.
 
 ## Quick start
 
@@ -34,47 +34,28 @@ npm run check                     # type check
 | Service area regions and towns | `config/service-areas.json` |
 | FAQ | `config/faqs.json` |
 | Reviews | `config/reviews.json` |
-| Photos (before/after, work) | `config/media.json` + `public/photos/` |
-| Homepage hero video | `config/media.json → heroVideo` + `public/videos/` (see below) |
+| Job photos (alt text, categories) | `src/data/projects.ts` + `src/assets/jobs/<category>/` |
+| Page copy, intro wording, photo picks | `src/data/content.ts` |
+| Service page SEO fields and cover photos | `src/data/services.ts` (copy itself is in `config/services.json`) |
+| Videos (reels, hero stories) | `src/data/videos.ts` + `public/videos/` |
+| Brand color | `src/styles/global.css` between `brand:start` / `brand:end` |
 
 Commit a change and Netlify rebuilds. Secrets and optional overrides are
 environment variables — see [`.env.example`](.env.example).
 
-## Hero video
+## Photos and videos
 
-The homepage hero can play a muted, looping background video behind the copy
-and the load configurator. The intended footage is a 15–20s seamless loop of
-two crew members loading the Isuzu dump truck. Put these files in
-`public/videos/` and rebuild. Paths are set in `config/media.json →
-heroVideo`. Each file is used only if it exists; with none, the hero keeps its
-plain background.
+Only the company's own photos and footage. Photos go in `src/assets/jobs/<category>/` and get an entry
+in `src/data/projects.ts` (Astro serves them as responsive WebP, never upscaled). Every video section
+(hero stories, walkthrough reels, feature video) is hidden until `src/data/videos.ts` lists a video.
+Portrait phone walkthroughs (1080×1920) work best; each needs a poster in `src/assets/video-posters/`
+and a short muted preview loop in `public/videos/previews/`.
 
-| File | What | Target |
-| --- | --- | --- |
-| `hero-1080.webm` / `hero-1080.mp4` | Tablet + desktop (≥768px), 16:9 | 1920×1080, ~3–5 MB |
-| `hero-mobile.webm` / `hero-mobile.mp4` | Phones (<768px), portrait 9:16 crop | 720×1280, ~1–2 MB |
-| `hero-poster.jpg` | First frame of the 16:9 encode | 1920×1080, <150 KB |
-| `hero-poster-mobile.jpg` | First frame of the 9:16 encode | 720×1280, <80 KB |
+## Share card
 
-No audio track. On desktop, the left ~40% of the frame sits under the headline
-behind a dark scrim, and the right side is mostly behind the configurator
-card, so frame the action center-right. The mobile crop shows behind the
-headline only.
-
-```sh
-ffmpeg -i master.mov -an -vf "scale=1920:-2,fps=30" -c:v libvpx-vp9 -b:v 0 -crf 36 -row-mt 1 public/videos/hero-1080.webm
-ffmpeg -i master.mov -an -vf "scale=1920:-2,fps=30" -c:v libx264 -crf 26 -preset slow -pix_fmt yuv420p -movflags +faststart public/videos/hero-1080.mp4
-ffmpeg -i master.mov -an -vf "crop=ih*9/16:ih,scale=720:1280,fps=30" -c:v libvpx-vp9 -b:v 0 -crf 38 -row-mt 1 public/videos/hero-mobile.webm
-ffmpeg -i master.mov -an -vf "crop=ih*9/16:ih,scale=720:1280,fps=30" -c:v libx264 -crf 27 -preset slow -pix_fmt yuv420p -movflags +faststart public/videos/hero-mobile.mp4
-ffmpeg -i public/videos/hero-1080.mp4 -frames:v 1 -q:v 5 public/videos/hero-poster.jpg
-ffmpeg -i public/videos/hero-mobile.mp4 -frames:v 1 -q:v 5 public/videos/hero-poster-mobile.jpg
-```
-
-The poster `<img>` is the first paint (and LCP). Video sources are attached
-after `load` and picked by viewport, WebM first, then MP4. Visitors with
-reduced motion, Save-Data or 2G get only the poster and never download the
-video. The video pauses off-screen, and a pause button appears once it plays
-(WCAG 2.2.2).
+The link-preview image is `src/assets/brand/og-card.png`, a capture of the finished intro screen.
+Absolute URLs (canonical, og:image, sitemap, schema) use `config/business.json → siteUrl`; set the
+`SITE_URL` env var to build for another host (e.g. a Netlify preview domain before the DNS move).
 
 ## Deploying (Netlify)
 
@@ -89,27 +70,26 @@ config/              business data (single source of truth)
 shared/              time zone, pricing and .ics helpers used by site + server
 server/lib/          booking logic, calendar, storage, notifications, validation
 netlify/functions/   HTTP endpoints (/api/*)
-src/pages/           routes: /, /junk-removal, /cleanouts, /demolition,
-                     /construction-debris-removal, /pricing, /service-area,
-                     /about, /faq, /book, /quote, /booking, legal, 404
-src/components/      design-system components
+src/data/            site facts (from config), page copy, services, photos, videos
+src/pages/           routes: /, /services/, /services/<slug>/, /pricing/, /projects/,
+                     /service-area/, /about/, /contact/, /faq/, /book/, /quote/,
+                     /booking/, legal, 404
+src/components/      layout + design-system components; react/ holds the islands
 src/scripts/         client modules: booking flow, analytics, load visual
-src/styles/global.css  tokens, type, buttons, forms, motion
+src/styles/          global.css (tokens, type, buttons), media.css, intro.css,
+                     legacy.css (forms, choices, booking widgets on the dark theme)
 tests/               node:test suites
 scripts/local-server.mjs  local preview with functions
 ```
 
 ## Design system
 
-- **Palette:** asphalt `#121311`, paper `#F3F1EC`, concrete greys, and one
-  signal green `#3FCB5C` from the truck logo (`#137A32` for green text on light).
-- **Type:** Geist (self-hosted, variable) for everything, Geist Mono for
-  measurements and labels.
-- **Motif:** measurement — the truck box drawn to scale in isometric, quarter
-  ticks, cubic-yard labels.
-- **Motion:** 140–420 ms, ease-out curves, used only to show state changes
-  (load fill, segmented thumb, step transitions, press feedback). All of it
-  respects `prefers-reduced-motion`.
+- **Palette:** near-black `#0b0a09`, warm cards `#191613` / `#221e1a`, text `#f4efe8`, and one
+  signal green `#3FCB5C` from the truck logo (dark text on green buttons, 9:1 contrast).
+- **Type:** Bricolage Grotesque (display) and Geist (body), self-hosted via @fontsource; Geist Mono
+  for measurements.
+- **Intro:** a 5-second once-per-visit loader ("Point at the mess."), skippable, off on the booking pages.
+- **Motion:** scroll reveals, hover lifts, a services marquee. All of it respects `prefers-reduced-motion`.
 
 ## Analytics events
 

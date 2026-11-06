@@ -1,0 +1,25 @@
+---
+import { Image } from 'astro:assets';
+import logo from '../assets/brand/logo.png';
+import { site } from '../data/site';
+// Client logo (transparent PNG from scripts/logo.mjs) beside the text name. The surrounding link
+// carries the accessible name, so the image is decorative here.
+interface Props { size?: 'sm' | 'lg' }
+const { size = 'sm' } = Astro.props;
+const h = size === 'lg' ? 112 : 56;
+const [first, ...rest] = site.wordmark ? site.wordmark.split(' ') : [];
+---
+<span class:list={['wm', `wm--${size}`]}>
+  <Image src={logo} alt="" height={h} densities={[1, 2]} class="wm__logo" loading={size === 'sm' ? 'eager' : 'lazy'} />
+  {first && <span class="wm__text">{first}{rest.length > 0 && <span> {rest.join(' ')}</span>}</span>}
+</span>
+<style>
+  .wm { display: inline-flex; align-items: center; gap: 12px; }
+  .wm__logo { height: 56px; width: auto; filter: drop-shadow(0 4px 14px rgb(0 0 0 / .45)); transition: transform .45s var(--ease-out-expo); }
+  a:hover .wm__logo { transform: scale(1.05) rotate(-2deg); }
+  .wm__text { font-family: var(--font-display); font-weight: 700; font-size: 15px; letter-spacing: .08em; white-space: nowrap; text-transform: uppercase; }
+  .wm__text span { font-weight: 400; color: #cfc7bd; }
+  .wm--lg { flex-direction: column; align-items: flex-start; gap: 16px; }
+  .wm--lg .wm__logo { height: 112px; }
+  @media (max-width: 380px) { .wm__text { font-size: 12.5px; } .wm--sm .wm__logo { height: 48px; } }
+</style>

@@ -1,91 +1,93 @@
 ---
-import { business, services, areas, telHref, mailHref, hoursSummary, showOwnerNotes } from "../lib/site";
-import OwnerNote from "./OwnerNote.astro";
+import { Image } from 'astro:assets';
+import Wordmark from './Wordmark.astro';
+import { nav, services, site, primaryAction, secondaryAction } from '../data/site';
+import { hoursSummary } from '../lib/site';
+import { content } from '../data/content';
+import { jobImage, fitWidths, PHOTO_QUALITY } from '../lib/images';
+interface Props { cta?: boolean }
+const { cta = true } = Astro.props;
 const year = new Date().getFullYear();
-const links = business.links;
-const social = [
-  { label: "Google", href: links.googleBusinessProfile },
-  { label: "Facebook", href: links.facebook },
-  { label: "Instagram", href: links.instagram },
-  { label: "Nextdoor", href: links.nextdoor },
-].filter((s) => s.href);
+const f = content.footer;
+const bg = f.ctaPhoto ? jobImage(f.ctaPhoto) : null;
+const trust = [site.credentials, site.rating].filter(Boolean).join(' · ');
+const blurb = f.blurb || `${site.credentials ? site.credentials + ' ' : ''}${site.name} in ${site.city}, ${site.region}.`;
+const arrow = '<svg class="arrow" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg>';
 ---
-<footer class="footer dark">
-  <div class="wrap">
-    <div class="top">
-      <div class="brand-col">
-        <img src="/logo-mark-320.png" width="120" height="64" alt={business.name} loading="lazy" decoding="async" />
-        <p class="statement">Junk removal and demolition for St. Louis. Priced by the load. Booked in a few minutes.</p>
-        <div class="cta-row">
-          <a href="/book/" class="btn btn--green" data-track="cta_click" data-track-cta="book" data-track-location="footer">Book a pickup</a>
-          <a href={telHref} class="phone-link" data-track="phone_click" data-track-location="footer"><span class="num">{business.phoneDisplay}</span></a>
+<footer class="ft">
+  {cta && (
+    <section class="shell ft__cta" aria-labelledby="cta-h">
+      <div class="ft__cta-card" data-reveal>
+        {bg && <Image src={bg} alt="" widths={fitWidths(bg, [640, 1024, 1536])} quality={PHOTO_QUALITY} sizes="(min-width: 1400px) 1360px, 100vw" class="ft__cta-bg" loading="lazy" />}
+        <div class="ft__cta-shade" aria-hidden="true"></div>
+        <div class="ft__cta-body">
+          {f.ctaTag && <p class="tag"><span class="dot"></span>{f.ctaTag}</p>}
+          <h2 id="cta-h" class="display-lg">{f.ctaTitle}</h2>
+          <p class="lead">{f.ctaLead}</p>
+          <div class="btn-row">
+            <a href={primaryAction.href} class="btn btn-accent" data-track="cta_click" data-track-cta="book" data-track-location="footer-cta">{primaryAction.label}<Fragment set:html={arrow} /></a>
+            <a href={secondaryAction.href} class="btn btn-ghost" data-track="cta_click" data-track-cta="quote" data-track-location="footer-cta">{secondaryAction.label}</a>
+          </div>
         </div>
       </div>
+    </section>
+  )}
 
-      <nav class="cols" aria-label="Footer">
-        <div>
-          <h2 class="meta col-title">Services</h2>
-          <ul role="list">
-            {services.groups.map((g) => <li><a href={g.path + "/"}>{g.name}</a></li>)}
-            <li><a href="/pricing/">Pricing</a></li>
-          </ul>
-        </div>
-        <div>
-          <h2 class="meta col-title">Service area</h2>
-          <ul role="list">
-            {areas.regions.map((r) => <li><a href={`/service-area/#${r.id}`}>{r.name}</a></li>)}
-          </ul>
-        </div>
-        <div>
-          <h2 class="meta col-title">Contact</h2>
-          <ul role="list">
-            <li><a href={telHref} data-track="phone_click" data-track-location="footer-contact" class="num">{business.phoneDisplay}</a></li>
-            <li><a href={mailHref}>{business.email}</a></li>
-            <li><a href="/quote/">Get a quote</a></li>
-            <li><a href="/faq/">FAQ</a></li>
-          </ul>
-          <dl class="hours">
-            {hoursSummary().map((h) => <div><dt>{h.days}</dt><dd class="num">{h.hours}</dd></div>)}
-          </dl>
-          {!business.hours.confirmed && <OwnerNote>Confirm business hours in config/business.json.</OwnerNote>}
-        </div>
-      </nav>
+  <div class="shell ft__grid">
+    <div class="ft__brand">
+      <a href="/" aria-label={`${site.name}, home`}><Wordmark size="lg" /></a>
+      <p>{blurb}</p>
     </div>
-
-    <div class="bottom">
-      <p class="small muted">© {year} {business.legalName || business.name}. St. Louis, Missouri.</p>
-      <ul role="list" class="legal">
-        {social.map((s) => <li><a href={s.href!} rel="noopener" target="_blank">{s.label}</a></li>)}
-        <li><a href="/privacy/">Privacy</a></li>
-        <li><a href="/terms/">Terms</a></li>
-        <li><a href="/accessibility/">Accessibility</a></li>
+    {services.length > 0 && (
+      <div>
+        <p class="ft__label">Services</p>
+        <ul>{services.map((s) => <li><a class="link-u" href={`/services/${s.slug}/`}>{s.title}</a></li>)}</ul>
+      </div>
+    )}
+    <div>
+      <p class="ft__label">Company</p>
+      <ul>
+        {nav.map((n) => <li><a class="link-u" href={n.href}>{n.label}</a></li>)}
+        <li><a class="link-u" href="/faq/">FAQ</a></li>
+        {site.facebook && <li><a class="link-u" href={site.facebook} rel="noopener" target="_blank">Facebook<span class="sr-only"> (opens in a new tab)</span></a></li>}
       </ul>
     </div>
-    {business.analytics.provider === "ga4" && !business.analytics.ga4MeasurementId && <OwnerNote>Add your Google Analytics Measurement ID (G-…) in config/business.json → analytics.ga4MeasurementId.</OwnerNote>}
-    {showOwnerNotes && social.length === 0 && <OwnerNote>Add your Google Business Profile and social links in config/business.json → links.</OwnerNote>}
+    <div>
+      <p class="ft__label">Contact</p>
+      <ul>
+        <li><a class="link-u" href={site.phoneHref} data-track="phone_click" data-track-location="footer">{site.phone}</a></li>
+        <li><a class="link-u ft__email" href={`mailto:${site.email}`}>{site.email}</a></li>
+        {hoursSummary().map((h) => <li class="muted">{h.days} · {h.hours}</li>)}
+        <li class="muted">Serving {site.serviceArea.map((a) => a.name).join(', ')}</li>
+        <li><a class="link-u" href={primaryAction.href}>{primaryAction.label} online</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="shell ft__legal">
+    <p>© {year} {site.name}{trust && ` · ${trust}`}</p>
+    <ul class="ft__legal-links">
+      <li><a class="link-u" href="/privacy/">Privacy</a></li>
+      <li><a class="link-u" href="/terms/">Terms</a></li>
+      <li><a class="link-u" href="/accessibility/">Accessibility</a></li>
+    </ul>
   </div>
 </footer>
 
 <style>
-  .footer { padding: clamp(56px, 8vw, 96px) 0 calc(28px + env(safe-area-inset-bottom)); }
-  .top { display: grid; gap: 48px; }
-  @media (min-width: 900px) { .top { grid-template-columns: 1fr 1.4fr; gap: 64px; } }
-  .brand-col { display: grid; gap: 20px; align-content: start; max-width: 380px; }
-  .brand-col img { width: 108px; }
-  .statement { color: var(--on-dark-2); font-size: 1.02rem; }
-  .cols { display: grid; grid-template-columns: repeat(2, 1fr); gap: 36px 24px; }
-  @media (min-width: 640px) { .cols { grid-template-columns: repeat(3, 1fr); } }
-  .col-title { color: var(--on-dark-3); margin-bottom: 14px; }
-  .cols ul { display: grid; gap: 10px; }
-  .cols a { color: var(--on-dark); text-decoration: none; font-size: 0.95rem; }
-  .cols a:hover { text-decoration: underline; }
-  .hours { display: grid; gap: 4px; margin-top: 18px; font-size: 0.85rem; color: var(--on-dark-2); }
-  .hours div { display: flex; gap: 10px; }
-  .hours dt { min-width: 64px; color: var(--on-dark-3); }
-  .hours dd { margin: 0; }
-  .bottom { display: flex; flex-wrap: wrap; gap: 12px 24px; justify-content: space-between; align-items: center; margin-top: 56px; padding-top: 24px; border-top: 1px solid var(--asphalt-line); }
-  .legal { display: flex; flex-wrap: wrap; gap: 8px 20px; font-size: 0.85rem; }
-  .legal a { color: var(--on-dark-2); text-decoration: none; }
-  .legal a:hover { color: var(--on-dark); text-decoration: underline; }
-  .footer :global(.owner-note) { margin-top: 16px; }
+  .ft { padding-bottom: calc(32px + var(--mobilebar-h, 0px)); }
+  .ft__cta { padding-block: clamp(40px, 6vw, 80px) clamp(64px, 8vw, 112px); }
+  .ft__cta-card { position: relative; overflow: hidden; isolation: isolate; border-radius: var(--radius-xl); min-height: clamp(480px, 52vw, 620px); display: flex; align-items: flex-end; background: radial-gradient(120% 140% at 100% 0%, rgb(var(--accent-rgb) / .35), transparent 60%), var(--color-card); }
+  .ft__cta-bg { position: absolute; inset: 0; z-index: -2; width: 100%; height: 100%; object-fit: cover; }
+  .ft__cta-shade { position: absolute; inset: 0; z-index: -1; background: linear-gradient(100deg, rgb(11 10 9 / .95) 15%, rgb(11 10 9 / .72) 55%, rgb(11 10 9 / .25)); }
+  @media (max-width: 767px) { .ft__cta-shade { background: linear-gradient(to top, rgb(11 10 9 / .97) 45%, rgb(11 10 9 / .5)); } }
+  .ft__cta-body { display: grid; gap: 22px; padding: clamp(28px, 5vw, 64px); max-width: 760px; }
+  .ft__grid { display: grid; gap: 40px; padding-top: 24px; }
+  @media (min-width: 640px) { .ft__grid { grid-template-columns: 1fr 1fr; } }
+  @media (min-width: 1024px) { .ft__grid { grid-template-columns: 1.4fr 1fr 1fr 1.2fr; gap: 32px; } }
+  .ft__brand { display: grid; gap: 18px; align-content: start; max-width: 26rem; color: var(--color-muted); font-size: 15px; }
+  .ft__label { font-size: 13px; font-weight: 600; color: var(--color-muted); }
+  .ft ul { list-style: none; margin: 14px 0 0; padding: 0; display: grid; gap: 10px; font-size: 15px; }
+  .ft__email { overflow-wrap: anywhere; }
+  .ft .ft__legal-links { display: flex; flex-wrap: wrap; gap: 20px; margin: 0 !important; font-size: 14px !important; }
+  .ft__legal { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 24px; margin-top: 56px; padding-top: 24px; border-top: 1px solid var(--color-line); font-size: 14px; color: var(--color-muted); }
 </style>

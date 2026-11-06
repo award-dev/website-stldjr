@@ -31,8 +31,12 @@ below is done, set `showOwnerNotes` to `false` in `config/business.json`.
 - [ ] **Quote notifications** — Netlify → Forms → `quote` → email to award@stlouishjr.com.
 - [x] **Google Analytics** — Measurement ID (`G-…`) into
       `config/business.json → analytics.ga4MeasurementId`.
-- [ ] **Photos** — truck/crew/work photos (`config/media.json` → work). Before/after sliders keep the illustrations by choice; real pairs can still be added to `beforeAfter`.
-- [ ] **Hero video** — loop + posters into `public/videos/` (README → Hero video).
+- [x] **Photos** — truck/crew/work photos in `src/assets/jobs/` (`src/data/projects.ts`).
+- [ ] **Before/after photos** — real pairs of the same space (the illustrated sliders were removed in
+      the rebuild; the section appears once a pair is added to `src/data/projects.ts`).
+- [ ] **Videos** — phone walkthroughs of real jobs turn on the hero stories and reels (README → Photos and videos).
+- [ ] **Share previews** — og:image and canonicals point at stlouishjr.com. Until the domain serves this
+      site, shared links preview the old site; build with `SITE_URL=<netlify host>` for a preview.
 - [ ] **Review text** — paste real Google reviews into `config/reviews.json`, or
       enable live reviews with `GOOGLE_PLACES_API_KEY` + `GOOGLE_PLACE_ID`.
 - [ ] **Instagram / Nextdoor** links, if any.
