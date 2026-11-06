@@ -6,6 +6,7 @@ import { jobImage, projectFor, fitWidths, PHOTO_QUALITY } from '../lib/images';
 import { site, primaryAction, secondaryAction } from '../data/site';
 import { content } from '../data/content';
 import { business, pricing, hoursSummary } from '../lib/site';
+import Reviews from '../components/Reviews.astro';
 
 const a = content.about;
 const truck = projectFor('crew/truck.webp');
@@ -56,6 +57,13 @@ const aboutPage = {
       <dl class="facts">
         {facts.map(([k, v], i) => <div data-reveal style={`--d:${(i % 3) * 70}ms`}><dt>{k}</dt><dd>{v}</dd></div>)}
       </dl>
+    </div>
+  </section>
+
+  <section class="section-tight" aria-labelledby="reviews-h">
+    <div class="shell">
+      <div class="head" data-reveal><h2 id="reviews-h" class="display-md">What customers say about the crew</h2></div>
+      <Reviews limit={3} />
     </div>
   </section>
 

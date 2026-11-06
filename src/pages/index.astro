@@ -14,11 +14,14 @@ import { galleryPhotos } from '../lib/media';
 import { services, site, primaryAction, secondaryAction } from '../data/site';
 import { content } from '../data/content';
 import { pricing, minimum, loads } from '../lib/site';
+import { googleReviews } from '../lib/reviews';
 
 const h = content.home;
 const wall = await galleryPhotos(h.wall.map(projectFor));
 const heroImg = jobImage(h.heroPhoto);
-const trust = [site.credentials, h.areaLine].filter(Boolean).join(' · ');
+const g = await googleReviews();
+const googleLine = g?.rating && g.count ? `${g.rating.toFixed(1)} stars on Google (${g.count} reviews)` : '';
+const trust = [googleLine, site.credentials, h.areaLine].filter(Boolean).join(' · ');
 const fromPrice = loads[0]?.priceLine.amount;
 const arrow = '<svg class="arrow" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg>';
 ---
@@ -101,6 +104,16 @@ const arrow = '<svg class="arrow" viewBox="0 0 24 24" aria-hidden="true" fill="n
     </div>
   </section>
 
+  <section class="section-tight" aria-labelledby="reviews-h">
+    <div class="shell">
+      <div class="head" data-reveal>
+        <h2 id="reviews-h" class="display-lg">What customers say</h2>
+        <p class="lead">Straight from our Google reviews, word for word.</p>
+      </div>
+      <Reviews />
+    </div>
+  </section>
+
   <section class="section-tight" aria-labelledby="guide-h">
     <div class="shell">
       <div class="head-row">
@@ -140,13 +153,6 @@ const arrow = '<svg class="arrow" viewBox="0 0 24 24" aria-hidden="true" fill="n
         <a href="/service-area/" class="link-arrow" data-reveal>Full service area<Fragment set:html={arrow} /></a>
       </div>
       <ServiceAreaBlock />
-    </div>
-  </section>
-
-  <section class="section-tight" aria-labelledby="reviews-h">
-    <div class="shell">
-      <div class="head" data-reveal><h2 id="reviews-h" class="display-lg">What customers say</h2></div>
-      <Reviews />
     </div>
   </section>
 
