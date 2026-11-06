@@ -3,25 +3,24 @@ import Base from "../layouts/Base.astro";
 import PageHero from "../components/PageHero.astro";
 import LoadConfigurator from "../components/LoadConfigurator.astro";
 import LoadGuide from "../components/LoadGuide.astro";
-import FaqList from "../components/FaqList.astro";
-import FinalCta from "../components/FinalCta.astro";
+import Faq from "../components/Faq.astro";
 import OwnerNote from "../components/OwnerNote.astro";
-import { pricing, loads, minimum, anyPrice, abs } from "../lib/site";
+import { pricing, loads, minimum, anyPrice, abs, faqItems } from "../lib/site";
+const crumbs = [{ name: "Home", href: "/" }, { name: "Pricing", href: "/pricing/" }];
 const schema = anyPrice ? [{
   "@type": "OfferCatalog",
   name: "Junk removal by the load",
   itemListElement: [...(minimum ? [{ "@type": "Offer", name: "Minimum pickup (a few small items)", price: minimum.price, priceCurrency: pricing.currency, seller: { "@id": abs("/#business") } }] : []), ...loads.filter((l) => l.price).map((l) => ({ "@type": "Offer", name: `${l.label} (${l.yards} cubic yards)`, price: l.price, priceCurrency: pricing.currency, seller: { "@id": abs("/#business") } }))],
 }] : [];
 ---
-<Base title="Junk Removal Pricing in St. Louis — By the Load" description={`How junk removal pricing works: 1/4, 1/2, 3/4 or a full ${pricing.maxCubicYards}-cubic-yard truck. See what fits in each load and everything that can change the price.`} schema={schema}>
-  <PageHero eyebrow="Pricing" title="You pay for the space it takes up." lede={`Our truck holds ${pricing.maxCubicYards} cubic yards. Pick how much of it you'll fill — a quarter, half, three-quarters, or all of it. That's the price — loading and hauling included. Just a few small items? There's a $125 minimum pickup.`} crumbs={[{ href: "/pricing/", label: "Pricing" }]} />
+<Base title="Junk Removal Pricing in St. Louis, by the Load" breadcrumbs={crumbs} description={`How junk removal pricing works: 1/4, 1/2, 3/4 or a full ${pricing.maxCubicYards}-cubic-yard truck. See what fits in each load and everything that can change the price.`} schema={schema}>
+  <PageHero title="You pay for the space it takes up" lead={`Our truck holds ${pricing.maxCubicYards} cubic yards. Pick how much of it you'll fill — a quarter, half, three-quarters, or all of it. That's the price — loading and hauling included. Just a few small items? There's a $125 minimum pickup.`} crumbs={crumbs} />
 
-  <section class="section">
-    <div class="wrap cfg-grid">
+  <section class="section-tight">
+    <div class="shell cfg-grid">
       <div class="stack" style="--stack: 20px">
-        <p class="eyebrow">Try it</p>
-        <h2 class="h2">Pick a size. See the price.</h2>
-        <p class="lede">Can't decide between two sizes? Book the smaller one and upload photos. If it won't fit, we tell you before we load.</p>
+        <h2 class="display-md">Pick a size. See the price.</h2>
+        <p class="lead">Can't decide between two sizes? Book the smaller one and upload photos. If it won't fit, we tell you before we load.</p>
         <table class="ptable">
           <caption class="sr-only">Load sizes and prices</caption>
           <thead><tr><th scope="col">Load</th><th scope="col">Volume</th><th scope="col">Price</th></tr></thead>
@@ -35,36 +34,34 @@ const schema = anyPrice ? [{
     </div>
   </section>
 
-  <section class="section paper-2">
-    <div class="wrap">
-      <div class="section-head"><p class="eyebrow">What fits</p><h2 class="h2">Roughly what each load looks like.</h2></div>
+  <section class="section-tight">
+    <div class="shell">
+      <div class="head" data-reveal><h2 class="display-md">Roughly what each load looks like</h2></div>
       <LoadGuide />
     </div>
   </section>
 
-  <section class="section" id="what-changes-the-price">
-    <div class="wrap cond-grid">
-      <div class="section-head">
-        <p class="eyebrow">The fine print, not so fine</p>
-        <h2 class="h2">What can change the price.</h2>
-        <p class="lede">None of this is hidden. If something on this list applies to your job, we'll say so before we start.</p>
+  <section class="section-tight" id="what-changes-the-price">
+    <div class="shell cond-grid">
+      <div class="head" data-reveal>
+        <h2 class="display-md">What can change the price</h2>
+        <p class="lead">None of this is hidden. If something on this list applies to your job, we'll say so before we start.</p>
       </div>
       <div>
         <ol role="list" class="conds">
-          {pricing.conditions.map((c, i) => <li><span class="meta num muted">{String(i + 1).padStart(2, "0")}</span><p>{c}</p></li>)}
+          {pricing.conditions.map((c, i) => <li><span class="cond-n num">{String(i + 1).padStart(2, "0")}</span><p>{c}</p></li>)}
         </ol>
         {pricing.ownerNotes.map((n) => <OwnerNote class="p-note">{n}</OwnerNote>)}
       </div>
     </div>
   </section>
 
-  <section class="section paper-2">
-    <div class="wrap faq-grid">
-      <div class="section-head"><p class="eyebrow">Questions</p><h2 class="h2">Pricing questions.</h2></div>
-      <FaqList ids={["pricing", "load-size", "yards", "more-than-expected", "estimates"]} />
+  <section class="section-tight">
+    <div class="shell faq-grid">
+      <div class="head" data-reveal><h2 class="display-md">Pricing questions</h2></div>
+      <Faq items={faqItems(["pricing", "load-size", "yards", "more-than-expected", "estimates"])} />
     </div>
   </section>
-  <FinalCta />
 </Base>
 
 <style>
@@ -74,6 +71,7 @@ const schema = anyPrice ? [{
   .ptable th, .ptable td { text-align: left; padding: 14px 8px 14px 0; border-bottom: 1px solid var(--line); }
   .ptable thead th { font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-3); font-weight: 500; }
   .ptable tbody th { font-weight: 580; }
+  .cond-n { font-family: var(--font-display); font-weight: 700; color: var(--color-accent-ink); }
   .conds { display: grid; border-top: 1px solid var(--line); }
   .conds li { display: grid; grid-template-columns: 44px 1fr; gap: 12px; padding: 20px 0; border-bottom: 1px solid var(--line); font-size: 1.05rem; }
   :global(.p-note) { margin-top: 12px; display: flex; }

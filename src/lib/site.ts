@@ -8,7 +8,6 @@ import services from "../../config/services.json";
 import areas from "../../config/service-areas.json";
 import faqsFile from "../../config/faqs.json";
 import reviews from "../../config/reviews.json";
-import media from "../../config/media.json";
 import { priceLine, formatYards } from "../../shared/pricing.js";
 
 // Build-time env overrides mirror server/lib/config.mjs so the site and the
@@ -30,7 +29,7 @@ const pricing = {
 
 export type Load = (typeof pricing.loads)[number];
 
-export { business, pricing, booking, services, areas, reviews, media };
+export { business, pricing, booking, services, areas, reviews };
 
 export const showOwnerNotes = business.showOwnerNotes;
 export const telHref = `tel:${business.phone}`;
@@ -54,15 +53,6 @@ export function fillTokens(s: string) {
 
 export const faqs = faqsFile.items.map((f) => ({ ...f, a: fillTokens(f.a) }));
 export const faqById = (id: string) => faqs.find((f) => f.id === id);
-
-export const nav = [
-  { href: "/junk-removal/", label: "Services", children: services.groups.map((g) => ({ href: g.path + "/", label: g.navLabel })) },
-  { href: "/pricing/", label: "Pricing" },
-  { href: "/#how-it-works", label: "How it works" },
-  { href: "/service-area/", label: "Service area" },
-  { href: "/about/", label: "About" },
-  { href: "/faq/", label: "FAQ" },
-];
 
 const DAYS = ["mon", "tue", "wed", "thu", "fri", "sat", "sun"] as const;
 const DAY_NAMES: Record<string, string> = { mon: "Monday", tue: "Tuesday", wed: "Wednesday", thu: "Thursday", fri: "Friday", sat: "Saturday", sun: "Sunday" };
@@ -106,4 +96,10 @@ export const allPlaces = areas.regions.flatMap((r) => r.places);
 
 export function abs(path: string) {
   return new URL(path, business.siteUrl).toString();
+}
+
+/** FAQs in the { q, a } shape the Faq component takes; all of them, or the given ids in order. */
+export function faqItems(ids?: string[]) {
+  const list = ids ? ids.map((id) => faqById(id)).filter((f): f is (typeof faqs)[number] => !!f) : faqs;
+  return list.map((f) => ({ q: f.q, a: f.a }));
 }

@@ -1,142 +1,183 @@
 ---
-import "../styles/global.css";
-import Header from "../components/Header.astro";
-import Footer from "../components/Footer.astro";
-import MobileBar from "../components/MobileBar.astro";
-import Schema from "../components/Schema.astro";
-import { business, booking, abs, allPlaces, openingHoursSchema, anyPrice } from "../lib/site";
+import '../styles/global.css';
+import '../styles/media.css';
+import '../styles/intro.css';
+import '../styles/legacy.css';
+import { getImage } from 'astro:assets';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import MobileBar from '../components/MobileBar.astro';
+import { business as cfg, booking, openingHoursSchema, anyPrice } from '../lib/site';
+import { site, services } from '../data/site';
+import { content } from '../data/content';
+import { jobImage } from '../lib/images';
+import Intro from '../components/react/Intro.tsx';
+import logoMeta from '../assets/brand/logo.png';
+// Link-preview card: made by scripts/og-card.mjs from the finished intro screen (a placeholder until then).
+import shareCard from '../assets/brand/og-card.png';
 
+interface Crumb { name: string; href: string }
 interface Props {
-  title: string;
+  /** Page title; the brand is appended. Omit on the home page. */
+  title?: string;
   description: string;
+  /** Job photo path (relative to src/assets/jobs) used as the business image in structured data */
   ogImage?: string;
-  noindex?: boolean;
+  ogAlt?: string;
+  /** Extra JSON-LD nodes for this page */
   schema?: Record<string, unknown>[];
+  breadcrumbs?: Crumb[];
+  noindex?: boolean;
+  /** Show the closing call-to-action band above the footer */
+  cta?: boolean;
+  /** Hide the phone quick-action bar (booking and quote flows have their own actions) */
   hideMobileBar?: boolean;
-  fullTitle?: boolean;
+  /** Play the once-per-visit intro on this page (off for booking flows) */
+  intro?: boolean;
 }
-const { title, description, ogImage = "/og-default.png", noindex = false, schema = [], hideMobileBar = false, fullTitle = false } = Astro.props;
-const canonical = abs(Astro.url.pathname);
-const pageTitle = fullTitle ? title : `${title} | ${business.name}`;
-const links = business.links;
-const sameAs = [links.googleBusinessProfile, links.facebook, links.instagram, links.nextdoor].filter(Boolean);
+const {
+  title,
+  description,
+  ogImage,
+  ogAlt,
+  schema = [],
+  breadcrumbs,
+  noindex = false,
+  cta = true,
+  hideMobileBar = false,
+  intro = true,
+} = Astro.props;
+const showIntro = content.intro.enabled && intro;
 
-const org = {
-  "@context": "https://schema.org",
-  "@type": "HomeAndConstructionBusiness",
-  "@id": abs("/#business"),
-  name: business.name,
-  url: business.siteUrl,
-  logo: abs("/logo-badge.png"),
-  image: abs("/og-default.png"),
-  telephone: business.phone,
-  email: business.email,
-  slogan: business.tagline,
-  address: {
-    "@type": "PostalAddress",
-    ...(business.address.public && business.address.street ? { streetAddress: business.address.street, postalCode: business.address.postalCode } : {}),
-    addressLocality: business.address.city,
-    addressRegion: business.address.region,
-    addressCountry: business.address.country,
+const fullTitle = `${title ?? content.home.title} | ${site.shortName}`;
+const canonical = new URL(Astro.url.pathname, site.url).href;
+// Business image for structured data: the page's photo if given, else the share card.
+const og = ogImage ? await getImage({ src: jobImage(ogImage), width: 1200, height: 630, fit: 'cover', format: 'jpg', quality: 80 }) : null;
+// Link-preview card: the finished loading screen (logo, "Building your next project"), same on every page.
+const card = await getImage({ src: shareCard, width: 1200, height: 630, format: 'jpg', quality: 88 });
+const cardUrl = new URL(card.src, site.url).href;
+const cardAlt = `${site.name} logo with the words ${content.intro.words.join(' ')}`;
+const analytics = cfg.analytics;
+const ogUrl = og ? new URL(og.src, site.url).href : cardUrl;
+const introLogo = await getImage({ src: logoMeta, width: 360, format: 'webp', quality: 90 });
+
+const businessId = `${site.url}/#business`;
+const business = {
+  '@type': site.schemaType,
+  '@id': businessId,
+  name: site.name,
+  url: `${site.url}/`,
+  telephone: site.phoneE164,
+  email: site.email,
+  image: ogUrl,
+  logo: { '@type': 'ImageObject', url: `${site.url}/logo-512.png`, width: 512, height: 512 },
+  ...(site.owner && !site.owner.startsWith('__') ? { founder: { '@type': 'Person', name: site.owner } } : {}),
+  slogan: cfg.tagline,
+  address: { '@type': 'PostalAddress', addressLocality: site.city, addressRegion: site.region, addressCountry: 'US' },
+  ...(cfg.hours.confirmed ? { openingHoursSpecification: openingHoursSchema() } : {}),
+  ...(cfg.trust.foundedYear ? { foundingDate: String(cfg.trust.foundedYear) } : {}),
+  ...(anyPrice ? { priceRange: '$$' } : {}),
+  areaServed: site.serviceArea.map((a) => ({ '@type': a.type, name: `${a.name}, ${site.region}`, ...(a.wiki ? { sameAs: a.wiki } : {}) })),
+  sameAs: [...new Set([...site.sameAs, site.facebook].filter(Boolean))],
+  knowsAbout: services.map((s) => s.title),
+  hasOfferCatalog: {
+    '@type': 'OfferCatalog',
+    name: `${site.name} services`,
+    itemListElement: services.map((s) => ({
+      '@type': 'Offer',
+      itemOffered: { '@type': 'Service', name: s.title, url: `${site.url}/services/${s.slug}/` },
+    })),
   },
-  areaServed: [
-    { "@type": "City", name: "St. Louis", containedInPlace: { "@type": "State", name: "Missouri" } },
-    { "@type": "AdministrativeArea", name: "St. Louis County, MO" },
-    { "@type": "AdministrativeArea", name: "St. Charles County, MO" },
-    ...allPlaces.map((p) => ({ "@type": "Place", name: `${p}, MO` })),
-  ],
-  ...(business.hours.confirmed ? { openingHoursSpecification: openingHoursSchema() } : {}),
-  ...(business.trust.foundedYear ? { foundingDate: String(business.trust.foundedYear) } : {}),
-  ...(business.founder ? { founder: { "@type": "Person", name: business.founder } } : {}),
-  ...(sameAs.length ? { sameAs } : {}),
-  ...(anyPrice ? { priceRange: "$$" } : {}),
 };
-
-const analytics = business.analytics;
+const website = { '@type': 'WebSite', '@id': `${site.url}/#website`, url: `${site.url}/`, name: site.name, publisher: { '@id': businessId } };
+const crumbs = breadcrumbs && {
+  '@type': 'BreadcrumbList',
+  itemListElement: breadcrumbs.map((c, i) => ({ '@type': 'ListItem', position: i + 1, name: c.name, item: new URL(c.href, site.url).href })),
+};
+const graph = { '@context': 'https://schema.org', '@graph': [business, website, ...(crumbs ? [crumbs] : []), ...schema] };
 ---
 <!doctype html>
-<html lang="en-US" data-booking-api={booking.crm?.apiBase || undefined}>
+<html lang="en-US" class:list={[!showIntro && 'intro-seen']} data-booking-api={booking.crm?.apiBase || undefined}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-    <script is:inline>document.documentElement.classList.add("js")</script>
-    <title>{pageTitle}</title>
+    <title>{fullTitle}</title>
     <meta name="description" content={description} />
-    <link rel="canonical" href={canonical} />
-    {noindex && <meta name="robots" content="noindex, nofollow" />}
-    <meta name="theme-color" content="#121311" />
+    {noindex ? <meta name="robots" content="noindex" /> : <link rel="canonical" href={canonical} />}
+    <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <meta name="theme-color" content="#0b0a09" />
     <meta name="format-detection" content="telephone=no" />
-    <link rel="preload" href="/fonts/geist.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="icon" href="/favicon.ico" sizes="any" />
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
-    <link rel="apple-touch-icon" href="/favicon-180.png" />
     <link rel="manifest" href="/site.webmanifest" />
-
     <meta property="og:type" content="website" />
-    <meta property="og:site_name" content={business.name} />
-    <meta property="og:title" content={pageTitle} />
+    <meta property="og:site_name" content={site.name} />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:title" content={fullTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
-    <meta property="og:image" content={abs(ogImage)} />
+    <meta property="og:image" content={cardUrl} />
+    <meta property="og:image:type" content="image/jpeg" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:locale" content="en_US" />
+    <meta property="og:image:alt" content={cardAlt} />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:title" content={fullTitle} />
     <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content={abs(ogImage)} />
-    <meta name="geo.region" content="US-MO" />
-    <meta name="geo.placename" content="St. Louis" />
-
-    <Schema data={org} />
-    {schema.map((s) => <Schema data={{ "@context": "https://schema.org", ...s }} />)}
-
-    {analytics.provider === "plausible" && analytics.plausibleDomain && (
+    <meta name="twitter:image" content={cardUrl} />
+    <meta name="twitter:image:alt" content={cardAlt} />
+    <script type="application/ld+json" set:html={JSON.stringify(graph).replace(/</g, '\\u003c')} />
+    <script is:inline>(function(){var d=document.documentElement;d.classList.add('js');try{if(sessionStorage.getItem('intro-seen')==='1')d.classList.add('intro-seen');}catch(e){}setTimeout(function(){d.classList.add('intro-seen');},9000);var skip=function(){var i=document.querySelector('.intro');if(i)i.classList.add('is-skipped');};document.addEventListener('click',function(e){if(e.target.closest&&e.target.closest('.intro__skip'))skip();});document.addEventListener('keydown',function(e){if(e.key==='Escape')skip();});})();</script>
+    {analytics.provider === 'plausible' && analytics.plausibleDomain && (
       <script is:inline defer data-domain={analytics.plausibleDomain} src="https://plausible.io/js/script.tagged-events.js"></script>
     )}
-    {analytics.provider === "ga4" && analytics.ga4MeasurementId && (
+    {analytics.provider === 'ga4' && analytics.ga4MeasurementId && (
       <>
         <script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${analytics.ga4MeasurementId}`}></script>
         <script is:inline define:vars={{ id: analytics.ga4MeasurementId }}>
           window.dataLayer = window.dataLayer || [];
           window.gtag = function () { window.dataLayer.push(arguments); };
-          window.gtag("js", new Date());
+          window.gtag('js', new Date());
           // Manage links carry a private token in the query string; never send it.
-          var strip = function (u) { return u.replace(/(\/booking\/)\?.*$/, "$1"); };
-          window.gtag("config", id, { anonymize_ip: true, page_location: strip(location.href), page_referrer: strip(document.referrer) });
+          var strip = function (u) { return u.replace(/(\/booking\/)\?.*$/, '$1'); };
+          window.gtag('config', id, { anonymize_ip: true, page_location: strip(location.href), page_referrer: strip(document.referrer) });
         </script>
       </>
     )}
   </head>
   <body>
-    <a class="skip-link" href="#main">Skip to content</a>
+    {showIntro && <Intro client:load logo={introLogo.src} words={content.intro.words} stages={content.intro.stages} drawing={content.intro.drawing} />}
+    <a href="#main" class="skip">Skip to content</a>
     <Header />
-    <main id="main" tabindex="-1">
-      <slot />
-    </main>
-    <Footer />
+    <main id="main" tabindex="-1"><slot /></main>
+    <Footer cta={cta} />
     <MobileBar hide={hideMobileBar} />
     <div class="toaster" aria-live="polite" aria-atomic="false" data-toaster></div>
-
+    <style>
+      .skip { position: fixed; left: 16px; top: -60px; z-index: 200; padding: 10px 16px; border-radius: 999px; background: var(--color-accent); color: var(--color-on-accent); font-weight: 600; transition: top .2s; }
+      .skip:focus { top: 12px; }
+      main:focus { outline: none; }
+    </style>
     <script>
-      import { initAutoTracking } from "../scripts/analytics";
-      initAutoTracking();
-
-      // Reveal-on-scroll. Content is visible without JS and under reduced motion.
-      const els = document.querySelectorAll<HTMLElement>("[data-reveal]");
-      if ("IntersectionObserver" in window && !matchMedia("(prefers-reduced-motion: reduce)").matches) {
-        const io = new IntersectionObserver(
-          (entries) => entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add("is-in"); io.unobserve(e.target); } }),
-          { rootMargin: "0px 0px -8% 0px", threshold: 0.08 },
-        );
-        els.forEach((el) => io.observe(el));
-      } else {
-        els.forEach((el) => el.classList.add("is-in"));
+      // Scroll reveal: re-run after every client-side navigation.
+      function reveal() {
+        document.documentElement.classList.add('js');
+        const els = document.querySelectorAll<HTMLElement>('[data-reveal]:not(.in)');
+        if (!('IntersectionObserver' in window)) { els.forEach((e) => e.classList.add('in')); return; }
+        const io = new IntersectionObserver((entries) => {
+          entries.forEach((en) => { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } });
+        }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
+        els.forEach((e) => io.observe(e));
       }
+      import { initAutoTracking } from '../scripts/analytics';
+      initAutoTracking();
+      // Full page loads only (no client router, so the booking and pricing scripts always run fresh).
+      // Components written for the router listen for astro:page-load, so fire it once here.
+      document.addEventListener('astro:page-load', reveal);
+      // Deferred module scripts all run before DOMContentLoaded, so every listener is registered by then.
+      const fire = () => document.dispatchEvent(new Event('astro:page-load'));
+      if (document.readyState === 'complete') fire(); else document.addEventListener('DOMContentLoaded', fire, { once: true });
     </script>
   </body>
 </html>
-
-<style>
-  main:focus { outline: none; }
-</style>

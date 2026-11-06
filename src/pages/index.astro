@@ -1,140 +1,209 @@
 ---
-import Base from "../layouts/Base.astro";
-import Hero from "../components/Hero.astro";
-import LoadGuide from "../components/LoadGuide.astro";
-import NeedSelector from "../components/NeedSelector.astro";
-import BeforeAfter from "../components/BeforeAfter.astro";
-import HowItWorks from "../components/HowItWorks.astro";
-import WorkGallery from "../components/WorkGallery.astro";
-import ServiceSplit from "../components/ServiceSplit.astro";
-import ServiceAreaBlock from "../components/ServiceAreaBlock.astro";
-import Reviews from "../components/Reviews.astro";
-import FaqList from "../components/FaqList.astro";
-import FinalCta from "../components/FinalCta.astro";
-import { business, pricing } from "../lib/site";
----
-<Base
-  title={`Junk Removal & Demolition in St. Louis, MO | ${business.name}`}
-  fullTitle
-  description="St. Louis junk removal, demolition and cleanouts, priced by the load. See what a 1/4, 1/2, 3/4 or full 17-yard truck costs and book online in minutes."
->
-  <Hero />
+import { Image } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import ServiceCards from '../components/ServiceCards.astro';
+import Faq from '../components/Faq.astro';
+import LoadConfigurator from '../components/LoadConfigurator.astro';
+import LoadGuide from '../components/LoadGuide.astro';
+import NextAvailable from '../components/NextAvailable.astro';
+import ServiceAreaBlock from '../components/ServiceAreaBlock.astro';
+import Reviews from '../components/Reviews.astro';
+import Gallery from '../components/react/Gallery.tsx';
+import { jobImage, projectFor, fitWidths, PHOTO_QUALITY } from '../lib/images';
+import { galleryPhotos } from '../lib/media';
+import { services, site, primaryAction, secondaryAction } from '../data/site';
+import { content } from '../data/content';
+import { pricing, minimum, loads } from '../lib/site';
 
-  <section class="section" aria-labelledby="guide-title">
-    <div class="wrap">
-      <div class="section-head section-head--split">
-        <div class="stack">
-          <p class="eyebrow">Load sizes</p>
-          <h2 id="guide-title" class="h2">Not sure what size you need?</h2>
+const h = content.home;
+const wall = await galleryPhotos(h.wall.map(projectFor));
+const heroImg = jobImage(h.heroPhoto);
+const trust = [site.credentials, h.areaLine].filter(Boolean).join(' · ');
+const fromPrice = loads[0]?.priceLine.amount;
+const arrow = '<svg class="arrow" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg>';
+---
+<Base description={h.description} ogImage={h.heroPhoto}>
+  <section class="hero" aria-labelledby="hero-h">
+    <div class="hero__bg" aria-hidden="true">
+      <Image src={heroImg} alt="" widths={fitWidths(heroImg, [640, 960, 1200])} quality={PHOTO_QUALITY} sizes="100vw" loading="eager" fetchpriority="high" />
+    </div>
+    <div class="glow hero__glow" aria-hidden="true"></div>
+    <div class="shell hero__grid">
+      <div class="hero__copy">
+        {trust && <p class="tag" data-reveal><span class="dot"></span>{trust}</p>}
+        <h1 id="hero-h" class="hero__h1" data-reveal style="--d:60ms">
+          <span class="hero__kicker">{h.kicker}</span>
+          <span class="display-xl hero__big">{h.headline}<br /><span class="accent">{h.headlineAccent}</span></span>
+        </h1>
+        <p class="lead" data-reveal style="--d:140ms">{h.lead}</p>
+        <div class="btn-row" data-reveal style="--d:220ms">
+          <a href={primaryAction.href} class="btn btn-accent" data-track="cta_click" data-track-cta="book" data-track-location="hero">{primaryAction.label}<Fragment set:html={arrow} /></a>
+          <a href={secondaryAction.href} class="btn btn-ghost" data-track="cta_click" data-track-cta="quote" data-track-location="hero">{secondaryAction.label}</a>
         </div>
-        <p class="lede">Everything is priced by how much of our {pricing.maxCubicYards}-cubic-yard truck it fills. Here's roughly what fits. Just a few small items? That's our $125 minimum pickup. Guess wrong and we'll tell you before we load, not after.</p>
+        <div class="hero__sub" data-reveal style="--d:280ms">
+          <a href={site.phoneHref} class="link-arrow" data-track="phone_click" data-track-location="hero">Or call {site.phone}<Fragment set:html={arrow} /></a>
+          <NextAvailable />
+        </div>
+      </div>
+      <div class="hero__tool" data-reveal style="--d:160ms">
+        <LoadConfigurator variant="hero" idPrefix="hero" />
+      </div>
+    </div>
+  </section>
+
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee__track">
+      {[0, 1].map(() => h.marquee.map((m) => <span>{m}<i></i></span>))}
+    </div>
+  </div>
+
+  {h.facts.length > 0 && (
+    <section class="shell facts" aria-label="Company facts">
+      <dl>
+        {minimum && <div data-reveal><dt>{minimum.priceLine.amount}</dt><dd>Minimum pickup{fromPrice ? `, loads from ${fromPrice}` : ''}</dd></div>}
+        {h.facts.map(([v, k], i) => <div data-reveal style={`--d:${(i + 1) * 70}ms`}><dt>{v}</dt><dd>{k}</dd></div>)}
+      </dl>
+    </section>
+  )}
+
+  <section class="section-tight" aria-labelledby="svc-h">
+    <div class="shell">
+      <div class="head-row">
+        <div class="head" data-reveal>
+          <h2 id="svc-h" class="display-lg">Two trades. One truck.</h2>
+          <p class="lead">Hauling and demolition from one crew, so a tear-out and its debris leave in the same visit.</p>
+        </div>
+        <a href="/services/" class="link-arrow" data-reveal>All services<Fragment set:html={arrow} /></a>
+      </div>
+      <ServiceCards items={services} />
+    </div>
+  </section>
+
+  <section class="section" id="how-it-works" aria-labelledby="process-h">
+    <div class="shell">
+      <div class="head" data-reveal>
+        <h2 id="process-h" class="display-lg">How it works</h2>
+        <p class="lead">Four steps. The heavy one is ours.</p>
+      </div>
+      <ol class="steps">
+        {h.steps.map(([t, d], i) => (
+          <li data-reveal style={`--d:${i * 80}ms`}>
+            <span class="steps__n" aria-hidden="true">0{i + 1}</span>
+            <h3 class="title">{t}</h3>
+            <p class="muted">{d}</p>
+          </li>
+        ))}
+      </ol>
+      <div class="btn-row steps__cta" data-reveal>
+        <a href={primaryAction.href} class="btn btn-accent" data-track="cta_click" data-track-cta="book" data-track-location="how">{primaryAction.label}<Fragment set:html={arrow} /></a>
+        <a href={secondaryAction.href} class="btn btn-ghost" data-track="cta_click" data-track-cta="quote" data-track-location="how">Send photos for a quote</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-tight" aria-labelledby="guide-h">
+    <div class="shell">
+      <div class="head-row">
+        <div class="head" data-reveal>
+          <h2 id="guide-h" class="display-lg">Not sure what size you need?</h2>
+          <p class="lead">Everything is priced by how much of our {pricing.maxCubicYards}-cubic-yard truck it fills. Guess wrong and we'll tell you before we load, not after.</p>
+        </div>
+        <a href="/pricing/" class="link-arrow" data-reveal>Full pricing<Fragment set:html={arrow} /></a>
       </div>
       <LoadGuide />
-      <p class="small muted guide-note">{pricing.examplesNote} Heavy materials, disposal fees and hard access can change the price. <a class="link" href="/pricing/#what-changes-the-price">See everything that affects price</a>.</p>
+      <p class="muted guide-note">{pricing.examplesNote} Heavy materials, Freon items and hard access can change the price. <a class="link-u accent" href="/pricing/#what-changes-the-price">See everything that affects price</a>.</p>
     </div>
   </section>
 
-  <section class="section paper-2" id="services" aria-labelledby="needs-title">
-    <div class="wrap">
-      <div class="section-head">
-        <p class="eyebrow">What needs to go?</p>
-        <h2 id="needs-title" class="h2">Start with the problem. We'll sort out the rest.</h2>
-      </div>
-      <NeedSelector />
-    </div>
-  </section>
-
-  <section class="section" aria-labelledby="ba-title">
-    <div class="wrap">
-      <div class="section-head section-head--split">
-        <div class="stack">
-          <p class="eyebrow">Before / after</p>
-          <h2 id="ba-title" class="h2">Same room. Different afternoon.</h2>
+  {wall.length > 0 && (
+    <section class="section" aria-labelledby="wall-h">
+      <div class="shell">
+        <div class="head-row">
+          <div class="head" data-reveal>
+            <h2 id="wall-h" class="display-lg">Real crew. Real truck.</h2>
+            <p class="lead">No stock photos here. Just the people and the truck that will show up at your door, on real {site.city} jobs.</p>
+          </div>
+          <a href="/projects/" class="link-arrow" data-reveal>See our work<Fragment set:html={arrow} /></a>
         </div>
-        <p class="lede">Garages, basements, job sites, whole houses. Drag to see the difference.</p>
+        <Gallery client:visible photos={wall} />
       </div>
-      <BeforeAfter />
-    </div>
-  </section>
+    </section>
+  )}
 
-  <section class="section dark" id="how-it-works" aria-labelledby="how-title">
-    <div class="wrap">
-      <div class="section-head">
-        <p class="eyebrow">How it works</p>
-        <h2 id="how-title" class="h2">Three steps. The heavy one is ours.</h2>
-      </div>
-      <HowItWorks />
-      <div class="cta-row how-cta">
-        <a href="/book/" class="btn btn--green btn--lg" data-track="cta_click" data-track-cta="book" data-track-location="how">Book a pickup</a>
-        <a href="/quote/" class="btn btn--ghost btn--lg" data-track="cta_click" data-track-cta="quote" data-track-location="how">Send photos for a quote</a>
-      </div>
-    </div>
-  </section>
-
-  <section class="section" aria-labelledby="work-title">
-    <div class="wrap">
-      <div class="section-head section-head--split">
-        <div class="stack">
-          <p class="eyebrow">On the job</p>
-          <h2 id="work-title" class="h2">Real crew. Real truck. Real St. Louis jobs.</h2>
+  <section class="section-tight" aria-labelledby="area-h">
+    <div class="shell">
+      <div class="head-row">
+        <div class="head" data-reveal>
+          <h2 id="area-h" class="display-lg">Where we work</h2>
+          <p class="lead">St. Louis City, St. Louis County and St. Charles County. If you're near a place on this list, we can get to you.</p>
         </div>
-        <p class="lede">No stock photos here. Just the people and the truck that'll show up at your door.</p>
-      </div>
-      <WorkGallery />
-    </div>
-  </section>
-
-  <section class="section dark" aria-labelledby="split-title">
-    <div class="wrap">
-      <div class="section-head">
-        <p class="eyebrow">What we do</p>
-        <h2 id="split-title" class="h2">Two trades. One truck.</h2>
-        <p class="lede">Hauling and demolition from one crew means a tear-out and its debris leave in the same visit.</p>
-      </div>
-      <ServiceSplit />
-    </div>
-  </section>
-
-  <section class="section" aria-labelledby="area-title">
-    <div class="wrap">
-      <div class="section-head section-head--split">
-        <div class="stack">
-          <p class="eyebrow">Service area</p>
-          <h2 id="area-title" class="h2">St. Louis City, St. Louis County, and St. Charles County.</h2>
-        </div>
-        <p class="lede">If you're near a place on this list, we can get to you. <a class="link" href="/service-area/">See the full service area</a>.</p>
+        <a href="/service-area/" class="link-arrow" data-reveal>Full service area<Fragment set:html={arrow} /></a>
       </div>
       <ServiceAreaBlock />
     </div>
   </section>
 
-  <section class="section paper-2" aria-labelledby="reviews-title">
-    <div class="wrap">
-      <div class="section-head">
-        <p class="eyebrow">Reviews</p>
-        <h2 id="reviews-title" class="h2">What customers say.</h2>
-      </div>
+  <section class="section-tight" aria-labelledby="reviews-h">
+    <div class="shell">
+      <div class="head" data-reveal><h2 id="reviews-h" class="display-lg">What customers say</h2></div>
       <Reviews />
     </div>
   </section>
 
-  <section class="section" aria-labelledby="faq-title">
-    <div class="wrap faq-grid">
-      <div class="section-head">
-        <p class="eyebrow">FAQ</p>
-        <h2 id="faq-title" class="h2">Straight answers.</h2>
-        <p><a class="link" href="/faq/">All questions</a></p>
+  {h.faqs.length > 0 && (
+    <section class="section-tight" aria-labelledby="faq-h">
+      <div class="shell faq-split">
+        <div class="head" data-reveal>
+          <h2 id="faq-h" class="display-md">Straight answers</h2>
+          <p class="lead">The questions we hear most. More on the <a class="link-u accent" href="/faq/">FAQ page</a>.</p>
+          <a href={site.phoneHref} class="link-arrow">Call {site.phone}<Fragment set:html={arrow} /></a>
+        </div>
+        <div data-reveal style="--d:80ms"><Faq items={h.faqs} /></div>
       </div>
-      <FaqList homeOnly />
-    </div>
-  </section>
-
-  <FinalCta />
+    </section>
+  )}
 </Base>
 
 <style>
-  .guide-note { margin-top: 24px; max-width: 80ch; }
-  .how-cta { margin-top: 56px; }
-  .faq-grid { display: grid; gap: 0 64px; }
-  @media (min-width: 900px) { .faq-grid { grid-template-columns: 0.8fr 1.2fr; align-items: start; } .faq-grid .section-head { position: sticky; top: calc(var(--header-h) + 32px); } }
+  .hero { position: relative; isolation: isolate; overflow: hidden; padding: calc(var(--nav-h) + clamp(28px, 5vw, 64px)) 0 clamp(48px, 6vw, 80px); min-height: 100svh; display: flex; align-items: center; }
+  .hero__bg { position: absolute; inset: 0; z-index: -2; }
+  .hero__bg img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 30%; opacity: .5; }
+  .hero__bg::after { content: ''; position: absolute; inset: 0; background: linear-gradient(100deg, var(--color-bg) 22%, rgb(11 10 9 / .82) 52%, rgb(11 10 9 / .55)), linear-gradient(to top, var(--color-bg), transparent 40%); }
+  @media (max-width: 1023px) { .hero__bg::after { background: linear-gradient(to bottom, rgb(11 10 9 / .72), var(--color-bg) 70%); } }
+  .hero__glow { width: 900px; height: 900px; right: -300px; top: -200px; z-index: -1; opacity: .35; }
+  .hero__grid { display: grid; gap: 48px; align-items: center; }
+  @media (min-width: 1024px) { .hero__grid { grid-template-columns: 1.15fr 1fr; gap: 56px; } }
+  .hero__copy { display: grid; gap: 28px; align-content: center; min-width: 0; }
+  .hero__h1 { display: grid; gap: 18px; }
+  .hero__kicker { font-family: var(--font-sans); font-size: clamp(1rem, .95rem + .3vw, 1.2rem); font-weight: 500; letter-spacing: 0; color: var(--color-accent-ink); }
+  .hero__big { display: block; font-size: clamp(2.8rem, 1.2rem + 5.4vw, 6rem); }
+  .hero__sub { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 24px; }
+  .hero__tool { min-width: 0; max-width: 560px; width: 100%; justify-self: end; }
+  @media (max-width: 1023px) { .hero__tool { justify-self: start; } }
+
+  .marquee { overflow: hidden; border-block: 1px solid var(--color-line); padding: 22px 0; background: var(--color-bg-2); }
+  .marquee__track { display: flex; width: max-content; animation: marquee 38s linear infinite; }
+  .marquee:hover .marquee__track { animation-play-state: paused; }
+  .marquee span { display: inline-flex; align-items: center; gap: 28px; padding-right: 28px; font-family: var(--font-display); font-weight: 650; font-size: clamp(1.6rem, 1.2rem + 1.6vw, 2.6rem); letter-spacing: -0.03em; white-space: nowrap; color: transparent; -webkit-text-stroke: 1px rgb(244 239 232 / .55); }
+  .marquee span:nth-child(odd) { color: var(--color-fg); -webkit-text-stroke: 0; }
+  .marquee i { width: 12px; height: 12px; border-radius: 50%; background: var(--color-accent); flex-shrink: 0; }
+  @keyframes marquee { to { transform: translateX(-50%); } }
+
+  .facts { padding-block: clamp(48px, 6vw, 80px) 0; }
+  .facts dl { margin: 0; display: grid; gap: 12px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr)); }
+  .facts div { padding: 24px 26px; border-radius: var(--radius-lg); background: var(--color-card); box-shadow: inset 0 0 0 1px var(--color-line); display: grid; gap: 6px; }
+  .facts dt { font-family: var(--font-display); font-weight: 700; font-size: clamp(2rem, 1.5rem + 1.6vw, 2.8rem); letter-spacing: -0.04em; line-height: 1; color: var(--color-accent-ink); }
+  .facts dd { margin: 0; color: var(--color-muted); font-size: 15px; }
+
+  .steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 16px; }
+  @media (min-width: 640px) { .steps { grid-template-columns: 1fr 1fr; } }
+  @media (min-width: 1100px) { .steps { grid-template-columns: repeat(4, 1fr); } }
+  .steps li { display: grid; gap: 14px; align-content: start; padding: 28px; border-radius: var(--radius-lg); background: var(--color-card); box-shadow: inset 0 0 0 1px var(--color-line); transition: transform .5s var(--ease-out-expo), background-color .3s; }
+  .steps li:hover { transform: translateY(-4px); background: var(--color-card-2); }
+  .steps__n { font-family: var(--font-display); font-weight: 700; font-size: 3.2rem; line-height: 1; letter-spacing: -0.05em; color: transparent; -webkit-text-stroke: 1px var(--color-accent-ink); }
+  .steps__cta { margin-top: 40px; }
+  .guide-note { margin-top: 24px; max-width: 80ch; font-size: 15px; }
+
+  .faq-split { display: grid; gap: 40px 64px; }
+  @media (min-width: 1024px) { .faq-split { grid-template-columns: 5fr 7fr; } .faq-split .head { position: sticky; top: calc(var(--nav-h) + 32px); align-self: start; } }
 </style>

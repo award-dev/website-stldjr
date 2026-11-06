@@ -1,0 +1,59 @@
+---
+import { Image } from 'astro:assets';
+import { jobImage, projectFor, fitWidths, PHOTO_QUALITY } from '../lib/images';
+import type { Service } from '../data/site';
+interface Props { items: Service[]; bento?: boolean }
+const { items, bento = true } = Astro.props;
+---
+<ul class:list={['sc', bento && 'sc--bento']}>
+  {items.map((s, i) => {
+    const p = projectFor(s.cover);
+    return (
+      <li data-reveal style={`--d:${(i % 3) * 70}ms`}>
+        <a href={`/services/${s.slug}/`} class="sc__card zoom">
+          <div class="media sc__media">
+            <Image src={jobImage(p.file)} alt={p.alt} widths={fitWidths(jobImage(p.file), [480, 800, 1200, 1600])} quality={PHOTO_QUALITY} sizes={bento && i === 0 ? '(min-width: 1024px) 800px, (min-width: 640px) 50vw, 100vw' : '(min-width: 1024px) 560px, (min-width: 640px) 50vw, 100vw'} />
+          </div>
+          <div class="sc__shade" aria-hidden="true"></div>
+          <div class="sc__body">
+            <h3 class="sc__title">{s.title}</h3>
+            <p class="sc__text">{s.short}</p>
+          </div>
+          <span class="sc__go" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M9 7h8v8" /></svg></span>
+        </a>
+      </li>
+    );
+  })}
+</ul>
+<style>
+  .sc { list-style: none; margin: 0; padding: 0; display: grid; gap: 16px; }
+  @media (min-width: 640px) { .sc { grid-template-columns: 1fr 1fr; } }
+  @media (min-width: 1024px) {
+    .sc--bento { grid-template-columns: repeat(12, 1fr); grid-auto-rows: 300px; }
+    .sc--bento > li:nth-child(1) { grid-column: span 7; grid-row: span 2; }
+    .sc--bento > li:nth-child(2) { grid-column: span 5; }
+    .sc--bento > li:nth-child(3) { grid-column: span 5; }
+    .sc--bento > li:nth-child(4) { grid-column: span 4; }
+    .sc--bento > li:nth-child(5) { grid-column: span 4; }
+    .sc--bento > li:nth-child(6) { grid-column: span 4; }
+    .sc:not(.sc--bento) { grid-template-columns: repeat(3, 1fr); }
+    /* Four services: a 7/5 then 5/7 zigzag instead of an orphaned last card */
+    .sc--bento:has(> li:nth-child(4):last-child) { grid-auto-rows: 340px; }
+    .sc--bento:has(> li:nth-child(4):last-child) > li:nth-child(1) { grid-column: span 7; grid-row: auto; }
+    .sc--bento:has(> li:nth-child(4):last-child) > li:nth-child(2) { grid-column: span 5; }
+    .sc--bento:has(> li:nth-child(4):last-child) > li:nth-child(3) { grid-column: span 5; }
+    .sc--bento:has(> li:nth-child(4):last-child) > li:nth-child(4) { grid-column: span 7; }
+  }
+  .sc > li { min-height: 340px; }
+  @media (min-width: 1024px) { .sc--bento > li { min-height: 0; } }
+  .sc__card { position: relative; display: flex; align-items: flex-end; height: 100%; min-height: inherit; border-radius: var(--radius-lg); overflow: hidden; isolation: isolate; }
+  .sc__media { position: absolute; inset: 0; z-index: -2; border-radius: 0; }
+  .sc__shade { position: absolute; inset: 0; z-index: -1; background: linear-gradient(to top, rgb(8 7 6 / .92) 8%, rgb(8 7 6 / .35) 55%, rgb(8 7 6 / .05)); transition: background-color .4s; }
+  .sc__body { display: grid; gap: 8px; padding: 26px 80px 26px 26px; }
+  .sc__title { font-size: clamp(1.5rem, 1.2rem + 1vw, 2.1rem); letter-spacing: -0.03em; }
+  .sc__text { font-size: 15px; color: #d6cfc6; max-width: 34ch; }
+  .sc__go { position: absolute; right: 22px; bottom: 22px; width: 48px; height: 48px; display: grid; place-items: center; border-radius: 50%; background: rgb(255 255 255 / .14); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); transition: background-color .3s, transform .45s var(--ease-out-expo); }
+  .sc__go svg { width: 20px; height: 20px; fill: none; stroke: #fff; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .sc__card:hover .sc__go { background: var(--color-accent); transform: rotate(45deg); }
+  .sc__card:hover .sc__go svg { stroke: var(--color-on-accent); }
+</style>

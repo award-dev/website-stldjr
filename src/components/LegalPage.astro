@@ -5,13 +5,19 @@ import OwnerNote from "./OwnerNote.astro";
 interface Props { title: string; description: string; path: string; updated?: string }
 const { title, description, path, updated } = Astro.props;
 ---
-<Base title={title} description={description}>
-  <PageHero title={title} crumbs={[{ href: path, label: title }]} />
-  <section class="section">
-    <div class="wrap--narrow prose">
+<Base title={title} description={description} cta={false} breadcrumbs={[{ name: "Home", href: "/" }, { name: title, href: path }]}>
+  <PageHero title={title} crumbs={[{ name: "Home", href: "/" }, { name: title, href: path }]} />
+  <section class="section-tight">
+    <div class="shell legal prose">
       <OwnerNote>Template for review. Have this checked by a qualified professional before launch and set the effective date.</OwnerNote>
       {updated && <p class="small muted">Last updated: {updated}</p>}
       <slot />
     </div>
   </section>
 </Base>
+<style>
+  .legal { max-width: 760px; }
+  .legal :global(h2) { font-size: 1.6rem; }
+  .legal :global(a) { color: var(--color-accent-ink); text-decoration: underline; }
+  .legal :global(ul) { list-style: disc; }
+</style>

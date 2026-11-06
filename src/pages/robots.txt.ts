@@ -1,5 +1,8 @@
-import type { APIRoute } from "astro";
-import { business } from "../lib/site";
+import type { APIRoute } from 'astro';
 
-export const GET: APIRoute = () =>
-  new Response(`User-agent: *\nAllow: /\nDisallow: /booking/\nDisallow: /api/\n\nSitemap: ${new URL("/sitemap.xml", business.siteUrl)}\n`, { headers: { "content-type": "text/plain" } });
+export const GET: APIRoute = ({ site }) => {
+  const origin = (site?.href ?? 'https://example.vercel.app/').replace(/\/$/, '');
+  return new Response(`User-agent: *\nAllow: /\n\nSitemap: ${origin}/sitemap-index.xml\n`, {
+    headers: { 'Content-Type': 'text/plain; charset=utf-8' },
+  });
+};

@@ -347,7 +347,7 @@ const config = {
   <section class="bk-done" data-done hidden aria-labelledby="done-title" tabindex="-1">
     <div class="done-mark" aria-hidden="true"><svg viewBox="0 0 52 52" width="56" height="56"><circle cx="26" cy="26" r="24" fill="none" /><path d="m15 27 7 7 15-15" fill="none" /></svg></div>
     <p class="demo-banner small" data-done-demo hidden><b>Demo mode.</b> This booking was made against a simulated calendar and isn't real.</p>
-    <h1 id="done-title" class="h2" data-done-title>You're on the schedule.</h1>
+    <h2 id="done-title" class="h2" data-done-title tabindex="-1">You're on the schedule.</h2>
     <div data-done-body></div>
   </section>
 </div>
@@ -356,7 +356,7 @@ const config = {
   .bk { --summary-w: 320px; display: grid; gap: 20px; }
   .bk-top { position: sticky; top: var(--header-h); z-index: 5; margin-inline: calc(var(--gutter) * -1); padding: 0 var(--gutter); background: color-mix(in srgb, var(--paper) 92%, transparent); backdrop-filter: blur(10px); }
   .bk-progress { height: 3px; background: var(--paper-3); border-radius: 2px; overflow: hidden; }
-  .bk-bar { display: block; height: 100%; width: 100%; background: var(--asphalt); transform-origin: left; transform: scaleX(var(--p, 0.125)); transition: transform 500ms var(--ease-out); }
+  .bk-bar { display: block; height: 100%; width: 100%; background: var(--color-accent); transform-origin: left; transform: scaleX(var(--p, 0.125)); transition: transform 500ms var(--ease-out); }
   .bk-nav { display: flex; align-items: center; justify-content: space-between; min-height: 52px; }
   .bk-back { display: inline-flex; align-items: center; gap: 6px; min-height: 44px; padding: 0 10px 0 4px; margin-left: -4px; border-radius: 8px; font-weight: 540; }
   .bk-back:hover { background: var(--paper-2); }
@@ -390,7 +390,7 @@ const config = {
   .chip input { position: absolute; opacity: 0; pointer-events: none; }
   .chip span { display: inline-flex; align-items: center; min-height: 44px; padding: 0 16px; border-radius: 999px; border: 1px solid var(--line-strong); background: var(--white); font-weight: 520; transition: background-color var(--t-fast), color var(--t-fast), border-color var(--t-fast), transform var(--t-fast) var(--ease-out); }
   .chip:active span { transform: scale(0.96); }
-  .chip input:checked + span { background: var(--asphalt); color: var(--on-dark); border-color: var(--asphalt); }
+  .chip input:checked + span { background: var(--color-accent); color: var(--color-on-accent); border-color: var(--color-accent); }
   .chip input:focus-visible + span { outline: 2px solid var(--green-ink); outline-offset: 2px; }
   .zip-hint { margin-top: -10px; color: var(--warn); }
   .zip-hint:empty { display: none; }
@@ -443,7 +443,7 @@ const config = {
   .check input { position: absolute; opacity: 0; width: 1px; height: 1px; }
   .check-box { flex: none; display: grid; place-items: center; width: 24px; height: 24px; margin-top: -1px; border-radius: 7px; border: 1.5px solid var(--line-strong); background: var(--white); color: transparent; transition: background-color var(--t-fast), border-color var(--t-fast), color var(--t-fast), transform var(--t-fast) var(--ease-out); }
   .check:active .check-box { transform: scale(0.92); }
-  .check input:checked + .check-box { background: var(--asphalt); border-color: var(--asphalt); color: var(--on-dark); }
+  .check input:checked + .check-box { background: var(--color-accent); border-color: var(--color-accent); color: var(--color-on-accent); }
   .check input:focus-visible + .check-box { outline: 2px solid var(--green-ink); outline-offset: 2px; }
   .submit-error { padding: 16px; border-radius: var(--r-2); background: var(--danger-soft); color: #5c140f; }
 
@@ -472,7 +472,7 @@ const config = {
   .bk-done { display: grid; gap: 20px; max-width: 720px; outline: none; }
   .bk-done:not([hidden]) { animation: rise-in 600ms var(--ease-out); }
   .done-mark circle { stroke: var(--green); stroke-width: 2.5; stroke-dasharray: 151; stroke-dashoffset: 151; animation: draw 700ms var(--ease-out) 100ms forwards; }
-  .done-mark path { stroke: var(--asphalt); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 36; stroke-dashoffset: 36; animation: draw 400ms var(--ease-out) 600ms forwards; }
+  .done-mark path { stroke: var(--color-accent-ink); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 36; stroke-dashoffset: 36; animation: draw 400ms var(--ease-out) 600ms forwards; }
   .done-mark svg { background: var(--green-soft); border-radius: 50%; }
   @keyframes draw { to { stroke-dashoffset: 0; } }
   @media (prefers-reduced-motion: reduce) { .done-mark circle, .done-mark path { stroke-dashoffset: 0; animation: none; } }
@@ -498,7 +498,7 @@ const config = {
   .day .d-wd { font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-3); }
   .day .d-num { font-size: 1.35rem; font-weight: 600; letter-spacing: -0.02em; font-variant-numeric: tabular-nums; }
   .day .d-mo { font-size: 0.72rem; color: var(--ink-3); }
-  .day[aria-checked="true"] { background: var(--asphalt); color: var(--on-dark); border-color: var(--asphalt); }
+  .day[aria-checked="true"] { background: var(--color-accent); color: var(--color-on-accent); border-color: var(--color-accent); }
   .day[aria-checked="true"] .d-wd, .day[aria-checked="true"] .d-mo { color: var(--on-dark-3); }
   .day:disabled { opacity: 0.4; cursor: not-allowed; background: transparent; border-style: dashed; }
   .slot {
@@ -515,7 +515,7 @@ const config = {
   .slot:active:not(:disabled) { transform: scale(0.97); }
   .slot .s-time { font-weight: 600; font-variant-numeric: tabular-nums; }
   .slot .s-sub { font-size: 0.78rem; color: var(--ink-3); }
-  .slot[aria-checked="true"] { border-color: var(--ink); box-shadow: inset 0 0 0 1px var(--ink); background: var(--white); }
+  .slot[aria-checked="true"] { border-color: var(--color-accent); box-shadow: inset 0 0 0 1px var(--color-accent); background: var(--white); }
   .slot:disabled { opacity: 0.45; text-decoration: line-through; cursor: not-allowed; }
   .day:focus-visible, .slot:focus-visible { outline: 2px solid var(--green-ink); outline-offset: 2px; }
 

@@ -29,7 +29,7 @@ const { hide = false } = Astro.props;
     grid-template-columns: 1fr 1fr 1.25fr;
     gap: 8px;
     padding: 8px 12px calc(8px + env(safe-area-inset-bottom));
-    background: rgb(18 19 17 / 0.9);
+    background: rgb(11 10 9 / 0.88);
     backdrop-filter: saturate(1.4) blur(16px);
     -webkit-backdrop-filter: saturate(1.4) blur(16px);
     border-top: 1px solid var(--asphalt-line);
@@ -51,5 +51,5 @@ const { hide = false } = Astro.props;
     transition: transform var(--t-fast) var(--ease-out), background-color var(--t-fast);
   }
   .mb-item:active { transform: scale(0.96); }
-  .mb-book { background: var(--green); color: var(--asphalt); }
+  .mb-book { background: var(--color-accent); color: var(--color-on-accent); }
 </style>

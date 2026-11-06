@@ -4,7 +4,7 @@
 import { boxFaces, pts, project, COS, SIN } from "../lib/iso";
 
 interface Props { fraction?: number; tone?: "paper" | "dark"; labels?: boolean; class?: string }
-const { fraction = 0.5, tone = "paper", labels = true, class: cls } = Astro.props;
+const { fraction = 0.5, tone = "dark", labels = true, class: cls } = Astro.props;
 
 const L = 16, W = 7, H = 4, U = 11;
 const OX = 0, OY = 0; // the viewBox is fitted to the drawing below
@@ -127,7 +127,7 @@ const viewBox = `${minX.toFixed(0)} ${minY.toFixed(0)} ${(maxX - minX).toFixed(0
   .loadviz--dark .lv-cab polygon { fill: var(--asphalt-2); stroke: rgb(255 255 255 / 0.22); }
   .loadviz--dark .lv-cab polygon:nth-child(2) { fill: var(--asphalt-3); }
   .loadviz--dark .lv-back { fill: rgb(255 255 255 / 0.03); stroke: rgb(255 255 255 / 0.16); }
-  .loadviz--dark .lv-floor { fill: #22241f; }
+  .loadviz--dark .lv-floor { fill: #1d1a17; }
   .loadviz--dark .lv-edges line { stroke: var(--on-dark); }
   .loadviz--dark .lv-wheels circle { fill: #000; stroke: rgb(255 255 255 / 0.3); }
   .loadviz--dark .lv-chassis polygon { fill: #000; }

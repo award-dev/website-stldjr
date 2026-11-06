@@ -1,0 +1,81 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import Reels from '../components/react/Reels.tsx';
+import BeforeAfter from '../components/react/BeforeAfter.tsx';
+import Gallery from '../components/react/Gallery.tsx';
+import { pairs, categoryLabels } from '../lib/images';
+import { reelVideos, videoSchema, galleryPhotos, pairImages } from '../lib/media';
+import { projects } from '../data/projects';
+import { pairTitles, services, site } from '../data/site';
+import { content } from '../data/content';
+const pg = content.pages.projects;
+
+const crumbs = [{ name: 'Home', href: '/' }, { name: 'Our work', href: '/projects/' }];
+const reel = await reelVideos();
+const vSchema = await videoSchema(reel, site.url);
+const allPairs = await Promise.all(pairs().map(async (p) => ({ key: p.key, ...(await pairImages(p.before, p.after)) })));
+const photos = await galleryPhotos(projects.filter((p) => !p.pair));
+---
+<Base
+  title={pg.title}
+  description={pg.description}
+  breadcrumbs={crumbs}
+  schema={vSchema}
+>
+  <PageHero
+    title={pg.heading}
+    lead={pg.lead}
+    crumbs={crumbs}
+    photo={pg.photo || undefined}
+  >
+    <div class="btn-row">
+      <a href="#photos" class="btn btn-accent">See the photos</a>
+      <a href="/book/" class="btn btn-ghost">Book a pickup</a>
+    </div>
+  </PageHero>
+
+  {reel.length > 0 && <section class="section-tight" id="videos" aria-labelledby="vid-h">
+    <div class="shell">
+      <div class="head" data-reveal>
+        <h2 id="vid-h" class="display-md">Video walkthroughs</h2>
+        <p class="lead">Tap any video to watch it full screen with sound. Use the arrows to move between projects.</p>
+      </div>
+      <Reels client:visible videos={reel} layout="grid" />
+    </div>
+  </section>}
+
+  {allPairs.length > 0 && <section class="section-tight" id="before-after" aria-labelledby="ba-h">
+    <div class="shell">
+      <div class="head" data-reveal>
+        <h2 id="ba-h" class="display-md">Before &amp; after</h2>
+        <p class="lead">Drag the handle on each photo to compare the room before and after.</p>
+      </div>
+      <div class="pairs">
+        {allPairs.map((p, i) => (
+          <div data-reveal style={`--d:${(i % 2) * 90}ms`}>
+            <BeforeAfter client:visible before={p.before} after={p.after} title={pairTitles[p.key] ?? 'Before and after'} />
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>}
+
+  <section class="section-tight" id="photos" aria-labelledby="ph-h">
+    <div class="shell">
+      <div class="head" data-reveal>
+        <h2 id="ph-h" class="display-md">On the job</h2>
+        <p class="lead">
+          Filter by job type, then tap a photo to enlarge it. Read about each service:
+          {services.map((s, i) => <>{' '}<a class="link-u accent" href={`/services/${s.slug}/`}>{s.title.toLowerCase()}</a>{i < services.length - 1 ? ',' : '.'}</>)}
+        </p>
+      </div>
+      <Gallery client:visible photos={photos} labels={categoryLabels} filters />
+    </div>
+  </section>
+</Base>
+<style>
+  .jump { display: flex; flex-wrap: wrap; gap: 12px; }
+  .pairs { display: grid; gap: 40px 24px; }
+  @media (min-width: 900px) { .pairs { grid-template-columns: 1fr 1fr; } }
+</style>

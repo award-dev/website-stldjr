@@ -1,0 +1,175 @@
+---
+import { Image } from 'astro:assets';
+import Base from '../../layouts/Base.astro';
+import PageHero from '../../components/PageHero.astro';
+import ServiceCards from '../../components/ServiceCards.astro';
+import Faq from '../../components/Faq.astro';
+import Reels from '../../components/react/Reels.tsx';
+import BeforeAfter from '../../components/react/BeforeAfter.tsx';
+import Gallery from '../../components/react/Gallery.tsx';
+import { jobImage, pairs, projectFor, fitWidths, PHOTO_QUALITY } from '../../lib/images';
+import { reelVideos, videoSchema, galleryPhotos, pairImages } from '../../lib/media';
+import { projects } from '../../data/projects';
+import { services, site, pairTitles, type Service } from '../../data/site';
+import { loads } from '../../lib/site';
+
+export function getStaticPaths() {
+  return services.map((s) => ({ params: { slug: s.slug }, props: { service: s } }));
+}
+interface Props { service: Service }
+const { service: s } = Astro.props;
+
+const cover = projectFor(s.cover);
+const pair = s.pair ? pairs().find((p) => p.key === s.pair) : undefined;
+const pairImgs = pair ? await pairImages(pair.before, pair.after) : null;
+const used = new Set([s.cover, ...(pair ? [pair.before.file, pair.after.file] : [])]);
+const pool = projects.filter((p) => p.category === s.category && !used.has(p.file));
+const scopePhoto = pool.find((p) => p.role !== 'before' && !/progress|framing|demo/.test(p.file)) ?? pool[0];
+const photos = await galleryPhotos(pool.filter((p) => p !== scopePhoto));
+const vids = await reelVideos(s.videos);
+const vSchema = await videoSchema(vids, site.url);
+const others = services.filter((o) => o.slug !== s.slug).slice(0, 3);
+const url = `${site.url}/services/${s.slug}/`;
+const crumbs = [{ name: 'Home', href: '/' }, { name: 'Services', href: '/services/' }, { name: s.title, href: `/services/${s.slug}/` }];
+
+const serviceSchema = {
+  '@type': 'Service',
+  '@id': `${url}#service`,
+  name: s.title,
+  serviceType: s.title,
+  description: s.metaDescription,
+  url,
+  provider: { '@id': `${site.url}/#business` },
+  areaServed: site.serviceArea.map((a) => ({ '@type': a.type, name: `${a.name}, ${site.region}` })),
+  hasOfferCatalog: {
+    '@type': 'OfferCatalog',
+    name: `${s.title} services`,
+    itemListElement: s.scope.map((x) => ({ '@type': 'Offer', itemOffered: { '@type': 'Service', name: x.title, description: x.body } })),
+  },
+};
+const load = loads.find((l) => l.id === s.suggestedLoad);
+const bookHref = `/book/?service=${s.bookingService}${load ? `&load=${load.id}` : ''}`;
+const quoteHref = `/quote/?service=${s.bookingService}`;
+const arrow = '<svg class="arrow" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg>';
+---
+<Base title={s.metaTitle} description={s.metaDescription} ogImage={cover.file} ogAlt={cover.alt} breadcrumbs={crumbs} schema={[serviceSchema, ...vSchema]}>
+  <PageHero title={s.h1} lead={s.intro} crumbs={crumbs} photo={s.cover}>
+    <div class="btn-row">
+      <a href={bookHref} class="btn btn-accent" data-track="cta_click" data-track-cta="book" data-track-location={`service-${s.slug}`}>Book online<Fragment set:html={arrow} /></a>
+      <a href={quoteHref} class="btn btn-ghost" data-track="cta_click" data-track-cta="quote" data-track-location={`service-${s.slug}`}>Get a free quote</a>
+    </div>
+  </PageHero>
+
+  <section class="section-tight" aria-labelledby="scope-h">
+    <div class="shell scope">
+      <div>
+        <div class="head" data-reveal><h2 id="scope-h" class="display-md">What {s.title.toLowerCase()} includes</h2></div>
+        <ol class="scope__list">
+          {s.scope.map((x, i) => (
+            <li data-reveal style={`--d:${i * 70}ms`}>
+              <span class="scope__n" aria-hidden="true">0{i + 1}</span>
+              <div><h3 class="title">{x.title}</h3><p class="muted">{x.body}</p></div>
+            </li>
+          ))}
+        </ol>
+      </div>
+      {scopePhoto && (
+        <div class="media scope__photo" data-reveal style="--d:120ms">
+          <Image src={jobImage(scopePhoto.file)} alt={scopePhoto.alt} widths={fitWidths(jobImage(scopePhoto.file), [480, 800, 1200])} quality={PHOTO_QUALITY} sizes="(min-width: 1024px) 600px, 100vw" />
+        </div>
+      )}
+    </div>
+  </section>
+
+  <section class="section-tight" aria-labelledby="price-h">
+    <div class="shell price">
+      <div class="price__card" data-reveal>
+        <p class="tag"><span class="dot"></span>How it's priced</p>
+        <h2 id="price-h" class="display-md">{s.headline}</h2>
+        <p class="lead">{s.howPriced}</p>
+        <div class="btn-row">
+          <a href="/pricing/" class="btn btn-ghost">See load prices</a>
+          <a href={site.phoneHref} class="btn btn-ghost" data-track="phone_click" data-track-location={`service-${s.slug}`}>Call {site.phone}</a>
+        </div>
+      </div>
+      {s.notes.length > 0 && (
+        <ul class="notes">
+          {s.notes.map((n, i) => (
+            <li data-reveal style={`--d:${i * 70}ms`}><h3 class="title">{n.title}</h3><p class="muted">{n.text}</p></li>
+          ))}
+        </ul>
+      )}
+    </div>
+  </section>
+
+  {pairImgs && pair && (
+    <section class="section-tight" aria-labelledby="ba-h">
+      <div class="shell">
+        <div class="head" data-reveal>
+          <h2 id="ba-h" class="display-md">{s.noun} before &amp; after</h2>
+          <p class="lead">Drag the handle to compare.</p>
+        </div>
+        <div class="ba-wrap" data-reveal><BeforeAfter client:visible before={pairImgs.before} after={pairImgs.after} title={pairTitles[pair.key]} /></div>
+      </div>
+    </section>
+  )}
+
+  {vids.length > 0 && (
+    <section class="section-tight" aria-labelledby="vid-h">
+      <div class="shell">
+        <div class="head" data-reveal>
+          <h2 id="vid-h" class="display-md">{s.noun} video walkthroughs</h2>
+          <p class="lead">Tap a video to watch it full screen with sound.</p>
+        </div>
+        <Reels client:visible videos={vids} layout="grid" />
+      </div>
+    </section>
+  )}
+
+  {photos.length > 0 && (
+    <section class="section-tight" aria-labelledby="photos-h">
+      <div class="shell">
+        <div class="head" data-reveal>
+          <h2 id="photos-h" class="display-md">{s.noun} project photos</h2>
+          <p class="lead">Photos from {s.noun.toLowerCase()} jobs around {site.city} and nearby. Tap a photo to enlarge it.</p>
+        </div>
+        <Gallery client:visible photos={photos} />
+      </div>
+    </section>
+  )}
+
+  <section class="section-tight" aria-labelledby="faq-h">
+    <div class="shell faq-split">
+      <div class="head" data-reveal><h2 id="faq-h" class="display-md">{s.title} questions</h2></div>
+      <div data-reveal style="--d:80ms"><Faq items={s.faqs} /></div>
+    </div>
+  </section>
+
+  <section class="section-tight" aria-labelledby="more-h">
+    <div class="shell">
+      <div class="head-row">
+        <h2 id="more-h" class="display-md" data-reveal>More services</h2>
+        <a href="/services/" class="link-arrow" data-reveal>All services<Fragment set:html={arrow} /></a>
+      </div>
+      <ServiceCards items={others} bento={false} />
+    </div>
+  </section>
+</Base>
+<style>
+  .scope { display: grid; gap: 48px 64px; align-items: start; }
+  @media (min-width: 1024px) { .scope { grid-template-columns: 1.1fr 1fr; } }
+  .scope__list { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--color-line); }
+  .scope__list li { display: grid; grid-template-columns: 56px 1fr; gap: 12px; padding: 24px 0; border-bottom: 1px solid var(--color-line); }
+  .scope__list .title { margin-bottom: 6px; }
+  .scope__n { font-family: var(--font-display); font-weight: 700; font-size: 1.4rem; color: var(--color-accent-ink); }
+  .scope__photo { aspect-ratio: 4 / 5; }
+  @media (min-width: 1024px) { .scope__photo { position: sticky; top: calc(var(--nav-h) + 24px); } }
+  .ba-wrap { max-width: 980px; }
+  .price { display: grid; gap: 16px; }
+  @media (min-width: 1024px) { .price { grid-template-columns: 7fr 5fr; } }
+  .price__card { display: grid; gap: 22px; align-content: start; padding: clamp(28px, 4vw, 48px); border-radius: var(--radius-xl); background: radial-gradient(120% 140% at 100% 0%, rgb(var(--accent-rgb) / .18), transparent 60%), var(--color-card); box-shadow: inset 0 0 0 1px var(--color-line); }
+  .notes { list-style: none; margin: 0; padding: 0; display: grid; gap: 16px; align-content: start; }
+  .notes li { display: grid; gap: 8px; padding: 24px 26px; border-radius: var(--radius-lg); background: var(--color-card); box-shadow: inset 0 0 0 1px var(--color-line); }
+  .faq-split { display: grid; gap: 32px 64px; }
+  @media (min-width: 1024px) { .faq-split { grid-template-columns: 5fr 7fr; } }
+</style>

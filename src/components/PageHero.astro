@@ -1,35 +1,60 @@
 ---
-import Schema from "./Schema.astro";
-import { abs } from "../lib/site";
-interface Props { eyebrow?: string; title: string; lede?: string; crumbs?: { href: string; label: string }[] }
-const { eyebrow, title, lede, crumbs = [] } = Astro.props;
-const trail = [{ href: "/", label: "Home" }, ...crumbs];
-const ld = { "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: trail.map((c, i) => ({ "@type": "ListItem", position: i + 1, name: c.label, item: abs(c.href) })) };
+import { Image, getImage } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+import { jobImage, projectFor, fitWidths, PHOTO_QUALITY } from '../lib/images';
+interface Crumb { name: string; href: string }
+interface Props {
+  title: string;
+  lead?: string;
+  crumbs?: Crumb[];
+  /** Job photo path (relative to src/assets/jobs) */
+  photo?: string;
+  /** Any other image (e.g. a portrait), with its alt text and focal point */
+  image?: ImageMetadata;
+  imageAlt?: string;
+  imagePosition?: string;
+}
+const { title, lead, crumbs, photo, image, imageAlt = '', imagePosition = 'center' } = Astro.props;
+const p = photo ? projectFor(photo) : null;
+const meta = image ?? (p ? jobImage(p.file) : null);
+const alt = image ? imageAlt : p?.alt ?? '';
+// The backdrop is intentionally blurred, so a small copy is enough; the framed photo stays sharp at real size.
+const backdrop = meta ? await getImage({ src: meta, width: 480, format: 'webp', quality: 60 }) : null;
 ---
-<section class="ph-hero dark">
-  <div class="wrap">
-    {crumbs.length > 0 && (
-      <nav aria-label="Breadcrumb" class="crumbs">
-        <ol role="list">
-          {trail.map((c, i) => <li>{i < trail.length - 1 ? <a href={c.href}>{c.label}</a> : <span aria-current="page">{c.label}</span>}</li>)}
-        </ol>
-      </nav>
+<section class:list={['ph', meta && 'ph--photo']}>
+  {backdrop && <div class="ph__ambient" aria-hidden="true" style={`background-image:url(${backdrop.src})`}></div>}
+  <div class="shell ph__inner">
+    <div class="ph__text">
+      {crumbs && crumbs.length > 1 && (
+        <nav aria-label="Breadcrumb" class="ph__crumbs">
+          <ol>
+            {crumbs.map((c, i) => <li>{i < crumbs.length - 1 ? <a class="link-u" href={c.href}>{c.name}</a> : <span aria-current="page">{c.name}</span>}</li>)}
+          </ol>
+        </nav>
+      )}
+      <h1 class="display-lg ph__title" data-reveal>{title}</h1>
+      {lead && <p class="lead" data-reveal style="--d:80ms">{lead}</p>}
+      <div class="ph__slot" data-reveal style="--d:160ms"><slot /></div>
+    </div>
+    {meta && (
+      <div class="media ph__photo" data-reveal style="--d:120ms">
+        <Image src={meta} alt={alt} style={`object-position:${imagePosition}`} widths={fitWidths(meta, [480, 720, 960, 1280])} quality={PHOTO_QUALITY} sizes="(min-width: 1024px) 600px, 100vw" loading="eager" fetchpriority="high" />
+      </div>
     )}
-    {eyebrow && <p class="eyebrow">{eyebrow}</p>}
-    <h1 class="h1">{title}</h1>
-    {lede && <p class="lede">{lede}</p>}
-    <slot />
   </div>
 </section>
-{crumbs.length > 0 && <Schema data={ld} />}
-
 <style>
-  .ph-hero { padding: clamp(40px, 6vw, 80px) 0 clamp(48px, 7vw, 96px); position: relative; overflow: hidden; }
-  .ph-hero::before { content: ""; position: absolute; inset: 0; background: linear-gradient(rgb(255 255 255 / 0.04) 1px, transparent 1px) 0 0 / 48px 48px, linear-gradient(90deg, rgb(255 255 255 / 0.04) 1px, transparent 1px) 0 0 / 48px 48px; mask-image: radial-gradient(ellipse 60% 80% at 85% 30%, #000 10%, transparent 70%); pointer-events: none; }
-  .wrap { position: relative; display: grid; gap: 20px; }
-  .ph-hero h1 { max-width: 16ch; }
-  .crumbs ol { display: flex; flex-wrap: wrap; gap: 8px; font-size: 0.85rem; color: var(--on-dark-3); }
-  .crumbs li + li::before { content: "/"; margin-right: 8px; opacity: 0.5; }
-  .crumbs a { text-decoration: none; color: var(--on-dark-2); }
-  .crumbs a:hover { color: var(--on-dark); text-decoration: underline; }
+  .ph { position: relative; isolation: isolate; overflow: hidden; padding: calc(var(--nav-h) + clamp(48px, 8vw, 112px)) 0 clamp(56px, 7vw, 96px); }
+  .ph__ambient { position: absolute; inset: -80px; z-index: -1; background-size: cover; background-position: center; filter: blur(70px) saturate(1.2); opacity: .35; transform: scale(1.1); }
+  .ph__ambient::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to bottom, transparent 40%, var(--color-bg) 92%); }
+  .ph__inner { display: grid; gap: 40px 64px; align-items: center; }
+  .ph--photo .ph__inner { grid-template-columns: 1fr; }
+  @media (min-width: 1024px) { .ph--photo .ph__inner { grid-template-columns: 1.05fr 1fr; } }
+  .ph__text { display: grid; gap: 24px; align-content: center; }
+  .ph__title { max-width: 14ch; }
+  .ph__photo { aspect-ratio: 4 / 3; max-width: 640px; width: 100%; justify-self: end; box-shadow: 0 40px 120px -40px rgb(0 0 0 / .9), 0 0 0 1px rgb(255 255 255 / .08); }
+  @media (min-width: 1024px) { .ph__photo { aspect-ratio: 1; } }
+  .ph__crumbs ol { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; font-size: 14px; color: var(--color-muted); }
+  .ph__crumbs li + li::before { content: '/'; margin-right: 8px; opacity: .5; }
+  .ph__slot:empty { display: none; }
 </style>

@@ -34,7 +34,7 @@
       "detail": "The old couch. A dead fridge. The treadmill that became a coat rack.",
       "service": "junk",
       "load": "quarter",
-      "page": "/junk-removal"
+      "page": "/services/junk-removal/"
     },
     {
       "id": "whole-space",
@@ -42,7 +42,7 @@
       "detail": "Years of stuff, one appointment. We sort, carry, load and sweep.",
       "service": "cleanout",
       "load": "half",
-      "page": "/cleanouts"
+      "page": "/services/cleanouts/"
     },
     {
       "id": "remodel",
@@ -50,7 +50,7 @@
       "detail": "Drywall, lumber, cabinets, flooring, tile — off your site and out of your way.",
       "service": "debris",
       "load": "three-quarter",
-      "page": "/construction-debris-removal"
+      "page": "/services/construction-debris-removal/"
     },
     {
       "id": "tear-out",
@@ -58,13 +58,13 @@
       "detail": "A rotting deck, a leaning shed, a hot tub nobody uses, a dated kitchen.",
       "service": "demolition",
       "load": "full",
-      "page": "/demolition"
+      "page": "/services/demolition/"
     }
   ],
   "groups": [
     {
       "id": "junk-removal",
-      "path": "/junk-removal",
+      "path": "/services/junk-removal/",
       "bookingService": "junk",
       "suggestedLoad": "quarter",
       "name": "Junk Removal",
@@ -125,7 +125,7 @@
     },
     {
       "id": "cleanouts",
-      "path": "/cleanouts",
+      "path": "/services/cleanouts/",
       "bookingService": "cleanout",
       "suggestedLoad": "half",
       "name": "Cleanouts",
@@ -178,7 +178,7 @@
     },
     {
       "id": "demolition",
-      "path": "/demolition",
+      "path": "/services/demolition/",
       "bookingService": "demolition",
       "suggestedLoad": "full",
       "name": "Demolition",
@@ -246,13 +246,13 @@
     },
     {
       "id": "construction-debris",
-      "path": "/construction-debris-removal",
+      "path": "/services/construction-debris-removal/",
       "bookingService": "debris",
       "suggestedLoad": "three-quarter",
       "name": "Construction Debris Removal",
       "navLabel": "Construction debris",
       "metaTitle": "Construction Debris Removal & Cleanup in St. Louis",
-      "metaDescription": "Construction debris removal and job-site cleanup in St. Louis. Drywall, lumber, cabinets, flooring and remodel waste loaded and hauled — no dumpster sitting in the driveway.",
+      "metaDescription": "Construction debris removal and job-site cleanup in St. Louis. Drywall, lumber, cabinets, flooring and remodel waste loaded and hauled, no dumpster in the driveway.",
       "eyebrow": "Construction debris · St. Louis",
       "headline": "No dumpster in the driveway for two weeks.",
       "intro": "For homeowners mid-remodel and contractors between phases. We show up, load the pile, and take it — no permit for a dumpster on the street, no waiting for a swap.",

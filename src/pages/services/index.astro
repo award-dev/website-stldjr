@@ -1,0 +1,35 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHero from '../../components/PageHero.astro';
+import ServiceCards from '../../components/ServiceCards.astro';
+import { services, site, primaryAction, secondaryAction } from '../../data/site';
+import { content } from '../../data/content';
+const pg = content.pages.services;
+
+const crumbs = [{ name: 'Home', href: '/' }, { name: 'Services', href: '/services/' }];
+const list = {
+  '@type': 'ItemList',
+  name: `${site.name} services`,
+  itemListElement: services.map((s, i) => ({ '@type': 'ListItem', position: i + 1, name: s.title, url: `${site.url}/services/${s.slug}/` })),
+};
+---
+<Base
+  title={pg.title}
+  description={pg.description}
+  breadcrumbs={crumbs}
+  schema={[list]}
+>
+  <PageHero
+    title={pg.heading}
+    lead={pg.lead}
+    crumbs={crumbs}
+  >
+    <div class="btn-row">
+      <a href={primaryAction.href} class="btn btn-accent">{primaryAction.label}</a>
+      <a href={secondaryAction.href} class="btn btn-ghost">{secondaryAction.label}</a>
+    </div>
+  </PageHero>
+  <section class="shell" style="padding-bottom: clamp(40px, 6vw, 80px)" aria-label="All services">
+    <ServiceCards items={services} />
+  </section>
+</Base>
