@@ -113,6 +113,29 @@ html.js:not(.intro-seen) { overflow: hidden; }
 .intro__skip:hover { background: rgb(255 255 255 / .12); color: #fff; }
 .intro__skip svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
 
+/* Dump truck (drawing: 'truck'). Every part runs on the same build clock (var(--build)), so the
+   keyframe percentages below are shares of the build: tilt from ~38%, peak ~55%, back down by ~80%. */
+/* Logo truck (drawing: 'truck'): the logo split into bed + base. The bed pivots on its rear bottom corner,
+   which sits at (18, 196) on the 816 x 437 artwork. Percentages are shares of the build time. */
+.intro__truck {
+  position: relative; width: min(clamp(240px, 58vw, 440px), 62svh); aspect-ratio: 816 / 437;
+  margin-top: min(8vw, 10svh, 72px); /* headroom for the tilted bed */
+  filter: drop-shadow(0 18px 40px rgb(0 0 0 / .6)) drop-shadow(0 0 30px rgb(var(--accent-rgb) / .25));
+  animation: intro-logo-in .9s var(--ease-out-expo) .1s both;
+}
+.intro__truck img { position: absolute; inset: 0; width: 100%; height: 100%; }
+.intro__truck-bed {
+  transform-origin: calc(18 / 816 * 100%) calc(196 / 437 * 100%);
+  animation: truck-tilt var(--build) cubic-bezier(.45, 0, .25, 1) both;
+}
+@keyframes truck-tilt {
+  0%, 34% { transform: rotate(0); }
+  52%, 60% { transform: rotate(-26deg); }
+  77% { transform: rotate(.8deg); }
+  81%, 100% { transform: rotate(0); }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .intro__glow, .intro__grid, .intro__logo { animation: none; }
+  .intro__truck, .intro__truck-bed { animation: none; }
 }

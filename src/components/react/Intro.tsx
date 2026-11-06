@@ -35,6 +35,21 @@ const PLAN: { d: string; from: number; to: number; accent?: boolean; dim?: boole
 ];
 
 const DEFAULT_WORDS = ['Building', 'your', 'next', 'project'];
+
+/**
+ * The logo itself, split in two by scripts/intro-truck.mjs: the dump bed (top line, slanted back, STL) and the
+ * rest (cab, wheels, chassis, stripe, lettering). Stacked at rest they are exactly the logo; intro.css tilts the
+ * bed on its rear bottom corner and brings it back down on the intro's build clock.
+ */
+function LogoTruck({ bed, base }: { bed: string; base: string }) {
+  return (
+    <div className="intro__truck" aria-hidden="true">
+      <img className="intro__truck-base" src={base} alt="" width={816} height={437} decoding="async" />
+      <img className="intro__truck-bed" src={bed} alt="" width={816} height={437} decoding="async" />
+    </div>
+  );
+}
+
 const clamp = (v: number) => Math.min(1, Math.max(0, v));
 /** Read the bar's live scaleX so the percentage always matches what is drawn. */
 const barScale = (el: HTMLElement | null) => {
@@ -43,7 +58,7 @@ const barScale = (el: HTMLElement | null) => {
   return m ? clamp(Number(m[1])) : 0;
 };
 
-export default function Intro({ logo, words = DEFAULT_WORDS, stages = DEFAULT_STAGES, drawing = 'house' }: { logo: string; words?: string[]; stages?: [number, string][]; drawing?: 'house' | 'none' }) {
+export default function Intro({ logo, words = DEFAULT_WORDS, stages = DEFAULT_STAGES, drawing = 'house', truck }: { truck?: { bed: string; base: string }; logo: string; words?: string[]; stages?: [number, string][]; drawing?: 'house' | 'truck' | 'none' }) {
   const [active, setActive] = useState(true);
   const [skipped, setSkipped] = useState(false);
   const [p, setP] = useState(0);
@@ -120,7 +135,7 @@ export default function Intro({ logo, words = DEFAULT_WORDS, stages = DEFAULT_ST
       </svg>}
 
       <div className="intro__center">
-        <img className="intro__logo" src={logo} alt="" width={180} height={196} decoding="async" />
+        {drawing === 'truck' && truck ? <LogoTruck {...truck} /> : <img className="intro__logo" src={logo} alt="" width={180} height={196} decoding="async" />}
         <p className="intro__title">
           {words.map((w, i) => (
             <span key={w} className="intro__word">
