@@ -29,7 +29,10 @@
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
     Permissions-Policy = "geolocation=(), microphone=(), camera=(self)"
-    X-Frame-Options = "SAMEORIGIN"
+    # Framing: this site itself, plus the Elward AI Dev client portal's live preview
+    # of the site. Every other site is still refused. (Replaces X-Frame-Options,
+    # which can't name another origin.)
+    Content-Security-Policy = "frame-ancestors 'self' https://portal.elwardai.dev"
 
 [[headers]]
   for = "/booking/*"
