@@ -9,15 +9,19 @@ import NextAvailable from '../components/NextAvailable.astro';
 import ServiceAreaBlock from '../components/ServiceAreaBlock.astro';
 import Reviews from '../components/Reviews.astro';
 import Gallery from '../components/react/Gallery.tsx';
-import { jobImage, projectFor, fitWidths, PHOTO_QUALITY } from '../lib/images';
-import { galleryPhotos } from '../lib/media';
-import { services, site, primaryAction, secondaryAction } from '../data/site';
+import BeforeAfter from '../components/react/BeforeAfter.tsx';
+import { jobImage, projectFor, fitWidths, PHOTO_QUALITY, pairs } from '../lib/images';
+import { galleryPhotos, pairImages } from '../lib/media';
+import { services, site, primaryAction, secondaryAction, pairTitles } from '../data/site';
 import { content } from '../data/content';
-import { pricing, minimum, loads } from '../lib/site';
+import { pricing, minimum, loads, faqSchema } from '../lib/site';
 import { googleReviews } from '../lib/reviews';
 
 const h = content.home;
 const wall = await galleryPhotos(h.wall.map(projectFor));
+const homePairs = await Promise.all(
+  pairs().filter((p) => h.pairs.includes(p.key)).map(async (p) => ({ key: p.key, ...(await pairImages(p.before, p.after)) })),
+);
 const heroImg = jobImage(h.heroPhoto);
 const g = await googleReviews();
 const googleLine = g?.rating && g.count ? `${g.rating.toFixed(1)} stars on Google (${g.count} reviews)` : '';
@@ -25,10 +29,10 @@ const trust = [googleLine, site.credentials, h.areaLine].filter(Boolean).join(' 
 const fromPrice = loads[0]?.priceLine.amount;
 const arrow = '<svg class="arrow" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg>';
 ---
-<Base description={h.description} ogImage={h.heroPhoto}>
+<Base description={h.description} ogImage={h.heroPhoto} schema={h.faqs.length ? [faqSchema(h.faqs)] : []}>
   <section class="hero" aria-labelledby="hero-h">
     <div class="hero__bg" aria-hidden="true">
-      <Image src={heroImg} alt="" widths={fitWidths(heroImg, [480, 768, 1080])} quality={45} sizes="100vw" loading="eager" />
+      <Image src={heroImg} alt="" role="presentation" widths={fitWidths(heroImg, [480, 768, 1080])} quality={45} sizes="100vw" loading="eager" />
     </div>
     <div class="glow hero__glow" aria-hidden="true"></div>
     <div class="shell hero__grid">
@@ -82,6 +86,27 @@ const arrow = '<svg class="arrow" viewBox="0 0 24 24" aria-hidden="true" fill="n
     </div>
   </section>
 
+  {homePairs.length > 0 && (
+    <section class="section-tight" aria-labelledby="ba-h">
+      <div class="shell">
+        <div class="head-row">
+          <div class="head" data-reveal>
+            <h2 id="ba-h" class="display-lg">Before &amp; after</h2>
+            <p class="lead">A bathroom we tore out in Webster Groves. Drag the handle to see it before and after our demolition.</p>
+          </div>
+          <a href="/service-areas/webster-groves/" class="link-arrow" data-reveal>More about Webster Groves<Fragment set:html={arrow} /></a>
+        </div>
+        <div class="pairs">
+          {homePairs.map((p, i) => (
+            <div data-reveal style={`--d:${i * 90}ms`}>
+              <BeforeAfter client:visible before={p.before} after={p.after} title={pairTitles[p.key] ?? 'Before and after'} />
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
   <section class="section" id="how-it-works" aria-labelledby="process-h">
     <div class="shell">
       <div class="head" data-reveal>
@@ -134,7 +159,7 @@ const arrow = '<svg class="arrow" viewBox="0 0 24 24" aria-hidden="true" fill="n
         <div class="head-row">
           <div class="head" data-reveal>
             <h2 id="wall-h" class="display-lg">Real crew. Real truck.</h2>
-            <p class="lead">No stock photos here. Just the people and the truck that will show up at your door, on real {site.city} jobs.</p>
+            <p class="lead">No stock photos here. Just the people and the truck that will show up at your door, on real St. Louis-area jobs.</p>
           </div>
           <a href="/projects/" class="link-arrow" data-reveal>See our work<Fragment set:html={arrow} /></a>
         </div>
@@ -150,7 +175,7 @@ const arrow = '<svg class="arrow" viewBox="0 0 24 24" aria-hidden="true" fill="n
           <h2 id="area-h" class="display-lg">Where we work</h2>
           <p class="lead">St. Louis City, St. Louis County and St. Charles County. If you're near a place on this list, we can get to you.</p>
         </div>
-        <a href="/service-area/" class="link-arrow" data-reveal>Full service area<Fragment set:html={arrow} /></a>
+        <a href="/service-areas/" class="link-arrow" data-reveal>Every area we serve<Fragment set:html={arrow} /></a>
       </div>
       <ServiceAreaBlock />
     </div>
@@ -201,6 +226,8 @@ const arrow = '<svg class="arrow" viewBox="0 0 24 24" aria-hidden="true" fill="n
   .facts dt { font-family: var(--font-display); font-weight: 700; font-size: clamp(2rem, 1.5rem + 1.6vw, 2.8rem); letter-spacing: -0.04em; line-height: 1; color: var(--color-accent-ink); }
   .facts dd { margin: 0; color: var(--color-muted); font-size: 15px; }
 
+  .pairs { display: grid; gap: 40px 24px; }
+  @media (min-width: 900px) { .pairs { grid-template-columns: 1fr 1fr; } }
   .steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 16px; }
   @media (min-width: 640px) { .steps { grid-template-columns: 1fr 1fr; } }
   @media (min-width: 1100px) { .steps { grid-template-columns: repeat(4, 1fr); } }

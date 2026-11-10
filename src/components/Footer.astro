@@ -18,7 +18,7 @@ const arrow = '<svg class="arrow" viewBox="0 0 24 24" aria-hidden="true" fill="n
   {cta && (
     <section class="shell ft__cta" aria-labelledby="cta-h">
       <div class="ft__cta-card" data-reveal>
-        {bg && <Image src={bg} alt="" widths={fitWidths(bg, [640, 1024, 1536])} quality={PHOTO_QUALITY} sizes="(min-width: 1400px) 1360px, 100vw" class="ft__cta-bg" loading="lazy" />}
+        {bg && <Image src={bg} alt="" role="presentation" widths={fitWidths(bg, [640, 1024, 1536])} quality={PHOTO_QUALITY} sizes="(min-width: 1400px) 1360px, 100vw" class="ft__cta-bg" loading="lazy" />}
         <div class="ft__cta-shade" aria-hidden="true"></div>
         <div class="ft__cta-body">
           {f.ctaTag && <p class="tag"><span class="dot"></span>{f.ctaTag}</p>}

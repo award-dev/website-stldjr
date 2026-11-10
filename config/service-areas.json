@@ -31,10 +31,11 @@
         "University City",
         "Webster Groves",
         "Kirkwood",
-        "Maplewood",
         "Brentwood",
         "Richmond Heights",
-        "Creve Coeur"
+        "Ladue",
+        "Creve Coeur",
+        "Maplewood"
       ]
     },
     {
@@ -43,11 +44,12 @@
       "blurb": "Big basements, bigger garages.",
       "places": [
         "Chesterfield",
+        "Wildwood",
         "Ballwin",
         "Manchester",
         "Town and Country",
         "Ellisville",
-        "Wildwood",
+        "Des Peres",
         "Maryland Heights"
       ]
     },
@@ -57,23 +59,27 @@
       "blurb": "From the river to I-44.",
       "places": [
         "Sunset Hills",
+        "Crestwood",
         "Affton",
         "Oakville",
         "Mehlville",
-        "Crestwood",
-        "Fenton",
-        "Lemay"
+        "Concord",
+        "Lemay",
+        "Fenton"
       ]
     },
     {
       "id": "county-north",
       "name": "North County",
-      "blurb": "Across the whole north side.",
+      "blurb": "Home base. We're based in Florissant.",
       "places": [
         "Florissant",
         "Hazelwood",
-        "Bridgeton",
         "Ferguson",
+        "Bridgeton",
+        "Overland",
+        "Jennings",
+        "Spanish Lake",
         "Black Jack"
       ]
     },
@@ -86,7 +92,10 @@
         "St. Peters",
         "O'Fallon",
         "Wentzville",
-        "Lake Saint Louis"
+        "Lake Saint Louis",
+        "Dardenne Prairie",
+        "Cottleville",
+        "Weldon Spring"
       ]
     }
   ]

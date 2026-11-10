@@ -1,0 +1,220 @@
+---
+// City / area page (local-seo kit "City page" blueprint). Only cities with tier "page" in
+// site-data/locations.json get one; every local fact shown here comes from that file with its source.
+import Base from '../../layouts/Base.astro';
+import PageHero from '../../components/PageHero.astro';
+import Faq from '../../components/Faq.astro';
+import { Image } from 'astro:assets';
+import BeforeAfter from '../../components/react/BeforeAfter.tsx';
+import { jobImage, projectFor, pairs, fitWidths, PHOTO_QUALITY } from '../../lib/images';
+import { pairImages } from '../../lib/media';
+import { cityPages, cityHref, nearbyPages, type Location } from '../../lib/locations';
+import { services, site, pairTitles } from '../../data/site';
+import { loads, minimum, pricing, telHref, business, faqSchema } from '../../lib/site';
+
+export function getStaticPaths() {
+  return cityPages.map((l) => ({ params: { slug: l.slug }, props: { l } }));
+}
+interface Props { l: Location }
+const { l } = Astro.props;
+
+const place = `${l.name}, ${l.region}`;
+const longTitle = `Junk Removal & Demolition in ${place}`;
+const title = longTitle.length <= 43 ? longTitle : `Junk Removal in ${place}`;
+const where = l.kind === 'unincorporated' ? `${l.name} and the rest of unincorporated ${l.county}` : l.name;
+const hoods = l.neighborhoods.slice(0, 2);
+const description = `Junk removal, cleanouts and demolition in ${place}${l.zips.length ? ` (${l.zips.slice(0, 2).join(', ')})` : ''}. Priced by the load from ${minimum?.priceLine.amount ?? '$125'}. Book online or call ${business.phoneDisplay}.`;
+const url = `${site.url}${cityHref(l)}`;
+const crumbs = [{ name: 'Home', href: '/' }, { name: 'Service areas', href: '/service-areas/' }, { name: l.name, href: cityHref(l) }];
+const near = nearbyPages(l).slice(0, 4);
+const full = loads.find((x) => x.id === 'full');
+// Jobs with their photos: a single photo, or before/after pairs rendered as drag sliders.
+const jobs = await Promise.all(l.jobs.map(async (j) => ({
+  ...j,
+  when: j.date ? new Date(`${j.date}T12:00:00`).toLocaleDateString('en-US', { month: 'long', year: 'numeric' }) : '',
+  service: services.find((s) => s.slug === j.service),
+  photos: (j.photos ?? []).map(projectFor),
+  sliders: await Promise.all((j.pairs ?? []).map(async (key) => {
+    const p = pairs().find((x) => x.key === key);
+    return p ? { key, title: pairTitles[key] ?? 'Before and after', ...(await pairImages(p.before, p.after)) } : null;
+  })).then((xs) => xs.filter((x) => x !== null)),
+})));
+const hasDemo = l.local_facts.permits.some((f) => /demoli|wrecking|tear/i.test(f.fact));
+const insured = business.trust.licensed && business.trust.insured;
+const host = (u: string) => new URL(u).hostname.replace(/^www\./, '');
+const anchors: Record<string, string> = {
+  'junk-removal': `Junk removal in ${l.name}`,
+  cleanouts: `${l.name} garage, basement & estate cleanouts`,
+  demolition: `Demolition in ${l.name}`,
+  'construction-debris-removal': `Construction debris removal in ${l.name}`,
+};
+
+const schema = [
+  {
+    '@type': 'Service',
+    '@id': `${url}#service`,
+    name: `Junk removal and demolition in ${place}`,
+    serviceType: 'Junk removal',
+    provider: { '@id': `${site.url}/#business` },
+    areaServed: { '@type': l.kind === 'city' ? 'City' : 'Place', name: place },
+    description,
+  },
+  ...(l.unique_faqs.length ? [faqSchema(l.unique_faqs)] : []),
+];
+const arrow = '<svg class="arrow" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg>';
+---
+<Base title={title} description={description} breadcrumbs={crumbs} schema={schema}>
+  <PageHero
+    title={`Junk Removal & Demolition in ${place}`}
+    lead={`Junk hauling, cleanouts and tear-outs in ${where}${hoods.length ? `, from ${hoods.join(' to ')}` : ''}${l.zips.length ? ` (${l.zips.join(', ')})` : ''}. Priced by the load from ${minimum?.priceLine.amount}, with the price confirmed before anything is loaded${insured ? ', by a licensed and insured crew' : ''}.`}
+    crumbs={crumbs}
+  >
+    <div class="btn-row">
+      <a href="/book/" class="btn btn-accent" data-track="cta_click" data-track-cta="book" data-track-location={`city-${l.slug}`}>Book a pickup in {l.name}<Fragment set:html={arrow} /></a>
+      <a href={telHref} class="btn btn-ghost" data-track="phone_click" data-track-location={`city-${l.slug}`}>Call {business.phoneDisplay}</a>
+    </div>
+  </PageHero>
+
+  <div class="shell city">
+    <div class="city__main">
+      {jobs.length > 0 && (
+        <section aria-labelledby="jobs-h" class="block">
+          <h2 id="jobs-h" class="display-md">Our recent work in {l.name}</h2>
+          {jobs.map((j) => (
+            <article class="job">
+              <p class="job__meta">{j.when && <>{j.when} · </>}{j.service && <a class="link-u accent" href={`/services/${j.service.slug}/`}>{j.service.title}</a>}</p>
+              <p class="job__text">{j.summary}</p>
+              {j.sliders.length > 0 && (
+                <div class="job__pairs">
+                  {j.sliders.map((s) => <BeforeAfter client:visible before={s.before} after={s.after} title={s.title} />)}
+                </div>
+              )}
+              {j.photos.length > 0 && (
+                <div class="job__photos">
+                  {j.photos.map((ph) => (
+                    <div class={`media job__photo${ph.width > ph.height ? " job__photo--wide" : ""}`}>
+                      <Image src={jobImage(ph.file)} alt={ph.alt} widths={fitWidths(jobImage(ph.file), [480, 800, 1200])} quality={PHOTO_QUALITY} sizes="(min-width: 900px) 380px, 100vw" />
+                    </div>
+                  ))}
+                </div>
+              )}
+            </article>
+          ))}
+        </section>
+      )}
+
+      {l.local_facts.trash.length > 0 && (
+        <section aria-labelledby="trash-h" class="block">
+          <h2 id="trash-h" class="display-md">How bulky-item pickup works in {l.name}</h2>
+          <ul class="facts">
+            {l.local_facts.trash.map((f) => <li><p>{f.fact}</p><a class="src" href={f.source} target="_blank" rel="noopener">Source: {host(f.source)}<span class="sr-only"> (opens in a new tab)</span></a></li>)}
+          </ul>
+        </section>
+      )}
+
+      {l.local_facts.permits.length > 0 && (
+        <section aria-labelledby="permit-h" class="block">
+          <h2 id="permit-h" class="display-md">{hasDemo ? `Do you need a demolition permit in ${l.name}?` : `Building permits in ${l.name}`}</h2>
+          <ul class="facts">
+            {l.local_facts.permits.map((f) => <li><p>{f.fact}</p><a class="src" href={f.source} target="_blank" rel="noopener">Source: {host(f.source)}<span class="sr-only"> (opens in a new tab)</span></a></li>)}
+          </ul>
+        </section>
+      )}
+
+      {l.local_facts.other.length > 0 && (
+        <section aria-labelledby="other-h" class="block">
+          <h2 id="other-h" class="display-md">Good to know in {l.name}</h2>
+          <ul class="facts">
+            {l.local_facts.other.map((f) => <li><p>{f.fact}</p><a class="src" href={f.source} target="_blank" rel="noopener">Source: {host(f.source)}<span class="sr-only"> (opens in a new tab)</span></a></li>)}
+          </ul>
+        </section>
+      )}
+
+
+      <section aria-labelledby="svc-h" class="block">
+        <h2 id="svc-h" class="display-md">What we do in {l.name}</h2>
+        <p class="body">{l.name} pricing is by the load, from {minimum?.priceLine.amount} to {full?.priceLine.amount}. <a class="link-u accent" href="/pricing/">See load sizes</a>.</p>
+        <ul class="svc">
+          {services.map((s) => (
+            <li><a href={`/services/${s.slug}/`} class="svc__link"><span class="svc__name">{anchors[s.slug] ?? `${s.title} in ${l.name}`}</span></a></li>
+          ))}
+        </ul>
+      </section>
+
+
+      {l.neighborhoods.length > 0 && (
+        <section aria-labelledby="area-h" class="block">
+          <h2 id="area-h" class="display-md">Where in {l.name} we work</h2>
+          {l.neighborhoods.length > 0 && <p class="body">{l.neighborhoods.join(', ')}.</p>}
+        </section>
+      )}
+
+      {l.unique_faqs.length > 0 && (
+        <section aria-labelledby="faq-h" class="block">
+          <h2 id="faq-h" class="display-md">{l.name} junk removal questions</h2>
+          <Faq items={l.unique_faqs} />
+        </section>
+      )}
+    </div>
+
+    <aside class="city__side" aria-label={`${l.name} links`}>
+      {l.official_links.length > 0 && (
+        <div class="card">
+          <h2 class="side-h">Helpful {l.name} resources</h2>
+          <ul class="side-list">
+            {l.official_links.map((o) => <li><a href={o.url} target="_blank" rel="noopener" class="link-u">{o.label}<span class="sr-only"> (opens in a new tab)</span></a></li>)}
+          </ul>
+        </div>
+      )}
+      <div class="card">
+        <h2 class="side-h">Nearby areas we serve</h2>
+        <ul class="side-list">
+          {near.map((n) => <li><a href={cityHref(n)} class="link-u">Junk removal in {n.name}</a></li>)}
+          <li><a href="/service-areas/" class="link-u">Every area we serve</a></li>
+        </ul>
+      </div>
+      <div class="card card--cta">
+        <h2 class="side-h">Book in {l.name}</h2>
+        <a href="/book/" class="btn btn-accent">Book a pickup</a>
+        <a href="/quote/" class="btn btn-ghost">Get a free quote</a>
+      </div>
+      <p class="checked muted">{l.name} details checked {new Date(l.verified).toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}.</p>
+    </aside>
+  </div>
+</Base>
+
+<style>
+  .city { display: grid; gap: 40px 64px; padding-bottom: clamp(48px, 6vw, 96px); }
+  @media (min-width: 1024px) { .city { grid-template-columns: 8fr 4fr; align-items: start; } .city__side { position: sticky; top: calc(var(--nav-h) + 24px); } }
+  .city__main { display: grid; gap: clamp(48px, 6vw, 72px); min-width: 0; }
+  .block { display: grid; gap: 18px; }
+  .block h2 { font-size: clamp(1.6rem, 1.2rem + 1.4vw, 2.3rem); }
+  .body { color: #d6cfc6; max-width: 66ch; }
+  .job { display: grid; gap: 14px; }
+  .job__meta { font-size: 14px; color: var(--color-muted); }
+  .job__text { font-size: 1.1rem; color: #e3ddd5; max-width: 62ch; }
+  .job__pairs { display: grid; gap: 20px; }
+  @media (min-width: 900px) { .job__pairs { grid-template-columns: 1fr 1fr; } }
+  .job__photos { display: grid; gap: 14px; }
+  @media (min-width: 640px) { .job__photos { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  .job__photo { aspect-ratio: 3 / 4; max-width: 520px; }
+  .job__photo--wide { aspect-ratio: 4 / 3; grid-column: 1 / -1; max-width: 760px; }
+  .facts { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
+  .facts li { display: grid; gap: 8px; padding: 20px 22px; border-radius: var(--radius-md); background: var(--color-card); box-shadow: inset 0 0 0 1px var(--color-line); }
+  .facts p { color: #e3ddd5; }
+  .src { font-size: 13px; color: var(--color-muted); text-decoration: underline; text-decoration-color: rgb(255 255 255 / .2); overflow-wrap: anywhere; }
+  .src:hover { color: var(--color-fg); }
+  .note { color: var(--color-muted); max-width: 66ch; }
+  .svc { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
+  @media (min-width: 640px) { .svc { grid-template-columns: 1fr 1fr; } }
+  .svc__link { display: grid; gap: 6px; height: 100%; padding: 20px 22px; border-radius: var(--radius-md); background: var(--color-card); box-shadow: inset 0 0 0 1px var(--color-line); transition: background-color .3s, transform .45s var(--ease-out-expo); }
+  .svc__link:hover { background: var(--color-card-2); transform: translateY(-2px); }
+  .svc__name { font-weight: 600; color: var(--color-accent-ink); }
+  .svc__text { font-size: 15px; color: var(--color-muted); }
+  .city__side { display: grid; gap: 14px; }
+  .card { display: grid; gap: 12px; padding: 22px 24px; border-radius: var(--radius-lg); background: var(--color-card); box-shadow: inset 0 0 0 1px var(--color-line); }
+  .card--cta { background: radial-gradient(120% 140% at 100% 0%, rgb(var(--accent-rgb) / .16), transparent 60%), var(--color-card); }
+  .side-h { font-size: 1.15rem; letter-spacing: -0.01em; }
+  .side-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; font-size: 15px; }
+  .checked { font-size: 13px; }
+</style>

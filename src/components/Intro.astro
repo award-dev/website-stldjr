@@ -48,11 +48,11 @@ const PLAN: { d: string; from: number; to: number; accent?: boolean; dim?: boole
   <div class="intro__center">
     {drawing === 'truck' && truck ? (
       <div class="intro__truck" aria-hidden="true">
-        <img class="intro__truck-base" src={truck.base} alt="" width="816" height="437" decoding="async" fetchpriority="high" />
-        <img class="intro__truck-bed" src={truck.bed} alt="" width="816" height="437" decoding="async" fetchpriority="high" />
+        <img class="intro__truck-base" src={truck.base} alt="" role="presentation" width="816" height="437" decoding="async" fetchpriority="high" />
+        <img class="intro__truck-bed" src={truck.bed} alt="" role="presentation" width="816" height="437" decoding="async" fetchpriority="high" />
       </div>
     ) : (
-      <img class="intro__logo" src={logo} alt="" width="180" height="196" decoding="async" />
+      <img class="intro__logo" src={logo} alt="" role="presentation" width="180" height="196" decoding="async" />
     )}
     <p class="intro__title">
       {words.map((w, i) => (

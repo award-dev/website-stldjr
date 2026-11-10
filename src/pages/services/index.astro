@@ -29,7 +29,30 @@ const list = {
       <a href={secondaryAction.href} class="btn btn-ghost">{secondaryAction.label}</a>
     </div>
   </PageHero>
-  <section class="shell" style="padding-bottom: clamp(40px, 6vw, 80px)" aria-label="All services">
+  <section class="shell" aria-labelledby="all-h">
+    <h2 id="all-h" class="sr-only">All services</h2>
     <ServiceCards items={services} />
   </section>
+
+  <section class="section-tight" aria-labelledby="pick-h">
+    <div class="shell pick">
+      <div class="head">
+        <h2 id="pick-h" class="display-md">Which service do you need?</h2>
+        <p class="lead">Most jobs fit one of these. If yours is a mix, book the closest one and tell us the rest in the notes.</p>
+      </div>
+      <ul class="pick__list">
+        <li><h3 class="title">A few big things, or a room's worth</h3><p class="muted">That's <a class="link-u accent" href="/services/junk-removal/">junk removal</a>: furniture, appliances, mattresses, hot tubs, the pile behind the garage. Priced by how much of the truck it fills.</p></li>
+        <li><h3 class="title">A whole garage, basement or house</h3><p class="muted">That's a <a class="link-u accent" href="/services/cleanouts/">cleanout</a>: one crew, one appointment, and the space is swept when we leave. Estates and move-outs too.</p></li>
+        <li><h3 class="title">Something has to come down first</h3><p class="muted">That's <a class="link-u accent" href="/services/demolition/">demolition</a>: decks, sheds, kitchens, bathrooms and full interior guts, torn out and hauled in the same job. We pull the permit when one is needed.</p></li>
+        <li><h3 class="title">A remodel left a pile</h3><p class="muted">That's <a class="link-u accent" href="/services/construction-debris-removal/">construction debris removal</a>: drywall, lumber, flooring and fixtures, gone without a dumpster sitting in the driveway.</p></li>
+      </ul>
+      <p class="muted">We work across St. Louis City, St. Louis County and St. Charles County. <a class="link-u accent" href="/service-areas/">See every area we serve</a> or <a class="link-u accent" href="/pricing/">check load prices</a>.</p>
+    </div>
+  </section>
 </Base>
+<style>
+  .pick { display: grid; gap: 28px; }
+  .pick__list { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; }
+  @media (min-width: 900px) { .pick__list { grid-template-columns: 1fr 1fr; } }
+  .pick__list li { display: grid; gap: 10px; padding: 24px 26px; border-radius: var(--radius-lg); background: var(--color-card); box-shadow: inset 0 0 0 1px var(--color-line); }
+</style>

@@ -42,8 +42,8 @@ export const content = {
     heroVideos: [] as string[],
     railExclude: [] as string[],
     marquee: ['Junk removal', 'Cleanouts', 'Demolition', 'Construction debris', 'Hot tubs', 'Sheds & decks', 'Appliances', 'Estates'],
-    pairs: [] as string[],
-    wall: ['junk-removal/couch-carry.webp', 'demolition/kitchen-gut.webp', 'crew/truck.webp', 'construction-debris/loaded-bed.webp', 'cleanouts/sweep.webp', 'crew/team.webp'],
+    pairs: ['webster-groves-bathroom', 'webster-groves-shower'] as string[],
+    wall: ['junk-removal/couch-carry.webp', 'demolition/ladue-curved-shower-demo.jpg', 'demolition/kitchen-gut.webp', 'crew/truck.webp', 'junk-removal/ofallon-carpet-removal-living-room.jpg', 'junk-removal/florissant-sleigh-bed-removal.jpg', 'demolition/st-louis-kitchen-demo.jpg', 'construction-debris/loaded-bed.webp', 'cleanouts/sweep.webp', 'crew/team.webp'],
     steps: [
       ['Pick a load size', `Choose 1/4, 1/2, 3/4 or a full ${pricing.maxCubicYards}-yard truck and see the price. Add a few photos if you're not sure.`],
       ['Choose a time', 'Book an open two-hour arrival window online, same day when the schedule allows. You get a confirmation with reschedule and cancel links.'],
@@ -103,14 +103,14 @@ export const content = {
         'It’s also why we’re proud to be listed on LocateFaith, a directory of Christian-owned local businesses. If you’re looking to support businesses that share your faith, you’ll find us there.',
       ],
       verse: { text: 'Whatever you do, work heartily, as for the Lord and not for men.', ref: 'Colossians 3:23' },
-      listing: 'https://locatefaith.com/business/stl-demolition-and-junk-removal',
+      listing: business.links.locateFaith,
     },
     vendor: {
       title: 'On the Buyers Club Vendor Team',
       body: 'I sat down with Buyers Club to talk about the business as part of their Vendor Team: how we work, what we haul and tear out, and why we do it the way we do.',
-      youtubeId: 'NwVk6lFT58M',
+      youtubeId: new URL(business.links.buyersClubInterview).searchParams.get('v') ?? '',
       videoTitle: 'Buyers Club Vendor Team: STL Demolition & Junk Removal',
-      channel: 'https://www.youtube.com/@buyersclub8471',
+      channel: business.links.buyersClubChannel,
     },
   },
 
@@ -122,7 +122,7 @@ export const content = {
   /** Hub page copy. Titles get " | <short name>" appended. */
   pages: {
     services: {
-      title: 'Junk Removal & Demolition Services in St. Louis',
+      title: 'Junk Removal & Demolition Services',
       description: 'Junk removal, cleanouts, demolition and construction debris removal across St. Louis City, St. Louis County and St. Charles County. Priced by the load.',
       heading: 'What we haul and tear out',
       lead: 'Two trades, one truck. Pick a service to see what’s included, how it’s priced and the common questions.',

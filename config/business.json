@@ -12,7 +12,7 @@
   "address": {
     "public": false,
     "street": null,
-    "city": "St. Louis",
+    "city": "Florissant",
     "region": "MO",
     "postalCode": null,
     "country": "US"
@@ -60,7 +60,10 @@
     "googleReviewUrl": "https://search.google.com/local/writereview?placeid=ChIJQekxRDzK8UIRQP-I99CTb2k",
     "facebook": "https://www.facebook.com/share/1DkQDMFkQF/",
     "instagram": null,
-    "nextdoor": null
+    "nextdoor": null,
+    "locateFaith": "https://locatefaith.com/business/stl-demolition-and-junk-removal",
+    "buyersClubInterview": "https://www.youtube.com/watch?v=NwVk6lFT58M",
+    "buyersClubChannel": "https://www.youtube.com/@buyersclub8471"
   },
   "analytics": {
     "$comment": "provider: null | 'plausible' | 'ga4'. Nothing third-party loads while null.",

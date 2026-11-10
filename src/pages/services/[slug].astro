@@ -11,7 +11,7 @@ import { jobImage, pairs, projectFor, fitWidths, PHOTO_QUALITY } from '../../lib
 import { reelVideos, videoSchema, galleryPhotos, pairImages } from '../../lib/media';
 import { projects } from '../../data/projects';
 import { services, site, pairTitles, type Service } from '../../data/site';
-import { loads } from '../../lib/site';
+import { loads, faqSchema } from '../../lib/site';
 
 export function getStaticPaths() {
   return services.map((s) => ({ params: { slug: s.slug }, props: { service: s } }));
@@ -52,7 +52,7 @@ const bookHref = `/book/?service=${s.bookingService}${load ? `&load=${load.id}` 
 const quoteHref = `/quote/?service=${s.bookingService}`;
 const arrow = '<svg class="arrow" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg>';
 ---
-<Base title={s.metaTitle} description={s.metaDescription} ogImage={cover.file} ogAlt={cover.alt} breadcrumbs={crumbs} schema={[serviceSchema, ...vSchema]}>
+<Base title={s.metaTitle} description={s.metaDescription} ogImage={cover.file} ogAlt={cover.alt} breadcrumbs={crumbs} schema={[serviceSchema, ...vSchema, ...(s.faqs.length ? [faqSchema(s.faqs)] : [])]}>
   <PageHero title={s.h1} lead={s.intro} crumbs={crumbs} photo={s.cover}>
     <div class="btn-row">
       <a href={bookHref} class="btn btn-accent" data-track="cta_click" data-track-cta="book" data-track-location={`service-${s.slug}`}>Book online<Fragment set:html={arrow} /></a>
@@ -131,7 +131,7 @@ const arrow = '<svg class="arrow" viewBox="0 0 24 24" aria-hidden="true" fill="n
       <div class="shell">
         <div class="head" data-reveal>
           <h2 id="photos-h" class="display-md">{s.noun} project photos</h2>
-          <p class="lead">Photos from {s.noun.toLowerCase()} jobs around {site.city} and nearby. Tap a photo to enlarge it.</p>
+          <p class="lead">Photos from {s.noun.toLowerCase()} jobs around the St. Louis area. Tap a photo to enlarge it.</p>
         </div>
         <Gallery client:visible photos={photos} />
       </div>

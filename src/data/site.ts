@@ -43,7 +43,7 @@ export const nav = [
   { href: '/services/', label: 'Services' },
   { href: '/pricing/', label: 'Pricing' },
   { href: '/projects/', label: 'Our work' },
-  { href: '/service-area/', label: 'Service area' },
+  { href: '/service-areas/', label: 'Service areas' },
   { href: '/about/', label: 'About' },
   { href: '/contact/', label: 'Contact' },
 ];
@@ -57,8 +57,14 @@ export const categoryLabels: Record<string, string> = {
   crew: 'Truck & crew',
 };
 
-/** Before/after pair titles. No real before/after photo pairs yet. */
-export const pairTitles: Record<string, string> = {};
+/** Before/after pair titles, keyed by the `pair` value in projects.ts. */
+export const pairTitles: Record<string, string> = {
+  'webster-groves-bathroom': 'Bathroom tear-out in Webster Groves',
+  'webster-groves-shower': 'Walk-in shower demo in Webster Groves',
+  'maryland-heights-garage': 'Garage cleanout in Maryland Heights',
+  'st-charles-bathroom': 'Bathroom demolition in St. Charles',
+  'manchester-storage-unit': 'Storage unit cleanout in Manchester',
+};
 
 export interface Faq { q: string; a: string }
 export { services, type Service } from './services';

@@ -5,7 +5,8 @@ import LoadConfigurator from "../components/LoadConfigurator.astro";
 import LoadGuide from "../components/LoadGuide.astro";
 import Faq from "../components/Faq.astro";
 import OwnerNote from "../components/OwnerNote.astro";
-import { pricing, loads, minimum, anyPrice, abs, faqItems } from "../lib/site";
+import { pricing, loads, minimum, anyPrice, abs, faqItems, faqSchema } from "../lib/site";
+const pricingFaqs = faqItems(["pricing", "load-size", "yards", "more-than-expected", "estimates"]);
 const crumbs = [{ name: "Home", href: "/" }, { name: "Pricing", href: "/pricing/" }];
 const schema = anyPrice ? [{
   "@type": "OfferCatalog",
@@ -13,7 +14,7 @@ const schema = anyPrice ? [{
   itemListElement: [...(minimum ? [{ "@type": "Offer", name: "Minimum pickup (a few small items)", price: minimum.price, priceCurrency: pricing.currency, seller: { "@id": abs("/#business") } }] : []), ...loads.filter((l) => l.price).map((l) => ({ "@type": "Offer", name: `${l.label} (${l.yards} cubic yards)`, price: l.price, priceCurrency: pricing.currency, seller: { "@id": abs("/#business") } }))],
 }] : [];
 ---
-<Base title="Junk Removal Pricing in St. Louis, by the Load" breadcrumbs={crumbs} description={`How junk removal pricing works: 1/4, 1/2, 3/4 or a full ${pricing.maxCubicYards}-cubic-yard truck. See what fits in each load and everything that can change the price.`} schema={schema}>
+<Base title="St. Louis Junk Removal Prices by the Load" breadcrumbs={crumbs} description={`How junk removal pricing works: 1/4, 1/2, 3/4 or a full ${pricing.maxCubicYards}-cubic-yard truck. See what fits in each load and everything that can change the price.`} schema={[...schema, faqSchema(pricingFaqs)]}>
   <PageHero title="You pay for the space it takes up" lead={`Our truck holds ${pricing.maxCubicYards} cubic yards. Pick how much of it you'll fill — a quarter, half, three-quarters, or all of it. That's the price — loading and hauling included. Just a few small items? There's a $125 minimum pickup.`} crumbs={crumbs} />
 
   <section class="section-tight">
@@ -59,7 +60,7 @@ const schema = anyPrice ? [{
   <section class="section-tight">
     <div class="shell faq-grid">
       <div class="head" data-reveal><h2 class="display-md">Pricing questions</h2></div>
-      <Faq items={faqItems(["pricing", "load-size", "yards", "more-than-expected", "estimates"])} />
+      <Faq items={pricingFaqs} />
     </div>
   </section>
 </Base>

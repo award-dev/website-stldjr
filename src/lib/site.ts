@@ -103,3 +103,11 @@ export function faqItems(ids?: string[]) {
   const list = ids ? ids.map((id) => faqById(id)).filter((f): f is (typeof faqs)[number] => !!f) : faqs;
   return list.map((f) => ({ q: f.q, a: f.a }));
 }
+
+/** FAQPage JSON-LD for Q&A that is visible on the page (text must match what's shown). */
+export function faqSchema(items: { q: string; a: string }[]) {
+  return {
+    '@type': 'FAQPage',
+    mainEntity: items.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
+  };
+}

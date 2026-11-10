@@ -1,0 +1,159 @@
+---
+// Combined page for unincorporated South St. Louis County (local-seo kit: these areas share every county rule,
+// so one page with a section per area instead of near-identical city pages). Facts come from
+// site-data/locations.json (tier "group", group "south-county"), each with its source.
+import Base from '../../layouts/Base.astro';
+import PageHero from '../../components/PageHero.astro';
+import Faq from '../../components/Faq.astro';
+import { Image } from 'astro:assets';
+import { jobImage, projectFor, fitWidths, PHOTO_QUALITY } from '../../lib/images';
+import { groupMembers, cityHref, bySlug, type Fact } from '../../lib/locations';
+import { services, site } from '../../data/site';
+import { loads, minimum, telHref, business, faqSchema } from '../../lib/site';
+
+const areas = groupMembers('south-county');
+const names = areas.map((a) => a.name);
+const nameList = `${names.slice(0, -1).join(', ')} and ${names.at(-1)}`;
+const all = (a: (typeof areas)[number]) => [...a.local_facts.trash, ...a.local_facts.permits, ...a.local_facts.other];
+// Facts that appear in more than one area are county-wide: show them once.
+const count = new Map<string, number>();
+for (const a of areas) for (const f of new Set(all(a).map((x) => x.fact))) count.set(f, (count.get(f) ?? 0) + 1);
+const shared: Fact[] = [];
+for (const a of areas) for (const f of all(a)) if ((count.get(f.fact) ?? 0) > 1 && !shared.some((s) => s.fact === f.fact)) shared.push(f);
+const own = (a: (typeof areas)[number]) => all(a).filter((f) => (count.get(f.fact) ?? 0) === 1);
+
+// Jobs we did in each area, with the owner's photos.
+const jobsFor = (a: (typeof areas)[number]) => a.jobs.map((j) => ({
+  ...j,
+  when: j.date ? new Date(`${j.date}T12:00:00`).toLocaleDateString('en-US', { month: 'long', year: 'numeric' }) : '',
+  service: services.find((s) => s.slug === j.service),
+  photos: (j.photos ?? []).map(projectFor),
+}));
+const faqs = areas.map((a) => a.unique_faqs[0]).filter(Boolean);
+const links = [...new Map(areas.flatMap((a) => a.official_links).map((l) => [l.url, l])).values()];
+const near = ['sunset-hills', 'crestwood', 'webster-groves'].map(bySlug).filter((n) => n && n.tier === 'page');
+const full = loads.find((x) => x.id === 'full');
+const host = (u: string) => new URL(u).hostname.replace(/^www\./, '');
+const url = `${site.url}/service-areas/south-county/`;
+const crumbs = [{ name: 'Home', href: '/' }, { name: 'Service areas', href: '/service-areas/' }, { name: 'South St. Louis County', href: '/service-areas/south-county/' }];
+const description = `Junk removal and demolition in ${nameList}. Priced by the load from ${minimum?.priceLine.amount}. Book online or call ${business.phoneDisplay}.`;
+const schema = [
+  {
+    '@type': 'Service',
+    '@id': `${url}#service`,
+    name: 'Junk removal and demolition in South St. Louis County',
+    serviceType: 'Junk removal',
+    provider: { '@id': `${site.url}/#business` },
+    areaServed: areas.map((a) => ({ '@type': 'Place', name: `${a.name}, ${a.region}` })),
+    description,
+  },
+  ...(faqs.length ? [faqSchema(faqs)] : []),
+];
+---
+<Base title="Junk Removal in South St. Louis County" description={description} breadcrumbs={crumbs} schema={schema}>
+  <PageHero
+    title="Junk Removal & Demolition in South St. Louis County"
+    lead={`Junk hauling, cleanouts and tear-outs in ${nameList}. These are unincorporated areas, so trash districts and permits run through St. Louis County, not a city hall.`}
+    crumbs={crumbs}
+  >
+    <div class="btn-row">
+      <a href="/book/" class="btn btn-accent" data-track="cta_click" data-track-cta="book" data-track-location="city-south-county">Book a pickup</a>
+      <a href={telHref} class="btn btn-ghost" data-track="phone_click" data-track-location="city-south-county">Call {business.phoneDisplay}</a>
+    </div>
+    <nav class="jump" aria-label="Areas on this page">
+      {areas.map((a) => <a href={`#${a.slug}`} class="chip">{a.name}</a>)}
+    </nav>
+  </PageHero>
+
+  <div class="shell sc">
+    {shared.length > 0 && (
+      <section aria-labelledby="county-h" class="block">
+        <h2 id="county-h" class="display-md">How unincorporated St. Louis County handles bulky items and permits</h2>
+        <ul class="facts">
+          {shared.map((f) => <li><p>{f.fact}</p><a class="src" href={f.source} target="_blank" rel="noopener">Source: {host(f.source)}<span class="sr-only"> (opens in a new tab)</span></a></li>)}
+        </ul>
+      </section>
+    )}
+
+    {areas.map((a) => (
+      <section id={a.slug} aria-labelledby={`${a.slug}-h`} class="block area">
+        <h2 id={`${a.slug}-h`} class="display-md">Junk removal in {a.name}</h2>
+        {a.zips.length > 0 && <p class="meta-line">ZIP {a.zips.join(', ')}{a.neighborhoods.length > 0 && ` · ${a.neighborhoods.join(', ')}`}</p>}
+        <ul class="facts">
+          {own(a).map((f) => <li><p>{f.fact}</p><a class="src" href={f.source} target="_blank" rel="noopener">Source: {f.source.includes('arcgis') || f.source.includes('stlouisco.com') ? 'St. Louis County GIS' : host(f.source)}<span class="sr-only"> (opens in a new tab)</span></a></li>)}
+        </ul>
+        {jobsFor(a).map((j) => (
+          <article class="job">
+            <h3 class="job__h">Our work in {a.name}</h3>
+            <p class="job__meta">{j.when && <>{j.when} · </>}{j.service && <a class="link-u accent" href={`/services/${j.service.slug}/`}>{j.service.title}</a>}</p>
+            <p class="job__text">{j.summary}</p>
+            <div class="job__photos">
+              {j.photos.map((ph) => (
+                <div class={`media job__photo${ph.width > ph.height ? ' job__photo--wide' : ''}`}>
+                  <Image src={jobImage(ph.file)} alt={ph.alt} widths={fitWidths(jobImage(ph.file), [480, 800, 1200])} quality={PHOTO_QUALITY} sizes="(min-width: 900px) 380px, 100vw" />
+                </div>
+              ))}
+            </div>
+          </article>
+        ))}
+      </section>
+    ))}
+
+    <section aria-labelledby="svc-h" class="block">
+      <h2 id="svc-h" class="display-md">What we do in South County</h2>
+      <p class="body">Priced by the load, from {minimum?.priceLine.amount} to {full?.priceLine.amount}. <a class="link-u accent" href="/pricing/">See load sizes</a>.</p>
+      <ul class="svc">
+        <li><a href="/services/junk-removal/" class="svc__link">Junk removal in Oakville, Mehlville and Affton</a></li>
+        <li><a href="/services/cleanouts/" class="svc__link">Basement and estate cleanouts in Concord and Lemay</a></li>
+        <li><a href="/services/demolition/" class="svc__link">Deck, shed and interior demolition in South County</a></li>
+        <li><a href="/services/construction-debris-removal/" class="svc__link">Remodel debris hauling in South County</a></li>
+      </ul>
+    </section>
+
+    {faqs.length > 0 && (
+      <section aria-labelledby="faq-h" class="block">
+        <h2 id="faq-h" class="display-md">South County trash district questions</h2>
+        <Faq items={faqs} />
+      </section>
+    )}
+
+    <section aria-labelledby="more-h" class="block side">
+      <h2 id="more-h" class="display-md">Resources and nearby areas</h2>
+      <ul class="side-list">
+        {links.map((o) => <li><a href={o.url} target="_blank" rel="noopener" class="link-u">{o.label}<span class="sr-only"> (opens in a new tab)</span></a></li>)}
+        {near.map((n) => n && <li><a href={cityHref(n)} class="link-u">Junk removal in {n.name}</a></li>)}
+        <li><a href="/service-areas/" class="link-u">Every area we serve</a></li>
+      </ul>
+      <p class="checked muted">South County details checked {new Date(areas[0]?.verified ?? Date.now()).toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}. Trash districts follow county map lines, so homes near a border can fall in a neighboring district.</p>
+    </section>
+  </div>
+</Base>
+
+<style>
+  .sc { display: grid; gap: clamp(48px, 6vw, 72px); padding-bottom: clamp(48px, 6vw, 96px); max-width: 960px; }
+  .jump { display: flex; flex-wrap: wrap; gap: 8px; }
+  .chip { padding: 8px 14px; border-radius: 999px; font-size: 14px; background: rgb(255 255 255 / .07); box-shadow: inset 0 0 0 1px rgb(255 255 255 / .14); }
+  .chip:hover { background: rgb(255 255 255 / .13); }
+  .block { display: grid; gap: 18px; scroll-margin-top: calc(var(--nav-h) + 16px); }
+  .block h2 { font-size: clamp(1.6rem, 1.2rem + 1.4vw, 2.3rem); }
+  .body { color: #d6cfc6; max-width: 66ch; }
+  .meta-line { color: var(--color-muted); font-size: 15px; }
+  .facts { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
+  .facts li { display: grid; gap: 8px; padding: 20px 22px; border-radius: var(--radius-md); background: var(--color-card); box-shadow: inset 0 0 0 1px var(--color-line); }
+  .facts p { color: #e3ddd5; }
+  .src { font-size: 13px; color: var(--color-muted); text-decoration: underline; text-decoration-color: rgb(255 255 255 / .2); overflow-wrap: anywhere; }
+  .svc { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
+  @media (min-width: 640px) { .svc { grid-template-columns: 1fr 1fr; } }
+  .svc__link { display: block; height: 100%; padding: 18px 22px; border-radius: var(--radius-md); background: var(--color-card); box-shadow: inset 0 0 0 1px var(--color-line); font-weight: 600; color: var(--color-accent-ink); }
+  .svc__link:hover { background: var(--color-card-2); }
+  .side-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+  .checked { font-size: 13px; }
+  .job { display: grid; gap: 12px; margin-top: 8px; }
+  .job__h { font-size: 1.15rem; font-weight: 700; }
+  .job__meta { font-size: 14px; color: var(--color-muted); }
+  .job__text { font-size: 1.05rem; color: #e3ddd5; max-width: 62ch; }
+  .job__photos { display: grid; gap: 14px; }
+  @media (min-width: 640px) { .job__photos { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  .job__photo { aspect-ratio: 3 / 4; max-width: 520px; }
+  .job__photo--wide { aspect-ratio: 4 / 3; grid-column: 1 / -1; max-width: 760px; }
+</style>

@@ -1,0 +1,40 @@
+---
+// Service Areas hub (local-seo kit): lists every place we serve, linking each one that has a city page.
+import Base from "../../layouts/Base.astro";
+import PageHero from "../../components/PageHero.astro";
+import ServiceAreaBlock from "../../components/ServiceAreaBlock.astro";
+import { business, telHref } from "../../lib/site";
+import { cityPages, cityHref, groups } from "../../lib/locations";
+import { site } from "../../data/site";
+
+const crumbs = [{ name: "Home", href: "/" }, { name: "Service areas", href: "/service-areas/" }];
+const list = {
+  "@type": "ItemList",
+  name: `${site.name} service areas`,
+  itemListElement: [
+    ...cityPages.map((l) => ({ name: `${l.name}, ${l.region}`, url: `${site.url}${cityHref(l)}` })),
+    ...groups.map((g) => ({ name: `${g.name}, MO`, url: `${site.url}/service-areas/${g.slug}/` })),
+  ].map((x, i) => ({ "@type": "ListItem", position: i + 1, ...x })),
+};
+---
+<Base title="Areas We Serve in St. Louis & St. Charles" breadcrumbs={crumbs} schema={[list]} description="Junk removal, cleanouts and demolition across St. Louis City and County and St. Charles County, from Florissant to O'Fallon. Pick your city or check your ZIP.">
+  <PageHero title="Areas We Serve" lead={`We're based in Florissant and work across St. Louis City, St. Louis County and St. Charles County. Pick your city for local pickup rules, permit offices and ZIP codes, or check your ZIP below.`} crumbs={crumbs} photo="crew/truck.webp" />
+  <section class="section-tight" aria-labelledby="places-h">
+    <div class="shell">
+      <h2 id="places-h" class="display-md places-h">Cities and areas we serve</h2>
+      <ServiceAreaBlock full />
+    </div>
+  </section>
+  <section class="section-tight">
+    <div class="shell edge">
+      <h2 class="display-md">How our city pages work</h2>
+      <p class="lead">Each city page lists how that city handles bulky-item pickup and who issues building and demolition permits there, with a link to the official source for every detail. Cities without a page yet are ones where we couldn't confirm those details from an official source; we still serve them at the same prices.</p>
+      <h2 class="display-md">Just outside the list?</h2>
+      <p class="lead">If you're close to anywhere on this list, call <a class="link-u accent" href={telHref}>{business.phoneDisplay}</a> and ask, or <a class="link-u accent" href="/book/">book online</a> and we'll confirm.</p>
+    </div>
+  </section>
+</Base>
+<style>
+  .edge { display: grid; gap: 12px; max-width: 720px; }
+  .places-h { margin-bottom: 28px; }
+</style>

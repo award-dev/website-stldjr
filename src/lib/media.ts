@@ -129,7 +129,7 @@ export async function pairImages(before: Project, after: Project) {
     const meta = jobImage(p.file);
     const widths = fitWidths(meta, [720, 1080, 1440]);
     const imgs = await Promise.all(widths.map((w) => getImage({ src: meta, width: w, format: 'webp', quality: PHOTO_QUALITY })));
-    return { src: imgs[0].src, srcset: imgs.map((im, i) => `${im.src} ${widths[i]}w`).join(', '), alt: p.alt };
+    return { src: imgs[0].src, srcset: imgs.map((im, i) => `${im.src} ${widths[i]}w`).join(', '), alt: p.alt, width: meta.width, height: meta.height };
   };
   return { before: await one(before), after: await one(after) };
 }
