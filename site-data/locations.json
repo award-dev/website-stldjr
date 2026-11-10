@@ -2584,7 +2584,16 @@
       "lat": 38.50389,
       "lng": -90.3775
     },
-    "jobs": [],
+    "jobs": [
+      {
+        "date": "",
+        "service": "junk-removal",
+        "summary": "Trash pickup in Concord: a pile of broken-down cardboard boxes, packing paper and plastic, empty mulch bags and paint buckets, cleared out and hauled away.",
+        "photos": [
+          "junk-removal/concord-cardboard-trash-pickup.jpg"
+        ]
+      }
+    ],
     "review_ids": [],
     "unique_faqs": [
       {
