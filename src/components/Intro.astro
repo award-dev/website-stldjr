@@ -1,0 +1,124 @@
+---
+/**
+ * Five-second intro, shown once per visit (sessionStorage).
+ *
+ * The whole timeline (logo truck, headline, progress bar, curtain lift) is CSS from the first paint (intro.css).
+ * A small script adds the live percentage and stage label (read from the bar's own animation clock), the
+ * once-per-visit memory and cleanup. Skip and Escape are handled by the inline script in Base.astro, so they work
+ * before any bundle loads. No framework: this used to be a React island, which put React on the critical path.
+ */
+interface Props {
+  logo: string;
+  words: string[];
+  stages: [number, string][];
+  drawing?: 'house' | 'truck' | 'none';
+  truck?: { bed: string; base: string };
+}
+const { logo, words, stages, drawing = 'house', truck } = Astro.props;
+const BUILD = 4.25;
+
+// Blueprint house drawing: each line draws inside its own slice of the build time.
+const PLAN: { d: string; from: number; to: number; accent?: boolean; dim?: boolean }[] = [
+  { d: 'M12 196 H388', from: 0, to: 0.14 },
+  { d: 'M64 196 V104', from: 0.08, to: 0.24 },
+  { d: 'M336 196 V104', from: 0.1, to: 0.26 },
+  { d: 'M40 116 L200 22 L360 116', from: 0.22, to: 0.46, accent: true },
+  { d: 'M74 110 L200 36 L326 110', from: 0.3, to: 0.5 },
+  { d: 'M272 62 V36 H298 V78', from: 0.44, to: 0.56 },
+  { d: 'M180 196 V140 H220 V196', from: 0.5, to: 0.64, accent: true },
+  { d: 'M96 128 H144 V168 H96 Z M120 128 V168 M96 148 H144', from: 0.6, to: 0.76 },
+  { d: 'M256 128 H304 V168 H256 Z M280 128 V168 M256 148 H304', from: 0.66, to: 0.82 },
+  { d: 'M64 212 H336 M64 206 V218 M336 206 V218', from: 0.78, to: 0.94, dim: true },
+  { d: 'M352 104 V196 M346 104 H358 M346 196 H358', from: 0.82, to: 0.98, dim: true },
+];
+---
+<div class="intro" role="status" aria-live="polite" aria-label="Loading" data-nosnippet data-intro data-stages={JSON.stringify(stages)} data-build={BUILD}>
+  <div class="intro__grid" aria-hidden="true"></div>
+  <div class="intro__glow" aria-hidden="true"></div>
+
+  {drawing === 'house' && (
+    <svg class="intro__plan" viewBox="0 0 400 230" aria-hidden="true">
+      {PLAN.map((l) => (
+        <path d={l.d} pathLength="1" class={l.accent ? 'is-accent' : l.dim ? 'is-dim' : undefined}
+          style={`animation-delay:${(l.from * BUILD).toFixed(2)}s;animation-duration:${((l.to - l.from) * BUILD).toFixed(2)}s`} />
+      ))}
+    </svg>
+  )}
+
+  <div class="intro__center">
+    {drawing === 'truck' && truck ? (
+      <div class="intro__truck" aria-hidden="true">
+        <img class="intro__truck-base" src={truck.base} alt="" width="816" height="437" decoding="async" fetchpriority="high" />
+        <img class="intro__truck-bed" src={truck.bed} alt="" width="816" height="437" decoding="async" fetchpriority="high" />
+      </div>
+    ) : (
+      <img class="intro__logo" src={logo} alt="" width="180" height="196" decoding="async" />
+    )}
+    <p class="intro__title">
+      {words.map((w, i) => (
+        <span class="intro__word"><span class={i === words.length - 1 ? 'is-accent' : undefined} style={`animation-delay:${(0.25 + i * 0.12).toFixed(2)}s`}>{w}</span></span>
+      ))}
+    </p>
+    <div class="intro__bar" aria-hidden="true"><span data-intro-bar></span></div>
+    <div class="intro__meta">
+      <span class="intro__stage" data-intro-stage>{stages[0][1]}</span>
+      <span class="intro__pct" data-intro-pct>0%</span>
+    </div>
+  </div>
+
+  <button type="button" class="intro__skip">
+    Skip intro
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
+  </button>
+</div>
+
+<script>
+  const KEY = 'intro-seen';
+  const el = document.querySelector<HTMLElement>('[data-intro]');
+  const html = document.documentElement;
+  if (el) {
+    let seen = false;
+    try { seen = sessionStorage.getItem(KEY) === '1'; } catch { /* storage blocked: treat as unseen */ }
+    let raf = 0;
+    const done = () => {
+      try { sessionStorage.setItem(KEY, '1'); } catch { /* ignore */ }
+      html.classList.add('intro-seen'); // also releases the CSS scroll lock
+      cancelAnimationFrame(raf);
+      el.remove();
+    };
+    const lifted = () => el.getAnimations().some((a) => ['intro-lift', 'intro-lift-now'].includes((a as CSSAnimation).animationName) && a.playState === 'finished');
+
+    if (seen || html.classList.contains('intro-seen') || lifted()) done();
+    else {
+      el.addEventListener('animationend', (e) => {
+        if (e.target === el && (e.animationName === 'intro-lift' || e.animationName === 'intro-lift-now')) done();
+      });
+      // Percentage and stage follow the bar's own CSS animation clock, so they match what is drawn.
+      const stages: [number, string][] = JSON.parse(el.dataset.stages || '[]');
+      const build = Number(el.dataset.build) || 4.25;
+      const bar = el.querySelector<HTMLElement>('[data-intro-bar]');
+      const pct = el.querySelector<HTMLElement>('[data-intro-pct]');
+      let stageEl = el.querySelector<HTMLElement>('[data-intro-stage]');
+      const anim = bar?.getAnimations()[0];
+      const runs = Number(anim?.effect?.getComputedTiming().duration ?? 0) > 1000; // collapsed under reduced motion
+      let last = -1, lastStage = stages[0]?.[1];
+      const tick = () => {
+        const ms = runs && typeof anim?.currentTime === 'number' ? anim.currentTime : Number(document.timeline.currentTime ?? 0);
+        const t = Math.min(1, Math.max(0, ms / 1000 / build));
+        const shown = el.classList.contains('is-skipped') ? 100 : Math.round(t * 100);
+        if (shown !== last && pct) { pct.textContent = `${shown}%`; last = shown; }
+        const stage = [...stages].reverse().find(([at]) => t >= at)?.[1] ?? lastStage;
+        if (stage !== lastStage && stageEl) {
+          // A fresh element restarts the label's entrance animation.
+          const next = stageEl.cloneNode() as HTMLElement;
+          next.textContent = stage;
+          stageEl.replaceWith(next);
+          stageEl = next;
+          lastStage = stage;
+        }
+        if (t < 1) raf = requestAnimationFrame(tick);
+      };
+      raf = requestAnimationFrame(tick);
+    }
+  }
+</script>

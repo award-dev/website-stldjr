@@ -28,27 +28,27 @@ const arrow = '<svg class="arrow" viewBox="0 0 24 24" aria-hidden="true" fill="n
 <Base description={h.description} ogImage={h.heroPhoto}>
   <section class="hero" aria-labelledby="hero-h">
     <div class="hero__bg" aria-hidden="true">
-      <Image src={heroImg} alt="" widths={fitWidths(heroImg, [640, 960, 1200])} quality={PHOTO_QUALITY} sizes="100vw" loading="eager" fetchpriority="high" />
+      <Image src={heroImg} alt="" widths={fitWidths(heroImg, [480, 768, 1080])} quality={45} sizes="100vw" loading="eager" />
     </div>
     <div class="glow hero__glow" aria-hidden="true"></div>
     <div class="shell hero__grid">
       <div class="hero__copy">
-        {trust && <p class="tag" data-reveal><span class="dot"></span>{trust}</p>}
-        <h1 id="hero-h" class="hero__h1" data-reveal style="--d:60ms">
+        {trust && <p class="tag"><span class="dot"></span>{trust}</p>}
+        <h1 id="hero-h" class="hero__h1">
           <span class="hero__kicker">{h.kicker}</span>
           <span class="display-xl hero__big">{h.headline}<br /><span class="accent">{h.headlineAccent}</span></span>
         </h1>
-        <p class="lead" data-reveal style="--d:140ms">{h.lead}</p>
-        <div class="btn-row" data-reveal style="--d:220ms">
+        <p class="lead">{h.lead}</p>
+        <div class="btn-row">
           <a href={primaryAction.href} class="btn btn-accent" data-track="cta_click" data-track-cta="book" data-track-location="hero">{primaryAction.label}<Fragment set:html={arrow} /></a>
           <a href={secondaryAction.href} class="btn btn-ghost" data-track="cta_click" data-track-cta="quote" data-track-location="hero">{secondaryAction.label}</a>
         </div>
-        <div class="hero__sub" data-reveal style="--d:280ms">
+        <div class="hero__sub">
           <a href={site.phoneHref} class="link-arrow" data-track="phone_click" data-track-location="hero">Or call {site.phone}<Fragment set:html={arrow} /></a>
           <NextAvailable />
         </div>
       </div>
-      <div class="hero__tool" data-reveal style="--d:160ms">
+      <div class="hero__tool">
         <LoadConfigurator variant="hero" idPrefix="hero" />
       </div>
     </div>
