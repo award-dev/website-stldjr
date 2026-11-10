@@ -2,15 +2,15 @@
 import Base from "../layouts/Base.astro";
 import PageHero from "../components/PageHero.astro";
 import Faq from "../components/Faq.astro";
-import { business, telHref, faqItems } from "../lib/site";
+import { business, telHref, faqItems, faqSchema } from "../lib/site";
 const crumbs = [{ name: "Home", href: "/" }, { name: "FAQ", href: "/faq/" }];
 ---
-<Base title="FAQ: Junk Removal, Demolition & Pricing" breadcrumbs={crumbs} description="Answers about junk removal pricing, load sizes, what 17 cubic yards means, what we can't take, booking, same-day service and the areas we cover in St. Louis.">
+<Base title="FAQ: Junk Removal, Demolition & Pricing" breadcrumbs={crumbs} schema={[faqSchema(faqItems())]} description="Answers about junk removal pricing, load sizes, what 17 cubic yards means, what we can't take, booking, same-day service and the areas we cover in St. Louis.">
   <PageHero title="Straight answers" lead="If your question isn't here, call and ask. You'll get a person." crumbs={crumbs}>
     <div class="btn-row"><a href="/book/" class="btn btn-accent">Book a pickup</a><a href={telHref} class="btn btn-ghost" data-track="phone_click" data-track-location="faq">Call {business.phoneDisplay}</a></div>
   </PageHero>
   <section class="section-tight">
-    <div class="shell faq-wrap"><Faq items={faqItems()} /></div>
+    <div class="shell faq-wrap"><h2 class="sr-only">All questions</h2><Faq items={faqItems()} /></div>
   </section>
 <style>.faq-wrap { max-width: 900px; }</style>
 </Base>

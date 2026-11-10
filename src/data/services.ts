@@ -44,17 +44,17 @@ const faq = (id: string): Faq => {
 const extra: Record<string, Pick<Service, 'slug' | 'category' | 'label' | 'noun' | 'h1' | 'metaTitle' | 'short' | 'cover'>> = {
   'junk-removal': {
     slug: 'junk-removal', category: 'junk-removal', label: 'Junk removal', noun: 'Junk removal',
-    h1: 'Junk removal in St. Louis, MO', metaTitle: 'Junk Removal in St. Louis, Priced by the Load',
+    h1: 'Junk removal in St. Louis, MO', metaTitle: 'Junk Removal in St. Louis, MO, by the Load',
     short: 'Furniture, appliances, hot tubs and household or business junk.', cover: 'junk-removal/couch-carry.webp',
   },
   cleanouts: {
     slug: 'cleanouts', category: 'cleanouts', label: 'Cleanouts', noun: 'Cleanout',
-    h1: 'Garage, basement & estate cleanouts in St. Louis', metaTitle: 'Garage, Basement & Estate Cleanouts in St. Louis',
+    h1: 'Garage, basement & estate cleanouts in St. Louis', metaTitle: 'Home & Estate Cleanouts in St. Louis, MO',
     short: 'Garages, basements, estates and move-outs in one appointment.', cover: 'cleanouts/sweep.webp',
   },
   demolition: {
     slug: 'demolition', category: 'demolition', label: 'Demolition', noun: 'Demolition',
-    h1: 'Demolition in St. Louis, MO', metaTitle: 'Demolition in St. Louis: Decks, Sheds, Interiors',
+    h1: 'Demolition in St. Louis, MO', metaTitle: 'Demolition in St. Louis: Decks, Sheds, Guts',
     short: 'Interior guts, kitchens, baths, decks and sheds, torn out and hauled.', cover: 'demolition/kitchen-gut.webp',
   },
   'construction-debris': {

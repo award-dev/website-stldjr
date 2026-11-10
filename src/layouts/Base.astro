@@ -9,6 +9,7 @@ import Footer from '../components/Footer.astro';
 import MobileBar from '../components/MobileBar.astro';
 import { business as cfg, booking, openingHoursSchema, anyPrice } from '../lib/site';
 import { site, services } from '../data/site';
+import { locations, cityHref } from '../lib/locations';
 import { content } from '../data/content';
 import { jobImage } from '../lib/images';
 import Intro from '../components/Intro.astro';
@@ -88,7 +89,11 @@ const business = {
   ...(cfg.hours.confirmed ? { openingHoursSpecification: openingHoursSchema() } : {}),
   ...(cfg.trust.foundedYear ? { foundingDate: String(cfg.trust.foundedYear) } : {}),
   ...(anyPrice ? { priceRange: '$$' } : {}),
-  areaServed: site.serviceArea.map((a) => ({ '@type': a.type, name: `${a.name}, ${site.region}`, ...(a.wiki ? { sameAs: a.wiki } : {}) })),
+  // Counties and the city, then every place in site-data/locations.json (page and mention tiers alike).
+  areaServed: [
+    ...site.serviceArea.map((a) => ({ '@type': a.type, name: `${a.name}, ${site.region}`, ...(a.wiki ? { sameAs: a.wiki } : {}) })),
+    ...locations.map((l) => ({ '@type': l.kind === 'city' ? 'City' : 'Place', name: `${l.name}, ${l.region}`, ...(l.tier === 'page' ? { url: `${site.url}${cityHref(l)}` } : {}) })),
+  ],
   sameAs: [...new Set([...site.sameAs, site.facebook].filter(Boolean))],
   knowsAbout: services.map((s) => s.title),
   hasOfferCatalog: {
@@ -103,9 +108,20 @@ const business = {
 const website = { '@type': 'WebSite', '@id': `${site.url}/#website`, url: `${site.url}/`, name: site.name, publisher: { '@id': businessId } };
 const crumbs = breadcrumbs && {
   '@type': 'BreadcrumbList',
+  '@id': `${canonical}#breadcrumb`,
   itemListElement: breadcrumbs.map((c, i) => ({ '@type': 'ListItem', position: i + 1, name: c.name, item: new URL(c.href, site.url).href })),
 };
-const graph = { '@context': 'https://schema.org', '@graph': [business, website, ...(crumbs ? [crumbs] : []), ...schema] };
+const webpage = {
+  '@type': 'WebPage',
+  '@id': `${canonical}#webpage`,
+  url: canonical,
+  name: fullTitle,
+  description,
+  isPartOf: { '@id': `${site.url}/#website` },
+  about: { '@id': businessId },
+  ...(crumbs ? { breadcrumb: { '@id': `${canonical}#breadcrumb` } } : {}),
+};
+const graph = { '@context': 'https://schema.org', '@graph': [business, website, webpage, ...(crumbs ? [crumbs] : []), ...schema] };
 ---
 <!doctype html>
 <html lang="en-US" class:list={[!showIntro && 'intro-seen']} data-booking-api={booking.crm?.apiBase || undefined}>

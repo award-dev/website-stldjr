@@ -72,8 +72,11 @@ server/lib/          booking logic, calendar, storage, notifications, validation
 netlify/functions/   HTTP endpoints (/api/*)
 src/data/            site facts (from config), page copy, services, photos, videos
 src/pages/           routes: /, /services/, /services/<slug>/, /pricing/, /projects/,
-                     /service-area/, /about/, /contact/, /faq/, /book/, /quote/,
-                     /booking/, legal, 404
+                     /service-areas/, /service-areas/<city>/, /service-areas/south-county/,
+                     /about/, /contact/, /faq/, /book/, /quote/, /booking/, legal, 404
+site-data/           local-SEO data: locations.json (verified city facts + sources),
+                     link-map.json (generated: npm run seo:links)
+.claude/             local-seo skill + seo-auditor agent (see CLAUDE.md)
 src/components/      layout + design-system components; react/ holds the islands
 src/scripts/         client modules: booking flow, analytics, load visual
 src/styles/          global.css (tokens, type, buttons), media.css, intro.css,
@@ -90,6 +93,18 @@ scripts/local-server.mjs  local preview with functions
   for measurements.
 - **Intro:** a 5-second once-per-visit loader ("Point at the mess."), skippable, off on the booking pages.
 - **Motion:** scroll reveals, hover lifts, a services marquee. All of it respects `prefers-reduced-motion`.
+
+## Local SEO
+
+City pages follow the local-seo kit (`CLAUDE.md`, `.claude/skills/local-seo/`). A city gets its own page
+only when `site-data/locations.json` has enough verified local facts, each with its official source;
+the rest are listed on `/service-areas/`. After changing pages or data:
+
+```sh
+npm run seo:links   # regenerate site-data/link-map.json
+npm run build
+npm run seo:audit   # node scripts/audit-seo.mjs dist — must PASS
+```
 
 ## Analytics events
 

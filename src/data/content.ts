@@ -122,7 +122,7 @@ export const content = {
   /** Hub page copy. Titles get " | <short name>" appended. */
   pages: {
     services: {
-      title: 'Junk Removal & Demolition Services in St. Louis',
+      title: 'Junk Removal & Demolition Services',
       description: 'Junk removal, cleanouts, demolition and construction debris removal across St. Louis City, St. Louis County and St. Charles County. Priced by the load.',
       heading: 'What we haul and tear out',
       lead: 'Two trades, one truck. Pick a service to see what’s included, how it’s priced and the common questions.',

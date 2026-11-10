@@ -132,7 +132,7 @@ const ext = '<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="cur
         {/* Click-to-load: no YouTube requests or cookies until the visitor presses play. */}
         <div class="vframe">
         <button type="button" class="yt" data-yt={v.youtubeId} data-yt-title={v.videoTitle} aria-label={`Play video: ${v.videoTitle}`}>
-          <Image src={videoPoster} alt="" widths={[640, 960, 1280]} sizes="(min-width: 1024px) 720px, 100vw" quality={80} class="yt__poster" />
+          <Image src={videoPoster} alt="" role="presentation" widths={[640, 960, 1280]} sizes="(min-width: 1024px) 720px, 100vw" quality={80} class="yt__poster" />
           <span class="yt__shade" aria-hidden="true"></span>
           <span class="yt__play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5.5v13l11-6.5z" /></svg></span>
           <span class="yt__label" aria-hidden="true">Buyers Club Vendor Team</span>

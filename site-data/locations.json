@@ -1,0 +1,3272 @@
+[
+  {
+    "slug": "florissant",
+    "name": "Florissant",
+    "region": "MO",
+    "county": "St. Louis County",
+    "kind": "city",
+    "tier": "page",
+    "why_a_page": "8 verified local facts from official sources, 2 official link(s), 2 city FAQ(s)",
+    "verified": "2026-11-10",
+    "official_site": {
+      "label": "City of Florissant",
+      "url": "https://www.florissantmo.com"
+    },
+    "local_facts": {
+      "trash": [
+        {
+          "fact": "The City of Florissant contracts with Gateway Disposal STL for residential trash collection, and property owners must use Gateway and may not hire another trash hauler. Gateway's phone number is 314-900-2070.",
+          "source": "https://www.florissantmo.com/DocumentCenter/View/642"
+        },
+        {
+          "fact": "Property owners are responsible for keeping trash service in place. Not having trash collection can lead to the occupancy permit being revoked or a summons being issued.",
+          "source": "https://www.florissantmo.com/DocumentCenter/View/642"
+        },
+        {
+          "fact": "Curbside recycling is provided by your waste hauler. The city says grass, leaves, yard waste and electronics do not go in the recycling.",
+          "source": "https://www.florissantmo.com/281/Recycling"
+        }
+      ],
+      "permits": [
+        {
+          "fact": "Florissant requires permits for most remodeling, including fences, swimming pools, decks and porches, sheds, room additions, garages, fireplaces, electrical and plumbing work, and HVAC installs. You apply through the Public Works portal on My Florissant MO, and questions go to 314-839-7648.",
+          "source": "https://www.florissantmo.com/282/Permits"
+        },
+        {
+          "fact": "The Building Division at City Hall, 955 St. Francois Street, issues construction and occupancy permits.",
+          "source": "https://www.florissantmo.com/260/Building-Division"
+        },
+        {
+          "fact": "There is a waiting period of 10 working days between submitting a permit application and getting the permit. The application needs 2 copies of site plans (survey) and 2 copies of construction plans.",
+          "source": "https://www.florissantmo.com/261/Building-Permits"
+        }
+      ],
+      "other": [
+        {
+          "fact": "Florissant requires a city Container Permit for storage units, dumpsters and pods, applied for through the My Florissant MO portal.",
+          "source": "https://www.florissantmo.com/282/Permits"
+        },
+        {
+          "fact": "Residents can drop off unwanted chemicals and paint through the countywide household hazardous waste program (www.hhwstl.com, 314-615-8989).",
+          "source": "https://www.florissantmo.com/279/Health-Division"
+        }
+      ]
+    },
+    "neighborhoods": [
+      "Old Town Florissant",
+      "St. Ferdinand Central Historic District"
+    ],
+    "zips": [
+      "63031",
+      "63032",
+      "63033",
+      "63034"
+    ],
+    "coords": {
+      "lat": 38.79972,
+      "lng": -90.32694
+    },
+    "jobs": [],
+    "review_ids": [],
+    "unique_faqs": [
+      {
+        "q": "Who picks up trash in Florissant?",
+        "a": "The City of Florissant contracts with Gateway Disposal STL for residential trash collection, and property owners must use Gateway and may not hire another trash hauler. Gateway's phone number is 314-900-2070."
+      },
+      {
+        "q": "Do I need a permit to tear out a deck, shed or interior in Florissant?",
+        "a": "Florissant requires permits for most remodeling, including fences, swimming pools, decks and porches, sheds, room additions, garages, fireplaces, electrical and plumbing work, and HVAC installs. You apply through the Public Works portal on My Florissant MO, and questions go to 314-839-7648."
+      }
+    ],
+    "official_links": [
+      {
+        "label": "City of Florissant",
+        "url": "https://www.florissantmo.com"
+      },
+      {
+        "label": "Florissant building permits",
+        "url": "https://www.florissantmo.com/282/Permits"
+      }
+    ],
+    "nearby": [
+      "hazelwood",
+      "ferguson",
+      "bridgeton",
+      "jennings",
+      "spanish-lake",
+      "overland"
+    ]
+  },
+  {
+    "slug": "chesterfield",
+    "name": "Chesterfield",
+    "region": "MO",
+    "county": "St. Louis County",
+    "kind": "city",
+    "tier": "page",
+    "why_a_page": "8 verified local facts from official sources, 3 official link(s), 3 city FAQ(s)",
+    "verified": "2026-11-10",
+    "official_site": {
+      "label": "City of Chesterfield",
+      "url": "https://www.chesterfield.mo.us/"
+    },
+    "local_facts": {
+      "trash": [
+        {
+          "fact": "Republic Services holds Chesterfield's exclusive city contract for residential trash and recycling. Starting August 1, 2026, the service costs $17.61 a month, billed quarterly.",
+          "source": "https://www.chesterfield.mo.us/solid-waste-recycling"
+        },
+        {
+          "fact": "Bulky trash is limited to two items per week, picked up on your regular trash day at no extra charge, but you must call Republic to schedule it. Bulk pickups can't be requested through Republic's app or website.",
+          "source": "https://mo-chesterfield.civicplus.pro/asset/7de0f74d-750f-42f4-99cb-4f922c5e0225"
+        },
+        {
+          "fact": "Major appliances must be scheduled through Republic at (636) 947-5959 for an extra charge. Tires and car batteries aren't collected.",
+          "source": "https://mo-chesterfield.civicplus.pro/asset/7de0f74d-750f-42f4-99cb-4f922c5e0225"
+        },
+        {
+          "fact": "Remodeling debris isn't taken with regular trash or as bulk trash. That includes carpet, cabinets, drywall, wood, toilets and tubs, roofing and siding.",
+          "source": "https://mo-chesterfield.civicplus.pro/asset/7de0f74d-750f-42f4-99cb-4f922c5e0225"
+        },
+        {
+          "fact": "Trash and recycling go out the same day by ward: Ward 1 Monday, Ward 2 Tuesday, Ward 3 Thursday, Ward 4 Friday, at the curb by 7 a.m.",
+          "source": "https://www.chesterfield.mo.us/collection-schedule"
+        }
+      ],
+      "permits": [
+        {
+          "fact": "A building permit is required for new construction and for interior or exterior alterations. First you get Municipal Zoning Approval from the city's Planning Department, then you take it to St. Louis County, which handles Chesterfield's permits and inspections (314-615-5184).",
+          "source": "https://www.chesterfield.mo.us/building-permits"
+        }
+      ],
+      "other": [
+        {
+          "fact": "A roll-off dumpster needs Municipal Zoning Approval in Chesterfield. It must sit on a paved surface on your property, like a driveway, not on the street or in the yard, and approval lasts 30 days with no fee.",
+          "source": "https://www.chesterfield.mo.us/building-permits"
+        },
+        {
+          "fact": "The city points residents to Habitat ReStore at 2117 Sams Dr. in Des Peres for reusable appliances and furniture.",
+          "source": "https://www.chesterfield.mo.us/recycling-opportunities"
+        }
+      ]
+    },
+    "neighborhoods": [
+      "Chesterfield Valley",
+      "Gumbo",
+      "Monarch"
+    ],
+    "zips": [
+      "63005",
+      "63017"
+    ],
+    "coords": {
+      "lat": 38.6589,
+      "lng": -90.5803
+    },
+    "jobs": [],
+    "review_ids": [],
+    "unique_faqs": [
+      {
+        "q": "Who picks up trash in Chesterfield?",
+        "a": "Republic Services holds Chesterfield's exclusive city contract for residential trash and recycling. Starting August 1, 2026, the service costs $17.61 a month, billed quarterly."
+      },
+      {
+        "q": "Will the trash company in Chesterfield take a couch or other big items?",
+        "a": "Bulky trash is limited to two items per week, picked up on your regular trash day at no extra charge, but you must call Republic to schedule it. Bulk pickups can't be requested through Republic's app or website."
+      },
+      {
+        "q": "Where do Chesterfield homeowners get a building permit?",
+        "a": "A building permit is required for new construction and for interior or exterior alterations. First you get Municipal Zoning Approval from the city's Planning Department, then you take it to St. Louis County, which handles Chesterfield's permits and inspections (314-615-5184)."
+      }
+    ],
+    "official_links": [
+      {
+        "label": "City of Chesterfield",
+        "url": "https://www.chesterfield.mo.us/"
+      },
+      {
+        "label": "Chesterfield trash and bulky pickup",
+        "url": "https://www.chesterfield.mo.us/solid-waste-recycling"
+      },
+      {
+        "label": "Chesterfield building permits",
+        "url": "https://www.chesterfield.mo.us/building-permits"
+      }
+    ],
+    "nearby": [
+      "ballwin",
+      "ellisville",
+      "weldon-spring",
+      "town-and-country",
+      "manchester",
+      "maryland-heights"
+    ]
+  },
+  {
+    "slug": "wildwood",
+    "name": "Wildwood",
+    "region": "MO",
+    "county": "St. Louis County",
+    "kind": "city",
+    "tier": "page",
+    "why_a_page": "7 verified local facts from official sources, 3 official link(s), 3 city FAQ(s)",
+    "verified": "2026-11-10",
+    "official_site": {
+      "label": "City of Wildwood",
+      "url": "https://www.cityofwildwood.com/"
+    },
+    "local_facts": {
+      "trash": [
+        {
+          "fact": "Wildwood has two city haulers. Republic Services (636-947-5959) serves most subdivisions, and Gateway Disposal (314-900-2070) serves larger rural properties, typically 3 acres or more. A city map shows which one serves each address.",
+          "source": "https://www.cityofwildwood.com/270/Waste-Recycling-Services"
+        },
+        {
+          "fact": "Republic picks up two bulky items free on your last trash day of the month if you call 636-947-5959 to schedule. Gateway gives one free bulky pickup a month on the third pickup of the month and charges $20 for each extra item or any item over 60 pounds.",
+          "source": "https://www.cityofwildwood.com/272/Bulky-Items-Appliances"
+        },
+        {
+          "fact": "Appliances are picked up separately from bulky items. Republic charges $36.60 per appliance and Gateway charges $30.00, and you call your hauler for construction debris and carpet pricing.",
+          "source": "https://www.cityofwildwood.com/272/Bulky-Items-Appliances"
+        }
+      ],
+      "permits": [
+        {
+          "fact": "The City of Wildwood reviews projects for zoning, then St. Louis County building codes, plan review and inspections apply. A permit is required for additions, new construction, structural alterations, electrical or mechanical work, and new or replaced plumbing.",
+          "source": "https://www.cityofwildwood.com/187/Building-Permits"
+        },
+        {
+          "fact": "Utility sheds of 120 square feet or less and fences under six feet need no building permit but still need a city Zoning Authorization. Call the Planning Department at 636-458-0440.",
+          "source": "https://www.cityofwildwood.com/187/Building-Permits"
+        }
+      ],
+      "other": [
+        {
+          "fact": "Republic customers can have up to two old trash carts from a previous provider hauled off free through bulky-item service; Gateway customers use the city's Cart Removal Request Form.",
+          "source": "https://www.cityofwildwood.com/270/Waste-Recycling-Services"
+        },
+        {
+          "fact": "Wildwood incorporated on September 1, 1995.",
+          "source": "https://www.cityofwildwood.com/225/History"
+        }
+      ]
+    },
+    "neighborhoods": [],
+    "zips": [
+      "63038",
+      "63040"
+    ],
+    "coords": {
+      "lat": 38.58,
+      "lng": -90.6697
+    },
+    "jobs": [],
+    "review_ids": [],
+    "unique_faqs": [
+      {
+        "q": "Who picks up trash in Wildwood?",
+        "a": "Wildwood has two city haulers. Republic Services (636-947-5959) serves most subdivisions, and Gateway Disposal (314-900-2070) serves larger rural properties, typically 3 acres or more. A city map shows which one serves each address."
+      },
+      {
+        "q": "Will the trash company in Wildwood take a couch or other big items?",
+        "a": "Republic picks up two bulky items free on your last trash day of the month if you call 636-947-5959 to schedule. Gateway gives one free bulky pickup a month on the third pickup of the month and charges $20 for each extra item or any item over 60 pounds."
+      },
+      {
+        "q": "Do I need a permit to tear out a deck, shed or interior in Wildwood?",
+        "a": "Utility sheds of 120 square feet or less and fences under six feet need no building permit but still need a city Zoning Authorization. Call the Planning Department at 636-458-0440."
+      }
+    ],
+    "official_links": [
+      {
+        "label": "City of Wildwood",
+        "url": "https://www.cityofwildwood.com/"
+      },
+      {
+        "label": "Wildwood trash and bulky pickup",
+        "url": "https://www.cityofwildwood.com/270/Waste-Recycling-Services"
+      },
+      {
+        "label": "Wildwood building permits",
+        "url": "https://www.cityofwildwood.com/187/Building-Permits"
+      }
+    ],
+    "nearby": [
+      "ellisville",
+      "ballwin",
+      "chesterfield",
+      "manchester",
+      "weldon-spring",
+      "town-and-country"
+    ]
+  },
+  {
+    "slug": "university-city",
+    "name": "University City",
+    "region": "MO",
+    "county": "St. Louis County",
+    "kind": "city",
+    "tier": "page",
+    "why_a_page": "9 verified local facts from official sources, 3 official link(s), 2 city FAQ(s)",
+    "verified": "2026-11-10",
+    "official_site": {
+      "label": "City of University City",
+      "url": "https://www.ucitymo.org/"
+    },
+    "local_facts": {
+      "trash": [
+        {
+          "fact": "City staff collect bulk items at the front curb twice a year in every neighborhood, once in the spring and once in the fall. Your date depends on your West, Central or East zone.",
+          "source": "https://ucitymo.org/707/Bulk-Item-Collection-Program"
+        },
+        {
+          "fact": "For the scheduled bulk week, put items at the curb by Sunday night. The limit is three large items or seven smaller items, and crews make only one pass on each street.",
+          "source": "https://ucitymo.org/707/Bulk-Item-Collection-Program"
+        },
+        {
+          "fact": "Bulk collection no longer takes TVs or computers, and refuses yard waste, tires, auto batteries, concrete, bricks, dirt and household trash. Freon must be removed from refrigerators and air conditioners.",
+          "source": "https://ucitymo.org/707/Bulk-Item-Collection-Program"
+        },
+        {
+          "fact": "Between scheduled bulk weeks, the city offers a paid Special Bulk Item Collection: $25 per item, up to $200 per pickup (10 items maximum), paid in advance. Pickup is on a Wednesday or Friday about 7 days after payment. Call Public Works and Parks at (314) 505-8560.",
+          "source": "https://ucitymo.org/706/Solid-Waste-Special-Collection-Programs"
+        }
+      ],
+      "permits": [
+        {
+          "fact": "Building permits are handled by the city's Department of Community Development at City Hall, 6801 Delmar Blvd. Applications can be emailed to inspections@ucitymo.org.",
+          "source": "https://www.ucitymo.org/385/Construction-and-Occupancy-Codes-and-Per"
+        },
+        {
+          "fact": "University City's building code requires anyone who plans to demolish a building or structure to apply to the Building Official and get a permit first.",
+          "source": "https://www.ucitymo.org/documentcenter/view/14300"
+        },
+        {
+          "fact": "Under the city code, sheds and other accessory buildings over 50 square feet need a permit. Demolition permit fees are $70 for a private garage and $140 per dwelling unit for residential structures.",
+          "source": "https://www.ucitymo.org/documentcenter/view/14300"
+        }
+      ],
+      "other": [
+        {
+          "fact": "The city rents 30-cubic-yard roll-off dumpsters for $300 per pickup, including a $50 right-of-way permit fee. Dumpsters may be placed on public streets only, not on driveways.",
+          "source": "https://ucitymo.org/706/Solid-Waste-Special-Collection-Programs"
+        },
+        {
+          "fact": "Special bulk pickups don't take construction debris, roofing shingles, concrete, bricks, landscaping stones, tree stumps or limbs, and your trash bill must be current to use any bulk program.",
+          "source": "https://ucitymo.org/706/Solid-Waste-Special-Collection-Programs"
+        }
+      ]
+    },
+    "neighborhoods": [
+      "the Delmar Loop",
+      "the Olive Boulevard corridor"
+    ],
+    "zips": [
+      "63130"
+    ],
+    "coords": {
+      "lat": 38.66583,
+      "lng": -90.33167
+    },
+    "jobs": [],
+    "review_ids": [],
+    "unique_faqs": [
+      {
+        "q": "Will the trash company in University City take a couch or other big items?",
+        "a": "City staff collect bulk items at the front curb twice a year in every neighborhood, once in the spring and once in the fall. Your date depends on your West, Central or East zone."
+      },
+      {
+        "q": "Do I need a permit to tear out a deck, shed or interior in University City?",
+        "a": "University City's building code requires anyone who plans to demolish a building or structure to apply to the Building Official and get a permit first."
+      }
+    ],
+    "official_links": [
+      {
+        "label": "City of University City",
+        "url": "https://www.ucitymo.org/"
+      },
+      {
+        "label": "University City trash and bulky pickup",
+        "url": "https://ucitymo.org/707/Bulk-Item-Collection-Program"
+      },
+      {
+        "label": "University City building permits",
+        "url": "https://www.ucitymo.org/385/Construction-and-Occupancy-Codes-and-Per"
+      }
+    ],
+    "nearby": [
+      "clayton",
+      "richmond-heights",
+      "overland",
+      "ladue",
+      "brentwood",
+      "jennings"
+    ]
+  },
+  {
+    "slug": "ballwin",
+    "name": "Ballwin",
+    "region": "MO",
+    "county": "St. Louis County",
+    "kind": "city",
+    "tier": "page",
+    "why_a_page": "6 verified local facts from official sources, 3 official link(s), 3 city FAQ(s)",
+    "verified": "2026-11-10",
+    "official_site": {
+      "label": "City of Ballwin",
+      "url": "https://www.ballwin.mo.us/"
+    },
+    "local_facts": {
+      "trash": [
+        {
+          "fact": "The City of Ballwin doesn't collect trash itself; it contracts with Republic Services (636-947-5959). Trash, yard waste and recycling go to the curb by 6 a.m.",
+          "source": "https://www.ballwin.mo.us/194/Trash-Pick-up-and-Recycling"
+        },
+        {
+          "fact": "Bulky trash is picked up on the last pickup day of the month if you schedule it with Republic. The limit is two items or 150 pounds at no charge, and major appliances, auto parts and construction debris are excluded.",
+          "source": "https://www.ballwin.mo.us/194/Trash-Pick-up-and-Recycling"
+        },
+        {
+          "fact": "Construction materials go out at regular rates only if they fit level in the cart and weigh under 50 pounds. Anything else needs a quote from Republic, with a $50 minimum special pickup charge.",
+          "source": "https://www.ballwin.mo.us/194/Trash-Pick-up-and-Recycling"
+        }
+      ],
+      "permits": [
+        {
+          "fact": "Ballwin issues its own building permits through its MyGov portal, for room and garage additions, basement finishes, sheds, barns, fences, decks and swimming pools. Call Building Inspections at 636-227-2129.",
+          "source": "https://www.ballwin.mo.us/Building-Permits-and-Occupancy-Inspection-Information/"
+        },
+        {
+          "fact": "An unpermitted basement finish must be permitted and approved before a Ballwin house can be sold, which the city says may mean some demolition so inspections can be made.",
+          "source": "https://www.ballwin.mo.us/Building-Permits-and-Occupancy-Inspection-Information/"
+        }
+      ],
+      "other": [
+        {
+          "fact": "Every occupied building must pass a Ballwin Housing Code inspection before a new resident moves in, and new occupants need an Occupancy Permit.",
+          "source": "https://www.ballwin.mo.us/Building-Permits-and-Occupancy-Inspection-Information/"
+        }
+      ]
+    },
+    "neighborhoods": [],
+    "zips": [
+      "63011",
+      "63021"
+    ],
+    "coords": {
+      "lat": 38.595,
+      "lng": -90.55
+    },
+    "jobs": [],
+    "review_ids": [],
+    "unique_faqs": [
+      {
+        "q": "Who picks up trash in Ballwin?",
+        "a": "The City of Ballwin doesn't collect trash itself; it contracts with Republic Services (636-947-5959). Trash, yard waste and recycling go to the curb by 6 a.m."
+      },
+      {
+        "q": "Will the trash company in Ballwin take a couch or other big items?",
+        "a": "Bulky trash is picked up on the last pickup day of the month if you schedule it with Republic. The limit is two items or 150 pounds at no charge, and major appliances, auto parts and construction debris are excluded."
+      },
+      {
+        "q": "Do I need a permit to tear out a deck, shed or interior in Ballwin?",
+        "a": "Ballwin issues its own building permits through its MyGov portal, for room and garage additions, basement finishes, sheds, barns, fences, decks and swimming pools. Call Building Inspections at 636-227-2129."
+      }
+    ],
+    "official_links": [
+      {
+        "label": "City of Ballwin",
+        "url": "https://www.ballwin.mo.us/"
+      },
+      {
+        "label": "Ballwin trash and bulky pickup",
+        "url": "https://www.ballwin.mo.us/194/Trash-Pick-up-and-Recycling"
+      },
+      {
+        "label": "Ballwin building permits",
+        "url": "https://www.ballwin.mo.us/Building-Permits-and-Occupancy-Inspection-Information/"
+      }
+    ],
+    "nearby": [
+      "ellisville",
+      "manchester",
+      "town-and-country",
+      "chesterfield",
+      "des-peres",
+      "wildwood"
+    ]
+  },
+  {
+    "slug": "kirkwood",
+    "name": "Kirkwood",
+    "region": "MO",
+    "county": "St. Louis County",
+    "kind": "city",
+    "tier": "mention",
+    "why_a_page": "Not enough verified local proof yet (0 facts). kirkwoodmo.org returned 403 to automated fetches; nothing verified.",
+    "verified": "2026-11-10",
+    "official_site": {
+      "label": "City of Kirkwood",
+      "url": "https://www.kirkwoodmo.org"
+    },
+    "local_facts": {
+      "trash": [],
+      "permits": [],
+      "other": []
+    },
+    "neighborhoods": [
+      "Downtown Kirkwood",
+      "Meramec Highlands"
+    ],
+    "zips": [],
+    "coords": {
+      "lat": 38.57889,
+      "lng": -90.42028
+    },
+    "jobs": [],
+    "review_ids": [],
+    "unique_faqs": [],
+    "official_links": [],
+    "nearby": [
+      "des-peres",
+      "crestwood",
+      "sunset-hills",
+      "webster-groves",
+      "ladue",
+      "manchester"
+    ]
+  },
+  {
+    "slug": "maryland-heights",
+    "name": "Maryland Heights",
+    "region": "MO",
+    "county": "St. Louis County",
+    "kind": "city",
+    "tier": "page",
+    "why_a_page": "5 verified local facts from official sources, 3 official link(s), 3 city FAQ(s)",
+    "verified": "2026-11-10",
+    "official_site": {
+      "label": "City of Maryland Heights",
+      "url": "https://www.marylandheights.com/"
+    },
+    "local_facts": {
+      "trash": [
+        {
+          "fact": "The city contracts with Allied Waste (doing business as Republic Services) to collect all residential trash, yard waste and recycling. Customer service is (636) 947-5959.",
+          "source": "https://www.marylandheights.com/departments/public_works/solid_waste_services.php"
+        },
+        {
+          "fact": "Under the current contract, weekly bulk pickups are available. Schedule them through Republic Services at (636) 947-5959.",
+          "source": "https://www.marylandheights.com/departments/public_works/solid_waste_services.php"
+        }
+      ],
+      "permits": [
+        {
+          "fact": "Residential permits are issued by the city's Building Division in Community Development (Government Center, 11911 Dorsett Road). Permits are generally required for demolition, decks, basement finishes, kitchen or bath remodels, and sheds over 200 square feet. Call the Permits Coordinator at (314) 738-2240.",
+          "source": "https://www.marylandheights.com/departments/community_development/building___codes/residential_permits.php"
+        }
+      ],
+      "other": [
+        {
+          "fact": "The city holds Bulk Waste Cleanup Days at the Community Center parking lot, 2300 McKelvey Rd. They take furniture, mattresses and carpet bundles, but not appliances, construction material, tires or electronics.",
+          "source": "https://www.marylandheights.com/departments/public_works/solid_waste_services.php"
+        },
+        {
+          "fact": "At the city's resident-only electronics recycling events, any Freon-containing unit costs $10.",
+          "source": "https://www.marylandheights.com/departments/public_works/solid_waste_services.php"
+        }
+      ]
+    },
+    "neighborhoods": [
+      "Riverport",
+      "Westport"
+    ],
+    "zips": [
+      "63043"
+    ],
+    "coords": {
+      "lat": 38.71889,
+      "lng": -90.475
+    },
+    "jobs": [],
+    "review_ids": [],
+    "unique_faqs": [
+      {
+        "q": "Who picks up trash in Maryland Heights?",
+        "a": "The city contracts with Allied Waste (doing business as Republic Services) to collect all residential trash, yard waste and recycling. Customer service is (636) 947-5959."
+      },
+      {
+        "q": "Will the trash company in Maryland Heights take a couch or other big items?",
+        "a": "Under the current contract, weekly bulk pickups are available. Schedule them through Republic Services at (636) 947-5959."
+      },
+      {
+        "q": "Do I need a permit to tear out a deck, shed or interior in Maryland Heights?",
+        "a": "Residential permits are issued by the city's Building Division in Community Development (Government Center, 11911 Dorsett Road). Permits are generally required for demolition, decks, basement finishes, kitchen or bath remodels, and sheds over 200 square feet. Call the Permits Coordinator at (314) 738-2240."
+      }
+    ],
+    "official_links": [
+      {
+        "label": "City of Maryland Heights",
+        "url": "https://www.marylandheights.com/"
+      },
+      {
+        "label": "Maryland Heights trash and bulky pickup",
+        "url": "https://www.marylandheights.com/departments/public_works/solid_waste_services.php"
+      },
+      {
+        "label": "Maryland Heights building permits",
+        "url": "https://www.marylandheights.com/departments/community_development/building___codes/residential_permits.php"
+      }
+    ],
+    "nearby": [
+      "bridgeton",
+      "creve-coeur",
+      "st-charles",
+      "overland",
+      "town-and-country",
+      "chesterfield"
+    ]
+  },
+  {
+    "slug": "hazelwood",
+    "name": "Hazelwood",
+    "region": "MO",
+    "county": "St. Louis County",
+    "kind": "city",
+    "tier": "page",
+    "why_a_page": "8 verified local facts from official sources, 3 official link(s), 3 city FAQ(s)",
+    "verified": "2026-11-10",
+    "official_site": {
+      "label": "City of Hazelwood",
+      "url": "https://www.hazelwoodmo.org"
+    },
+    "local_facts": {
+      "trash": [
+        {
+          "fact": "All one- and two-family homes in Hazelwood are required to use Republic Services for trash and recycling. As of 9/1/26 the rate is $18.43/month, or $9.22/month for seniors and 100% disabled residents.",
+          "source": "https://www.hazelwoodmo.org/279/Trash-Recycling"
+        },
+        {
+          "fact": "Bulk collection (household items too large for your regular container) can be arranged any time during the year by calling Republic Services at 636-947-5959.",
+          "source": "https://www.hazelwoodmo.org/279/Trash-Recycling"
+        },
+        {
+          "fact": "Appliances (white goods) cost $25 per item to pick up, and residents must schedule pickup in advance with Republic Services.",
+          "source": "https://www.hazelwoodmo.org/279/Trash-Recycling"
+        },
+        {
+          "fact": "Yard waste collection is an add-on at $13.97/month, available in three-month periods. Containers can weigh no more than 60 pounds, with an 8-container limit per pickup.",
+          "source": "https://www.hazelwoodmo.org/279/Trash-Recycling"
+        }
+      ],
+      "permits": [
+        {
+          "fact": "Hazelwood's Building Department and Code Enforcement handles building permits and inspections. All residential and commercial applications are submitted online at app.oncamino.com/hazelwood_mo. For inspections and permits, call 314-513-5034.",
+          "source": "https://www.hazelwoodmo.org/224/Code-Enforcement"
+        },
+        {
+          "fact": "Hazelwood requires a Demolition Permit, applied for through the city's Public Works Department. The application asks for a bid or contract, a bond or cash escrow, disconnect letters from Ameren UE, Missouri American Water and Spire, a sewer tap letter, and St. Louis County disposal and asbestos permits.",
+          "source": "https://hazelwoodmo.org/DocumentCenter/View/297/Demolition-Permit-Application-PDF"
+        }
+      ],
+      "other": [
+        {
+          "fact": "For any demolition in Hazelwood, an HVAC contractor must provide a letter confirming the Freon was professionally captured. All concrete and rubble must then be removed, and the area finish graded, seeded and strawed.",
+          "source": "https://hazelwoodmo.org/DocumentCenter/View/297/Demolition-Permit-Application-PDF"
+        },
+        {
+          "fact": "The city posts a residential deck details guide and a fence regulations and installation guide on its Code Enforcement page.",
+          "source": "https://www.hazelwoodmo.org/224/Code-Enforcement"
+        }
+      ]
+    },
+    "neighborhoods": [],
+    "zips": [
+      "63042"
+    ],
+    "coords": {
+      "lat": 38.77944,
+      "lng": -90.35639
+    },
+    "jobs": [],
+    "review_ids": [],
+    "unique_faqs": [
+      {
+        "q": "Who picks up trash in Hazelwood?",
+        "a": "All one- and two-family homes in Hazelwood are required to use Republic Services for trash and recycling. As of 9/1/26 the rate is $18.43/month, or $9.22/month for seniors and 100% disabled residents."
+      },
+      {
+        "q": "Will the trash company in Hazelwood take a couch or other big items?",
+        "a": "Bulk collection (household items too large for your regular container) can be arranged any time during the year by calling Republic Services at 636-947-5959."
+      },
+      {
+        "q": "Do I need a permit to tear out a deck, shed or interior in Hazelwood?",
+        "a": "Hazelwood requires a Demolition Permit, applied for through the city's Public Works Department. The application asks for a bid or contract, a bond or cash escrow, disconnect letters from Ameren UE, Missouri American Water and Spire, a sewer tap letter, and St. Louis County disposal and asbestos permits."
+      }
+    ],
+    "official_links": [
+      {
+        "label": "City of Hazelwood",
+        "url": "https://www.hazelwoodmo.org"
+      },
+      {
+        "label": "Hazelwood trash and bulky pickup",
+        "url": "https://www.hazelwoodmo.org/279/Trash-Recycling"
+      },
+      {
+        "label": "Hazelwood building permits",
+        "url": "https://www.hazelwoodmo.org/224/Code-Enforcement"
+      }
+    ],
+    "nearby": [
+      "florissant",
+      "bridgeton",
+      "ferguson",
+      "overland",
+      "jennings",
+      "maryland-heights"
+    ]
+  },
+  {
+    "slug": "webster-groves",
+    "name": "Webster Groves",
+    "region": "MO",
+    "county": "St. Louis County",
+    "kind": "city",
+    "tier": "page",
+    "why_a_page": "11 verified local facts from official sources, 3 official link(s), 3 city FAQ(s)",
+    "verified": "2026-11-10",
+    "official_site": {
+      "label": "City of Webster Groves",
+      "url": "https://www.webstergrovesmo.gov/"
+    },
+    "local_facts": {
+      "trash": [
+        {
+          "fact": "Trash is collected by Waste Management (WM), not city crews, under a city contract that began June 1, 2023 for single-family and two-family homes.",
+          "source": "https://www.webstergrovesmo.gov/160/Trash-Services"
+        },
+        {
+          "fact": "One bulky item per week is picked up at no additional charge. Extra pickups cost a fee. Schedule at least five business days ahead at wm.com or 800-964-8988.",
+          "source": "https://www.webstergrovesmo.gov/160/Trash-Services"
+        },
+        {
+          "fact": "Appliances such as refrigerators, freezers, washers, dryers, water heaters and air conditioners must be scheduled in advance at 800-964-8988 for an additional fee. Each one must be movable by two workers and no more than three cubic yards.",
+          "source": "https://www.webstergrovesmo.gov/160/Trash-Services"
+        },
+        {
+          "fact": "Set items at the curb by 6:00 a.m. on pickup day, but no earlier than 4:00 p.m. the day before.",
+          "source": "https://www.webstergrovesmo.gov/160/Trash-Services"
+        },
+        {
+          "fact": "Yard waste is collected weekly, year-round, on trash day. Limbs must be tied with natural twine and be no longer than 4 feet, no more than 18 inches in diameter and no heavier than 60 pounds.",
+          "source": "https://www.webstergrovesmo.gov/162/Yard-Waste"
+        }
+      ],
+      "permits": [
+        {
+          "fact": "Building permits are handled by the City of Webster Groves Planning & Development Department, not St. Louis County. The city's Building Division approves and inspects all new private construction.",
+          "source": "https://www.webstergrovesmo.gov/235/Building-Inspection-Plan-Review"
+        },
+        {
+          "fact": "A building permit is required for demolition or moving of a structure, and for construction or alteration to the exterior or interior of a structure. Permit Technician: 314-963-5325.",
+          "source": "https://www.webstergrovesmo.gov/211/Building-Permits"
+        },
+        {
+          "fact": "A building permit is required to build a new deck and to repair existing decks.",
+          "source": "https://www.webstergrovesmo.gov/832/Deck-Permits"
+        },
+        {
+          "fact": "Permits are issued only to contractors registered with the city. Homeowners acting as their own general contractor on an owner-occupied home are the exception.",
+          "source": "https://www.webstergrovesmo.gov/210/permits"
+        }
+      ],
+      "other": [
+        {
+          "fact": "WM does not accept tires at the curb. The city's trash page points residents to Dobb's Tire, which takes them for $4 per tire.",
+          "source": "https://www.webstergrovesmo.gov/160/Trash-Services"
+        },
+        {
+          "fact": "Whole Christmas trees are picked up at the curb in December and January on regular collection days.",
+          "source": "https://www.webstergrovesmo.gov/162/Yard-Waste"
+        }
+      ]
+    },
+    "neighborhoods": [
+      "Old Webster",
+      "North Webster",
+      "Tuxedo Park",
+      "Webster Park"
+    ],
+    "zips": [
+      "63119"
+    ],
+    "coords": {
+      "lat": 38.58667,
+      "lng": -90.35444
+    },
+    "jobs": [],
+    "review_ids": [],
+    "unique_faqs": [
+      {
+        "q": "Who picks up trash in Webster Groves?",
+        "a": "Trash is collected by Waste Management (WM), not city crews, under a city contract that began June 1, 2023 for single-family and two-family homes."
+      },
+      {
+        "q": "Will the trash company in Webster Groves take a couch or other big items?",
+        "a": "One bulky item per week is picked up at no additional charge. Extra pickups cost a fee. Schedule at least five business days ahead at wm.com or 800-964-8988."
+      },
+      {
+        "q": "Do I need a permit to tear out a deck, shed or interior in Webster Groves?",
+        "a": "A building permit is required for demolition or moving of a structure, and for construction or alteration to the exterior or interior of a structure. Permit Technician: 314-963-5325."
+      }
+    ],
+    "official_links": [
+      {
+        "label": "City of Webster Groves",
+        "url": "https://www.webstergrovesmo.gov/"
+      },
+      {
+        "label": "Webster Groves trash and bulky pickup",
+        "url": "https://www.webstergrovesmo.gov/160/Trash-Services"
+      },
+      {
+        "label": "Webster Groves building permits",
+        "url": "https://www.webstergrovesmo.gov/235/Building-Inspection-Plan-Review"
+      }
+    ],
+    "nearby": [
+      "brentwood",
+      "crestwood",
+      "affton",
+      "richmond-heights",
+      "kirkwood",
+      "ladue"
+    ]
+  },
+  {
+    "slug": "creve-coeur",
+    "name": "Creve Coeur",
+    "region": "MO",
+    "county": "St. Louis County",
+    "kind": "city",
+    "tier": "page",
+    "why_a_page": "7 verified local facts from official sources, 3 official link(s), 3 city FAQ(s)",
+    "verified": "2026-11-10",
+    "official_site": {
+      "label": "City of Creve Coeur",
+      "url": "https://www.crevecoeurmo.gov/"
+    },
+    "local_facts": {
+      "trash": [
+        {
+          "fact": "Republic Services collects trash under a city contract. Trash and recycling are paid for by the city, so single-family residents pay no fee. Pickup day is by ward: Ward 1 Monday, Ward 2 Tuesday, Ward 3 Thursday, Ward 4 Friday.",
+          "source": "https://www.crevecoeurmo.gov/130/Trash-Collection"
+        },
+        {
+          "fact": "Bulky items and appliances are picked up by appointment only, for an additional fee, through Republic Services at (636) 947-5959. Construction debris is not collected.",
+          "source": "https://www.crevecoeurmo.gov/130/Trash-Collection"
+        },
+        {
+          "fact": "Yard waste pickup is a subscription: $13.14 a month (July 1, 2026 to June 30, 2027), with a three-month minimum.",
+          "source": "https://www.crevecoeurmo.gov/118/Trash-Yard-Waste-Recycling"
+        }
+      ],
+      "permits": [
+        {
+          "fact": "The city's Building Division (300 N. New Ballas Rd., 314-872-2500) handles residential building permits through an online portal. St. Louis County issues electrical and plumbing permits.",
+          "source": "https://www.crevecoeurmo.gov/68/Building-Division"
+        },
+        {
+          "fact": "A city permit is required for house demolition, basement finishes, bathroom remodels, interior construction, decks (even when only replacing decking or guardrails), utility sheds and swimming pool demolition.",
+          "source": "https://www.crevecoeurmo.gov/DocumentCenter/View/508/When-a-Permit-is-Required"
+        },
+        {
+          "fact": "A demolition permit costs $200 plus a $2,000 refundable escrow, and work must be finished within 30 days of issue. Applicants need utility disconnect notices and a St. Louis County asbestos report or permit; interior residential demolition also needs plans.",
+          "source": "https://www.crevecoeurmo.gov/DocumentCenter/View/512/Demolition-Permit-Requirements"
+        }
+      ],
+      "other": [
+        {
+          "fact": "Some work needs no city permit: painting, landscaping, minor drywall patching, and replacing cabinets or countertops in the same location with no framing, electrical or plumbing work.",
+          "source": "https://www.crevecoeurmo.gov/DocumentCenter/View/508/When-a-Permit-is-Required"
+        }
+      ]
+    },
+    "neighborhoods": [],
+    "zips": [
+      "63141"
+    ],
+    "coords": {
+      "lat": 38.66194,
+      "lng": -90.44306
+    },
+    "jobs": [],
+    "review_ids": [],
+    "unique_faqs": [
+      {
+        "q": "Who picks up trash in Creve Coeur?",
+        "a": "Republic Services collects trash under a city contract. Trash and recycling are paid for by the city, so single-family residents pay no fee. Pickup day is by ward: Ward 1 Monday, Ward 2 Tuesday, Ward 3 Thursday, Ward 4 Friday."
+      },
+      {
+        "q": "Will the trash company in Creve Coeur take a couch or other big items?",
+        "a": "Bulky items and appliances are picked up by appointment only, for an additional fee, through Republic Services at (636) 947-5959. Construction debris is not collected."
+      },
+      {
+        "q": "Do I need a permit to tear out a deck, shed or interior in Creve Coeur?",
+        "a": "A city permit is required for house demolition, basement finishes, bathroom remodels, interior construction, decks (even when only replacing decking or guardrails), utility sheds and swimming pool demolition."
+      }
+    ],
+    "official_links": [
+      {
+        "label": "City of Creve Coeur",
+        "url": "https://www.crevecoeurmo.gov/"
+      },
+      {
+        "label": "Creve Coeur trash and bulky pickup",
+        "url": "https://www.crevecoeurmo.gov/130/Trash-Collection"
+      },
+      {
+        "label": "Creve Coeur building permits",
+        "url": "https://www.crevecoeurmo.gov/68/Building-Division"
+      }
+    ],
+    "nearby": [
+      "town-and-country",
+      "ladue",
+      "maryland-heights",
+      "des-peres",
+      "overland",
+      "kirkwood"
+    ]
+  },
+  {
+    "slug": "ferguson",
+    "name": "Ferguson",
+    "region": "MO",
+    "county": "St. Louis County",
+    "kind": "city",
+    "tier": "page",
+    "why_a_page": "8 verified local facts from official sources, 3 official link(s), 3 city FAQ(s)",
+    "verified": "2026-11-10",
+    "official_site": {
+      "label": "City of Ferguson",
+      "url": "https://www.fergusoncity.com"
+    },
+    "local_facts": {
+      "trash": [
+        {
+          "fact": "Ferguson's household trash, recycling and yard waste are collected under a city contract with Republic Services (636-947-5959), all on the same weekly service day.",
+          "source": "https://www.fergusoncity.com/195/Trash-Recycling-Yard-Waste"
+        },
+        {
+          "fact": "Bulky trash pickup is limited to three items, and you must schedule it with Republic Services ahead of time. It falls on your last pickup day of the month.",
+          "source": "https://www.fergusoncity.com/195/Trash-Recycling-Yard-Waste"
+        },
+        {
+          "fact": "Large appliances such as refrigerators, freezers, washers and dryers are picked up by appointment only. Freezer and refrigerator doors must be removed before the appliance goes to the curb.",
+          "source": "https://www.fergusoncity.com/DocumentCenter/View/6795/Trash-Talk"
+        },
+        {
+          "fact": "Yard waste goes out on your regular trash day in paper bags or marked containers. Brush must be cut to 4-foot lengths and bundled no larger than 18 inches across.",
+          "source": "https://www.fergusoncity.com/195/Trash-Recycling-Yard-Waste"
+        }
+      ],
+      "permits": [
+        {
+          "fact": "Ferguson requires a Demolition Permit, issued by Public Works, before tearing down or removing any structure in the city (314-521-7721, OpenGov online portal).",
+          "source": "https://www.fergusoncity.com/727/Permits-and-Licenses"
+        },
+        {
+          "fact": "Construction Permits from Ferguson's Code Compliance office are required for residential construction, including electrical, plumbing, mechanical, decks, fences and structural improvements.",
+          "source": "https://www.fergusoncity.com/727/Permits-and-Licenses"
+        }
+      ],
+      "other": [
+        {
+          "fact": "Republic will not take batteries, bricks, concrete, construction materials, hazardous waste, hot ashes, liquid paint, tires or vehicle parts at the curb in Ferguson.",
+          "source": "https://www.fergusoncity.com/195/Trash-Recycling-Yard-Waste"
+        },
+        {
+          "fact": "Electronic waste can't go out with weekly trash. Residents call Republic to prepay and schedule a pickup, with a limit of two items per visit.",
+          "source": "https://www.fergusoncity.com/DocumentCenter/View/6795/Trash-Talk"
+        }
+      ]
+    },
+    "neighborhoods": [],
+    "zips": [
+      "63135"
+    ],
+    "coords": {
+      "lat": 38.7444,
+      "lng": -90.305
+    },
+    "jobs": [],
+    "review_ids": [],
+    "unique_faqs": [
+      {
+        "q": "Who picks up trash in Ferguson?",
+        "a": "Ferguson's household trash, recycling and yard waste are collected under a city contract with Republic Services (636-947-5959), all on the same weekly service day."
+      },
+      {
+        "q": "Will the trash company in Ferguson take a couch or other big items?",
+        "a": "Bulky trash pickup is limited to three items, and you must schedule it with Republic Services ahead of time. It falls on your last pickup day of the month."
+      },
+      {
+        "q": "Do I need a permit to tear out a deck, shed or interior in Ferguson?",
+        "a": "Ferguson requires a Demolition Permit, issued by Public Works, before tearing down or removing any structure in the city (314-521-7721, OpenGov online portal)."
+      }
+    ],
+    "official_links": [
+      {
+        "label": "City of Ferguson",
+        "url": "https://www.fergusoncity.com"
+      },
+      {
+        "label": "Ferguson trash and bulky pickup",
+        "url": "https://www.fergusoncity.com/195/Trash-Recycling-Yard-Waste"
+      },
+      {
+        "label": "Ferguson building permits",
+        "url": "https://www.fergusoncity.com/727/Permits-and-Licenses"
+      }
+    ],
+    "nearby": [
+      "jennings",
+      "hazelwood",
+      "florissant",
+      "overland",
+      "university-city",
+      "spanish-lake"
+    ]
+  },
+  {
+    "slug": "manchester",
+    "name": "Manchester",
+    "region": "MO",
+    "county": "St. Louis County",
+    "kind": "city",
+    "tier": "page",
+    "why_a_page": "6 verified local facts from official sources, 3 official link(s), 3 city FAQ(s)",
+    "verified": "2026-11-10",
+    "official_site": {
+      "label": "City of Manchester",
+      "url": "https://www.manchestermo.gov/"
+    },
+    "local_facts": {
+      "trash": [
+        {
+          "fact": "All trash in Manchester must go in the 48-, 65- or 95-gallon cart from Republic Services. Since February 5, 2024, personal carts, bags and boxes aren't emptied.",
+          "source": "https://www.manchestermo.gov/1254/Manchester-Trash-Service-Changes"
+        },
+        {
+          "fact": "Up to two bulky items are collected free each week. Bulky pickup must be scheduled 48 hours before your collection day, and extra items cost a fee.",
+          "source": "https://www.manchestermo.gov/256/Trash-Collection"
+        },
+        {
+          "fact": "Appliances are collected once a month for a fee, scheduled 48 hours ahead. For construction items, call Republic at (636) 947-5959 for an extra-charge pickup.",
+          "source": "https://www.manchestermo.gov/256/Trash-Collection"
+        }
+      ],
+      "permits": [
+        {
+          "fact": "The City of Manchester doesn't issue building permits; St. Louis County does (314-615-5184). City Municipal Zoning Review is required before you apply to the county.",
+          "source": "https://www.manchestermo.gov/231/Building-Permits"
+        },
+        {
+          "fact": "Some projects need only city zoning review and no county building permit, like an accessory building of 120 square feet or less or a fence up to 6 feet.",
+          "source": "https://www.manchestermo.gov/231/Building-Permits"
+        }
+      ],
+      "other": [
+        {
+          "fact": "Manchester Public Works picks up Christmas trees free in the first two weeks of January, undecorated and cut shorter than four feet.",
+          "source": "https://www.manchestermo.gov/255/Yard-Waste-Collection"
+        }
+      ]
+    },
+    "neighborhoods": [],
+    "zips": [
+      "63011",
+      "63021"
+    ],
+    "coords": {
+      "lat": 38.5831,
+      "lng": -90.5064
+    },
+    "jobs": [],
+    "review_ids": [],
+    "unique_faqs": [
+      {
+        "q": "Who picks up trash in Manchester?",
+        "a": "All trash in Manchester must go in the 48-, 65- or 95-gallon cart from Republic Services. Since February 5, 2024, personal carts, bags and boxes aren't emptied."
+      },
+      {
+        "q": "Will the trash company in Manchester take a couch or other big items?",
+        "a": "Up to two bulky items are collected free each week. Bulky pickup must be scheduled 48 hours before your collection day, and extra items cost a fee."
+      },
+      {
+        "q": "Where do Manchester homeowners get a building permit?",
+        "a": "The City of Manchester doesn't issue building permits; St. Louis County does (314-615-5184). City Municipal Zoning Review is required before you apply to the county."
+      }
+    ],
+    "official_links": [
+      {
+        "label": "City of Manchester",
+        "url": "https://www.manchestermo.gov/"
+      },
+      {
+        "label": "Manchester trash and bulky pickup",
+        "url": "https://www.manchestermo.gov/1254/Manchester-Trash-Service-Changes"
+      },
+      {
+        "label": "Manchester building permits",
+        "url": "https://www.manchestermo.gov/231/Building-Permits"
+      }
+    ],
+    "nearby": [
+      "ballwin",
+      "des-peres",
+      "town-and-country",
+      "ellisville",
+      "kirkwood",
+      "sunset-hills"
+    ]
+  },
+  {
+    "slug": "clayton",
+    "name": "Clayton",
+    "region": "MO",
+    "county": "St. Louis County",
+    "kind": "city",
+    "tier": "mention",
+    "why_a_page": "Not enough verified local proof yet (0 facts). claytonmo.gov blocked automated fetches (403).",
+    "verified": "2026-11-10",
+    "official_site": {
+      "label": "City of Clayton",
+      "url": "https://www.claytonmo.gov/"
+    },
+    "local_facts": {
+      "trash": [],
+      "permits": [],
+      "other": []
+    },
+    "neighborhoods": [
+      "DeMun",
+      "Davis Place",
+      "Clayshire",
+      "Moorlands"
+    ],
+    "zips": [
+      "63105"
+    ],
+    "coords": {
+      "lat": 38.64444,
+      "lng": -90.33028
+    },
+    "jobs": [],
+    "review_ids": [],
+    "unique_faqs": [],
+    "official_links": [],
+    "nearby": [
+      "richmond-heights",
+      "university-city",
+      "brentwood",
+      "ladue",
+      "webster-groves",
+      "overland"
+    ]
+  },
+  {
+    "slug": "overland",
+    "name": "Overland",
+    "region": "MO",
+    "county": "St. Louis County",
+    "kind": "city",
+    "tier": "page",
+    "why_a_page": "5 verified local facts from official sources, 3 official link(s), 3 city FAQ(s)",
+    "verified": "2026-11-10",
+    "official_site": {
+      "label": "City of Overland",
+      "url": "https://www.overlandmo.org/"
+    },
+    "local_facts": {
+      "trash": [
+        {
+          "fact": "Republic Services provides residential trash and recycling in Overland. Residents set up their own account and pay for service, phone (636) 947-5959.",
+          "source": "https://overlandmo.org/130/Trash-Recycling"
+        },
+        {
+          "fact": "Two bulk items can be picked up every Friday. Call Republic Services customer service by Wednesday of that week.",
+          "source": "https://overlandmo.org/130/Trash-Recycling"
+        },
+        {
+          "fact": "Appliances such as water heaters can be picked up at least once a month on request to Republic. Automotive parts, building materials, lumber, concrete, fencing and railroad ties are excluded from all pickups.",
+          "source": "https://overlandmo.org/130/Trash-Recycling"
+        },
+        {
+          "fact": "Yard waste goes in brown paper bags or unlined cans marked \"yard waste\" or with an X. Brush must be tied in bundles up to 2 feet across and 4 feet long.",
+          "source": "https://overlandmo.org/130/Trash-Recycling"
+        }
+      ],
+      "permits": [
+        {
+          "fact": "The city's Department of Community Development (Overland City Hall, lower level, 9119 Lackland Road, 314-428-4677) handles permits, code enforcement, and residential and commercial inspections.",
+          "source": "https://www.overlandmo.org/333/Department-of-Community-Development"
+        }
+      ],
+      "other": []
+    },
+    "neighborhoods": [],
+    "zips": [
+      "63114"
+    ],
+    "coords": {
+      "lat": 38.69861,
+      "lng": -90.36917
+    },
+    "jobs": [],
+    "review_ids": [],
+    "unique_faqs": [
+      {
+        "q": "Who picks up trash in Overland?",
+        "a": "Republic Services provides residential trash and recycling in Overland. Residents set up their own account and pay for service, phone (636) 947-5959."
+      },
+      {
+        "q": "Will the trash company in Overland take a couch or other big items?",
+        "a": "Two bulk items can be picked up every Friday. Call Republic Services customer service by Wednesday of that week."
+      },
+      {
+        "q": "Where do Overland homeowners get a building permit?",
+        "a": "The city's Department of Community Development (Overland City Hall, lower level, 9119 Lackland Road, 314-428-4677) handles permits, code enforcement, and residential and commercial inspections."
+      }
+    ],
+    "official_links": [
+      {
+        "label": "City of Overland",
+        "url": "https://www.overlandmo.org/"
+      },
+      {
+        "label": "Overland trash and bulky pickup",
+        "url": "https://overlandmo.org/130/Trash-Recycling"
+      },
+      {
+        "label": "Overland building permits",
+        "url": "https://www.overlandmo.org/333/Department-of-Community-Development"
+      }
+    ],
+    "nearby": [
+      "university-city",
+      "ladue",
+      "clayton",
+      "ferguson",
+      "creve-coeur",
+      "bridgeton"
+    ]
+  },
+  {
+    "slug": "jennings",
+    "name": "Jennings",
+    "region": "MO",
+    "county": "St. Louis County",
+    "kind": "city",
+    "tier": "page",
+    "why_a_page": "6 verified local facts from official sources, 3 official link(s), 2 city FAQ(s)",
+    "verified": "2026-11-10",
+    "official_site": {
+      "label": "City of Jennings",
+      "url": "https://www.cityofjennings.org"
+    },
+    "local_facts": {
+      "trash": [
+        {
+          "fact": "Jennings contracts with Republic Services for trash, recycling, yard waste and bulk pickup, all collected on the same day. Trash and recycling service is mandatory.",
+          "source": "https://www.cityofjennings.org/240/Republic-Services"
+        },
+        {
+          "fact": "One bulk item a week is picked up free. Each additional bulk item needs a $10 bulk sticker.",
+          "source": "https://www.cityofjennings.org/240/Republic-Services"
+        },
+        {
+          "fact": "Appliances are picked up free on the 2nd Friday of February, May, August and November if you call ahead to schedule. Off-cycle appliance pickup costs $25 per appliance, prepaid.",
+          "source": "https://www.cityofjennings.org/240/Republic-Services"
+        },
+        {
+          "fact": "Weekly curbside yard waste is optional at $8/month, which includes one 95-gallon container.",
+          "source": "https://www.cityofjennings.org/240/Republic-Services"
+        }
+      ],
+      "permits": [
+        {
+          "fact": "The Jennings Building Department at City Hall, 2120 Hord Avenue (314-388-1164), issues building and occupancy permits.",
+          "source": "https://www.cityofjennings.org/165/Building-Department"
+        },
+        {
+          "fact": "Building, electrical, mechanical and plumbing permit applications are emailed with supporting documents to BuildingDepartment@cityofjennings.org.",
+          "source": "https://www.cityofjennings.org/166/Building-Permit-Applications"
+        }
+      ],
+      "other": []
+    },
+    "neighborhoods": [],
+    "zips": [
+      "63136"
+    ],
+    "coords": {
+      "lat": 38.72306,
+      "lng": -90.26444
+    },
+    "jobs": [],
+    "review_ids": [],
+    "unique_faqs": [
+      {
+        "q": "Will the trash company in Jennings take a couch or other big items?",
+        "a": "Jennings contracts with Republic Services for trash, recycling, yard waste and bulk pickup, all collected on the same day. Trash and recycling service is mandatory."
+      },
+      {
+        "q": "Where do Jennings homeowners get a building permit?",
+        "a": "The Jennings Building Department at City Hall, 2120 Hord Avenue (314-388-1164), issues building and occupancy permits."
+      }
+    ],
+    "official_links": [
+      {
+        "label": "City of Jennings",
+        "url": "https://www.cityofjennings.org"
+      },
+      {
+        "label": "Jennings trash and bulky pickup",
+        "url": "https://www.cityofjennings.org/240/Republic-Services"
+      },
+      {
+        "label": "Jennings building permits",
+        "url": "https://www.cityofjennings.org/165/Building-Department"
+      }
+    ],
+    "nearby": [
+      "ferguson",
+      "university-city",
+      "spanish-lake",
+      "overland",
+      "florissant",
+      "hazelwood"
+    ]
+  },
+  {
+    "slug": "crestwood",
+    "name": "Crestwood",
+    "region": "MO",
+    "county": "St. Louis County",
+    "kind": "city",
+    "tier": "page",
+    "why_a_page": "7 verified local facts from official sources, 3 official link(s), 3 city FAQ(s)",
+    "verified": "2026-11-10",
+    "official_site": {
+      "label": "City of Crestwood",
+      "url": "https://www.cityofcrestwood.org/"
+    },
+    "local_facts": {
+      "trash": [
+        {
+          "fact": "Crestwood contracts with Waste Connections for trash, recycling and yard waste, at one price for all residents.",
+          "source": "https://cityofcrestwood.org/183/Trash-Recycling-Yard-Waste"
+        },
+        {
+          "fact": "Bulky items and white goods (furniture, mattresses, grills, appliances) must be booked ahead with Waste Connections at 636-321-2100 or online. The city lists the cost as $21.87 per item, with a limit of two items per pickup.",
+          "source": "https://cityofcrestwood.org/183/Trash-Recycling-Yard-Waste"
+        },
+        {
+          "fact": "Bulky items must be something two drivers can safely lift.",
+          "source": "https://cityofcrestwood.org/183/Trash-Recycling-Yard-Waste"
+        }
+      ],
+      "permits": [
+        {
+          "fact": "The City of Crestwood issues a Zoning Review Permit, and the building permit and inspections come from the St. Louis County Department of Public Works.",
+          "source": "https://www.cityofcrestwood.org/466/Permits-Licenses"
+        },
+        {
+          "fact": "Removing walls, framing or other building systems requires a Demolition Permit before work begins.",
+          "source": "https://www.cityofcrestwood.org/466/Permits-Licenses"
+        },
+        {
+          "fact": "Small sheds without electricity need only a permit from the City of Crestwood. Larger sheds, or sheds with electricity, also need a St. Louis County permit.",
+          "source": "https://www.cityofcrestwood.org/466/Permits-Licenses"
+        }
+      ],
+      "other": [
+        {
+          "fact": "In 2026 the city held paper shredding (April), paint recycling (September) and electronics recycling (October) events, funded by a St. Louis County Department of Public Health grant. The electronics event collected 29,967 pounds.",
+          "source": "https://www.cityofcrestwood.org/CivicAlerts.aspx?AID=296"
+        }
+      ]
+    },
+    "neighborhoods": [],
+    "zips": [
+      "63126"
+    ],
+    "coords": {
+      "lat": 38.55694,
+      "lng": -90.37833
+    },
+    "jobs": [],
+    "review_ids": [],
+    "unique_faqs": [
+      {
+        "q": "Who picks up trash in Crestwood?",
+        "a": "Crestwood contracts with Waste Connections for trash, recycling and yard waste, at one price for all residents."
+      },
+      {
+        "q": "Will the trash company in Crestwood take a couch or other big items?",
+        "a": "Bulky items and white goods (furniture, mattresses, grills, appliances) must be booked ahead with Waste Connections at 636-321-2100 or online. The city lists the cost as $21.87 per item, with a limit of two items per pickup."
+      },
+      {
+        "q": "Do I need a permit to tear out a deck, shed or interior in Crestwood?",
+        "a": "Removing walls, framing or other building systems requires a Demolition Permit before work begins."
+      }
+    ],
+    "official_links": [
+      {
+        "label": "City of Crestwood",
+        "url": "https://www.cityofcrestwood.org/"
+      },
+      {
+        "label": "Crestwood trash and bulky pickup",
+        "url": "https://cityofcrestwood.org/183/Trash-Recycling-Yard-Waste"
+      },
+      {
+        "label": "Crestwood building permits",
+        "url": "https://www.cityofcrestwood.org/466/Permits-Licenses"
+      }
+    ],
+    "nearby": [
+      "sunset-hills",
+      "webster-groves",
+      "kirkwood",
+      "affton",
+      "concord",
+      "brentwood"
+    ]
+  },
+  {
+    "slug": "town-and-country",
+    "name": "Town and Country",
+    "region": "MO",
+    "county": "St. Louis County",
+    "kind": "city",
+    "tier": "page",
+    "why_a_page": "6 verified local facts from official sources, 2 official link(s), 3 city FAQ(s)",
+    "verified": "2026-11-10",
+    "official_site": {
+      "label": "City of Town and Country",
+      "url": "https://www.town-and-country.org/"
+    },
+    "local_facts": {
+      "trash": [
+        {
+          "fact": "Town and Country has no single city hauler. Residents contract with any approved hauler: American Eagle Waste, Art Hauling, Gateway Disposal, Republic Services or Waste Management.",
+          "source": "https://www.town-and-country.org/DocumentCenter/View/285"
+        },
+        {
+          "fact": "Some subdivisions use one hauler to limit wear on their streets, so the city suggests checking with your subdivision trustees. Bulky-item rules depend on which hauler you use.",
+          "source": "https://www.town-and-country.org/DocumentCenter/View/285"
+        }
+      ],
+      "permits": [
+        {
+          "fact": "The city issues building and mechanical permits and does its own inspections (Planning Department, 314-587-2820). Electrical and plumbing permits come from St. Louis County. A city permit is required for renovations, basement finishes, roof replacements, decks, porches and retaining walls.",
+          "source": "https://www.town-and-country.org/179/Building-Permits-Inspections"
+        },
+        {
+          "fact": "A Town and Country demolition permit costs $200 and requires a $5,000 cash escrow, utility disconnection notices, an asbestos abatement report and a demolition waste application. The city inspects the site before issuing it.",
+          "source": "https://www.town-and-country.org/397/Demolition-Permits"
+        },
+        {
+          "fact": "Demolition must be finished within 30 days of the permit being issued; the building official can grant 30-day extensions on written request.",
+          "source": "https://www.town-and-country.org/397/Demolition-Permits"
+        }
+      ],
+      "other": [
+        {
+          "fact": "A garage or estate sale needs a city permit in Town and Country. Sales run 8 a.m. to 5 p.m., nothing goes in the front yard, and each household gets one sale per calendar year.",
+          "source": "https://www.town-and-country.org/136/Garage-Estate-Sales-Permit"
+        }
+      ]
+    },
+    "neighborhoods": [],
+    "zips": [
+      "63131",
+      "63017"
+    ],
+    "coords": {
+      "lat": 38.6317,
+      "lng": -90.4792
+    },
+    "jobs": [],
+    "review_ids": [],
+    "unique_faqs": [
+      {
+        "q": "Who picks up trash in Town and Country?",
+        "a": "Town and Country has no single city hauler. Residents contract with any approved hauler: American Eagle Waste, Art Hauling, Gateway Disposal, Republic Services or Waste Management."
+      },
+      {
+        "q": "Will the trash company in Town and Country take a couch or other big items?",
+        "a": "Some subdivisions use one hauler to limit wear on their streets, so the city suggests checking with your subdivision trustees. Bulky-item rules depend on which hauler you use."
+      },
+      {
+        "q": "Do I need a permit to tear out a deck, shed or interior in Town and Country?",
+        "a": "The city issues building and mechanical permits and does its own inspections (Planning Department, 314-587-2820). Electrical and plumbing permits come from St. Louis County. A city permit is required for renovations, basement finishes, roof replacements, decks, porches and retaining walls."
+      }
+    ],
+    "official_links": [
+      {
+        "label": "City of Town and Country",
+        "url": "https://www.town-and-country.org/"
+      },
+      {
+        "label": "Town and Country building permits",
+        "url": "https://www.town-and-country.org/179/Building-Permits-Inspections"
+      }
+    ],
+    "nearby": [
+      "creve-coeur",
+      "des-peres",
+      "manchester",
+      "ballwin",
+      "kirkwood",
+      "ladue"
+    ]
+  },
+  {
+    "slug": "bridgeton",
+    "name": "Bridgeton",
+    "region": "MO",
+    "county": "St. Louis County",
+    "kind": "city",
+    "tier": "page",
+    "why_a_page": "7 verified local facts from official sources, 3 official link(s), 3 city FAQ(s)",
+    "verified": "2026-11-10",
+    "official_site": {
+      "label": "City of Bridgeton",
+      "url": "https://www.bridgetonmo.com"
+    },
+    "local_facts": {
+      "trash": [
+        {
+          "fact": "Republic Services provides Bridgeton's residential trash and recycling. Questions go to Bridgeton Public Works at 314-739-7665.",
+          "source": "https://www.bridgetonmo.com/437/Trash-Recycling"
+        },
+        {
+          "fact": "Bulky goods and furniture are picked up once a month. You call Republic Services at 636-947-5959 before putting the item out, and they give you the pickup day. Construction materials from contractors are not included.",
+          "source": "https://www.bridgetonmo.com/438/Bulky-Item-Pick-Up"
+        },
+        {
+          "fact": "Appliances are picked up for $25.00 per item and televisions for $89.00 per item, booked through Republic. Refrigerators and freezers containing Freon won't be picked up until they carry a sticker from a heating/air conditioning service certifying the Freon was removed.",
+          "source": "https://www.bridgetonmo.com/438/Bulky-Item-Pick-Up"
+        },
+        {
+          "fact": "Household trash is collected once a week in a 95-, 65- or 48-gallon container, on Monday or Tuesday depending on your area. Yard waste is collected on Wednesday.",
+          "source": "https://www.bridgetonmo.com/439/Collection-Schedules"
+        }
+      ],
+      "permits": [
+        {
+          "fact": "Bridgeton requires city permits for residential demolition, decks, fences, garages, all additions, structural remodels or repairs, fire damage repair, and storage buildings over 120 square feet. Mechanical, electrical and plumbing permits are obtained separately from St. Louis County.",
+          "source": "https://www.bridgetonmo.com/408/Building-Permits"
+        },
+        {
+          "fact": "A Bridgeton Demolition Permit costs $150 and takes at least 5 business days. The city won't issue it until every document in the Demolition Permit Packet is submitted. Apply at bridgeton.onlama.com or call Public Works at 314-739-7665.",
+          "source": "https://www.bridgetonmo.com/409/Demolition-Permits"
+        }
+      ],
+      "other": [
+        {
+          "fact": "In Bridgeton, storage buildings over 120 square feet need Design and Review Board approval, which can take about four to six weeks.",
+          "source": "https://www.bridgetonmo.com/408/Building-Permits"
+        }
+      ]
+    },
+    "neighborhoods": [
+      "Harmann Estates"
+    ],
+    "zips": [
+      "63044"
+    ],
+    "coords": {
+      "lat": 38.75722,
+      "lng": -90.41778
+    },
+    "jobs": [],
+    "review_ids": [],
+    "unique_faqs": [
+      {
+        "q": "Who picks up trash in Bridgeton?",
+        "a": "Republic Services provides Bridgeton's residential trash and recycling. Questions go to Bridgeton Public Works at 314-739-7665."
+      },
+      {
+        "q": "Will the trash company in Bridgeton take a couch or other big items?",
+        "a": "Bulky goods and furniture are picked up once a month. You call Republic Services at 636-947-5959 before putting the item out, and they give you the pickup day. Construction materials from contractors are not included."
+      },
+      {
+        "q": "Do I need a permit to tear out a deck, shed or interior in Bridgeton?",
+        "a": "Bridgeton requires city permits for residential demolition, decks, fences, garages, all additions, structural remodels or repairs, fire damage repair, and storage buildings over 120 square feet. Mechanical, electrical and plumbing permits are obtained separately from St. Louis County."
+      }
+    ],
+    "official_links": [
+      {
+        "label": "City of Bridgeton",
+        "url": "https://www.bridgetonmo.com"
+      },
+      {
+        "label": "Bridgeton trash and bulky pickup",
+        "url": "https://www.bridgetonmo.com/437/Trash-Recycling"
+      },
+      {
+        "label": "Bridgeton building permits",
+        "url": "https://www.bridgetonmo.com/408/Building-Permits"
+      }
+    ],
+    "nearby": [
+      "hazelwood",
+      "maryland-heights",
+      "overland",
+      "st-charles",
+      "florissant",
+      "ferguson"
+    ]
+  },
+  {
+    "slug": "ellisville",
+    "name": "Ellisville",
+    "region": "MO",
+    "county": "St. Louis County",
+    "kind": "city",
+    "tier": "page",
+    "why_a_page": "6 verified local facts from official sources, 3 official link(s), 3 city FAQ(s)",
+    "verified": "2026-11-10",
+    "official_site": {
+      "label": "City of Ellisville",
+      "url": "https://www.ellisville.mo.us/"
+    },
+    "local_facts": {
+      "trash": [
+        {
+          "fact": "Ellisville provides weekly curbside trash pickup at no direct cost to single-family homes, with Republic Services as the contractor. Trash, recycling and yard waste are collected on Wednesdays, at the curb by 6:30 a.m.",
+          "source": "https://www.ellisville.mo.us/274/Trash-Collection"
+        },
+        {
+          "fact": "Bulky item pickup, like furniture, old bicycles and carpet bundled to 4 by 2 feet or less, is part of basic service at no extra cost. Call Republic at 636-947-5959 to schedule a day.",
+          "source": "https://www.ellisville.mo.us/274/Trash-Collection"
+        },
+        {
+          "fact": "Appliances are picked up at no extra charge too, but under city code the doors must be removed; taping or tying them shut isn't allowed.",
+          "source": "https://www.ellisville.mo.us/274/Trash-Collection"
+        }
+      ],
+      "permits": [
+        {
+          "fact": "Ellisville's Engineering Department reviews plans and performs inspections, including building, plumbing, excavation, sewers and demolition (636-227-9660, 1 Weis Avenue). Electrical and mechanical work is permitted through St. Louis County.",
+          "source": "https://www.ellisville.mo.us/316/Building-Permits-Inspections"
+        }
+      ],
+      "other": [
+        {
+          "fact": "Residents can take brush and small limbs to the city mulching yard at the Public Works Facility, 553 Old State Road, open dawn to dusk daily, and take the mulch for free.",
+          "source": "https://www.ellisville.mo.us/133/Brush-Chipping-Leaf-Collection"
+        },
+        {
+          "fact": "Adonis Recycling runs electronics recycling in Bluebird Park on the first Thursday of the month, February through November. Large household appliances aren't accepted.",
+          "source": "https://www.ellisville.mo.us/293/Electronic-Recycling-Program"
+        }
+      ]
+    },
+    "neighborhoods": [],
+    "zips": [
+      "63011",
+      "63021",
+      "63038"
+    ],
+    "coords": {
+      "lat": 38.5897,
+      "lng": -90.5883
+    },
+    "jobs": [],
+    "review_ids": [],
+    "unique_faqs": [
+      {
+        "q": "Who picks up trash in Ellisville?",
+        "a": "Ellisville provides weekly curbside trash pickup at no direct cost to single-family homes, with Republic Services as the contractor. Trash, recycling and yard waste are collected on Wednesdays, at the curb by 6:30 a.m."
+      },
+      {
+        "q": "Will the trash company in Ellisville take a couch or other big items?",
+        "a": "Bulky item pickup, like furniture, old bicycles and carpet bundled to 4 by 2 feet or less, is part of basic service at no extra cost. Call Republic at 636-947-5959 to schedule a day."
+      },
+      {
+        "q": "Do I need a permit to tear out a deck, shed or interior in Ellisville?",
+        "a": "Ellisville's Engineering Department reviews plans and performs inspections, including building, plumbing, excavation, sewers and demolition (636-227-9660, 1 Weis Avenue). Electrical and mechanical work is permitted through St. Louis County."
+      }
+    ],
+    "official_links": [
+      {
+        "label": "City of Ellisville",
+        "url": "https://www.ellisville.mo.us/"
+      },
+      {
+        "label": "Ellisville trash and bulky pickup",
+        "url": "https://www.ellisville.mo.us/274/Trash-Collection"
+      },
+      {
+        "label": "Ellisville building permits",
+        "url": "https://www.ellisville.mo.us/316/Building-Permits-Inspections"
+      }
+    ],
+    "nearby": [
+      "ballwin",
+      "manchester",
+      "wildwood",
+      "chesterfield",
+      "town-and-country",
+      "des-peres"
+    ]
+  },
+  {
+    "slug": "richmond-heights",
+    "name": "Richmond Heights",
+    "region": "MO",
+    "county": "St. Louis County",
+    "kind": "city",
+    "tier": "page",
+    "why_a_page": "5 verified local facts from official sources, 3 official link(s), 3 city FAQ(s)",
+    "verified": "2026-11-10",
+    "official_site": {
+      "label": "City of Richmond Heights",
+      "url": "https://www.richmondheights.org/"
+    },
+    "local_facts": {
+      "trash": [
+        {
+          "fact": "Republic Services is the city's solid waste provider. It picks up trash, recycling and yard waste every Wednesday for single-family homes and buildings with four or fewer units.",
+          "source": "https://www.richmondheights.org/departments/public_works/trash_recycling_yard_waste_and_bulk_pickup.php"
+        },
+        {
+          "fact": "Large items such as couches, furniture and appliances are removed free, but must be scheduled with Republic Services at (636) 947-5959 before going to the curb. Appliances, electronics and construction materials must also be scheduled.",
+          "source": "https://www.richmondheights.org/departments/public_works/trash_recycling_yard_waste_and_bulk_pickup.php"
+        },
+        {
+          "fact": "Plastic bags are not allowed for yard waste. Tree limbs must be cut to 4 feet or less and bundled, and any bag or bundle over 50 pounds won't be picked up. Rear-door pickup is available from Republic for a fee.",
+          "source": "https://www.richmondheights.org/departments/public_works/trash_recycling_yard_waste_and_bulk_pickup.php"
+        }
+      ],
+      "permits": [
+        {
+          "fact": "The city's Building Department (Building and Zoning, 1330 S. Big Bend Blvd., 314-646-7658) issues permits for new homes, additions, fences, retaining walls, porches and other remodeling jobs, as well as demolition permits.",
+          "source": "https://www.richmondheights.org/departments/building___zoning/"
+        }
+      ],
+      "other": [
+        {
+          "fact": "The city's leaf vacuum service runs November through January. Piles go in the tree lawn, not the street, and are skipped if they contain branches or non-biodegradable material.",
+          "source": "https://www.richmondheights.org/departments/public_works/leaf_vacuum_service.php"
+        }
+      ]
+    },
+    "neighborhoods": [],
+    "zips": [
+      "63117"
+    ],
+    "coords": {
+      "lat": 38.62833,
+      "lng": -90.32861
+    },
+    "jobs": [],
+    "review_ids": [],
+    "unique_faqs": [
+      {
+        "q": "Who picks up trash in Richmond Heights?",
+        "a": "Republic Services is the city's solid waste provider. It picks up trash, recycling and yard waste every Wednesday for single-family homes and buildings with four or fewer units."
+      },
+      {
+        "q": "Will the trash company in Richmond Heights take a couch or other big items?",
+        "a": "Large items such as couches, furniture and appliances are removed free, but must be scheduled with Republic Services at (636) 947-5959 before going to the curb. Appliances, electronics and construction materials must also be scheduled."
+      },
+      {
+        "q": "Do I need a permit to tear out a deck, shed or interior in Richmond Heights?",
+        "a": "The city's Building Department (Building and Zoning, 1330 S. Big Bend Blvd., 314-646-7658) issues permits for new homes, additions, fences, retaining walls, porches and other remodeling jobs, as well as demolition permits."
+      }
+    ],
+    "official_links": [
+      {
+        "label": "City of Richmond Heights",
+        "url": "https://www.richmondheights.org/"
+      },
+      {
+        "label": "Richmond Heights trash and bulky pickup",
+        "url": "https://www.richmondheights.org/departments/public_works/trash_recycling_yard_waste_and_bulk_pickup.php"
+      },
+      {
+        "label": "Richmond Heights building permits",
+        "url": "https://www.richmondheights.org/departments/building___zoning/"
+      }
+    ],
+    "nearby": [
+      "clayton",
+      "brentwood",
+      "university-city",
+      "ladue",
+      "webster-groves",
+      "overland"
+    ]
+  },
+  {
+    "slug": "des-peres",
+    "name": "Des Peres",
+    "region": "MO",
+    "county": "St. Louis County",
+    "kind": "city",
+    "tier": "page",
+    "why_a_page": "7 verified local facts from official sources, 3 official link(s), 3 city FAQ(s)",
+    "verified": "2026-11-10",
+    "official_site": {
+      "label": "City of Des Peres",
+      "url": "https://www.desperesmo.org/"
+    },
+    "local_facts": {
+      "trash": [
+        {
+          "fact": "Des Peres provides residential trash service through a contract with Waste Connections. It is free to residents and cost about $335 per household for 2026.",
+          "source": "https://www.desperesmo.org/117/Trash-and-Recycling-Services"
+        },
+        {
+          "fact": "Trash, recycling and yard waste are picked up once a week on the same day.",
+          "source": "https://www.desperesmo.org/117/Trash-and-Recycling-Services"
+        },
+        {
+          "fact": "For bulky items, call Waste Connections at 636-321-2100 at least 1 day before pickup. There could be an additional fee.",
+          "source": "https://www.desperesmo.org/117/Trash-and-Recycling-Services"
+        }
+      ],
+      "permits": [
+        {
+          "fact": "The City of Des Peres Building Division handles residential building permits, plan review and inspections. St. Louis County handles electrical, plumbing and mechanical permits and inspections.",
+          "source": "https://www.desperesmo.org/115/Building-Department"
+        },
+        {
+          "fact": "Demolition needs a city Demolition Permit Application, a site plan showing erosion control, fence and dumpster locations, proof that utilities are disconnected, and a copy of the notice to neighbors. Questions go to Permits@DesPeresMO.org.",
+          "source": "https://www.desperesmo.org/244/Demolition"
+        }
+      ],
+      "other": [
+        {
+          "fact": "Before a demolition, neighbors within 200 feet must be notified. Work must be done, debris included, within three days, or within 15 days if materials are salvaged. Debris may not be stockpiled.",
+          "source": "https://www.desperesmo.org/126/Demolition-Guidelines"
+        },
+        {
+          "fact": "Residents can take household hazardous waste, by reservation at hhwstl.com, to 4100 Seven Hills Dr. in Florissant or 291 E. Hoffmeister.",
+          "source": "https://www.desperesmo.org/972/Household-Hazardous-Waste"
+        }
+      ]
+    },
+    "neighborhoods": [],
+    "zips": [
+      "63131"
+    ],
+    "coords": {
+      "lat": 38.5975,
+      "lng": -90.44806
+    },
+    "jobs": [],
+    "review_ids": [],
+    "unique_faqs": [
+      {
+        "q": "Who picks up trash in Des Peres?",
+        "a": "Des Peres provides residential trash service through a contract with Waste Connections. It is free to residents and cost about $335 per household for 2026."
+      },
+      {
+        "q": "Will the trash company in Des Peres take a couch or other big items?",
+        "a": "For bulky items, call Waste Connections at 636-321-2100 at least 1 day before pickup. There could be an additional fee."
+      },
+      {
+        "q": "Do I need a permit to tear out a deck, shed or interior in Des Peres?",
+        "a": "Demolition needs a city Demolition Permit Application, a site plan showing erosion control, fence and dumpster locations, proof that utilities are disconnected, and a copy of the notice to neighbors. Questions go to Permits@DesPeresMO.org."
+      }
+    ],
+    "official_links": [
+      {
+        "label": "City of Des Peres",
+        "url": "https://www.desperesmo.org/"
+      },
+      {
+        "label": "Des Peres trash and bulky pickup",
+        "url": "https://www.desperesmo.org/117/Trash-and-Recycling-Services"
+      },
+      {
+        "label": "Des Peres building permits",
+        "url": "https://www.desperesmo.org/115/Building-Department"
+      }
+    ],
+    "nearby": [
+      "kirkwood",
+      "town-and-country",
+      "manchester",
+      "creve-coeur",
+      "ladue",
+      "crestwood"
+    ]
+  },
+  {
+    "slug": "sunset-hills",
+    "name": "Sunset Hills",
+    "region": "MO",
+    "county": "St. Louis County",
+    "kind": "city",
+    "tier": "page",
+    "why_a_page": "5 verified local facts from official sources, 3 official link(s), 2 city FAQ(s)",
+    "verified": "2026-11-10",
+    "official_site": {
+      "label": "City of Sunset Hills",
+      "url": "https://www.sunset-hills.com/"
+    },
+    "local_facts": {
+      "trash": [
+        {
+          "fact": "On Oct. 15, 2026 the city awarded its residential waste contract to American Eagle Waste. The contract covers trash, recycling, bulky items and yard waste.",
+          "source": "https://www.sunset-hills.com/966/Residential-Waste-Collection"
+        }
+      ],
+      "permits": [
+        {
+          "fact": "You first get Municipal Zoning Approval from the City of Sunset Hills, then the building permit itself from St. Louis County. The city issues the Occupancy Permit.",
+          "source": "https://www.sunset-hills.com/170/Building-Permits"
+        },
+        {
+          "fact": "A building permit is required whenever you build or change a structure, such as new homes, additions, pools and garages. City Hall is at 3939 S Lindbergh Blvd, 314-849-3400.",
+          "source": "https://www.sunset-hills.com/170/Building-Permits"
+        }
+      ],
+      "other": [
+        {
+          "fact": "The city and Adonis Recycling hold monthly electronics recycling events in 2026 in the Watson Trail Park lot by the tennis courts. Large home appliances and items containing refrigerant are not accepted.",
+          "source": "https://www.sunset-hills.com/468/Electronic-Recycling"
+        },
+        {
+          "fact": "Household hazardous waste goes to the permanent facility at 291 East Hoffmeister, by reservation only through hhwstl.com.",
+          "source": "https://www.sunset-hills.com/263/Hazardous-Waste-Disposal"
+        }
+      ]
+    },
+    "neighborhoods": [],
+    "zips": [
+      "63127"
+    ],
+    "coords": {
+      "lat": 38.53111,
+      "lng": -90.40861
+    },
+    "jobs": [],
+    "review_ids": [],
+    "unique_faqs": [
+      {
+        "q": "Will the trash company in Sunset Hills take a couch or other big items?",
+        "a": "On Oct. 15, 2026 the city awarded its residential waste contract to American Eagle Waste. The contract covers trash, recycling, bulky items and yard waste."
+      },
+      {
+        "q": "Where do Sunset Hills homeowners get a building permit?",
+        "a": "You first get Municipal Zoning Approval from the City of Sunset Hills, then the building permit itself from St. Louis County. The city issues the Occupancy Permit."
+      }
+    ],
+    "official_links": [
+      {
+        "label": "City of Sunset Hills",
+        "url": "https://www.sunset-hills.com/"
+      },
+      {
+        "label": "Sunset Hills trash and bulky pickup",
+        "url": "https://www.sunset-hills.com/966/Residential-Waste-Collection"
+      },
+      {
+        "label": "Sunset Hills building permits",
+        "url": "https://www.sunset-hills.com/170/Building-Permits"
+      }
+    ],
+    "nearby": [
+      "crestwood",
+      "concord",
+      "kirkwood",
+      "affton",
+      "webster-groves",
+      "des-peres"
+    ]
+  },
+  {
+    "slug": "ladue",
+    "name": "Ladue",
+    "region": "MO",
+    "county": "St. Louis County",
+    "kind": "city",
+    "tier": "page",
+    "why_a_page": "6 verified local facts from official sources, 2 official link(s), 2 city FAQ(s)",
+    "verified": "2026-11-10",
+    "official_site": {
+      "label": "City of Ladue",
+      "url": "https://www.cityofladue-mo.gov/"
+    },
+    "local_facts": {
+      "trash": [
+        {
+          "fact": "The City of Ladue does not collect trash, refuse or old appliances itself. Residents make their own arrangements with a hauler.",
+          "source": "https://www.cityofladue-mo.gov/departments/building_and_public_works/public_works/leaf_and_brush_program.php"
+        },
+        {
+          "fact": "The city publishes a list of licensed residential trash haulers, including Republic Services, Art Hauling, J & K Hauling, Meridian Waste, Novel Disposal, Waste Connections of Missouri and Compax Disposal Systems.",
+          "source": "https://cityofladue-mo.gov/community/useful_numbers.php"
+        },
+        {
+          "fact": "The city collects brush monthly from March through October, with a limit of 2 loads per household per month. Pieces can be up to 10 inches in diameter and 10 feet long. Hedge trimmings, stumps, grass clippings and bagged yard waste are not taken.",
+          "source": "https://www.cityofladue-mo.gov/departments/building_and_public_works/public_works/leaf_and_brush_program.php"
+        }
+      ],
+      "permits": [
+        {
+          "fact": "Ladue's own Building Department (9345 Clayton Rd, 314-997-6308) issues permits for building, HVAC and plumbing work. Electrical permits go through St. Louis County.",
+          "source": "https://www.cityofladue-mo.gov/departments/building_and_public_works/building/index.php"
+        },
+        {
+          "fact": "Ladue has separate building permit applications for Demolition and Wrecking (including swimming pool demolition), Interior Remodel, Fence or Deck, and Shed or Playset. All building permits require a $100 non-refundable deposit when you apply.",
+          "source": "https://www.cityofladue-mo.gov/departments/building_and_public_works/building/permit_applications.php"
+        }
+      ],
+      "other": [
+        {
+          "fact": "The city collects leaves once in April and then monthly from October through December. Rake leaves off the road into piles 4 to 6 feet high.",
+          "source": "https://www.cityofladue-mo.gov/departments/building_and_public_works/public_works/leaf_and_brush_program.php"
+        }
+      ]
+    },
+    "neighborhoods": [],
+    "zips": [
+      "63124"
+    ],
+    "coords": {
+      "lat": 38.63778,
+      "lng": -90.38139
+    },
+    "jobs": [],
+    "review_ids": [],
+    "unique_faqs": [
+      {
+        "q": "Who picks up trash in Ladue?",
+        "a": "The City of Ladue does not collect trash, refuse or old appliances itself. Residents make their own arrangements with a hauler."
+      },
+      {
+        "q": "Do I need a permit to tear out a deck, shed or interior in Ladue?",
+        "a": "Ladue has separate building permit applications for Demolition and Wrecking (including swimming pool demolition), Interior Remodel, Fence or Deck, and Shed or Playset. All building permits require a $100 non-refundable deposit when you apply."
+      }
+    ],
+    "official_links": [
+      {
+        "label": "City of Ladue",
+        "url": "https://www.cityofladue-mo.gov/"
+      },
+      {
+        "label": "Ladue building permits",
+        "url": "https://www.cityofladue-mo.gov/departments/building_and_public_works/public_works/leaf_and_brush_program.php"
+      }
+    ],
+    "nearby": [
+      "brentwood",
+      "clayton",
+      "richmond-heights",
+      "university-city",
+      "creve-coeur",
+      "webster-groves"
+    ]
+  },
+  {
+    "slug": "brentwood",
+    "name": "Brentwood",
+    "region": "MO",
+    "county": "St. Louis County",
+    "kind": "city",
+    "tier": "page",
+    "why_a_page": "6 verified local facts from official sources, 3 official link(s), 3 city FAQ(s)",
+    "verified": "2026-11-10",
+    "official_site": {
+      "label": "City of Brentwood",
+      "url": "https://www.brentwoodmo.org/"
+    },
+    "local_facts": {
+      "trash": [
+        {
+          "fact": "Brentwood runs its own Sanitation Department under Public Works, so city crews collect trash rather than a contracted hauler.",
+          "source": "https://www.brentwoodmo.org/490/Trash-Recycling-and-Yard-Waste-Service"
+        },
+        {
+          "fact": "Household bulk items are collected by appointment only, on a set Friday each month by ward: Ward 1 the first Friday, Ward 2 the second, Ward 3 the third and Ward 4 the fourth. Call City Hall at 314-962-4800 to schedule; the city charges per item.",
+          "source": "https://www.brentwoodmo.org/DocumentCenter/View/34060/Household-Pick-Up-Fees-01012019_202301121040397984"
+        },
+        {
+          "fact": "Bulk pickup does not take building materials, tires, propane tanks, paint cans, or construction and renovation waste such as drywall, shingles and siding.",
+          "source": "https://www.brentwoodmo.org/DocumentCenter/View/34060/Household-Pick-Up-Fees-01012019_202301121040397984"
+        },
+        {
+          "fact": "Yard waste is picked up every Wednesday in all wards. Branches must be cut to no more than 4 feet and tied into bundles no larger than 2 feet across.",
+          "source": "https://www.brentwoodmo.org/DocumentCenter/View/34060/Household-Pick-Up-Fees-01012019_202301121040397984"
+        }
+      ],
+      "permits": [
+        {
+          "fact": "The City of Brentwood does its own residential and commercial permitting and inspections; the city states that St. Louis County does not perform these inspections. Permitted work includes fences, garages, pools, and interior and exterior remodeling.",
+          "source": "https://brentwoodmo.org/2426/Building-Permits"
+        },
+        {
+          "fact": "Zoning approval is required before installing a shed, and the city's permit guide includes a step to notify nearby residents about a demolition.",
+          "source": "https://brentwoodmo.org/2426/Building-Permits"
+        }
+      ],
+      "other": []
+    },
+    "neighborhoods": [
+      "Brentwood Forest"
+    ],
+    "zips": [
+      "63144"
+    ],
+    "coords": {
+      "lat": 38.61944,
+      "lng": -90.3475
+    },
+    "jobs": [],
+    "review_ids": [],
+    "unique_faqs": [
+      {
+        "q": "Who picks up trash in Brentwood?",
+        "a": "Brentwood runs its own Sanitation Department under Public Works, so city crews collect trash rather than a contracted hauler."
+      },
+      {
+        "q": "Will the trash company in Brentwood take a couch or other big items?",
+        "a": "Household bulk items are collected by appointment only, on a set Friday each month by ward: Ward 1 the first Friday, Ward 2 the second, Ward 3 the third and Ward 4 the fourth. Call City Hall at 314-962-4800 to schedule; the city charges per item."
+      },
+      {
+        "q": "Do I need a permit to tear out a deck, shed or interior in Brentwood?",
+        "a": "Zoning approval is required before installing a shed, and the city's permit guide includes a step to notify nearby residents about a demolition."
+      }
+    ],
+    "official_links": [
+      {
+        "label": "City of Brentwood",
+        "url": "https://www.brentwoodmo.org/"
+      },
+      {
+        "label": "Brentwood trash and bulky pickup",
+        "url": "https://www.brentwoodmo.org/490/Trash-Recycling-and-Yard-Waste-Service"
+      },
+      {
+        "label": "Brentwood building permits",
+        "url": "https://brentwoodmo.org/2426/Building-Permits"
+      }
+    ],
+    "nearby": [
+      "richmond-heights",
+      "clayton",
+      "ladue",
+      "webster-groves",
+      "university-city",
+      "crestwood"
+    ]
+  },
+  {
+    "slug": "oakville",
+    "name": "Oakville",
+    "region": "MO",
+    "county": "St. Louis County",
+    "kind": "unincorporated",
+    "tier": "group",
+    "group": "south-county",
+    "why_a_page": "6 verified local facts from official sources, 1 official link(s), 3 city FAQ(s); shares county rules with nearby areas, so it is a section of the South County page",
+    "verified": "2026-11-10",
+    "official_site": {
+      "label": "St. Louis County Services Portal (permits)",
+      "url": "https://aca-prod.accela.com/SLC/Default.aspx"
+    },
+    "local_facts": {
+      "trash": [
+        {
+          "fact": "St. Louis County's trash-district map (updated March 2026) puts central Oakville in Trash District 8, served by Waste Connections (636-321-2100).",
+          "source": "https://services2.arcgis.com/w657bnjzrjguNyOy/arcgis/rest/services/Trash_Collection_Districts_Updated_March_2026/FeatureServer/45/query?geometry=-90.32,38.44778&geometryType=esriGeometryPoint&inSR=4326&spatialRel=esriSpatialRelIntersects&outFields=TRASH_DISTRICT,Hauler,Hauler_Phone&returnGeometry=false&f=json"
+        },
+        {
+          "fact": "Waste Connections lists bulk pickup in its county districts as once a month, two items per pickup, with items set out by 6 a.m. Call 636-321-2100 to schedule and to find your bulk day.",
+          "source": "https://www.wasteconnections.com/st-louis/st-louis-county"
+        }
+      ],
+      "permits": [
+        {
+          "fact": "Permits for unincorporated St. Louis County go through the county, not a city. The St. Louis County Services Portal lets you start a permit application, check its status, pay fees and schedule an inspection online.",
+          "source": "https://aca-prod.accela.com/SLC/Default.aspx"
+        }
+      ],
+      "other": [
+        {
+          "fact": "County maps place central Oakville in the Mehlville Fire Protection District.",
+          "source": "https://maps.stlouisco.com/hosting/rest/services/Maps/AGS_Jurisdictions/MapServer/5/query?geometry=-90.32,38.44778&geometryType=esriGeometryPoint&inSR=4326&spatialRel=esriSpatialRelIntersects&outFields=*&returnGeometry=false&f=json"
+        },
+        {
+          "fact": "Oakville sits where the Mississippi and Meramec rivers meet, about 18 miles south of downtown St. Louis, and the 2020 census counted 14,734 housing units there.",
+          "source": "https://en.wikipedia.org/wiki/Oakville,_Missouri"
+        },
+        {
+          "fact": "All of Oakville is in the Mehlville School District.",
+          "source": "https://en.wikipedia.org/wiki/Oakville,_Missouri"
+        }
+      ]
+    },
+    "neighborhoods": [
+      "Bee Tree Park",
+      "Meramec Bottom Road",
+      "Lemay Ferry Road"
+    ],
+    "zips": [
+      "63129"
+    ],
+    "coords": {
+      "lat": 38.44778,
+      "lng": -90.32
+    },
+    "jobs": [],
+    "review_ids": [],
+    "unique_faqs": [
+      {
+        "q": "Which trash district is Oakville in?",
+        "a": "St. Louis County's trash-district map (updated March 2026) puts central Oakville in Trash District 8, served by Waste Connections (636-321-2100)."
+      },
+      {
+        "q": "Will the trash company in Oakville take a couch or other big items?",
+        "a": "Waste Connections lists bulk pickup in its county districts as once a month, two items per pickup, with items set out by 6 a.m. Call 636-321-2100 to schedule and to find your bulk day."
+      },
+      {
+        "q": "Where do Oakville homeowners get a building permit?",
+        "a": "Permits for unincorporated St. Louis County go through the county, not a city. The St. Louis County Services Portal lets you start a permit application, check its status, pay fees and schedule an inspection online."
+      }
+    ],
+    "official_links": [
+      {
+        "label": "St. Louis County Services Portal (permits)",
+        "url": "https://aca-prod.accela.com/SLC/Default.aspx"
+      }
+    ],
+    "nearby": [
+      "mehlville",
+      "concord",
+      "lemay",
+      "affton",
+      "sunset-hills",
+      "crestwood"
+    ]
+  },
+  {
+    "slug": "mehlville",
+    "name": "Mehlville",
+    "region": "MO",
+    "county": "St. Louis County",
+    "kind": "unincorporated",
+    "tier": "group",
+    "group": "south-county",
+    "why_a_page": "5 verified local facts from official sources, 1 official link(s), 3 city FAQ(s); shares county rules with nearby areas, so it is a section of the South County page",
+    "verified": "2026-11-10",
+    "official_site": {
+      "label": "St. Louis County Services Portal (permits)",
+      "url": "https://aca-prod.accela.com/SLC/Default.aspx"
+    },
+    "local_facts": {
+      "trash": [
+        {
+          "fact": "St. Louis County's trash-district map (updated March 2026) puts central Mehlville in Trash District 6, served by Republic Services (636-947-5959). Homes near the Oakville line may fall in District 8 instead.",
+          "source": "https://services2.arcgis.com/w657bnjzrjguNyOy/arcgis/rest/services/Trash_Collection_Districts_Updated_March_2026/FeatureServer/45/query?geometry=-90.315,38.50194&geometryType=esriGeometryPoint&inSR=4326&spatialRel=esriSpatialRelIntersects&outFields=TRASH_DISTRICT,Hauler,Hauler_Phone&returnGeometry=false&f=json"
+        },
+        {
+          "fact": "Since April 2022, the haulers that serve unincorporated St. Louis County's trash districts provide a monthly bulk pickup. Call your hauler to schedule it and to ask about size and weight limits.",
+          "source": "https://www.wasteconnections.com/st-louis/st-louis-county"
+        }
+      ],
+      "permits": [
+        {
+          "fact": "Permits for unincorporated St. Louis County go through the county, not a city. The St. Louis County Services Portal lets you start a permit application, check its status, pay fees and schedule an inspection online.",
+          "source": "https://aca-prod.accela.com/SLC/Default.aspx"
+        }
+      ],
+      "other": [
+        {
+          "fact": "County maps place central Mehlville in the Mehlville Fire Protection District.",
+          "source": "https://maps.stlouisco.com/hosting/rest/services/Maps/AGS_Jurisdictions/MapServer/5/query?geometry=-90.315,38.50194&geometryType=esriGeometryPoint&inSR=4326&spatialRel=esriSpatialRelIntersects&outFields=*&returnGeometry=false&f=json"
+        },
+        {
+          "fact": "Mehlville covers 7.6 square miles, and the 2020 census counted 13,854 housing units there.",
+          "source": "https://en.wikipedia.org/wiki/Mehlville,_Missouri"
+        }
+      ]
+    },
+    "neighborhoods": [
+      "Lemay Ferry Road",
+      "Jeffersonian Lane"
+    ],
+    "zips": [
+      "63125",
+      "63128",
+      "63129"
+    ],
+    "coords": {
+      "lat": 38.50194,
+      "lng": -90.315
+    },
+    "jobs": [],
+    "review_ids": [],
+    "unique_faqs": [
+      {
+        "q": "Which trash district is Mehlville in?",
+        "a": "St. Louis County's trash-district map (updated March 2026) puts central Mehlville in Trash District 6, served by Republic Services (636-947-5959). Homes near the Oakville line may fall in District 8 instead."
+      },
+      {
+        "q": "Will the trash company in Mehlville take a couch or other big items?",
+        "a": "Since April 2022, the haulers that serve unincorporated St. Louis County's trash districts provide a monthly bulk pickup. Call your hauler to schedule it and to ask about size and weight limits."
+      },
+      {
+        "q": "Where do Mehlville homeowners get a building permit?",
+        "a": "Permits for unincorporated St. Louis County go through the county, not a city. The St. Louis County Services Portal lets you start a permit application, check its status, pay fees and schedule an inspection online."
+      }
+    ],
+    "official_links": [
+      {
+        "label": "St. Louis County Services Portal (permits)",
+        "url": "https://aca-prod.accela.com/SLC/Default.aspx"
+      }
+    ],
+    "nearby": [
+      "lemay",
+      "affton",
+      "concord",
+      "oakville",
+      "crestwood",
+      "sunset-hills"
+    ]
+  },
+  {
+    "slug": "affton",
+    "name": "Affton",
+    "region": "MO",
+    "county": "St. Louis County",
+    "kind": "unincorporated",
+    "tier": "group",
+    "group": "south-county",
+    "why_a_page": "6 verified local facts from official sources, 1 official link(s), 3 city FAQ(s); shares county rules with nearby areas, so it is a section of the South County page",
+    "verified": "2026-11-10",
+    "official_site": {
+      "label": "St. Louis County Services Portal (permits)",
+      "url": "https://aca-prod.accela.com/SLC/Default.aspx"
+    },
+    "local_facts": {
+      "trash": [
+        {
+          "fact": "St. Louis County's trash-district map (updated March 2026) puts central Affton in Trash District 5, served by Republic Services (636-947-5959).",
+          "source": "https://services2.arcgis.com/w657bnjzrjguNyOy/arcgis/rest/services/Trash_Collection_Districts_Updated_March_2026/FeatureServer/45/query?geometry=-90.32639,38.55&geometryType=esriGeometryPoint&inSR=4326&spatialRel=esriSpatialRelIntersects&outFields=TRASH_DISTRICT,Hauler,Hauler_Phone&returnGeometry=false&f=json"
+        },
+        {
+          "fact": "Since April 2022, the haulers that serve unincorporated St. Louis County's trash districts provide a monthly bulk pickup. Call your hauler to schedule it and to ask about size and weight limits.",
+          "source": "https://www.wasteconnections.com/st-louis/st-louis-county"
+        }
+      ],
+      "permits": [
+        {
+          "fact": "Permits for unincorporated St. Louis County go through the county, not a city. The St. Louis County Services Portal lets you start a permit application, check its status, pay fees and schedule an inspection online.",
+          "source": "https://aca-prod.accela.com/SLC/Default.aspx"
+        }
+      ],
+      "other": [
+        {
+          "fact": "County maps place central Affton in the Affton Fire Protection District.",
+          "source": "https://maps.stlouisco.com/hosting/rest/services/Maps/AGS_Jurisdictions/MapServer/5/query?geometry=-90.32639,38.55&geometryType=esriGeometryPoint&inSR=4326&spatialRel=esriSpatialRelIntersects&outFields=*&returnGeometry=false&f=json"
+        },
+        {
+          "fact": "Affton is named for the area's first postmaster, Johann Aff, and the 2020 census counted 9,579 housing units there.",
+          "source": "https://en.wikipedia.org/wiki/Affton,_Missouri"
+        },
+        {
+          "fact": "Both the Affton School District and the Bayless School District serve the area known as Affton.",
+          "source": "https://en.wikipedia.org/wiki/Affton,_Missouri"
+        }
+      ]
+    },
+    "neighborhoods": [],
+    "zips": [
+      "63123"
+    ],
+    "coords": {
+      "lat": 38.55,
+      "lng": -90.32639
+    },
+    "jobs": [],
+    "review_ids": [],
+    "unique_faqs": [
+      {
+        "q": "Which trash district is Affton in?",
+        "a": "St. Louis County's trash-district map (updated March 2026) puts central Affton in Trash District 5, served by Republic Services (636-947-5959)."
+      },
+      {
+        "q": "Will the trash company in Affton take a couch or other big items?",
+        "a": "Since April 2022, the haulers that serve unincorporated St. Louis County's trash districts provide a monthly bulk pickup. Call your hauler to schedule it and to ask about size and weight limits."
+      },
+      {
+        "q": "Where do Affton homeowners get a building permit?",
+        "a": "Permits for unincorporated St. Louis County go through the county, not a city. The St. Louis County Services Portal lets you start a permit application, check its status, pay fees and schedule an inspection online."
+      }
+    ],
+    "official_links": [
+      {
+        "label": "St. Louis County Services Portal (permits)",
+        "url": "https://aca-prod.accela.com/SLC/Default.aspx"
+      }
+    ],
+    "nearby": [
+      "lemay",
+      "crestwood",
+      "webster-groves",
+      "mehlville",
+      "concord",
+      "sunset-hills"
+    ]
+  },
+  {
+    "slug": "concord",
+    "name": "Concord",
+    "region": "MO",
+    "county": "St. Louis County",
+    "kind": "unincorporated",
+    "tier": "group",
+    "group": "south-county",
+    "why_a_page": "6 verified local facts from official sources, 1 official link(s), 3 city FAQ(s); shares county rules with nearby areas, so it is a section of the South County page",
+    "verified": "2026-11-10",
+    "official_site": {
+      "label": "St. Louis County Services Portal (permits)",
+      "url": "https://aca-prod.accela.com/SLC/Default.aspx"
+    },
+    "local_facts": {
+      "trash": [
+        {
+          "fact": "St. Louis County's trash-district map (updated March 2026) puts central Concord in Trash District 7, served by Republic Services (636-947-5959). Concord is large, so homes near its edges may be in a neighboring district.",
+          "source": "https://services2.arcgis.com/w657bnjzrjguNyOy/arcgis/rest/services/Trash_Collection_Districts_Updated_March_2026/FeatureServer/45/query?geometry=-90.3775,38.50389&geometryType=esriGeometryPoint&inSR=4326&spatialRel=esriSpatialRelIntersects&outFields=TRASH_DISTRICT,Hauler,Hauler_Phone&returnGeometry=false&f=json"
+        },
+        {
+          "fact": "Since April 2022, the haulers that serve unincorporated St. Louis County's trash districts provide a monthly bulk pickup. Call your hauler to schedule it and to ask about size and weight limits.",
+          "source": "https://www.wasteconnections.com/st-louis/st-louis-county"
+        }
+      ],
+      "permits": [
+        {
+          "fact": "Permits for unincorporated St. Louis County go through the county, not a city. The St. Louis County Services Portal lets you start a permit application, check its status, pay fees and schedule an inspection online.",
+          "source": "https://aca-prod.accela.com/SLC/Default.aspx"
+        }
+      ],
+      "other": [
+        {
+          "fact": "County maps place central Concord in the Mehlville Fire Protection District.",
+          "source": "https://maps.stlouisco.com/hosting/rest/services/Maps/AGS_Jurisdictions/MapServer/5/query?geometry=-90.3775,38.50389&geometryType=esriGeometryPoint&inSR=4326&spatialRel=esriSpatialRelIntersects&outFields=*&returnGeometry=false&f=json"
+        },
+        {
+          "fact": "Concord takes in parts of the Lindbergh School District to the north and the Mehlville School District to the south, and Interstate 270 cuts across its southern part.",
+          "source": "https://en.wikipedia.org/wiki/Concord,_Missouri"
+        },
+        {
+          "fact": "The 2020 census counted 7,542 housing units in Concord, with a homeowner vacancy rate of just 0.6%.",
+          "source": "https://en.wikipedia.org/wiki/Concord,_Missouri"
+        }
+      ]
+    },
+    "neighborhoods": [
+      "Tesson Ferry Road",
+      "Lindbergh Boulevard",
+      "Gravois Road"
+    ],
+    "zips": [
+      "63128",
+      "63123"
+    ],
+    "coords": {
+      "lat": 38.50389,
+      "lng": -90.3775
+    },
+    "jobs": [],
+    "review_ids": [],
+    "unique_faqs": [
+      {
+        "q": "Which trash district is Concord in?",
+        "a": "St. Louis County's trash-district map (updated March 2026) puts central Concord in Trash District 7, served by Republic Services (636-947-5959). Concord is large, so homes near its edges may be in a neighboring district."
+      },
+      {
+        "q": "Will the trash company in Concord take a couch or other big items?",
+        "a": "Since April 2022, the haulers that serve unincorporated St. Louis County's trash districts provide a monthly bulk pickup. Call your hauler to schedule it and to ask about size and weight limits."
+      },
+      {
+        "q": "Where do Concord homeowners get a building permit?",
+        "a": "Permits for unincorporated St. Louis County go through the county, not a city. The St. Louis County Services Portal lets you start a permit application, check its status, pay fees and schedule an inspection online."
+      }
+    ],
+    "official_links": [
+      {
+        "label": "St. Louis County Services Portal (permits)",
+        "url": "https://aca-prod.accela.com/SLC/Default.aspx"
+      }
+    ],
+    "nearby": [
+      "sunset-hills",
+      "mehlville",
+      "crestwood",
+      "affton",
+      "oakville",
+      "lemay"
+    ]
+  },
+  {
+    "slug": "spanish-lake",
+    "name": "Spanish Lake",
+    "region": "MO",
+    "county": "St. Louis County",
+    "kind": "unincorporated",
+    "tier": "mention",
+    "why_a_page": "Not enough verified local proof yet (0 facts). County site blocked agent; trash district/hauler and permits unverified. Waste Connections county contract fact is generic, not confirmed for Spanish Lake.",
+    "verified": "2026-11-10",
+    "official_site": {
+      "label": "St. Louis County Services Portal (permits)",
+      "url": "https://stlouiscountymo.gov/"
+    },
+    "local_facts": {
+      "trash": [],
+      "permits": [],
+      "other": []
+    },
+    "neighborhoods": [
+      "Fort Belle Fontaine"
+    ],
+    "zips": [
+      "63138"
+    ],
+    "coords": {
+      "lat": 38.78833,
+      "lng": -90.20778
+    },
+    "jobs": [],
+    "review_ids": [],
+    "unique_faqs": [],
+    "official_links": [],
+    "nearby": [
+      "jennings",
+      "ferguson",
+      "florissant",
+      "hazelwood",
+      "overland",
+      "university-city"
+    ]
+  },
+  {
+    "slug": "lemay",
+    "name": "Lemay",
+    "region": "MO",
+    "county": "St. Louis County",
+    "kind": "unincorporated",
+    "tier": "group",
+    "group": "south-county",
+    "why_a_page": "6 verified local facts from official sources, 1 official link(s), 3 city FAQ(s); shares county rules with nearby areas, so it is a section of the South County page",
+    "verified": "2026-11-10",
+    "official_site": {
+      "label": "St. Louis County Services Portal (permits)",
+      "url": "https://aca-prod.accela.com/SLC/Default.aspx"
+    },
+    "local_facts": {
+      "trash": [
+        {
+          "fact": "St. Louis County's trash-district map (updated March 2026) puts central Lemay in Trash District 6, served by Republic Services (636-947-5959).",
+          "source": "https://services2.arcgis.com/w657bnjzrjguNyOy/arcgis/rest/services/Trash_Collection_Districts_Updated_March_2026/FeatureServer/45/query?geometry=-90.28444,38.5325&geometryType=esriGeometryPoint&inSR=4326&spatialRel=esriSpatialRelIntersects&outFields=TRASH_DISTRICT,Hauler,Hauler_Phone&returnGeometry=false&f=json"
+        },
+        {
+          "fact": "Since April 2022, the haulers that serve unincorporated St. Louis County's trash districts provide a monthly bulk pickup. Call your hauler to schedule it and to ask about size and weight limits.",
+          "source": "https://www.wasteconnections.com/st-louis/st-louis-county"
+        }
+      ],
+      "permits": [
+        {
+          "fact": "Permits for unincorporated St. Louis County go through the county, not a city. The St. Louis County Services Portal lets you start a permit application, check its status, pay fees and schedule an inspection online.",
+          "source": "https://aca-prod.accela.com/SLC/Default.aspx"
+        }
+      ],
+      "other": [
+        {
+          "fact": "County maps place central Lemay in the Lemay Fire Protection District.",
+          "source": "https://maps.stlouisco.com/hosting/rest/services/Maps/AGS_Jurisdictions/MapServer/5/query?geometry=-90.28444,38.5325&geometryType=esriGeometryPoint&inSR=4326&spatialRel=esriSpatialRelIntersects&outFields=*&returnGeometry=false&f=json"
+        },
+        {
+          "fact": "Lemay is named after Francois Lemai, who ran a ferry across the Meramec River in the early 1800s. The Hancock Place School District is the main district there.",
+          "source": "https://en.wikipedia.org/wiki/Lemay,_Missouri"
+        },
+        {
+          "fact": "The Jefferson Barracks Military Post sits on the Mississippi River at Lemay, and its historic district has been on the National Register of Historic Places since 1972.",
+          "source": "https://en.wikipedia.org/wiki/Jefferson_Barracks_Historic_District"
+        }
+      ]
+    },
+    "neighborhoods": [
+      "South Broadway",
+      "Lemay Park",
+      "Jefferson Barracks"
+    ],
+    "zips": [
+      "63125"
+    ],
+    "coords": {
+      "lat": 38.5325,
+      "lng": -90.28444
+    },
+    "jobs": [],
+    "review_ids": [],
+    "unique_faqs": [
+      {
+        "q": "Which trash district is Lemay in?",
+        "a": "St. Louis County's trash-district map (updated March 2026) puts central Lemay in Trash District 6, served by Republic Services (636-947-5959)."
+      },
+      {
+        "q": "Will the trash company in Lemay take a couch or other big items?",
+        "a": "Since April 2022, the haulers that serve unincorporated St. Louis County's trash districts provide a monthly bulk pickup. Call your hauler to schedule it and to ask about size and weight limits."
+      },
+      {
+        "q": "Where do Lemay homeowners get a building permit?",
+        "a": "Permits for unincorporated St. Louis County go through the county, not a city. The St. Louis County Services Portal lets you start a permit application, check its status, pay fees and schedule an inspection online."
+      }
+    ],
+    "official_links": [
+      {
+        "label": "St. Louis County Services Portal (permits)",
+        "url": "https://aca-prod.accela.com/SLC/Default.aspx"
+      }
+    ],
+    "nearby": [
+      "affton",
+      "mehlville",
+      "webster-groves",
+      "crestwood",
+      "concord",
+      "oakville"
+    ]
+  },
+  {
+    "slug": "ofallon",
+    "name": "O'Fallon",
+    "region": "MO",
+    "county": "St. Charles County",
+    "kind": "city",
+    "tier": "page",
+    "why_a_page": "8 verified local facts from official sources, 2 official link(s), 2 city FAQ(s)",
+    "verified": "2026-11-10",
+    "official_site": {
+      "label": "City of O'Fallon",
+      "url": "https://www.ofallonmo.gov/"
+    },
+    "local_facts": {
+      "trash": [
+        {
+          "fact": "The City of O'Fallon's own Environmental Services Department picks up trash, bulk items, recyclables and yard waste for residents, with trash collected once a week.",
+          "source": "https://www.ofallonmo.gov/departments/environmental_services/index.php"
+        },
+        {
+          "fact": "Curbside bulk pickup costs $20 per hopper space for residents with city trash service, added to your bi-monthly trash bill. A hopper space is 6 ft x 3 ft x 3 ft, each item should be under 60 lbs, and you request it with the city's Pick-up Request Form.",
+          "source": "https://www.ofallonmo.gov/departments/environmental_services/bulk_waste_and_appliance_pick_up.php"
+        },
+        {
+          "fact": "Appliance pickup is also $20 for residents with city trash service. Schedule it by calling 636-272-0477.",
+          "source": "https://www.ofallonmo.gov/departments/environmental_services/bulk_waste_and_appliance_pick_up.php"
+        },
+        {
+          "fact": "Weekly yard waste pickup is optional and runs March through December for $5.62 a month, with a one-year commitment.",
+          "source": "https://www.ofallonmo.gov/departments/environmental_services/yard_waste.php"
+        }
+      ],
+      "permits": [
+        {
+          "fact": "The City of O'Fallon Building Division issues residential permits. Permits are required for new construction, additions, remodels and repairs, including decks, sheds, pools and basement finishes.",
+          "source": "https://www.ofallonmo.gov/departments/building_and_permits.php"
+        },
+        {
+          "fact": "Demolition and dumpsters are listed as permit projects; for these, the city says to call the Building Division at 636-379-5660. Local fire protection districts may also require their own permit.",
+          "source": "https://www.ofallonmo.gov/departments/building_and_permits.php"
+        }
+      ],
+      "other": [
+        {
+          "fact": "The city holds free bulk drop-off Saturdays at its waste transfer station, six times in 2026, for city trash customers who unload their own items. Appliances, tires, yard waste and liquid hazardous waste aren't accepted, and box trucks and rental vehicles are turned away.",
+          "source": "https://www.ofallonmo.gov/departments/environmental_services/bulk_waste_and_appliance_pick_up.php"
+        },
+        {
+          "fact": "Hansen's Environmental Wood Resources accepts yard waste from O'Fallon residents for a fee; call 636-379-1830 and bring a photo ID with an O'Fallon address.",
+          "source": "https://www.ofallonmo.gov/departments/environmental_services/yard_waste.php"
+        }
+      ]
+    },
+    "neighborhoods": [],
+    "zips": [
+      "63366",
+      "63368"
+    ],
+    "coords": {
+      "lat": 38.78444,
+      "lng": -90.72
+    },
+    "jobs": [],
+    "review_ids": [],
+    "unique_faqs": [
+      {
+        "q": "Will the trash company in O'Fallon take a couch or other big items?",
+        "a": "The City of O'Fallon's own Environmental Services Department picks up trash, bulk items, recyclables and yard waste for residents, with trash collected once a week."
+      },
+      {
+        "q": "Do I need a permit to tear out a deck, shed or interior in O'Fallon?",
+        "a": "The City of O'Fallon Building Division issues residential permits. Permits are required for new construction, additions, remodels and repairs, including decks, sheds, pools and basement finishes."
+      }
+    ],
+    "official_links": [
+      {
+        "label": "City of O'Fallon",
+        "url": "https://www.ofallonmo.gov/"
+      },
+      {
+        "label": "O'Fallon building permits",
+        "url": "https://www.ofallonmo.gov/departments/environmental_services/index.php"
+      }
+    ],
+    "nearby": [
+      "dardenne-prairie",
+      "lake-saint-louis",
+      "cottleville",
+      "weldon-spring",
+      "st-peters",
+      "wentzville"
+    ]
+  },
+  {
+    "slug": "st-charles",
+    "name": "St. Charles",
+    "region": "MO",
+    "county": "St. Charles County",
+    "kind": "city",
+    "tier": "page",
+    "why_a_page": "8 verified local facts from official sources, 3 official link(s), 3 city FAQ(s)",
+    "verified": "2026-11-10",
+    "official_site": {
+      "label": "City of St. Charles",
+      "url": "https://www.stcharlescitymo.gov/"
+    },
+    "local_facts": {
+      "trash": [
+        {
+          "fact": "Republic Services is the City of St. Charles's residential trash provider. Trash is picked up once a week, and carts must be out by 6 a.m.",
+          "source": "https://www.stcharlescitymo.gov/348/Trash-Service"
+        },
+        {
+          "fact": "The first two bulk items each week are picked up free. Bulk, appliance and electronics pickups must be scheduled ahead by calling Republic Services at 636-255-6142, Monday through Friday.",
+          "source": "https://www.stcharlescitymo.gov/987/Appliance-Bulk-and-Electronic-Collection"
+        },
+        {
+          "fact": "Appliance pickup costs $25 per appliance and electronic waste pickup costs $86.25 per item, added to your invoice.",
+          "source": "https://www.stcharlescitymo.gov/987/Appliance-Bulk-and-Electronic-Collection"
+        },
+        {
+          "fact": "Yard waste is a weekly subscription through Republic Services. You can also buy yard waste tags at Dierbergs Bogey Hills and Mid-Towne Market, and the city held free yard waste weeks in April and November 2026.",
+          "source": "https://www.stcharlescitymo.gov/351/Yard-Waste-Service"
+        }
+      ],
+      "permits": [
+        {
+          "fact": "The city's Department of Community Development issues demolition permits. The fee is $100 plus a $500 deposit refunded after final inspection, and permits expire three months after they're issued.",
+          "source": "https://www.stcharlescitymo.gov/1391/Demolition-Permits"
+        },
+        {
+          "fact": "Before a demolition permit is issued, you need letters from Spire, Ameren and the Department of Public Works confirming gas, electric, water and sewer have been abandoned and the sewer capped.",
+          "source": "https://www.stcharlescitymo.gov/1391/Demolition-Permits"
+        },
+        {
+          "fact": "Structures of 500 square feet or less with no utilities may not need a demolition permit; the city says to check with Community Development first (636-949-3222).",
+          "source": "https://www.stcharlescitymo.gov/1391/Demolition-Permits"
+        }
+      ],
+      "other": [
+        {
+          "fact": "Tearing down a historic landmark or any structure in a historic district needs a certificate of demolition from the Landmarks Board, which meets monthly, before the city issues the permit.",
+          "source": "https://www.stcharlescitymo.gov/1391/Demolition-Permits"
+        }
+      ]
+    },
+    "neighborhoods": [
+      "Historic Main Street",
+      "New Town"
+    ],
+    "zips": [
+      "63301",
+      "63303",
+      "63304"
+    ],
+    "coords": {
+      "lat": 38.789,
+      "lng": -90.514
+    },
+    "jobs": [],
+    "review_ids": [],
+    "unique_faqs": [
+      {
+        "q": "Who picks up trash in St. Charles?",
+        "a": "Republic Services is the City of St. Charles's residential trash provider. Trash is picked up once a week, and carts must be out by 6 a.m."
+      },
+      {
+        "q": "Will the trash company in St. Charles take a couch or other big items?",
+        "a": "The first two bulk items each week are picked up free. Bulk, appliance and electronics pickups must be scheduled ahead by calling Republic Services at 636-255-6142, Monday through Friday."
+      },
+      {
+        "q": "Do I need a permit to tear out a deck, shed or interior in St. Charles?",
+        "a": "The city's Department of Community Development issues demolition permits. The fee is $100 plus a $500 deposit refunded after final inspection, and permits expire three months after they're issued."
+      }
+    ],
+    "official_links": [
+      {
+        "label": "City of St. Charles",
+        "url": "https://www.stcharlescitymo.gov/"
+      },
+      {
+        "label": "St. Charles trash and bulky pickup",
+        "url": "https://www.stcharlescitymo.gov/348/Trash-Service"
+      },
+      {
+        "label": "St. Charles building permits",
+        "url": "https://www.stcharlescitymo.gov/1391/Demolition-Permits"
+      }
+    ],
+    "nearby": [
+      "st-peters",
+      "maryland-heights",
+      "bridgeton",
+      "cottleville",
+      "hazelwood",
+      "weldon-spring"
+    ]
+  },
+  {
+    "slug": "st-peters",
+    "name": "St. Peters",
+    "region": "MO",
+    "county": "St. Charles County",
+    "kind": "city",
+    "tier": "mention",
+    "why_a_page": "Not enough verified local proof yet (0 facts). stpetersmo.net blocked automated fetches.",
+    "verified": "2026-11-10",
+    "official_site": {
+      "label": "City of St. Peters",
+      "url": "https://www.stpetersmo.net/"
+    },
+    "local_facts": {
+      "trash": [],
+      "permits": [],
+      "other": []
+    },
+    "neighborhoods": [],
+    "zips": [
+      "63376"
+    ],
+    "coords": {
+      "lat": 38.77889,
+      "lng": -90.60306
+    },
+    "jobs": [],
+    "review_ids": [],
+    "unique_faqs": [],
+    "official_links": [],
+    "nearby": [
+      "cottleville",
+      "st-charles",
+      "weldon-spring",
+      "ofallon",
+      "dardenne-prairie",
+      "maryland-heights"
+    ]
+  },
+  {
+    "slug": "wentzville",
+    "name": "Wentzville",
+    "region": "MO",
+    "county": "St. Charles County",
+    "kind": "city",
+    "tier": "page",
+    "why_a_page": "7 verified local facts from official sources, 2 official link(s), 3 city FAQ(s)",
+    "verified": "2026-11-10",
+    "official_site": {
+      "label": "City of Wentzville",
+      "url": "https://www.wentzvillemo.gov/"
+    },
+    "local_facts": {
+      "trash": [
+        {
+          "fact": "The City of Wentzville contracts with Meridian Waste for residential trash, recycling and yard waste. Under the agreement that started May 1, 2026, Meridian bills trash service directly every three months.",
+          "source": "https://www.wentzvillemo.gov/49083-2/"
+        },
+        {
+          "fact": "Meridian provides free large-item pickup of up to three items per quarter. Requests go directly to Meridian Waste at (636) 639-7599 or meridianwaste.com/wentzville.",
+          "source": "https://www.wentzvillemo.gov/49083-2/"
+        },
+        {
+          "fact": "Weekly yard waste pickup runs March through December. Personal carts are no longer accepted, and a one-time bag pickup is $4 per bag with a $12 minimum.",
+          "source": "https://www.wentzvillemo.gov/49083-2/"
+        }
+      ],
+      "permits": [
+        {
+          "fact": "The City of Wentzville Building Division issues building permits through the SmartGov Permit Portal, at 1001 Schroeder Creek Blvd., (636) 327-5101.",
+          "source": "https://www.wentzvillemo.gov/departments/community-development/building-division/building-permits/"
+        },
+        {
+          "fact": "Permits are required to build, modify or in some cases repair a structure, including sheds and accessory buildings, decks, finished basements, remodels and new electrical, plumbing or HVAC. Minor work like changing a faucet doesn't need one.",
+          "source": "https://www.wentzvillemo.gov/departments/community-development/building-division/building-permits/"
+        }
+      ],
+      "other": [
+        {
+          "fact": "The city runs spring and fall tree-limb collection weeks by ward. Limbs must be under six inches across and stacked at the curb, not bagged or tied, by 6 a.m. Monday of your ward's week.",
+          "source": "https://www.wentzvillemo.gov/departments/utilities/solid-waste-recycling/spring-fall-tree-limb-collection/"
+        },
+        {
+          "fact": "Homes in the Cabello, Harvest and Post View Farms subdivisions are inside O'Fallon city limits and get trash service from O'Fallon, not Wentzville.",
+          "source": "https://www.wentzvillemo.gov/departments/utilities/solid-waste-recycling/"
+        }
+      ]
+    },
+    "neighborhoods": [],
+    "zips": [
+      "63385"
+    ],
+    "coords": {
+      "lat": 38.81139,
+      "lng": -90.85306
+    },
+    "jobs": [],
+    "review_ids": [],
+    "unique_faqs": [
+      {
+        "q": "Who picks up trash in Wentzville?",
+        "a": "The City of Wentzville contracts with Meridian Waste for residential trash, recycling and yard waste. Under the agreement that started May 1, 2026, Meridian bills trash service directly every three months."
+      },
+      {
+        "q": "Will the trash company in Wentzville take a couch or other big items?",
+        "a": "Meridian provides free large-item pickup of up to three items per quarter. Requests go directly to Meridian Waste at (636) 639-7599 or meridianwaste.com/wentzville."
+      },
+      {
+        "q": "Do I need a permit to tear out a deck, shed or interior in Wentzville?",
+        "a": "Permits are required to build, modify or in some cases repair a structure, including sheds and accessory buildings, decks, finished basements, remodels and new electrical, plumbing or HVAC. Minor work like changing a faucet doesn't need one."
+      }
+    ],
+    "official_links": [
+      {
+        "label": "City of Wentzville",
+        "url": "https://www.wentzvillemo.gov/"
+      },
+      {
+        "label": "Wentzville building permits",
+        "url": "https://www.wentzvillemo.gov/departments/community-development/building-division/building-permits/"
+      }
+    ],
+    "nearby": [
+      "lake-saint-louis",
+      "ofallon",
+      "dardenne-prairie",
+      "cottleville",
+      "weldon-spring",
+      "st-peters"
+    ]
+  },
+  {
+    "slug": "lake-saint-louis",
+    "name": "Lake Saint Louis",
+    "region": "MO",
+    "county": "St. Charles County",
+    "kind": "city",
+    "tier": "page",
+    "why_a_page": "6 verified local facts from official sources, 3 official link(s), 3 city FAQ(s)",
+    "verified": "2026-11-10",
+    "official_site": {
+      "label": "City of Lake Saint Louis",
+      "url": "https://www.lakesaintlouis.com/"
+    },
+    "local_facts": {
+      "trash": [
+        {
+          "fact": "Meridian Waste is the city's trash contractor (customer service 314-291-3131). Garbage, recycling and yard waste are all picked up on the same day, which varies by location.",
+          "source": "https://www.lakesaintlouis.com/1278/Recycling-Waste-Management-Guide"
+        },
+        {
+          "fact": "One bulky item per week is picked up free at the curb, and additional bulk items are $20 each. If an item weighs more than 60 pounds, contact Meridian before pickup day.",
+          "source": "https://www.lakesaintlouis.com/1278/Recycling-Waste-Management-Guide"
+        },
+        {
+          "fact": "Bulk pickup doesn't take bathtubs, cast iron, bricks, cement, console TVs, construction debris, riding lawn mowers, rocks, sleeper sofas, tires or treadmills.",
+          "source": "https://www.lakesaintlouis.com/1278/Recycling-Waste-Management-Guide"
+        }
+      ],
+      "permits": [
+        {
+          "fact": "The Lake Saint Louis Building Division requires permits for new buildings, additions or changes that create living space, and pools, fences and decks. Electrical and plumbing work also needs a permit and a licensed contractor.",
+          "source": "https://www.lakesaintlouis.com/156/Building-Division"
+        },
+        {
+          "fact": "Permits are applied for through the city's Citizenserve online portal, and the city publishes a demolition policy. Call the Permit Technician at 636-625-7937.",
+          "source": "https://www.lakesaintlouis.com/1318/Building-Permits"
+        }
+      ],
+      "other": [
+        {
+          "fact": "Lake Saint Louis has two lakes: the roughly 600-acre Lake St. Louis and the 85-acre Lake Ste. Louise.",
+          "source": "https://en.wikipedia.org/wiki/Lake_St._Louis,_Missouri"
+        }
+      ]
+    },
+    "neighborhoods": [
+      "Harbor Town",
+      "Phase A"
+    ],
+    "zips": [
+      "63367"
+    ],
+    "coords": {
+      "lat": 38.78667,
+      "lng": -90.78
+    },
+    "jobs": [],
+    "review_ids": [],
+    "unique_faqs": [
+      {
+        "q": "Who picks up trash in Lake Saint Louis?",
+        "a": "Meridian Waste is the city's trash contractor (customer service 314-291-3131). Garbage, recycling and yard waste are all picked up on the same day, which varies by location."
+      },
+      {
+        "q": "Will the trash company in Lake Saint Louis take a couch or other big items?",
+        "a": "One bulky item per week is picked up free at the curb, and additional bulk items are $20 each. If an item weighs more than 60 pounds, contact Meridian before pickup day."
+      },
+      {
+        "q": "Do I need a permit to tear out a deck, shed or interior in Lake Saint Louis?",
+        "a": "The Lake Saint Louis Building Division requires permits for new buildings, additions or changes that create living space, and pools, fences and decks. Electrical and plumbing work also needs a permit and a licensed contractor."
+      }
+    ],
+    "official_links": [
+      {
+        "label": "City of Lake Saint Louis",
+        "url": "https://www.lakesaintlouis.com/"
+      },
+      {
+        "label": "Lake Saint Louis trash and bulky pickup",
+        "url": "https://www.lakesaintlouis.com/1278/Recycling-Waste-Management-Guide"
+      },
+      {
+        "label": "Lake Saint Louis building permits",
+        "url": "https://www.lakesaintlouis.com/156/Building-Division"
+      }
+    ],
+    "nearby": [
+      "ofallon",
+      "dardenne-prairie",
+      "wentzville",
+      "cottleville",
+      "weldon-spring",
+      "st-peters"
+    ]
+  },
+  {
+    "slug": "dardenne-prairie",
+    "name": "Dardenne Prairie",
+    "region": "MO",
+    "county": "St. Charles County",
+    "kind": "city",
+    "tier": "mention",
+    "why_a_page": "Not enough verified local proof yet (3 facts). Official site could not be confirmed or lists little.",
+    "verified": "2026-11-10",
+    "official_site": {
+      "label": "City of Dardenne Prairie",
+      "url": "https://www.dardenneprairie.gov/"
+    },
+    "local_facts": {
+      "trash": [
+        {
+          "fact": "The city's utilities page lists Grace Hauling (636-398-8060) as the trash, yard waste and recycling provider, and notes that your address determines which company serves you.",
+          "source": "https://www.dardenneprairie.gov/community/utilities.php"
+        }
+      ],
+      "permits": [
+        {
+          "fact": "The Dardenne Prairie Building Division issues residential construction permits and does on-site inspections (Building Inspector 636-755-5305, 2032 Hanley Road).",
+          "source": "https://www.dardenneprairie.gov/department/building_code_enforcement/index.php"
+        },
+        {
+          "fact": "The city's permit list includes room additions, accessory buildings and garages, basement finishes, porches and decks, fences, and retaining walls 4 feet or higher.",
+          "source": "https://www.dardenneprairie.gov/business/permits_licenses.php"
+        }
+      ],
+      "other": []
+    },
+    "neighborhoods": [],
+    "zips": [
+      "63368"
+    ],
+    "coords": {
+      "lat": 38.75417,
+      "lng": -90.73056
+    },
+    "jobs": [],
+    "review_ids": [],
+    "unique_faqs": [],
+    "official_links": [],
+    "nearby": [
+      "ofallon",
+      "lake-saint-louis",
+      "cottleville",
+      "weldon-spring",
+      "st-peters",
+      "wentzville"
+    ]
+  },
+  {
+    "slug": "cottleville",
+    "name": "Cottleville",
+    "region": "MO",
+    "county": "St. Charles County",
+    "kind": "city",
+    "tier": "page",
+    "why_a_page": "6 verified local facts from official sources, 3 official link(s), 3 city FAQ(s)",
+    "verified": "2026-11-10",
+    "official_site": {
+      "label": "City of Cottleville",
+      "url": "https://www.cityofcottleville.com/"
+    },
+    "local_facts": {
+      "trash": [
+        {
+          "fact": "Trash is handled by Cottleville Solid Waste using city-issued containers, billed every two months. Containers must be at the curb by 6:30 a.m.",
+          "source": "https://www.cityofcottleville.com/waste-disposal/solid-yard-waste-information/"
+        },
+        {
+          "fact": "Residents get 2 free bulk collections a year, scheduled first come, first served. Extra curbside bulk pickups cost $55 for up to 3 cubic yards, and items over 8 feet aren't accepted.",
+          "source": "https://www.cityofcottleville.com/waste-disposal/bulk/"
+        },
+        {
+          "fact": "Appliances with Freon, like refrigerators and AC units, aren't taken as bulk; they're picked up separately for $23 each. Tires, car batteries, wet paint and hazardous waste are excluded.",
+          "source": "https://www.cityofcottleville.com/waste-disposal/bulk/"
+        },
+        {
+          "fact": "There's no yard waste collection in February, and brown leaf bags (up to 20 per collection day) are collected in March, October, November and December.",
+          "source": "https://www.cityofcottleville.com/waste-disposal/solid-yard-waste-information/"
+        }
+      ],
+      "permits": [
+        {
+          "fact": "The City of Cottleville issues its own building permits and publishes requirements for decks and for sheds and other accessory buildings.",
+          "source": "https://www.cityofcottleville.com/forms-permits-and-licenses/"
+        },
+        {
+          "fact": "Since September 2026, Cottleville requires a refundable $500 building permit deposit for projects like decks, room additions, detached sheds and garages, pools and basement finishes, refunded after final inspection.",
+          "source": "https://www.cityofcottleville.com/wp-content/uploads/2026/10/Building-Permit-Application-september-2026.pdf"
+        }
+      ],
+      "other": []
+    },
+    "neighborhoods": [],
+    "zips": [
+      "63304"
+    ],
+    "coords": {
+      "lat": 38.75194,
+      "lng": -90.65333
+    },
+    "jobs": [],
+    "review_ids": [],
+    "unique_faqs": [
+      {
+        "q": "Who picks up trash in Cottleville?",
+        "a": "Trash is handled by Cottleville Solid Waste using city-issued containers, billed every two months. Containers must be at the curb by 6:30 a.m."
+      },
+      {
+        "q": "Will the trash company in Cottleville take a couch or other big items?",
+        "a": "Residents get 2 free bulk collections a year, scheduled first come, first served. Extra curbside bulk pickups cost $55 for up to 3 cubic yards, and items over 8 feet aren't accepted."
+      },
+      {
+        "q": "Do I need a permit to tear out a deck, shed or interior in Cottleville?",
+        "a": "The City of Cottleville issues its own building permits and publishes requirements for decks and for sheds and other accessory buildings."
+      }
+    ],
+    "official_links": [
+      {
+        "label": "City of Cottleville",
+        "url": "https://www.cityofcottleville.com/"
+      },
+      {
+        "label": "Cottleville trash and bulky pickup",
+        "url": "https://www.cityofcottleville.com/waste-disposal/solid-yard-waste-information/"
+      },
+      {
+        "label": "Cottleville building permits",
+        "url": "https://www.cityofcottleville.com/forms-permits-and-licenses/"
+      }
+    ],
+    "nearby": [
+      "weldon-spring",
+      "st-peters",
+      "dardenne-prairie",
+      "ofallon",
+      "lake-saint-louis",
+      "chesterfield"
+    ]
+  },
+  {
+    "slug": "weldon-spring",
+    "name": "Weldon Spring",
+    "region": "MO",
+    "county": "St. Charles County",
+    "kind": "city",
+    "tier": "mention",
+    "why_a_page": "Not enough verified local proof yet (2 facts). Official site could not be confirmed or lists little.",
+    "verified": "2026-11-10",
+    "official_site": {
+      "label": "City of Weldon Spring",
+      "url": "https://weldonspring.gov/"
+    },
+    "local_facts": {
+      "trash": [],
+      "permits": [
+        {
+          "fact": "Weldon Spring doesn't issue its own building permits. The city contracts with the St. Charles County Building and Code Enforcement Division to issue permits for projects in the city.",
+          "source": "https://weldonspring.gov/codeenforcement"
+        }
+      ],
+      "other": [
+        {
+          "fact": "The City of Weldon Spring contracts with St. Charles County for street maintenance and police patrol.",
+          "source": "https://weldonspring.gov/countyservices"
+        }
+      ]
+    },
+    "neighborhoods": [],
+    "zips": [
+      "63304"
+    ],
+    "coords": {
+      "lat": 38.71667,
+      "lng": -90.64917
+    },
+    "jobs": [],
+    "review_ids": [],
+    "unique_faqs": [],
+    "official_links": [],
+    "nearby": [
+      "cottleville",
+      "st-peters",
+      "dardenne-prairie",
+      "chesterfield",
+      "ofallon",
+      "lake-saint-louis"
+    ]
+  }
+]

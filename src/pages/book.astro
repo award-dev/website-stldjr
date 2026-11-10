@@ -2,7 +2,7 @@
 import Base from "../layouts/Base.astro";
 import BookingFlow from "../components/BookingFlow.astro";
 ---
-<Base title="Book a Pickup Online in St. Louis" cta={false} intro={false} description="Book junk removal, a cleanout or demolition in St. Louis. Choose a load size, see the price, add photos and pick an open arrival window." hideMobileBar>
+<Base breadcrumbs={[{ name: "Home", href: "/" }, { name: "Book a pickup", href: "/book/" }]} title="Book a Pickup Online in St. Louis" cta={false} intro={false} description="Book junk removal, a cleanout or demolition in St. Louis. Choose a load size, see the price, add photos and pick an open arrival window." hideMobileBar>
   <div class="shell book-page">
     <BookingFlow mode="book" />
   </div>

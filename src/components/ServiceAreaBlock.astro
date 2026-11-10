@@ -1,6 +1,7 @@
 ---
 import OwnerNote from "./OwnerNote.astro";
 import { areas, telHref, business } from "../lib/site";
+import { placeHref } from "../lib/locations";
 interface Props { full?: boolean }
 const { full = false } = Astro.props;
 ---
@@ -20,7 +21,7 @@ const { full = false } = Astro.props;
         <h3 id={`r-${r.id}${full ? "" : "-h"}`} class="region-name">{r.name}</h3>
         {full && <p class="small muted region-blurb">{r.blurb}</p>}
         <ul role="list" class="places">
-          {r.places.map((p) => <li>{p}</li>)}
+          {r.places.map((p) => { const href = placeHref(p); return <li>{href ? <a class="place-link" href={href}>{p}</a> : p}</li>; })}
         </ul>
       </section>
     ))}
@@ -29,6 +30,8 @@ const { full = false } = Astro.props;
 </div>
 
 <style>
+  .place-link { text-decoration: underline; text-decoration-color: rgb(var(--accent-rgb) / .5); text-underline-offset: .2em; }
+  .place-link:hover { color: var(--color-accent-ink); }
   .area { display: grid; gap: 40px; }
   .zip { display: grid; gap: 10px; max-width: 420px; }
   .zip-row { display: flex; gap: 8px; }

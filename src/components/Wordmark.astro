@@ -10,7 +10,7 @@ const h = size === 'lg' ? 112 : 56;
 const [first, ...rest] = site.wordmark ? site.wordmark.split(' ') : [];
 ---
 <span class:list={['wm', `wm--${size}`]}>
-  <Image src={logo} alt="" height={h} densities={[1, 2]} class="wm__logo" loading={size === 'sm' ? 'eager' : 'lazy'} />
+  <Image src={logo} alt="" role="presentation" height={h} densities={[1, 2]} class="wm__logo" loading={size === 'sm' ? 'eager' : 'lazy'} />
   {first && <span class="wm__text">{first}{rest.length > 0 && <span> {rest.join(' ')}</span>}</span>}
 </span>
 <style>

@@ -75,9 +75,14 @@
   from = "/services/residential-cleanouts/"
   to = "/services/cleanouts/"
   status = 301
+# The service-area hub moved to /service-areas/ (city pages live under it)
+[[redirects]]
+  from = "/service-area/"
+  to = "/service-areas/"
+  status = 301
 [[redirects]]
   from = "/service-area/*"
-  to = "/service-area/"
+  to = "/service-areas/"
   status = 301
 [[redirects]]
   from = "/gallery/"

@@ -13,7 +13,7 @@ import { jobImage, projectFor, fitWidths, PHOTO_QUALITY } from '../lib/images';
 import { galleryPhotos } from '../lib/media';
 import { services, site, primaryAction, secondaryAction } from '../data/site';
 import { content } from '../data/content';
-import { pricing, minimum, loads } from '../lib/site';
+import { pricing, minimum, loads, faqSchema } from '../lib/site';
 import { googleReviews } from '../lib/reviews';
 
 const h = content.home;
@@ -25,10 +25,10 @@ const trust = [googleLine, site.credentials, h.areaLine].filter(Boolean).join(' 
 const fromPrice = loads[0]?.priceLine.amount;
 const arrow = '<svg class="arrow" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg>';
 ---
-<Base description={h.description} ogImage={h.heroPhoto}>
+<Base description={h.description} ogImage={h.heroPhoto} schema={h.faqs.length ? [faqSchema(h.faqs)] : []}>
   <section class="hero" aria-labelledby="hero-h">
     <div class="hero__bg" aria-hidden="true">
-      <Image src={heroImg} alt="" widths={fitWidths(heroImg, [480, 768, 1080])} quality={45} sizes="100vw" loading="eager" />
+      <Image src={heroImg} alt="" role="presentation" widths={fitWidths(heroImg, [480, 768, 1080])} quality={45} sizes="100vw" loading="eager" />
     </div>
     <div class="glow hero__glow" aria-hidden="true"></div>
     <div class="shell hero__grid">
@@ -150,7 +150,7 @@ const arrow = '<svg class="arrow" viewBox="0 0 24 24" aria-hidden="true" fill="n
           <h2 id="area-h" class="display-lg">Where we work</h2>
           <p class="lead">St. Louis City, St. Louis County and St. Charles County. If you're near a place on this list, we can get to you.</p>
         </div>
-        <a href="/service-area/" class="link-arrow" data-reveal>Full service area<Fragment set:html={arrow} /></a>
+        <a href="/service-areas/" class="link-arrow" data-reveal>Every area we serve<Fragment set:html={arrow} /></a>
       </div>
       <ServiceAreaBlock />
     </div>
