@@ -9,7 +9,9 @@ if (!fs.existsSync(root)) { console.error(`Build dir not found: ${root}`); proce
 
 const walk = (d) => fs.readdirSync(d, { withFileTypes: true }).flatMap((e) =>
   e.isDirectory() ? walk(path.join(d, e.name)) : e.name.endsWith(".html") ? [path.join(d, e.name)] : []);
-const files = walk(root);
+// Search-engine ownership files (Google Search Console, Bing) are not pages.
+const isVerification = (f) => /^(google[0-9a-f]+\.html|BingSiteAuth\.xml)$/.test(path.basename(f));
+const files = walk(root).filter((f) => !isVerification(f));
 
 const toRoute = (f) => {
   let r = "/" + path.relative(root, f).split(path.sep).join("/");
