@@ -919,7 +919,7 @@
     "county": "St. Louis County",
     "kind": "city",
     "tier": "page",
-    "why_a_page": "7 verified local facts from official sources, 3 official link(s)",
+    "why_a_page": "7 verified local facts from official sources, 3 official link(s); first-party proof: 1 completed job with a photo (date not recorded)",
     "verified": "2026-11-10",
     "official_site": {
       "label": "City of Creve Coeur",
@@ -969,7 +969,16 @@
       "lat": 38.66194,
       "lng": -90.44306
     },
-    "jobs": [],
+    "jobs": [
+      {
+        "date": "",
+        "service": "junk-removal",
+        "summary": "Basketball hoop removal in Creve Coeur: a portable hoop with its base, pole, backboard and rim, taken down and loaded into our truck.",
+        "photos": [
+          "junk-removal/creve-coeur-basketball-hoop.jpg"
+        ]
+      }
+    ],
     "review_ids": [],
     "unique_faqs": [
       {

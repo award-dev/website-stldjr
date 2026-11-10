@@ -41,5 +41,6 @@ export const projects: Project[] = [
   { file: 'junk-removal/chesterfield-curbside-pickup.jpg', category: 'junk-removal', alt: 'Curbside pickup in Chesterfield: dresser drawers, a desk, a metal bed frame, a mirror and framed art set out on the lawn by the sidewalk', width: 1500, height: 2000, source: 'owner' },
   { file: 'junk-removal/wildwood-backyard-junk-pile.jpg', category: 'junk-removal', alt: 'Backyard pile in Wildwood along a wood fence: bagged trash, scrap lumber and drywall, old pipe, a storm door, a speaker and paint buckets, ready to be loaded', width: 2000, height: 1500, source: 'owner' },
   { file: 'construction-debris/ballwin-garage-remodel-debris.jpg', category: 'construction-debris', alt: 'Remodel debris piled in a Ballwin garage: drywall scraps, trim and lumber offcuts, flooring boxes, buckets and bagged debris, ready for pickup', width: 1500, height: 2000, source: 'owner' },
+  { file: 'junk-removal/creve-coeur-basketball-hoop.jpg', category: 'junk-removal', alt: 'Portable basketball hoop from a Creve Coeur driveway loaded in the back of our dump truck, with the base, pole, backboard and rim', width: 1500, height: 2000, source: 'owner' },
   { file: 'crew/team.webp', category: 'crew', alt: 'Two crew members standing in the street in front of the white Isuzu junk removal truck', width: 1200, height: 1500, source: 'owner' },
 ];
