@@ -1375,7 +1375,7 @@
     "county": "St. Louis County",
     "kind": "city",
     "tier": "page",
-    "why_a_page": "6 verified local facts from official sources, 3 official link(s)",
+    "why_a_page": "6 verified local facts from official sources, 3 official link(s); first-party proof: 1 completed job with a photo (date not recorded)",
     "verified": "2026-11-10",
     "official_site": {
       "label": "City of Jennings",
@@ -1420,7 +1420,16 @@
       "lat": 38.72306,
       "lng": -90.26444
     },
-    "jobs": [],
+    "jobs": [
+      {
+        "date": "",
+        "service": "junk-removal",
+        "summary": "Trash pickup at a Jennings home: a driveway pile of bagged trash, broken-down cardboard, buckets and scrap, loaded and hauled away.",
+        "photos": [
+          "junk-removal/jennings-trash-pile-pickup.jpg"
+        ]
+      }
+    ],
     "review_ids": [],
     "unique_faqs": [
       {
