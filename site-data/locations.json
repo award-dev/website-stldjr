@@ -6,7 +6,7 @@
     "county": "St. Louis County",
     "kind": "city",
     "tier": "page",
-    "why_a_page": "8 verified local facts from official sources, 2 official link(s), 2 city FAQ(s)",
+    "why_a_page": "8 verified local facts from official sources, 2 official link(s)",
     "verified": "2026-11-10",
     "official_site": {
       "label": "City of Florissant",
@@ -104,7 +104,7 @@
     "county": "St. Louis County",
     "kind": "city",
     "tier": "page",
-    "why_a_page": "8 verified local facts from official sources, 3 official link(s), 3 city FAQ(s)",
+    "why_a_page": "8 verified local facts from official sources, 3 official link(s)",
     "verified": "2026-11-10",
     "official_site": {
       "label": "City of Chesterfield",
@@ -113,7 +113,7 @@
     "local_facts": {
       "trash": [
         {
-          "fact": "Republic Services holds Chesterfield's exclusive city contract for residential trash and recycling. Starting August 1, 2026, the service costs $17.61 a month, billed quarterly.",
+          "fact": "Republic Services holds Chesterfield's exclusive city contract for residential trash and recycling.",
           "source": "https://www.chesterfield.mo.us/solid-waste-recycling"
         },
         {
@@ -209,7 +209,7 @@
     "county": "St. Louis County",
     "kind": "city",
     "tier": "page",
-    "why_a_page": "7 verified local facts from official sources, 3 official link(s), 3 city FAQ(s)",
+    "why_a_page": "7 verified local facts from official sources, 3 official link(s)",
     "verified": "2026-11-10",
     "official_site": {
       "label": "City of Wildwood",
@@ -244,10 +244,6 @@
         {
           "fact": "Republic customers can have up to two old trash carts from a previous provider hauled off free through bulky-item service; Gateway customers use the city's Cart Removal Request Form.",
           "source": "https://www.cityofwildwood.com/270/Waste-Recycling-Services"
-        },
-        {
-          "fact": "Wildwood incorporated on September 1, 1995.",
-          "source": "https://www.cityofwildwood.com/225/History"
         }
       ]
     },
@@ -306,7 +302,7 @@
     "county": "St. Louis County",
     "kind": "city",
     "tier": "page",
-    "why_a_page": "9 verified local facts from official sources, 3 official link(s), 2 city FAQ(s)",
+    "why_a_page": "9 verified local facts from official sources, 3 official link(s)",
     "verified": "2026-11-10",
     "official_site": {
       "label": "City of University City",
@@ -409,7 +405,7 @@
     "county": "St. Louis County",
     "kind": "city",
     "tier": "page",
-    "why_a_page": "6 verified local facts from official sources, 3 official link(s), 3 city FAQ(s)",
+    "why_a_page": "6 verified local facts from official sources, 3 official link(s)",
     "verified": "2026-11-10",
     "official_site": {
       "label": "City of Ballwin",
@@ -542,7 +538,7 @@
     "county": "St. Louis County",
     "kind": "city",
     "tier": "page",
-    "why_a_page": "5 verified local facts from official sources, 3 official link(s), 3 city FAQ(s)",
+    "why_a_page": "5 verified local facts from official sources, 3 official link(s)",
     "verified": "2026-11-10",
     "official_site": {
       "label": "City of Maryland Heights",
@@ -633,7 +629,7 @@
     "county": "St. Louis County",
     "kind": "city",
     "tier": "page",
-    "why_a_page": "8 verified local facts from official sources, 3 official link(s), 3 city FAQ(s)",
+    "why_a_page": "8 verified local facts from official sources, 3 official link(s)",
     "verified": "2026-11-10",
     "official_site": {
       "label": "City of Hazelwood",
@@ -733,7 +729,7 @@
     "county": "St. Louis County",
     "kind": "city",
     "tier": "page",
-    "why_a_page": "11 verified local facts from official sources, 3 official link(s), 3 city FAQ(s)",
+    "why_a_page": "11 verified local facts from official sources, 3 official link(s)",
     "verified": "2026-11-10",
     "official_site": {
       "label": "City of Webster Groves",
@@ -850,7 +846,7 @@
     "county": "St. Louis County",
     "kind": "city",
     "tier": "page",
-    "why_a_page": "7 verified local facts from official sources, 3 official link(s), 3 city FAQ(s)",
+    "why_a_page": "7 verified local facts from official sources, 3 official link(s)",
     "verified": "2026-11-10",
     "official_site": {
       "label": "City of Creve Coeur",
@@ -946,7 +942,7 @@
     "county": "St. Louis County",
     "kind": "city",
     "tier": "page",
-    "why_a_page": "8 verified local facts from official sources, 3 official link(s), 3 city FAQ(s)",
+    "why_a_page": "8 verified local facts from official sources, 3 official link(s)",
     "verified": "2026-11-10",
     "official_site": {
       "label": "City of Ferguson",
@@ -1046,7 +1042,7 @@
     "county": "St. Louis County",
     "kind": "city",
     "tier": "page",
-    "why_a_page": "6 verified local facts from official sources, 3 official link(s), 3 city FAQ(s)",
+    "why_a_page": "6 verified local facts from official sources, 3 official link(s)",
     "verified": "2026-11-10",
     "official_site": {
       "label": "City of Manchester",
@@ -1183,7 +1179,7 @@
     "county": "St. Louis County",
     "kind": "city",
     "tier": "page",
-    "why_a_page": "5 verified local facts from official sources, 3 official link(s), 3 city FAQ(s)",
+    "why_a_page": "5 verified local facts from official sources, 3 official link(s)",
     "verified": "2026-11-10",
     "official_site": {
       "label": "City of Overland",
@@ -1270,7 +1266,7 @@
     "county": "St. Louis County",
     "kind": "city",
     "tier": "page",
-    "why_a_page": "6 verified local facts from official sources, 3 official link(s), 2 city FAQ(s)",
+    "why_a_page": "6 verified local facts from official sources, 3 official link(s)",
     "verified": "2026-11-10",
     "official_site": {
       "label": "City of Jennings",
@@ -1357,7 +1353,7 @@
     "county": "St. Louis County",
     "kind": "city",
     "tier": "page",
-    "why_a_page": "7 verified local facts from official sources, 3 official link(s), 3 city FAQ(s)",
+    "why_a_page": "7 verified local facts from official sources, 3 official link(s)",
     "verified": "2026-11-10",
     "official_site": {
       "label": "City of Crestwood",
@@ -1453,7 +1449,7 @@
     "county": "St. Louis County",
     "kind": "city",
     "tier": "page",
-    "why_a_page": "6 verified local facts from official sources, 2 official link(s), 3 city FAQ(s)",
+    "why_a_page": "6 verified local facts from official sources, 2 official link(s)",
     "verified": "2026-11-10",
     "official_site": {
       "label": "City of Town and Country",
@@ -1542,7 +1538,7 @@
     "county": "St. Louis County",
     "kind": "city",
     "tier": "page",
-    "why_a_page": "7 verified local facts from official sources, 3 official link(s), 3 city FAQ(s)",
+    "why_a_page": "7 verified local facts from official sources, 3 official link(s)",
     "verified": "2026-11-10",
     "official_site": {
       "label": "City of Bridgeton",
@@ -1640,7 +1636,7 @@
     "county": "St. Louis County",
     "kind": "city",
     "tier": "page",
-    "why_a_page": "6 verified local facts from official sources, 3 official link(s), 3 city FAQ(s)",
+    "why_a_page": "6 verified local facts from official sources, 3 official link(s)",
     "verified": "2026-11-10",
     "official_site": {
       "label": "City of Ellisville",
@@ -1734,7 +1730,7 @@
     "county": "St. Louis County",
     "kind": "city",
     "tier": "page",
-    "why_a_page": "5 verified local facts from official sources, 3 official link(s), 3 city FAQ(s)",
+    "why_a_page": "5 verified local facts from official sources, 3 official link(s)",
     "verified": "2026-11-10",
     "official_site": {
       "label": "City of Richmond Heights",
@@ -1822,7 +1818,7 @@
     "county": "St. Louis County",
     "kind": "city",
     "tier": "page",
-    "why_a_page": "7 verified local facts from official sources, 3 official link(s), 3 city FAQ(s)",
+    "why_a_page": "7 verified local facts from official sources, 3 official link(s)",
     "verified": "2026-11-10",
     "official_site": {
       "label": "City of Des Peres",
@@ -1918,7 +1914,7 @@
     "county": "St. Louis County",
     "kind": "city",
     "tier": "page",
-    "why_a_page": "5 verified local facts from official sources, 3 official link(s), 2 city FAQ(s)",
+    "why_a_page": "5 verified local facts from official sources, 3 official link(s)",
     "verified": "2026-11-10",
     "official_site": {
       "label": "City of Sunset Hills",
@@ -2002,7 +1998,7 @@
     "county": "St. Louis County",
     "kind": "city",
     "tier": "page",
-    "why_a_page": "6 verified local facts from official sources, 2 official link(s), 2 city FAQ(s)",
+    "why_a_page": "6 verified local facts from official sources, 2 official link(s)",
     "verified": "2026-11-10",
     "official_site": {
       "label": "City of Ladue",
@@ -2086,7 +2082,7 @@
     "county": "St. Louis County",
     "kind": "city",
     "tier": "page",
-    "why_a_page": "6 verified local facts from official sources, 3 official link(s), 3 city FAQ(s)",
+    "why_a_page": "6 verified local facts from official sources, 3 official link(s)",
     "verified": "2026-11-10",
     "official_site": {
       "label": "City of Brentwood",
@@ -2180,7 +2176,7 @@
     "kind": "unincorporated",
     "tier": "group",
     "group": "south-county",
-    "why_a_page": "6 verified local facts from official sources, 1 official link(s), 3 city FAQ(s); shares county rules with nearby areas, so it is a section of the South County page",
+    "why_a_page": "6 verified local facts from official sources, 1 official link(s); shares county rules with nearby areas, so it is a section of the South County page",
     "verified": "2026-11-10",
     "official_site": {
       "label": "St. Louis County Services Portal (permits)",
@@ -2203,20 +2199,7 @@
           "source": "https://aca-prod.accela.com/SLC/Default.aspx"
         }
       ],
-      "other": [
-        {
-          "fact": "County maps place central Oakville in the Mehlville Fire Protection District.",
-          "source": "https://maps.stlouisco.com/hosting/rest/services/Maps/AGS_Jurisdictions/MapServer/5/query?geometry=-90.32,38.44778&geometryType=esriGeometryPoint&inSR=4326&spatialRel=esriSpatialRelIntersects&outFields=*&returnGeometry=false&f=json"
-        },
-        {
-          "fact": "Oakville sits where the Mississippi and Meramec rivers meet, about 18 miles south of downtown St. Louis, and the 2020 census counted 14,734 housing units there.",
-          "source": "https://en.wikipedia.org/wiki/Oakville,_Missouri"
-        },
-        {
-          "fact": "All of Oakville is in the Mehlville School District.",
-          "source": "https://en.wikipedia.org/wiki/Oakville,_Missouri"
-        }
-      ]
+      "other": []
     },
     "neighborhoods": [
       "Bee Tree Park",
@@ -2269,7 +2252,7 @@
     "kind": "unincorporated",
     "tier": "group",
     "group": "south-county",
-    "why_a_page": "5 verified local facts from official sources, 1 official link(s), 3 city FAQ(s); shares county rules with nearby areas, so it is a section of the South County page",
+    "why_a_page": "5 verified local facts from official sources, 1 official link(s); shares county rules with nearby areas, so it is a section of the South County page",
     "verified": "2026-11-10",
     "official_site": {
       "label": "St. Louis County Services Portal (permits)",
@@ -2292,16 +2275,7 @@
           "source": "https://aca-prod.accela.com/SLC/Default.aspx"
         }
       ],
-      "other": [
-        {
-          "fact": "County maps place central Mehlville in the Mehlville Fire Protection District.",
-          "source": "https://maps.stlouisco.com/hosting/rest/services/Maps/AGS_Jurisdictions/MapServer/5/query?geometry=-90.315,38.50194&geometryType=esriGeometryPoint&inSR=4326&spatialRel=esriSpatialRelIntersects&outFields=*&returnGeometry=false&f=json"
-        },
-        {
-          "fact": "Mehlville covers 7.6 square miles, and the 2020 census counted 13,854 housing units there.",
-          "source": "https://en.wikipedia.org/wiki/Mehlville,_Missouri"
-        }
-      ]
+      "other": []
     },
     "neighborhoods": [
       "Lemay Ferry Road",
@@ -2355,7 +2329,7 @@
     "kind": "unincorporated",
     "tier": "group",
     "group": "south-county",
-    "why_a_page": "6 verified local facts from official sources, 1 official link(s), 3 city FAQ(s); shares county rules with nearby areas, so it is a section of the South County page",
+    "why_a_page": "6 verified local facts from official sources, 1 official link(s); shares county rules with nearby areas, so it is a section of the South County page",
     "verified": "2026-11-10",
     "official_site": {
       "label": "St. Louis County Services Portal (permits)",
@@ -2378,20 +2352,7 @@
           "source": "https://aca-prod.accela.com/SLC/Default.aspx"
         }
       ],
-      "other": [
-        {
-          "fact": "County maps place central Affton in the Affton Fire Protection District.",
-          "source": "https://maps.stlouisco.com/hosting/rest/services/Maps/AGS_Jurisdictions/MapServer/5/query?geometry=-90.32639,38.55&geometryType=esriGeometryPoint&inSR=4326&spatialRel=esriSpatialRelIntersects&outFields=*&returnGeometry=false&f=json"
-        },
-        {
-          "fact": "Affton is named for the area's first postmaster, Johann Aff, and the 2020 census counted 9,579 housing units there.",
-          "source": "https://en.wikipedia.org/wiki/Affton,_Missouri"
-        },
-        {
-          "fact": "Both the Affton School District and the Bayless School District serve the area known as Affton.",
-          "source": "https://en.wikipedia.org/wiki/Affton,_Missouri"
-        }
-      ]
+      "other": []
     },
     "neighborhoods": [],
     "zips": [
@@ -2440,7 +2401,7 @@
     "kind": "unincorporated",
     "tier": "group",
     "group": "south-county",
-    "why_a_page": "6 verified local facts from official sources, 1 official link(s), 3 city FAQ(s); shares county rules with nearby areas, so it is a section of the South County page",
+    "why_a_page": "6 verified local facts from official sources, 1 official link(s); shares county rules with nearby areas, so it is a section of the South County page",
     "verified": "2026-11-10",
     "official_site": {
       "label": "St. Louis County Services Portal (permits)",
@@ -2463,20 +2424,7 @@
           "source": "https://aca-prod.accela.com/SLC/Default.aspx"
         }
       ],
-      "other": [
-        {
-          "fact": "County maps place central Concord in the Mehlville Fire Protection District.",
-          "source": "https://maps.stlouisco.com/hosting/rest/services/Maps/AGS_Jurisdictions/MapServer/5/query?geometry=-90.3775,38.50389&geometryType=esriGeometryPoint&inSR=4326&spatialRel=esriSpatialRelIntersects&outFields=*&returnGeometry=false&f=json"
-        },
-        {
-          "fact": "Concord takes in parts of the Lindbergh School District to the north and the Mehlville School District to the south, and Interstate 270 cuts across its southern part.",
-          "source": "https://en.wikipedia.org/wiki/Concord,_Missouri"
-        },
-        {
-          "fact": "The 2020 census counted 7,542 housing units in Concord, with a homeowner vacancy rate of just 0.6%.",
-          "source": "https://en.wikipedia.org/wiki/Concord,_Missouri"
-        }
-      ]
+      "other": []
     },
     "neighborhoods": [
       "Tesson Ferry Road",
@@ -2571,7 +2519,7 @@
     "kind": "unincorporated",
     "tier": "group",
     "group": "south-county",
-    "why_a_page": "6 verified local facts from official sources, 1 official link(s), 3 city FAQ(s); shares county rules with nearby areas, so it is a section of the South County page",
+    "why_a_page": "6 verified local facts from official sources, 1 official link(s); shares county rules with nearby areas, so it is a section of the South County page",
     "verified": "2026-11-10",
     "official_site": {
       "label": "St. Louis County Services Portal (permits)",
@@ -2595,14 +2543,6 @@
         }
       ],
       "other": [
-        {
-          "fact": "County maps place central Lemay in the Lemay Fire Protection District.",
-          "source": "https://maps.stlouisco.com/hosting/rest/services/Maps/AGS_Jurisdictions/MapServer/5/query?geometry=-90.28444,38.5325&geometryType=esriGeometryPoint&inSR=4326&spatialRel=esriSpatialRelIntersects&outFields=*&returnGeometry=false&f=json"
-        },
-        {
-          "fact": "Lemay is named after Francois Lemai, who ran a ferry across the Meramec River in the early 1800s. The Hancock Place School District is the main district there.",
-          "source": "https://en.wikipedia.org/wiki/Lemay,_Missouri"
-        },
         {
           "fact": "The Jefferson Barracks Military Post sits on the Mississippi River at Lemay, and its historic district has been on the National Register of Historic Places since 1972.",
           "source": "https://en.wikipedia.org/wiki/Jefferson_Barracks_Historic_District"
@@ -2659,7 +2599,7 @@
     "county": "St. Charles County",
     "kind": "city",
     "tier": "page",
-    "why_a_page": "8 verified local facts from official sources, 2 official link(s), 2 city FAQ(s)",
+    "why_a_page": "8 verified local facts from official sources, 2 official link(s)",
     "verified": "2026-11-10",
     "official_site": {
       "label": "City of O'Fallon",
@@ -2752,7 +2692,7 @@
     "county": "St. Charles County",
     "kind": "city",
     "tier": "page",
-    "why_a_page": "8 verified local facts from official sources, 3 official link(s), 3 city FAQ(s)",
+    "why_a_page": "8 verified local facts from official sources, 3 official link(s)",
     "verified": "2026-11-10",
     "official_site": {
       "label": "City of St. Charles",
@@ -2896,7 +2836,7 @@
     "county": "St. Charles County",
     "kind": "city",
     "tier": "page",
-    "why_a_page": "7 verified local facts from official sources, 2 official link(s), 3 city FAQ(s)",
+    "why_a_page": "7 verified local facts from official sources, 2 official link(s)",
     "verified": "2026-11-10",
     "official_site": {
       "label": "City of Wentzville",
@@ -2988,7 +2928,7 @@
     "county": "St. Charles County",
     "kind": "city",
     "tier": "page",
-    "why_a_page": "6 verified local facts from official sources, 3 official link(s), 3 city FAQ(s)",
+    "why_a_page": "6 verified local facts from official sources, 3 official link(s)",
     "verified": "2026-11-10",
     "official_site": {
       "label": "City of Lake Saint Louis",
@@ -3019,12 +2959,7 @@
           "source": "https://www.lakesaintlouis.com/1318/Building-Permits"
         }
       ],
-      "other": [
-        {
-          "fact": "Lake Saint Louis has two lakes: the roughly 600-acre Lake St. Louis and the 85-acre Lake Ste. Louise.",
-          "source": "https://en.wikipedia.org/wiki/Lake_St._Louis,_Missouri"
-        }
-      ]
+      "other": []
     },
     "neighborhoods": [
       "Harbor Town",
@@ -3136,7 +3071,7 @@
     "county": "St. Charles County",
     "kind": "city",
     "tier": "page",
-    "why_a_page": "6 verified local facts from official sources, 3 official link(s), 3 city FAQ(s)",
+    "why_a_page": "6 verified local facts from official sources, 3 official link(s)",
     "verified": "2026-11-10",
     "official_site": {
       "label": "City of Cottleville",
@@ -3241,12 +3176,7 @@
           "source": "https://weldonspring.gov/codeenforcement"
         }
       ],
-      "other": [
-        {
-          "fact": "The City of Weldon Spring contracts with St. Charles County for street maintenance and police patrol.",
-          "source": "https://weldonspring.gov/countyservices"
-        }
-      ]
+      "other": []
     },
     "neighborhoods": [],
     "zips": [

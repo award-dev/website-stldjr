@@ -24,6 +24,8 @@ const url = `${site.url}${cityHref(l)}`;
 const crumbs = [{ name: 'Home', href: '/' }, { name: 'Service areas', href: '/service-areas/' }, { name: l.name, href: cityHref(l) }];
 const near = nearbyPages(l).slice(0, 4);
 const full = loads.find((x) => x.id === 'full');
+const hasDemo = l.local_facts.permits.some((f) => /demoli|wrecking|tear/i.test(f.fact));
+const insured = business.trust.licensed && business.trust.insured;
 const host = (u: string) => new URL(u).hostname.replace(/^www\./, '');
 const anchors: Record<string, string> = {
   'junk-removal': `Junk removal in ${l.name}`,
@@ -49,7 +51,7 @@ const arrow = '<svg class="arrow" viewBox="0 0 24 24" aria-hidden="true" fill="n
 <Base title={title} description={description} breadcrumbs={crumbs} schema={schema}>
   <PageHero
     title={`Junk Removal & Demolition in ${place}`}
-    lead={`Junk hauling, cleanouts and tear-outs in ${where}${hoods.length ? `, from ${hoods.join(' to ')}` : ''}${l.zips.length ? ` (${l.zips.join(', ')})` : ''}.`}
+    lead={`Junk hauling, cleanouts and tear-outs in ${where}${hoods.length ? `, from ${hoods.join(' to ')}` : ''}${l.zips.length ? ` (${l.zips.join(', ')})` : ''}. Priced by the load from ${minimum?.priceLine.amount}, with the price confirmed before anything is loaded${insured ? ', by a licensed and insured crew' : ''}.`}
     crumbs={crumbs}
   >
     <div class="btn-row">
@@ -71,7 +73,7 @@ const arrow = '<svg class="arrow" viewBox="0 0 24 24" aria-hidden="true" fill="n
 
       {l.local_facts.permits.length > 0 && (
         <section aria-labelledby="permit-h" class="block">
-          <h2 id="permit-h" class="display-md">Do you need a demolition permit in {l.name}?</h2>
+          <h2 id="permit-h" class="display-md">{hasDemo ? `Do you need a demolition permit in ${l.name}?` : `Building permits in ${l.name}`}</h2>
           <ul class="facts">
             {l.local_facts.permits.map((f) => <li><p>{f.fact}</p><a class="src" href={f.source} target="_blank" rel="noopener">Source: {host(f.source)}<span class="sr-only"> (opens in a new tab)</span></a></li>)}
           </ul>

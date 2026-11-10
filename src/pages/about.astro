@@ -126,7 +126,7 @@ const ext = '<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="cur
         <p class="tag"><span class="dot"></span>Featured interview</p>
         <h2 id="vendor-h" class="display-md">{v.title}</h2>
         <p class="body">{v.body}</p>
-        <a class="link-arrow" href={`https://www.youtube.com/watch?v=${v.youtubeId}`} target="_blank" rel="noopener">Watch on YouTube<Fragment set:html={arrow} /><span class="sr-only"> (opens in a new tab)</span></a>
+        <a class="link-arrow" href={business.links.buyersClubInterview} target="_blank" rel="noopener">Watch on YouTube<Fragment set:html={arrow} /><span class="sr-only"> (opens in a new tab)</span></a>
       </div>
       <div class="vendor__video" data-reveal style="--d:100ms">
         {/* Click-to-load: no YouTube requests or cookies until the visitor presses play. */}

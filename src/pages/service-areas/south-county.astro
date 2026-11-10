@@ -27,7 +27,7 @@ const full = loads.find((x) => x.id === 'full');
 const host = (u: string) => new URL(u).hostname.replace(/^www\./, '');
 const url = `${site.url}/service-areas/south-county/`;
 const crumbs = [{ name: 'Home', href: '/' }, { name: 'Service areas', href: '/service-areas/' }, { name: 'South St. Louis County', href: '/service-areas/south-county/' }];
-const description = `Junk removal and demolition in ${nameList}: county trash districts, haulers and permits explained for unincorporated South County.`;
+const description = `Junk removal and demolition in ${nameList}. Priced by the load from ${minimum?.priceLine.amount}. Book online or call ${business.phoneDisplay}.`;
 const schema = [
   {
     '@type': 'Service',

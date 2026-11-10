@@ -103,14 +103,14 @@ export const content = {
         'It’s also why we’re proud to be listed on LocateFaith, a directory of Christian-owned local businesses. If you’re looking to support businesses that share your faith, you’ll find us there.',
       ],
       verse: { text: 'Whatever you do, work heartily, as for the Lord and not for men.', ref: 'Colossians 3:23' },
-      listing: 'https://locatefaith.com/business/stl-demolition-and-junk-removal',
+      listing: business.links.locateFaith,
     },
     vendor: {
       title: 'On the Buyers Club Vendor Team',
       body: 'I sat down with Buyers Club to talk about the business as part of their Vendor Team: how we work, what we haul and tear out, and why we do it the way we do.',
-      youtubeId: 'NwVk6lFT58M',
+      youtubeId: new URL(business.links.buyersClubInterview).searchParams.get('v') ?? '',
       videoTitle: 'Buyers Club Vendor Team: STL Demolition & Junk Removal',
-      channel: 'https://www.youtube.com/@buyersclub8471',
+      channel: business.links.buyersClubChannel,
     },
   },
 
