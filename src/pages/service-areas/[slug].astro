@@ -4,8 +4,12 @@
 import Base from '../../layouts/Base.astro';
 import PageHero from '../../components/PageHero.astro';
 import Faq from '../../components/Faq.astro';
+import { Image } from 'astro:assets';
+import BeforeAfter from '../../components/react/BeforeAfter.tsx';
+import { jobImage, projectFor, pairs, fitWidths, PHOTO_QUALITY } from '../../lib/images';
+import { pairImages } from '../../lib/media';
 import { cityPages, cityHref, nearbyPages, type Location } from '../../lib/locations';
-import { services, site } from '../../data/site';
+import { services, site, pairTitles } from '../../data/site';
 import { loads, minimum, pricing, telHref, business, faqSchema } from '../../lib/site';
 
 export function getStaticPaths() {
@@ -24,6 +28,17 @@ const url = `${site.url}${cityHref(l)}`;
 const crumbs = [{ name: 'Home', href: '/' }, { name: 'Service areas', href: '/service-areas/' }, { name: l.name, href: cityHref(l) }];
 const near = nearbyPages(l).slice(0, 4);
 const full = loads.find((x) => x.id === 'full');
+// Jobs with their photos: a single photo, or before/after pairs rendered as drag sliders.
+const jobs = await Promise.all(l.jobs.map(async (j) => ({
+  ...j,
+  when: j.date ? new Date(`${j.date}T12:00:00`).toLocaleDateString('en-US', { month: 'long', year: 'numeric' }) : '',
+  service: services.find((s) => s.slug === j.service),
+  photos: (j.photos ?? []).map(projectFor),
+  sliders: await Promise.all((j.pairs ?? []).map(async (key) => {
+    const p = pairs().find((x) => x.key === key);
+    return p ? { key, title: pairTitles[key] ?? 'Before and after', ...(await pairImages(p.before, p.after)) } : null;
+  })).then((xs) => xs.filter((x) => x !== null)),
+})));
 const hasDemo = l.local_facts.permits.some((f) => /demoli|wrecking|tear/i.test(f.fact));
 const insured = business.trust.licensed && business.trust.insured;
 const host = (u: string) => new URL(u).hostname.replace(/^www\./, '');
@@ -62,6 +77,32 @@ const arrow = '<svg class="arrow" viewBox="0 0 24 24" aria-hidden="true" fill="n
 
   <div class="shell city">
     <div class="city__main">
+      {jobs.length > 0 && (
+        <section aria-labelledby="jobs-h" class="block">
+          <h2 id="jobs-h" class="display-md">Our recent work in {l.name}</h2>
+          {jobs.map((j) => (
+            <article class="job">
+              <p class="job__meta">{j.when && <>{j.when} · </>}{j.service && <a class="link-u accent" href={`/services/${j.service.slug}/`}>{j.service.title}</a>}</p>
+              <p class="job__text">{j.summary}</p>
+              {j.sliders.length > 0 && (
+                <div class="job__pairs">
+                  {j.sliders.map((s) => <BeforeAfter client:visible before={s.before} after={s.after} title={s.title} />)}
+                </div>
+              )}
+              {j.photos.length > 0 && (
+                <div class="job__photos">
+                  {j.photos.map((ph) => (
+                    <div class="media job__photo">
+                      <Image src={jobImage(ph.file)} alt={ph.alt} widths={fitWidths(jobImage(ph.file), [480, 800, 1200])} quality={PHOTO_QUALITY} sizes="(min-width: 900px) 380px, 100vw" />
+                    </div>
+                  ))}
+                </div>
+              )}
+            </article>
+          ))}
+        </section>
+      )}
+
       {l.local_facts.trash.length > 0 && (
         <section aria-labelledby="trash-h" class="block">
           <h2 id="trash-h" class="display-md">How bulky-item pickup works in {l.name}</h2>
@@ -89,12 +130,6 @@ const arrow = '<svg class="arrow" viewBox="0 0 24 24" aria-hidden="true" fill="n
         </section>
       )}
 
-      {l.jobs.length > 0 && (
-        <section aria-labelledby="jobs-h" class="block">
-          <h2 id="jobs-h" class="display-md">Recent jobs in {l.name}</h2>
-          <ul class="facts">{l.jobs.map((j) => <li><p>{j.summary}</p></li>)}</ul>
-        </section>
-      )}
 
       <section aria-labelledby="svc-h" class="block">
         <h2 id="svc-h" class="display-md">What we do in {l.name}</h2>
@@ -155,6 +190,14 @@ const arrow = '<svg class="arrow" viewBox="0 0 24 24" aria-hidden="true" fill="n
   .block { display: grid; gap: 18px; }
   .block h2 { font-size: clamp(1.6rem, 1.2rem + 1.4vw, 2.3rem); }
   .body { color: #d6cfc6; max-width: 66ch; }
+  .job { display: grid; gap: 14px; }
+  .job__meta { font-size: 14px; color: var(--color-muted); }
+  .job__text { font-size: 1.1rem; color: #e3ddd5; max-width: 62ch; }
+  .job__pairs { display: grid; gap: 20px; }
+  @media (min-width: 900px) { .job__pairs { grid-template-columns: 1fr 1fr; } }
+  .job__photos { display: grid; gap: 14px; }
+  @media (min-width: 640px) { .job__photos { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  .job__photo { aspect-ratio: 3 / 4; max-width: 520px; }
   .facts { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
   .facts li { display: grid; gap: 8px; padding: 20px 22px; border-radius: var(--radius-md); background: var(--color-card); box-shadow: inset 0 0 0 1px var(--color-line); }
   .facts p { color: #e3ddd5; }

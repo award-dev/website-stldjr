@@ -9,15 +9,19 @@ import NextAvailable from '../components/NextAvailable.astro';
 import ServiceAreaBlock from '../components/ServiceAreaBlock.astro';
 import Reviews from '../components/Reviews.astro';
 import Gallery from '../components/react/Gallery.tsx';
-import { jobImage, projectFor, fitWidths, PHOTO_QUALITY } from '../lib/images';
-import { galleryPhotos } from '../lib/media';
-import { services, site, primaryAction, secondaryAction } from '../data/site';
+import BeforeAfter from '../components/react/BeforeAfter.tsx';
+import { jobImage, projectFor, fitWidths, PHOTO_QUALITY, pairs } from '../lib/images';
+import { galleryPhotos, pairImages } from '../lib/media';
+import { services, site, primaryAction, secondaryAction, pairTitles } from '../data/site';
 import { content } from '../data/content';
 import { pricing, minimum, loads, faqSchema } from '../lib/site';
 import { googleReviews } from '../lib/reviews';
 
 const h = content.home;
 const wall = await galleryPhotos(h.wall.map(projectFor));
+const homePairs = await Promise.all(
+  pairs().filter((p) => h.pairs.includes(p.key)).map(async (p) => ({ key: p.key, ...(await pairImages(p.before, p.after)) })),
+);
 const heroImg = jobImage(h.heroPhoto);
 const g = await googleReviews();
 const googleLine = g?.rating && g.count ? `${g.rating.toFixed(1)} stars on Google (${g.count} reviews)` : '';
@@ -81,6 +85,27 @@ const arrow = '<svg class="arrow" viewBox="0 0 24 24" aria-hidden="true" fill="n
       <ServiceCards items={services} />
     </div>
   </section>
+
+  {homePairs.length > 0 && (
+    <section class="section-tight" aria-labelledby="ba-h">
+      <div class="shell">
+        <div class="head-row">
+          <div class="head" data-reveal>
+            <h2 id="ba-h" class="display-lg">Before &amp; after</h2>
+            <p class="lead">A bathroom we tore out in Webster Groves. Drag the handle to see it before and after our demolition.</p>
+          </div>
+          <a href="/service-areas/webster-groves/" class="link-arrow" data-reveal>More about Webster Groves<Fragment set:html={arrow} /></a>
+        </div>
+        <div class="pairs">
+          {homePairs.map((p, i) => (
+            <div data-reveal style={`--d:${i * 90}ms`}>
+              <BeforeAfter client:visible before={p.before} after={p.after} title={pairTitles[p.key] ?? 'Before and after'} />
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
 
   <section class="section" id="how-it-works" aria-labelledby="process-h">
     <div class="shell">
@@ -201,6 +226,8 @@ const arrow = '<svg class="arrow" viewBox="0 0 24 24" aria-hidden="true" fill="n
   .facts dt { font-family: var(--font-display); font-weight: 700; font-size: clamp(2rem, 1.5rem + 1.6vw, 2.8rem); letter-spacing: -0.04em; line-height: 1; color: var(--color-accent-ink); }
   .facts dd { margin: 0; color: var(--color-muted); font-size: 15px; }
 
+  .pairs { display: grid; gap: 40px 24px; }
+  @media (min-width: 900px) { .pairs { grid-template-columns: 1fr 1fr; } }
   .steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 16px; }
   @media (min-width: 640px) { .steps { grid-template-columns: 1fr 1fr; } }
   @media (min-width: 1100px) { .steps { grid-template-columns: repeat(4, 1fr); } }

@@ -57,8 +57,11 @@ export const categoryLabels: Record<string, string> = {
   crew: 'Truck & crew',
 };
 
-/** Before/after pair titles. No real before/after photo pairs yet. */
-export const pairTitles: Record<string, string> = {};
+/** Before/after pair titles, keyed by the `pair` value in projects.ts. */
+export const pairTitles: Record<string, string> = {
+  'webster-groves-bathroom': 'Bathroom tear-out in Webster Groves',
+  'webster-groves-shower': 'Walk-in shower demo in Webster Groves',
+};
 
 export interface Faq { q: string; a: string }
 export { services, type Service } from './services';

@@ -41,7 +41,7 @@ const faq = (id: string): Faq => {
 };
 
 /** Page fields the config doesn't carry. Keyed by config/services.json group id. */
-const extra: Record<string, Pick<Service, 'slug' | 'category' | 'label' | 'noun' | 'h1' | 'metaTitle' | 'short' | 'cover'>> = {
+const extra: Record<string, Pick<Service, 'slug' | 'category' | 'label' | 'noun' | 'h1' | 'metaTitle' | 'short' | 'cover'> & { pair?: string }> = {
   'junk-removal': {
     slug: 'junk-removal', category: 'junk-removal', label: 'Junk removal', noun: 'Junk removal',
     h1: 'Junk removal in St. Louis, MO', metaTitle: 'Junk Removal in St. Louis, MO, by the Load',
@@ -55,7 +55,7 @@ const extra: Record<string, Pick<Service, 'slug' | 'category' | 'label' | 'noun'
   demolition: {
     slug: 'demolition', category: 'demolition', label: 'Demolition', noun: 'Demolition',
     h1: 'Demolition in St. Louis, MO', metaTitle: 'Demolition in St. Louis: Decks, Sheds, Guts',
-    short: 'Interior guts, kitchens, baths, decks and sheds, torn out and hauled.', cover: 'demolition/kitchen-gut.webp',
+    short: 'Interior guts, kitchens, baths, decks and sheds, torn out and hauled.', cover: 'demolition/kitchen-gut.webp', pair: 'webster-groves-bathroom',
   },
   'construction-debris': {
     slug: 'construction-debris-removal', category: 'construction-debris', label: 'Construction debris', noun: 'Debris removal',

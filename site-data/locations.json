@@ -6,7 +6,7 @@
     "county": "St. Louis County",
     "kind": "city",
     "tier": "page",
-    "why_a_page": "8 verified local facts from official sources, 2 official link(s)",
+    "why_a_page": "8 verified local facts from official sources, 2 official link(s); first-party proof: 1 completed job with a photo",
     "verified": "2026-11-10",
     "official_site": {
       "label": "City of Florissant",
@@ -66,7 +66,16 @@
       "lat": 38.79972,
       "lng": -90.32694
     },
-    "jobs": [],
+    "jobs": [
+      {
+        "date": "2026-09-30",
+        "service": "junk-removal",
+        "summary": "Furniture removal at a Florissant home, including a solid wood sleigh bed carried out to the truck.",
+        "photos": [
+          "junk-removal/florissant-sleigh-bed-removal.jpg"
+        ]
+      }
+    ],
     "review_ids": [],
     "unique_faqs": [
       {
@@ -405,7 +414,7 @@
     "county": "St. Louis County",
     "kind": "city",
     "tier": "page",
-    "why_a_page": "6 verified local facts from official sources, 3 official link(s)",
+    "why_a_page": "6 verified local facts from official sources, 3 official link(s); first-party proof: 1 completed job with photos",
     "verified": "2026-11-10",
     "official_site": {
       "label": "City of Ballwin",
@@ -452,7 +461,17 @@
       "lat": 38.595,
       "lng": -90.55
     },
-    "jobs": [],
+    "jobs": [
+      {
+        "date": "2026-09-25",
+        "service": "junk-removal",
+        "summary": "Removed a pair of oak display cabinets from the basement and an armoire from the garage.",
+        "photos": [
+          "junk-removal/ballwin-display-cabinets.jpg",
+          "junk-removal/ballwin-armoire.jpg"
+        ]
+      }
+    ],
     "review_ids": [],
     "unique_faqs": [
       {
@@ -729,7 +748,7 @@
     "county": "St. Louis County",
     "kind": "city",
     "tier": "page",
-    "why_a_page": "11 verified local facts from official sources, 3 official link(s)",
+    "why_a_page": "11 verified local facts from official sources, 3 official link(s); first-party proof: 1 completed job with before/after photos",
     "verified": "2026-11-10",
     "official_site": {
       "label": "City of Webster Groves",
@@ -800,7 +819,17 @@
       "lat": 38.58667,
       "lng": -90.35444
     },
-    "jobs": [],
+    "jobs": [
+      {
+        "date": "2026-10-29",
+        "service": "demolition",
+        "summary": "Bathroom tear-out: the double vanity, mirror, tile floor, walk-in shower and drywall came out, down to the studs and subfloor.",
+        "pairs": [
+          "webster-groves-bathroom",
+          "webster-groves-shower"
+        ]
+      }
+    ],
     "review_ids": [],
     "unique_faqs": [
       {
@@ -942,7 +971,7 @@
     "county": "St. Louis County",
     "kind": "city",
     "tier": "page",
-    "why_a_page": "8 verified local facts from official sources, 3 official link(s)",
+    "why_a_page": "8 verified local facts from official sources, 3 official link(s); first-party proof: 1 completed job with a photo (date TODO from owner)",
     "verified": "2026-11-10",
     "official_site": {
       "label": "City of Ferguson",
@@ -996,7 +1025,16 @@
       "lat": 38.7444,
       "lng": -90.305
     },
-    "jobs": [],
+    "jobs": [
+      {
+        "date": "",
+        "service": "demolition",
+        "summary": "Interior demolition: walls taken out to open the room up, then the debris hauled away and the floor cleaned up.",
+        "photos": [
+          "demolition/ferguson-room-demo.jpg"
+        ]
+      }
+    ],
     "review_ids": [],
     "unique_faqs": [
       {
@@ -1998,7 +2036,7 @@
     "county": "St. Louis County",
     "kind": "city",
     "tier": "page",
-    "why_a_page": "6 verified local facts from official sources, 2 official link(s)",
+    "why_a_page": "6 verified local facts from official sources, 2 official link(s); first-party proof: 1 completed job with a photo",
     "verified": "2026-11-10",
     "official_site": {
       "label": "City of Ladue",
@@ -2044,7 +2082,16 @@
       "lat": 38.63778,
       "lng": -90.38139
     },
-    "jobs": [],
+    "jobs": [
+      {
+        "date": "2026-10-14",
+        "service": "demolition",
+        "summary": "Curved walk-in shower demolished down to the framing, with the tile, walls and ceiling taken out around the plumbing and windows.",
+        "photos": [
+          "demolition/ladue-curved-shower-demo.jpg"
+        ]
+      }
+    ],
     "review_ids": [],
     "unique_faqs": [
       {
@@ -2599,7 +2646,7 @@
     "county": "St. Charles County",
     "kind": "city",
     "tier": "page",
-    "why_a_page": "8 verified local facts from official sources, 2 official link(s)",
+    "why_a_page": "8 verified local facts from official sources, 2 official link(s); first-party proof: 1 completed job with photos (date TODO from owner)",
     "verified": "2026-11-10",
     "official_site": {
       "label": "City of O'Fallon",
@@ -2654,7 +2701,17 @@
       "lat": 38.78444,
       "lng": -90.72
     },
-    "jobs": [],
+    "jobs": [
+      {
+        "date": "",
+        "service": "junk-removal",
+        "summary": "Carpet and junk removal in an O'Fallon home: the carpet and pad came up and out, along with the junk, leaving the living room and bedrooms empty down to the subfloor.",
+        "photos": [
+          "junk-removal/ofallon-carpet-removal-living-room.jpg",
+          "junk-removal/ofallon-carpet-removal-bedroom.jpg"
+        ]
+      }
+    ],
     "review_ids": [],
     "unique_faqs": [
       {
@@ -3071,7 +3128,7 @@
     "county": "St. Charles County",
     "kind": "city",
     "tier": "page",
-    "why_a_page": "6 verified local facts from official sources, 3 official link(s)",
+    "why_a_page": "6 verified local facts from official sources, 3 official link(s); first-party proof: 1 completed job with a photo (date TODO from owner)",
     "verified": "2026-11-10",
     "official_site": {
       "label": "City of Cottleville",
@@ -3116,7 +3173,16 @@
       "lat": 38.75194,
       "lng": -90.65333
     },
-    "jobs": [],
+    "jobs": [
+      {
+        "date": "",
+        "service": "junk-removal",
+        "summary": "Picked up a pile of old fence boards and posts from beside a barn and hauled it all away.",
+        "photos": [
+          "junk-removal/cottleville-fence-pickup.jpg"
+        ]
+      }
+    ],
     "review_ids": [],
     "unique_faqs": [
       {

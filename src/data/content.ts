@@ -42,8 +42,8 @@ export const content = {
     heroVideos: [] as string[],
     railExclude: [] as string[],
     marquee: ['Junk removal', 'Cleanouts', 'Demolition', 'Construction debris', 'Hot tubs', 'Sheds & decks', 'Appliances', 'Estates'],
-    pairs: [] as string[],
-    wall: ['junk-removal/couch-carry.webp', 'demolition/kitchen-gut.webp', 'crew/truck.webp', 'construction-debris/loaded-bed.webp', 'cleanouts/sweep.webp', 'crew/team.webp'],
+    pairs: ['webster-groves-bathroom', 'webster-groves-shower'] as string[],
+    wall: ['junk-removal/couch-carry.webp', 'demolition/ladue-curved-shower-demo.jpg', 'demolition/kitchen-gut.webp', 'crew/truck.webp', 'junk-removal/ofallon-carpet-removal-living-room.jpg', 'junk-removal/florissant-sleigh-bed-removal.jpg', 'demolition/st-louis-kitchen-demo.jpg', 'construction-debris/loaded-bed.webp', 'cleanouts/sweep.webp', 'crew/team.webp'],
     steps: [
       ['Pick a load size', `Choose 1/4, 1/2, 3/4 or a full ${pricing.maxCubicYards}-yard truck and see the price. Add a few photos if you're not sure.`],
       ['Choose a time', 'Book an open two-hour arrival window online, same day when the schedule allows. You get a confirmation with reschedule and cancel links.'],

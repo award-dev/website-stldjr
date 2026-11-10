@@ -40,6 +40,9 @@
     "/services/cleanouts/",
     "/services/demolition/",
     "/services/construction-debris-removal/",
+    "/service-areas/florissant/",
+    "/service-areas/ballwin/",
+    "/service-areas/ofallon/",
     "/service-areas/",
     "/contact/",
     "/book/"
@@ -56,6 +59,9 @@
     "/services/junk-removal/",
     "/services/cleanouts/",
     "/services/construction-debris-removal/",
+    "/service-areas/webster-groves/",
+    "/service-areas/ferguson/",
+    "/service-areas/ladue/",
     "/service-areas/",
     "/contact/",
     "/book/"

@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react';
 
-interface Img { src: string; srcset: string; alt: string }
+interface Img { src: string; srcset: string; alt: string; width?: number; height?: number }
 
 /** Drag (or arrow-key) comparison slider. The range input carries keyboard and screen-reader access. */
 export default function BeforeAfter({ before, after, title }: { before: Img; after: Img; title: string }) {
@@ -25,8 +25,8 @@ export default function BeforeAfter({ before, after, title }: { before: Img; aft
         onPointerUp={() => { dragging.current = false; }}
         onPointerCancel={() => { dragging.current = false; }}
       >
-        <img className="ba__img" src={after.src} srcSet={after.srcset} sizes="(min-width: 1024px) 640px, 100vw" alt={`After: ${after.alt}`} loading="lazy" decoding="async" draggable={false} />
-        <img className="ba__img ba__img--before" src={before.src} srcSet={before.srcset} sizes="(min-width: 1024px) 640px, 100vw" alt={`Before: ${before.alt}`} loading="lazy" decoding="async" draggable={false} />
+        <img className="ba__img" src={after.src} srcSet={after.srcset} sizes="(min-width: 1024px) 640px, 100vw" alt={`After: ${after.alt}`} width={after.width} height={after.height} loading="lazy" decoding="async" draggable={false} />
+        <img className="ba__img ba__img--before" src={before.src} srcSet={before.srcset} sizes="(min-width: 1024px) 640px, 100vw" alt={`Before: ${before.alt}`} width={before.width} height={before.height} loading="lazy" decoding="async" draggable={false} />
         <span className="ba__label ba__label--before" aria-hidden="true">Before</span>
         <span className="ba__label ba__label--after" aria-hidden="true">After</span>
         <span className="ba__handle" aria-hidden="true">
