@@ -32,12 +32,12 @@ const backdrop = meta ? await getImage({ src: meta, width: 480, format: 'webp', 
           </ol>
         </nav>
       )}
-      <h1 class="display-lg ph__title" data-reveal>{title}</h1>
-      {lead && <p class="lead" data-reveal style="--d:80ms">{lead}</p>}
-      <div class="ph__slot" data-reveal style="--d:160ms"><slot /></div>
+      <h1 class="display-lg ph__title">{title}</h1>
+      {lead && <p class="lead">{lead}</p>}
+      <div class="ph__slot"><slot /></div>
     </div>
     {meta && (
-      <div class="media ph__photo" data-reveal style="--d:120ms">
+      <div class="media ph__photo">
         <Image src={meta} alt={alt} style={`object-position:${imagePosition}`} widths={fitWidths(meta, [480, 720, 960, 1280])} quality={PHOTO_QUALITY} sizes="(min-width: 1024px) 600px, 100vw" loading="eager" fetchpriority="high" />
       </div>
     )}

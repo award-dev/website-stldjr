@@ -11,8 +11,12 @@ import { business as cfg, booking, openingHoursSchema, anyPrice } from '../lib/s
 import { site, services } from '../data/site';
 import { content } from '../data/content';
 import { jobImage } from '../lib/images';
-import Intro from '../components/react/Intro.tsx';
+import Intro from '../components/Intro.astro';
 import logoMeta from '../assets/brand/logo.png';
+// Same files the @fontsource CSS points at (Vite gives them the same hashed URL), preloaded so the headline
+// font arrives with the page instead of after the stylesheet is parsed.
+import displayFont from '@fontsource-variable/bricolage-grotesque/files/bricolage-grotesque-latin-wght-normal.woff2?url';
+import bodyFont from '@fontsource-variable/geist/files/geist-latin-wght-normal.woff2?url';
 // Link-preview card: made by scripts/og-card.mjs from the finished intro screen (a placeholder until then).
 import shareCard from '../assets/brand/og-card.png';
 import truckBed from '../assets/brand/intro-truck-bed.png';
@@ -114,6 +118,8 @@ const graph = { '@context': 'https://schema.org', '@graph': [business, website, 
     <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48.png" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="sitemap" href="/sitemap-index.xml" />
+    <link rel="preload" href={displayFont} as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href={bodyFont} as="font" type="font/woff2" crossorigin />
     <meta name="theme-color" content="#0b0a09" />
     <meta name="format-detection" content="telephone=no" />
     <link rel="icon" href="/favicon.ico" sizes="any" />
@@ -141,7 +147,6 @@ const graph = { '@context': 'https://schema.org', '@graph': [business, website, 
     )}
     {analytics.provider === 'ga4' && analytics.ga4MeasurementId && (
       <>
-        <script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${analytics.ga4MeasurementId}`}></script>
         <script is:inline define:vars={{ id: analytics.ga4MeasurementId }}>
           window.dataLayer = window.dataLayer || [];
           window.gtag = function () { window.dataLayer.push(arguments); };
@@ -149,12 +154,26 @@ const graph = { '@context': 'https://schema.org', '@graph': [business, website, 
           // Manage links carry a private token in the query string; never send it.
           var strip = function (u) { return u.replace(/(\/booking\/)\?.*$/, '$1'); };
           window.gtag('config', id, { anonymize_ip: true, page_location: strip(location.href), page_referrer: strip(document.referrer) });
+          // gtag.js is ~180 KB of script: load it once the page has finished loading and the main thread is idle
+          // (or on the first interaction, whichever comes first). Calls made before then wait in dataLayer.
+          (function () {
+            var loaded = false;
+            var load = function () {
+              if (loaded) return; loaded = true;
+              var s = document.createElement('script');
+              s.async = true; s.src = 'https://www.googletagmanager.com/gtag/js?id=' + id;
+              document.head.appendChild(s);
+            };
+            var idle = function () { (window.requestIdleCallback || function (f) { setTimeout(f, 1) })(load, { timeout: 4000 }); };
+            if (document.readyState === 'complete') idle(); else addEventListener('load', idle, { once: true });
+            ['pointerdown', 'keydown', 'scroll'].forEach(function (t) { addEventListener(t, load, { once: true, passive: true }); });
+          })();
         </script>
       </>
     )}
   </head>
   <body>
-    {showIntro && <Intro client:load truck={introTruck} logo={introLogo.src} words={content.intro.words} stages={content.intro.stages} drawing={content.intro.drawing} />}
+    {showIntro && <Intro truck={introTruck} logo={introLogo.src} words={content.intro.words} stages={content.intro.stages} drawing={content.intro.drawing} />}
     <a href="#main" class="skip">Skip to content</a>
     <Header />
     <main id="main" tabindex="-1"><slot /></main>

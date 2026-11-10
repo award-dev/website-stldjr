@@ -41,7 +41,7 @@ export function finished(category?: string) {
 }
 
 /** Quality used for every resized job photo (sources are often already-compressed social media JPEGs). */
-export const PHOTO_QUALITY = 86;
+export const PHOTO_QUALITY = 74;
 
 /**
  * Responsive widths for a photo: the requested sizes that the source can actually supply,
