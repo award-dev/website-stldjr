@@ -1133,7 +1133,7 @@
     "county": "St. Louis County",
     "kind": "city",
     "tier": "page",
-    "why_a_page": "6 verified local facts from official sources, 3 official link(s)",
+    "why_a_page": "6 verified local facts from official sources, 3 official link(s); first-party proof: 1 completed job with photos (date not recorded)",
     "verified": "2026-11-10",
     "official_site": {
       "label": "City of Manchester",
@@ -1180,7 +1180,17 @@
       "lat": 38.5831,
       "lng": -90.5064
     },
-    "jobs": [],
+    "jobs": [
+      {
+        "date": "",
+        "service": "demolition",
+        "summary": "Bathroom demolition in Manchester. We took out the vanity, fixtures, flooring and drywall, opening the walls to the studs and insulation and leaving the floor down to the subfloor with the plumbing exposed for the remodel.",
+        "photos": [
+          "demolition/manchester-bathroom-vanity-wall.jpg",
+          "demolition/manchester-bathroom-gutted.jpg"
+        ]
+      }
+    ],
     "review_ids": [],
     "unique_faqs": [
       {
