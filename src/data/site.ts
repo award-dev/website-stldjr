@@ -61,6 +61,7 @@ export const categoryLabels: Record<string, string> = {
 export const pairTitles: Record<string, string> = {
   'webster-groves-bathroom': 'Bathroom tear-out in Webster Groves',
   'webster-groves-shower': 'Walk-in shower demo in Webster Groves',
+  'maryland-heights-garage': 'Garage cleanout in Maryland Heights',
 };
 
 export interface Faq { q: string; a: string }

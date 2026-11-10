@@ -92,7 +92,7 @@ const arrow = '<svg class="arrow" viewBox="0 0 24 24" aria-hidden="true" fill="n
               {j.photos.length > 0 && (
                 <div class="job__photos">
                   {j.photos.map((ph) => (
-                    <div class="media job__photo">
+                    <div class={`media job__photo${ph.width > ph.height ? " job__photo--wide" : ""}`}>
                       <Image src={jobImage(ph.file)} alt={ph.alt} widths={fitWidths(jobImage(ph.file), [480, 800, 1200])} quality={PHOTO_QUALITY} sizes="(min-width: 900px) 380px, 100vw" />
                     </div>
                   ))}
@@ -198,6 +198,7 @@ const arrow = '<svg class="arrow" viewBox="0 0 24 24" aria-hidden="true" fill="n
   .job__photos { display: grid; gap: 14px; }
   @media (min-width: 640px) { .job__photos { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
   .job__photo { aspect-ratio: 3 / 4; max-width: 520px; }
+  .job__photo--wide { aspect-ratio: 4 / 3; grid-column: 1 / -1; max-width: 760px; }
   .facts { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
   .facts li { display: grid; gap: 8px; padding: 20px 22px; border-radius: var(--radius-md); background: var(--color-card); box-shadow: inset 0 0 0 1px var(--color-line); }
   .facts p { color: #e3ddd5; }

@@ -602,7 +602,16 @@
       "lat": 38.71889,
       "lng": -90.475
     },
-    "jobs": [],
+    "jobs": [
+      {
+        "date": "",
+        "service": "cleanouts",
+        "summary": "Full garage cleanout in Maryland Heights. We hauled out a washer and dryer, a utility sink, old carpet pad, boxes, scrap lumber and bagged junk and left it empty down to the concrete.",
+        "pairs": [
+          "maryland-heights-garage"
+        ]
+      }
+    ],
     "review_ids": [],
     "unique_faqs": [
       {
@@ -702,7 +711,16 @@
       "lat": 38.77944,
       "lng": -90.35639
     },
-    "jobs": [],
+    "jobs": [
+      {
+        "date": "",
+        "service": "construction-debris-removal",
+        "summary": "Remodel debris pickup at a Hazelwood home: a yard pile of old gutters, siding and trim scraps, flooring boxes and bagged debris beside the carport, loaded and hauled away.",
+        "photos": [
+          "construction-debris/hazelwood-debris-pile.jpg"
+        ]
+      }
+    ],
     "review_ids": [],
     "unique_faqs": [
       {
@@ -2545,7 +2563,16 @@
       "lat": 38.78833,
       "lng": -90.20778
     },
-    "jobs": [],
+    "jobs": [
+      {
+        "date": "",
+        "service": "junk-removal",
+        "summary": "A full truckload from a Spanish Lake home and garage: filing cabinets, shelving, pallets, storage bins and an old ladder.",
+        "photos": [
+          "junk-removal/spanish-lake-loaded-truck.jpg"
+        ]
+      }
+    ],
     "review_ids": [],
     "unique_faqs": [],
     "official_links": [],
