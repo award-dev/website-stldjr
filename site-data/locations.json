@@ -172,7 +172,16 @@
       "lat": 38.6589,
       "lng": -90.5803
     },
-    "jobs": [],
+    "jobs": [
+      {
+        "date": "",
+        "service": "junk-removal",
+        "summary": "Curbside pickup in Chesterfield: a taken-apart dresser and its drawers, a desk, a metal bed frame, a mirror and framed art set out by the sidewalk and loaded onto our truck.",
+        "photos": [
+          "junk-removal/chesterfield-curbside-pickup.jpg"
+        ]
+      }
+    ],
     "review_ids": [],
     "unique_faqs": [
       {

@@ -38,5 +38,6 @@ export const projects: Project[] = [
   { file: 'junk-removal/spanish-lake-loaded-truck.jpg', category: 'junk-removal', alt: 'Our truck bed seen from above, packed with filing cabinets, shelving, pallets and storage bins from a Spanish Lake garage', width: 1500, height: 2000, source: 'owner' },
   { file: 'cleanouts/maryland-heights-garage-before.jpg', category: 'cleanouts', role: 'before', pair: 'maryland-heights-garage', alt: 'Maryland Heights garage before the cleanout, packed with a washer and dryer, a utility sink, rolled carpet pad, boxes and scrap wood', width: 1500, height: 2000, source: 'owner' },
   { file: 'cleanouts/maryland-heights-garage-after.jpg', category: 'cleanouts', role: 'after', pair: 'maryland-heights-garage', alt: 'The same Maryland Heights garage after our cleanout, empty down to the concrete floor and bare shelves', width: 1500, height: 2000, source: 'owner' },
+  { file: 'junk-removal/chesterfield-curbside-pickup.jpg', category: 'junk-removal', alt: 'Curbside pickup in Chesterfield: dresser drawers, a desk, a metal bed frame, a mirror and framed art set out on the lawn by the sidewalk', width: 1500, height: 2000, source: 'owner' },
   { file: 'crew/team.webp', category: 'crew', alt: 'Two crew members standing in the street in front of the white Isuzu junk removal truck', width: 1200, height: 1500, source: 'owner' },
 ];
