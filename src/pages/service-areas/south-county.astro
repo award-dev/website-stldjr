@@ -5,6 +5,8 @@
 import Base from '../../layouts/Base.astro';
 import PageHero from '../../components/PageHero.astro';
 import Faq from '../../components/Faq.astro';
+import { Image } from 'astro:assets';
+import { jobImage, projectFor, fitWidths, PHOTO_QUALITY } from '../../lib/images';
 import { groupMembers, cityHref, bySlug, type Fact } from '../../lib/locations';
 import { services, site } from '../../data/site';
 import { loads, minimum, telHref, business, faqSchema } from '../../lib/site';
@@ -20,6 +22,13 @@ const shared: Fact[] = [];
 for (const a of areas) for (const f of all(a)) if ((count.get(f.fact) ?? 0) > 1 && !shared.some((s) => s.fact === f.fact)) shared.push(f);
 const own = (a: (typeof areas)[number]) => all(a).filter((f) => (count.get(f.fact) ?? 0) === 1);
 
+// Jobs we did in each area, with the owner's photos.
+const jobsFor = (a: (typeof areas)[number]) => a.jobs.map((j) => ({
+  ...j,
+  when: j.date ? new Date(`${j.date}T12:00:00`).toLocaleDateString('en-US', { month: 'long', year: 'numeric' }) : '',
+  service: services.find((s) => s.slug === j.service),
+  photos: (j.photos ?? []).map(projectFor),
+}));
 const faqs = areas.map((a) => a.unique_faqs[0]).filter(Boolean);
 const links = [...new Map(areas.flatMap((a) => a.official_links).map((l) => [l.url, l])).values()];
 const near = ['sunset-hills', 'crestwood', 'webster-groves'].map(bySlug).filter((n) => n && n.tier === 'page');
@@ -73,6 +82,20 @@ const schema = [
         <ul class="facts">
           {own(a).map((f) => <li><p>{f.fact}</p><a class="src" href={f.source} target="_blank" rel="noopener">Source: {f.source.includes('arcgis') || f.source.includes('stlouisco.com') ? 'St. Louis County GIS' : host(f.source)}<span class="sr-only"> (opens in a new tab)</span></a></li>)}
         </ul>
+        {jobsFor(a).map((j) => (
+          <article class="job">
+            <h3 class="job__h">Our work in {a.name}</h3>
+            <p class="job__meta">{j.when && <>{j.when} · </>}{j.service && <a class="link-u accent" href={`/services/${j.service.slug}/`}>{j.service.title}</a>}</p>
+            <p class="job__text">{j.summary}</p>
+            <div class="job__photos">
+              {j.photos.map((ph) => (
+                <div class={`media job__photo${ph.width > ph.height ? ' job__photo--wide' : ''}`}>
+                  <Image src={jobImage(ph.file)} alt={ph.alt} widths={fitWidths(jobImage(ph.file), [480, 800, 1200])} quality={PHOTO_QUALITY} sizes="(min-width: 900px) 380px, 100vw" />
+                </div>
+              ))}
+            </div>
+          </article>
+        ))}
       </section>
     ))}
 
@@ -125,4 +148,12 @@ const schema = [
   .svc__link:hover { background: var(--color-card-2); }
   .side-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
   .checked { font-size: 13px; }
+  .job { display: grid; gap: 12px; margin-top: 8px; }
+  .job__h { font-size: 1.15rem; font-weight: 700; }
+  .job__meta { font-size: 14px; color: var(--color-muted); }
+  .job__text { font-size: 1.05rem; color: #e3ddd5; max-width: 62ch; }
+  .job__photos { display: grid; gap: 14px; }
+  @media (min-width: 640px) { .job__photos { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  .job__photo { aspect-ratio: 3 / 4; max-width: 520px; }
+  .job__photo--wide { aspect-ratio: 4 / 3; grid-column: 1 / -1; max-width: 760px; }
 </style>

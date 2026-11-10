@@ -2462,7 +2462,16 @@
       "lat": 38.55,
       "lng": -90.32639
     },
-    "jobs": [],
+    "jobs": [
+      {
+        "date": "",
+        "service": "construction-debris-removal",
+        "summary": "Remodel debris haul-off in Affton: broken-out green wall tile with its wire mesh and mortar, scrap trim and lumber, an old washer and a trash can, loaded into our truck.",
+        "photos": [
+          "construction-debris/affton-remodel-debris-load.jpg"
+        ]
+      }
+    ],
     "review_ids": [],
     "unique_faqs": [
       {
