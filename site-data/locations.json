@@ -952,7 +952,16 @@
       "lat": 38.66194,
       "lng": -90.44306
     },
-    "jobs": [],
+    "jobs": [
+      {
+        "date": "",
+        "service": "junk-removal",
+        "summary": "Backyard junk pickup in Creve Coeur: a pile along the fence of bagged trash, scrap lumber and drywall, old pipe, a storm door, an old speaker and paint buckets, loaded and hauled away.",
+        "photos": [
+          "junk-removal/creve-coeur-backyard-junk-pile.jpg"
+        ]
+      }
+    ],
     "review_ids": [],
     "unique_faqs": [
       {
