@@ -62,6 +62,7 @@ export const pairTitles: Record<string, string> = {
   'webster-groves-bathroom': 'Bathroom tear-out in Webster Groves',
   'webster-groves-shower': 'Walk-in shower demo in Webster Groves',
   'maryland-heights-garage': 'Garage cleanout in Maryland Heights',
+  'st-charles-bathroom': 'Bathroom demolition in St. Charles',
 };
 
 export interface Faq { q: string; a: string }

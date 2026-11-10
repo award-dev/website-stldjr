@@ -2192,7 +2192,7 @@
     "county": "St. Louis County",
     "kind": "city",
     "tier": "page",
-    "why_a_page": "6 verified local facts from official sources, 3 official link(s)",
+    "why_a_page": "6 verified local facts from official sources, 3 official link(s); first-party proof: 1 completed job with a photo (date not recorded)",
     "verified": "2026-11-10",
     "official_site": {
       "label": "City of Brentwood",
@@ -2239,7 +2239,16 @@
       "lat": 38.61944,
       "lng": -90.3475
     },
-    "jobs": [],
+    "jobs": [
+      {
+        "date": "",
+        "service": "demolition",
+        "summary": "Kitchen countertop and backsplash demolition in Brentwood. We pulled the countertops off the perimeter cabinets and the island and took the backsplash down to the studs, while the cabinets, appliances and floors stayed protected for the new tops.",
+        "photos": [
+          "demolition/brentwood-kitchen-countertop-backsplash-demo.jpg"
+        ]
+      }
+    ],
     "review_ids": [],
     "unique_faqs": [
       {
@@ -2830,7 +2839,7 @@
     "county": "St. Charles County",
     "kind": "city",
     "tier": "page",
-    "why_a_page": "8 verified local facts from official sources, 3 official link(s)",
+    "why_a_page": "8 verified local facts from official sources, 3 official link(s); first-party proof: 1 completed job with before/after photos (date not recorded)",
     "verified": "2026-11-10",
     "official_site": {
       "label": "City of St. Charles",
@@ -2889,7 +2898,16 @@
       "lat": 38.789,
       "lng": -90.514
     },
-    "jobs": [],
+    "jobs": [
+      {
+        "date": "",
+        "service": "demolition",
+        "summary": "Bathroom demolition in St. Charles. We tore out the old yellow wall tile, the vanity, the toilet and the flooring, taking the walls down to the original framing and brick with the cast-iron drain stack exposed. The tub stayed in place for the remodel.",
+        "pairs": [
+          "st-charles-bathroom"
+        ]
+      }
+    ],
     "review_ids": [],
     "unique_faqs": [
       {
