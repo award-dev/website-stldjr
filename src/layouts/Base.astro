@@ -154,8 +154,9 @@ const graph = { '@context': 'https://schema.org', '@graph': [business, website, 
           // Manage links carry a private token in the query string; never send it.
           var strip = function (u) { return u.replace(/(\/booking\/)\?.*$/, '$1'); };
           window.gtag('config', id, { anonymize_ip: true, page_location: strip(location.href), page_referrer: strip(document.referrer) });
-          // gtag.js is ~180 KB of script: load it once the page has finished loading and the main thread is idle
-          // (or on the first interaction, whichever comes first). Calls made before then wait in dataLayer.
+          // gtag.js is ~180 KB of script: load it on the first interaction (tap, key, scroll), or a few seconds after
+          // the page has loaded if there is none, so it never competes with the page itself. Calls made before then
+          // wait in dataLayer and are sent when it arrives.
           (function () {
             var loaded = false;
             var load = function () {
@@ -164,9 +165,9 @@ const graph = { '@context': 'https://schema.org', '@graph': [business, website, 
               s.async = true; s.src = 'https://www.googletagmanager.com/gtag/js?id=' + id;
               document.head.appendChild(s);
             };
-            var idle = function () { (window.requestIdleCallback || function (f) { setTimeout(f, 1) })(load, { timeout: 4000 }); };
+            var idle = function () { setTimeout(function () { (window.requestIdleCallback || function (f) { f() })(load, { timeout: 2000 }); }, 5500); };
             if (document.readyState === 'complete') idle(); else addEventListener('load', idle, { once: true });
-            ['pointerdown', 'keydown', 'scroll'].forEach(function (t) { addEventListener(t, load, { once: true, passive: true }); });
+            ['pointerdown', 'keydown', 'scroll', 'wheel', 'touchstart'].forEach(function (t) { addEventListener(t, load, { once: true, passive: true }); });
           })();
         </script>
       </>

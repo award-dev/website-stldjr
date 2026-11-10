@@ -26,7 +26,7 @@ const arrow = '<svg class="arrow" viewBox="0 0 24 24" aria-hidden="true" fill="n
   <ul class="rv__list" data-rv-list>
     {items.map((r, i) => (
       <li class="rv__card" data-reveal style={`--d:${(i % 3) * 70}ms`}>
-        <p class="rv__stars" aria-label={`${r.rating} out of 5 stars`} set:html={stars(r.rating)} />
+        <p class="rv__stars" role="img" aria-label={`${r.rating} out of 5 stars`} set:html={stars(r.rating)} />
         <blockquote class="rv__text">{r.text}</blockquote>
         <p class="rv__meta"><span class="rv__name">{r.name}</span><span class="muted">{fmt(r) && ` · ${fmt(r)}`} · Google</span></p>
       </li>
@@ -72,7 +72,7 @@ const arrow = '<svg class="arrow" viewBox="0 0 24 24" aria-hidden="true" fill="n
           if (!d || d.status !== 'ok') return;
           const limit = Number(root.dataset.limit) || 6;
           list.innerHTML = d.reviews.filter((r: any) => r.text).slice(0, limit)
-            .map((r: any) => `<li class="rv__card"><p class="rv__stars" aria-label="${r.rating} out of 5 stars">${stars(r.rating)}</p><blockquote class="rv__text">${esc(r.text)}</blockquote><p class="rv__meta"><span class="rv__name">${esc(r.name)}</span><span class="muted">${r.relative ? ' · ' + esc(r.relative) : ''} · Google</span></p></li>`)
+            .map((r: any) => `<li class="rv__card"><p class="rv__stars" role="img" aria-label="${r.rating} out of 5 stars">${stars(r.rating)}</p><blockquote class="rv__text">${esc(r.text)}</blockquote><p class="rv__meta"><span class="rv__name">${esc(r.name)}</span><span class="muted">${r.relative ? ' · ' + esc(r.relative) : ''} · Google</span></p></li>`)
             .join('');
           const sum = root.querySelector<HTMLElement>('[data-rv-summary]');
           if (sum && d.rating) {
