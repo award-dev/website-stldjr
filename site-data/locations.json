@@ -1133,7 +1133,7 @@
     "county": "St. Louis County",
     "kind": "city",
     "tier": "page",
-    "why_a_page": "6 verified local facts from official sources, 3 official link(s); first-party proof: 1 completed job with photos (date not recorded)",
+    "why_a_page": "6 verified local facts from official sources, 3 official link(s); first-party proof: 2 completed jobs with photos, one with before/after (dates not recorded)",
     "verified": "2026-11-10",
     "official_site": {
       "label": "City of Manchester",
@@ -1188,6 +1188,14 @@
         "photos": [
           "demolition/manchester-bathroom-vanity-wall.jpg",
           "demolition/manchester-bathroom-gutted.jpg"
+        ]
+      },
+      {
+        "date": "",
+        "service": "cleanouts",
+        "summary": "Storage unit cleanout in Manchester. We cleared out bagged remodel debris, scrap trim and lumber, an old vanity cabinet, a vanity top, a boxed light fixture and a mirror, leaving the unit empty.",
+        "pairs": [
+          "manchester-storage-unit"
         ]
       }
     ],
