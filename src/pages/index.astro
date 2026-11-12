@@ -1,5 +1,11 @@
 ---
-import { Image } from 'astro:assets';
+import { getImage } from 'astro:assets';
+import posterDesktopSrc from '../assets/hero/poster-desktop.webp';
+import posterMobileSrc from '../assets/hero/poster-mobile.webp';
+import heroDesktopWebm from '../assets/hero/hero-desktop.webm?url';
+import heroDesktopMp4 from '../assets/hero/hero-desktop.mp4?url';
+import heroMobileWebm from '../assets/hero/hero-mobile.webm?url';
+import heroMobileMp4 from '../assets/hero/hero-mobile.mp4?url';
 import Base from '../layouts/Base.astro';
 import ServiceCards from '../components/ServiceCards.astro';
 import Faq from '../components/Faq.astro';
@@ -10,7 +16,7 @@ import ServiceAreaBlock from '../components/ServiceAreaBlock.astro';
 import Reviews from '../components/Reviews.astro';
 import Gallery from '../components/react/Gallery.tsx';
 import BeforeAfter from '../components/react/BeforeAfter.tsx';
-import { jobImage, projectFor, fitWidths, PHOTO_QUALITY, pairs } from '../lib/images';
+import { projectFor, pairs } from '../lib/images';
 import { galleryPhotos, pairImages } from '../lib/media';
 import { services, site, primaryAction, secondaryAction, pairTitles } from '../data/site';
 import { content } from '../data/content';
@@ -22,7 +28,12 @@ const wall = await galleryPhotos(h.wall.map(projectFor));
 const homePairs = await Promise.all(
   pairs().filter((p) => h.pairs.includes(p.key)).map(async (p) => ({ key: p.key, ...(await pairImages(p.before, p.after)) })),
 );
-const heroImg = jobImage(h.heroPhoto);
+// Hero background: a short looping clip made from the crew photo (crew/team.webp), with its first frame as the
+// poster. The poster is a normal responsive image (preloaded, never lazy), so it paints first and is all that
+// shows under reduced motion, Save-Data or a slow connection. The clip only loads after the intro is done.
+const posterDesktop = await getImage({ src: posterDesktopSrc, widths: [960, 1440, 1920], format: 'webp', quality: 45 });
+const posterMobile = await getImage({ src: posterMobileSrc, widths: [480, 720], format: 'webp', quality: 45 });
+const MOBILE = '(max-width: 767px)';
 const g = await googleReviews();
 const googleLine = g?.rating && g.count ? `${g.rating.toFixed(1)} stars on Google (${g.count} reviews)` : '';
 const trust = [googleLine, site.credentials, h.areaLine].filter(Boolean).join(' · ');
@@ -30,9 +41,24 @@ const fromPrice = loads[0]?.priceLine.amount;
 const arrow = '<svg class="arrow" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg>';
 ---
 <Base description={h.description} ogImage={h.heroPhoto} schema={h.faqs.length ? [faqSchema(h.faqs)] : []}>
+  <Fragment slot="head">
+    <link rel="preload" as="image" type="image/webp" media={MOBILE} imagesrcset={posterMobile.srcSet.attribute} imagesizes="100vw" />
+    <link rel="preload" as="image" type="image/webp" media="(min-width: 768px)" imagesrcset={posterDesktop.srcSet.attribute} imagesizes="100vw" />
+  </Fragment>
   <section class="hero" aria-labelledby="hero-h">
     <div class="hero__bg" aria-hidden="true">
-      <Image src={heroImg} alt="" role="presentation" widths={fitWidths(heroImg, [480, 768, 1080])} quality={45} sizes="100vw" loading="eager" />
+      <div class="hero__media">
+        <picture>
+          <source media={MOBILE} srcset={posterMobile.srcSet.attribute} sizes="100vw" width="720" height="900" />
+          <img src={posterDesktop.src} srcset={posterDesktop.srcSet.attribute} sizes="100vw" width="1920" height="1080" alt="" role="presentation" loading="eager" decoding="async" />
+        </picture>
+        <video class="hero__video" data-hero-video autoplay muted loop playsinline preload="metadata" aria-hidden="true" tabindex="-1" disablepictureinpicture>
+          <source data-src={heroMobileWebm} type="video/webm" media={MOBILE} />
+          <source data-src={heroMobileMp4} type="video/mp4" media={MOBILE} />
+          <source data-src={heroDesktopWebm} type="video/webm" />
+          <source data-src={heroDesktopMp4} type="video/mp4" />
+        </video>
+      </div>
     </div>
     <div class="glow hero__glow" aria-hidden="true"></div>
     <div class="shell hero__grid">
@@ -195,10 +221,57 @@ const arrow = '<svg class="arrow" viewBox="0 0 24 24" aria-hidden="true" fill="n
   )}
 </Base>
 
+<script>
+  // Hero clip: starts only after the intro is done (html.intro-seen) and the page has loaded, never under reduced
+  // motion, Save-Data or a 2g/3g connection, and pauses while the hero is off screen.
+  const video = document.querySelector<HTMLVideoElement>('[data-hero-video]');
+  if (video) {
+    const html = document.documentElement;
+    const reduce = matchMedia('(prefers-reduced-motion: reduce)');
+    const conn = (navigator as Navigator & { connection?: { saveData?: boolean; effectiveType?: string } }).connection;
+    const slow = () => !!conn && (!!conn.saveData || /(^|-)(2g|3g)$/.test(conn.effectiveType ?? ''));
+    let started = false;
+    let visible = true;
+    const play = () => { if (visible && !reduce.matches) video.play().catch(() => { /* blocked: the poster stays */ }); };
+
+    const start = () => {
+      if (started || reduce.matches || slow()) return;
+      started = true;
+      const img = video.parentElement?.querySelector('img');
+      if (img?.currentSrc) video.poster = img.currentSrc; // the poster frame already on screen, no second download
+      video.querySelectorAll<HTMLSourceElement>('source[data-src]').forEach((s) => { s.src = s.dataset.src!; });
+      video.addEventListener('playing', () => video.classList.add('is-playing'));
+      video.load();
+      new IntersectionObserver(([e]) => {
+        visible = e.isIntersecting;
+        if (visible) play(); else video.pause();
+      }).observe(video);
+    };
+    reduce.addEventListener('change', () => {
+      if (reduce.matches) { video.pause(); video.classList.remove('is-playing'); } else if (started) play(); else whenReady();
+    });
+
+    const afterLoad = () => (document.readyState === 'complete' ? start() : addEventListener('load', start, { once: true }));
+    function whenReady() {
+      if (html.classList.contains('intro-seen')) return afterLoad();
+      const mo = new MutationObserver(() => {
+        if (html.classList.contains('intro-seen')) { mo.disconnect(); afterLoad(); }
+      });
+      mo.observe(html, { attributes: true, attributeFilter: ['class'] });
+    }
+    whenReady();
+  }
+</script>
+
 <style>
   .hero { position: relative; isolation: isolate; overflow: hidden; padding: calc(var(--nav-h) + clamp(28px, 5vw, 64px)) 0 clamp(48px, 6vw, 80px); min-height: 100svh; display: flex; align-items: center; }
   .hero__bg { position: absolute; inset: 0; z-index: -2; }
-  .hero__bg img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 30%; opacity: .5; }
+  .hero__media { position: absolute; inset: 0; opacity: .5; }
+  .hero__media img, .hero__video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 30%; }
+  /* The clip sits on its own poster and fades in once it is actually playing, so there is no jump. */
+  .hero__video { opacity: 0; transition: opacity .8s ease; }
+  .hero__video.is-playing { opacity: 1; }
+  @media (prefers-reduced-motion: reduce) { .hero__video { display: none; } }
   .hero__bg::after { content: ''; position: absolute; inset: 0; background: linear-gradient(100deg, var(--color-bg) 22%, rgb(11 10 9 / .82) 52%, rgb(11 10 9 / .55)), linear-gradient(to top, var(--color-bg), transparent 40%); }
   @media (max-width: 1023px) { .hero__bg::after { background: linear-gradient(to bottom, rgb(11 10 9 / .72), var(--color-bg) 70%); } }
   .hero__glow { width: 900px; height: 900px; right: -300px; top: -200px; z-index: -1; opacity: .35; }
