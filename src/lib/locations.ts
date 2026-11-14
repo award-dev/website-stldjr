@@ -20,7 +20,7 @@ export interface Location {
   zips: string[];
   coords?: { lat: number; lng: number };
   /** Jobs the company did here. `date` is YYYY-MM-DD or '' if unknown; `photos` are paths under src/assets/jobs; `pairs` are before/after keys from projects.ts. */
-  jobs: { date: string; service: string; summary: string; photos?: string[]; pairs?: string[] }[];
+  jobs: { date: string; service: string; subservice?: string; summary: string; photos?: string[]; pairs?: string[] }[];
   review_ids: string[];
   unique_faqs: { q: string; a: string }[];
   official_links: { label: string; url: string }[];

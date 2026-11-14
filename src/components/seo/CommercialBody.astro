@@ -1,0 +1,65 @@
+---
+import { services, site } from '../../data/site';
+import { loads, pricing, business } from '../../lib/site';
+
+const demo = services.find((s) => s.slug === 'demolition')!;
+const commercial = demo.scope.find((s) => s.title === 'Commercial interior demolition');
+const quarter = loads.find((l) => l.id === 'quarter')!;
+const full = loads.find((l) => l.id === 'full')!;
+const insured = business.trust.insuranceDetails;
+---
+<section class="section-tight" aria-labelledby="what-h">
+  <div class="shell depth">
+    <h2 id="what-h" class="display-md">What commercial interior demolition includes</h2>
+    <p>{commercial?.body}</p>
+    <p>That means the build-out inside the space: partition walls, ceilings, flooring, fixtures, cabinets and the other finishes your remodel is replacing. It is not a claim that we wreck the whole commercial building. If the job is the interior, say so in the photos. If you need the whole structure down, say that too. House and garage demolition are described on the <a class="link-u accent" href="/services/demolition/">demolition</a> page. This page is the interior of a business.</p>
+    <p>Offices and shops are the usual calls. A retail floor, a back room, a suite of offices. We also haul commercial junk when the job is stuff rather than a tear-out. That work is <a class="link-u accent" href="/services/junk-removal/">junk removal and hauling</a>, scheduled around your hours.</p>
+    <!-- TODO(seo): need a commercial interior demolition job photo with the city and date -->
+  </div>
+</section>
+
+<section class="section-tight" aria-labelledby="selective-h">
+  <div class="shell depth">
+    <h2 id="selective-h" class="display-md">Full strip-out or only part of the suite?</h2>
+    <p>Some suites lose one side: a restroom, a sales floor, a row of offices, while the stockroom and the utilities that serve the rest of the building stay. Other suites are cleared so the contractor starts from a bare interior. Tell us which walls are structural, which built-ins you are reusing, and which rooms are off-limits.</p>
+    <p>The house version of that choice is written up on <a class="link-u accent" href="/services/demolition/interior-demolition/">interior demolition</a>, including the Ferguson wall removal. This page doesn't repeat it.</p>
+  </div>
+</section>
+
+<section class="section-tight" aria-labelledby="permit-h">
+  <div class="shell depth">
+    <h2 id="permit-h" class="display-md">Permits on a commercial interior</h2>
+    <p>It depends on the city and on how much is coming out. We'll walk you through what permits your job needs. We're licensed{insured ? ` and insured (${insured})` : ''}. We are not a City of St. Louis certified demolition contractor, and we don't pull City of St. Louis demolition permits.</p>
+    <p>Water, gas and electric serving the area we're cutting have to be shut off and capped before demo. If you share a panel or a meter with a neighbor in the building, say so when you book.</p>
+  </div>
+</section>
+
+<section class="section-tight" aria-labelledby="asbestos-h">
+  <div class="shell depth">
+    <h2 id="asbestos-h" class="display-md">Asbestos testing comes before we cut</h2>
+    <p>We can't take asbestos or other hazardous materials. Testing is handled by an inspector before demolition. We don't do asbestos abatement. If the inspector hasn't cleared the material, we don't start that part of the job.</p>
+  </div>
+</section>
+
+<section class="section-tight" aria-labelledby="cost-h">
+  <div class="shell depth">
+    <h2 id="cost-h" class="display-md">How much does commercial interior demolition cost in St. Louis?</h2>
+    <p>Labor is quoted per job from photos and a walk-through of what's coming down. A small restroom and a full office gut are not the same number, and we don't publish a price per square foot.</p>
+    <p>Hauling the debris is priced by the load, from {quarter.priceLine.amount} for a quarter of the truck to {full.priceLine.amount} for a full {pricing.maxCubicYards}-yard truck. Heavy material, including concrete, adds about $75 per quarter load. <a class="link-u accent" href="/pricing/">See every load price</a>. {pricing.examplesNote}</p>
+    <p>Concrete patios and driveways that still need breaking out are quoted as demolition labor. The haul of that concrete is still by the load. Both are described on the main demolition page.</p>
+  </div>
+</section>
+
+<section class="section-tight" aria-labelledby="proof-h">
+  <div class="shell depth">
+    <h2 id="proof-h" class="display-md">Do you have commercial interior demolition photos?</h2>
+    <p>The tear-out photos on this site today are houses: a room opened up in Ferguson, bathrooms in Webster Groves, Manchester, Ladue and St. Charles, and kitchen tops in Brentwood. They show the same kind of strip-out. They are not commercial jobs, and this page doesn't pretend they are. Read them on <a class="link-u accent" href="/services/demolition/interior-demolition/">interior demolition</a>.</p>
+    <h2 id="quote-h" class="display-md">What to send for a commercial quote</h2>
+    <p>Photograph the rooms that are going, the ceiling, the floor, and any wall you need kept. Say whether the business is empty or still open, and which utilities are shared with another suite. We quote labor from those photos. We don't publish a price per square foot, and we don't give a stock timeline.</p>
+    <p>We're based in {site.city}. The service area is St. Louis City, St. Louis County and St. Charles County. {business.trust.completedJobs} completed jobs since {business.trust.foundedYear}. Hours are Monday through Friday, 7am to 5pm. Email {business.email} or call <a class="link-u accent" href={site.phoneHref}>{site.phone}</a>. Or <a class="link-u accent" href="/quote/?service=demolition">send photos of the commercial interior for a quote</a>.</p>
+  </div>
+</section>
+<style>
+  .depth { display: grid; gap: 16px; max-width: 78ch; }
+  .depth p { max-width: 68ch; }
+</style>

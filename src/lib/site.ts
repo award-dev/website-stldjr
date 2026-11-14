@@ -51,7 +51,7 @@ export function fillTokens(s: string) {
   return s.replaceAll("{phone}", business.phoneDisplay).replaceAll("{maxYards}", String(maxYards));
 }
 
-export const faqs = faqsFile.items.map((f) => ({ ...f, a: fillTokens(f.a) }));
+export const faqs = faqsFile.items.filter((f) => f.confirmed !== false).map((f) => ({ ...f, a: fillTokens(f.a) }));
 export const faqById = (id: string) => faqs.find((f) => f.id === id);
 
 const DAYS = ["mon", "tue", "wed", "thu", "fri", "sat", "sun"] as const;

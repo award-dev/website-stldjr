@@ -1,0 +1,60 @@
+---
+import JobStories from './JobStories.astro';
+import { services, site } from '../../data/site';
+import { loads, pricing } from '../../lib/site';
+import { jobsForSubservice } from '../../lib/jobs';
+
+const demo = services.find((s) => s.slug === 'demolition')!;
+const bath = demo.scope.find((s) => s.title === 'Bathroom demolition');
+const half = loads.find((l) => l.id === 'half')!;
+const bathFit = half.fits.find((f) => /bathroom/i.test(f));
+const jobs = jobsForSubservice('bathroom-demolition');
+---
+<section class="section-tight" aria-labelledby="out-h">
+  <div class="shell depth">
+    <h2 id="out-h" class="display-md">What comes out in a bathroom tear-out</h2>
+    <p>{bath?.body} The photos below are the four bathrooms. Dates are shown only where we recorded them: Webster Groves on October 29, 2026, and Ladue on October 14, 2026. Manchester and St. Charles don't have a date in the job record.</p>
+  </div>
+</section>
+
+<section class="section-tight" aria-labelledby="keep-h">
+  <div class="shell depth">
+    <h2 id="keep-h" class="display-md">Keeping what stays</h2>
+    <p>Tell us what stays when you book. In St. Charles the tub stayed in place for the remodel. Everything else in that room came out around it.</p>
+    <p>The same habit shows up on kitchens. In Brentwood we pulled countertops and the backsplash and protected the cabinets, the appliances and the floors. That job is written up under <a class="link-u accent" href="/services/demolition/kitchen-demolition/">kitchen demolition</a>. On a bathroom, the thing that stays might be the tub, a window, or a wall the carpenter is keeping. Mark it and we plan around it.</p>
+  </div>
+</section>
+
+<section class="section-tight" aria-labelledby="jobs-h">
+  <div class="shell depth">
+    <h2 id="jobs-h" class="display-md">Bathroom demolition jobs around St. Louis</h2>
+    <p>Four tear-outs, four suburbs. Drag the handle on the before-and-after pairs. Each city name links to the city page, which has the local permit notes for that town.</p>
+    <JobStories jobs={jobs} />
+  </div>
+</section>
+
+<section class="section-tight" aria-labelledby="cost-h">
+  <div class="shell depth">
+    <h2 id="cost-h" class="display-md">How much does bathroom demolition cost?</h2>
+    <p>The labor is quoted from photos of your room. We don't publish a flat bathroom price, and we don't price it by the square foot.</p>
+    <p>Hauling is by the load. {bathFit ? `"${bathFit}" is listed under a half load, ${half.priceLine.label} for ${half.yards} cubic yards.` : ''} {pricing.examplesNote} A bigger bath, or one with heavy tile and mortar, can land in a larger load. Heavy material adds about $75 per quarter load. <a class="link-u accent" href="/pricing/#what-changes-the-price">What can change the price</a>.</p>
+  </div>
+</section>
+
+<section class="section-tight" aria-labelledby="prep-h">
+  <div class="shell depth">
+    <h2 id="prep-h" class="display-md">Before we open the walls</h2>
+    <p>Water to the bathroom has to be off, and any gas or electric serving the room has to be shut off and capped. If you aren't sure how, ask when you send the photos.</p>
+    <p>Your city's permit rules are on that city's page. We don't pull City of St. Louis demolition permits. We'll tell you what to ask the building department for the address you give us. Details sit on the <a class="link-u accent" href="/services/demolition/">demolition contractor</a> page.</p>
+    <p>Old tile, mastic and floor layers are a common place for material we can't take. An inspector does the testing before we demo. We don't abate asbestos, and we don't haul it. <a class="link-u accent" href="/services/construction-debris-removal/">Remodel debris hauling</a> is the right page if the bathroom is already torn out and you only need the pile gone.</p>
+    <h2 id="photos-read-h" class="display-md">What does a bathroom demolition look like?</h2>
+    <p>Webster Groves, October 29, 2026: the before frames show a dark vanity, an octagonal mirror, a gray tile floor, and a walk-in shower with striped wall tile, a bench and a pebble floor. After, that corner is bare studs, insulation and subfloor, with the drain and water lines in the open.</p>
+    <p>Manchester has no date on the record. One frame is the vanity wall opened to studs and insulation, drain and supply lines showing, bare subfloor. The other frame is the far wall, copper lines and the drain, plywood underfoot.</p>
+    <p>Ladue, October 14, 2026: a curved shower taken to the framing, copper plumbing, ceiling joists and three windows left in place. St. Charles has no date. The before frame is yellow and white diamond wall tile, a tub with a curtain, a toilet, a yellow vanity top and speckled yellow flooring. After, the tub is still there. The walls are old framing and brick, and the cast-iron drain stack is exposed.</p>
+    <p>Send photos like these when you ask for a number: the vanity, the shower or tub, the floor, and anything that has to stay. Labor is quoted from those pictures. Call <a class="link-u accent" href={site.phoneHref}>{site.phone}</a> or <a class="link-u accent" href="/quote/?service=demolition">send bathroom photos for a quote</a>. We're a licensed crew with a $3 million policy, working from Florissant, Monday through Friday, 7am to 5pm.</p>
+  </div>
+</section>
+<style>
+  .depth { display: grid; gap: 16px; max-width: 78ch; }
+  .depth p { max-width: 68ch; }
+</style>

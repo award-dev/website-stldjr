@@ -1,5 +1,5 @@
 {
-  "$comment": "confirmed:false marks answers that describe company policy and need the owner's sign-off. They render with an owner note while business.showOwnerNotes is true. Tokens: {phone} {maxYards}.",
+  "$comment": "confirmed:false items are withheld from the site and from FAQPage schema until the owner sets confirmed:true. Tokens: {phone} {maxYards}.",
   "items": [
     {
       "id": "pricing",
@@ -50,7 +50,7 @@
     {
       "id": "demolition",
       "q": "Do you do demolition?",
-      "a": "Yes — full interior guts, selective deconstruction, interior demolition, kitchens, bathrooms, sheds, decks, hot tubs and more. If the job needs a permit, we handle it. The debris leaves with us in the same job.",
+      "a": "Yes. We do full interior guts, selective deconstruction, kitchens, bathrooms, garages, houses and commercial interiors, plus sheds, decks, hot tubs, and concrete patios and driveways. We'll walk you through what permits your job needs. The debris leaves with us in the same job.",
       "confirmed": true,
       "home": true
     },
@@ -113,6 +113,48 @@
       "id": "cancel",
       "q": "What if I need to cancel or reschedule?",
       "a": "Use the link in your confirmation, or call {phone}. We ask for 24 hours' notice when you can — but we understand plans change.",
+      "confirmed": true
+    },
+    {
+      "id": "demo-cost",
+      "q": "How much does demolition cost?",
+      "a": "Demolition labor is quoted per job, because it depends on what's coming down and how. Send photos with a quote request and we'll give you a real number. Hauling the debris is priced by the load, from $175 for a quarter to $655 for a full {maxYards}-yard truck.",
+      "confirmed": true
+    },
+    {
+      "id": "demo-what-stays",
+      "q": "Can you remove just part of a room?",
+      "a": "Yes. Selective deconstruction is careful removal of just what's going, around what's staying. Mark what's structural, what's being reused and what's off-limits, and we plan around it.",
+      "confirmed": true
+    },
+    {
+      "id": "demo-utilities",
+      "q": "Do I need to shut off utilities before demolition?",
+      "a": "Yes. Water, gas and electric to the area need to be shut off and capped before demo. Ask us if you're not sure.",
+      "confirmed": true
+    },
+    {
+      "id": "demo-permit",
+      "q": "Do I need a permit for demolition?",
+      "a": "It depends on your city and the job. We'll walk you through what permits your job needs. We're a licensed company, and we don't pull City of St. Louis demolition permits.",
+      "confirmed": true
+    },
+    {
+      "id": "demo-asbestos",
+      "q": "Can you remove asbestos?",
+      "a": "No. We can't take asbestos or other hazardous materials. Testing is handled by an inspector before demolition. We don't do asbestos abatement.",
+      "confirmed": true
+    },
+    {
+      "id": "demo-debris",
+      "q": "What happens to the debris?",
+      "a": "It leaves with us in the same job. Loads go to a landfill facility that sorts and separates materials.",
+      "confirmed": true
+    },
+    {
+      "id": "bath-keep-tub",
+      "q": "Can you leave the tub in place?",
+      "a": "Yes, when that's the plan. Tell us what stays when you book and we work around it. On a St. Charles bathroom, the tub stayed in place.",
       "confirmed": true
     }
   ]

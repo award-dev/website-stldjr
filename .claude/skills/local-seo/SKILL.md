@@ -17,6 +17,7 @@ Allowed page types and URLs:
 |---|---|---|
 | Home | `/` | always |
 | Service | `/services/{service}/` | one per group in config/services.json |
+| Sub-service | `/services/{service}/{sub}/` | only if it passes the sub-service gate (below) |
 | Service Areas hub | `/service-areas/` | always; lists EVERY location (page + mention tiers) |
 | City page | `/service-areas/{city}/` | only if `tier: "page"` AND passes the city gate below |
 | Service × City | `/services/{service}/{city}/` | only if that city has 3+ jobs of that service AND distinct content; rare |
@@ -25,6 +26,9 @@ Allowed page types and URLs:
 **City gate — refuse to create a city page unless it has at least 3 of these from locations.json:**
 2+ completed jobs with summaries, 1+ review from that city, 2+ local facts, 1+ city-specific FAQ, 1+ job photo, 1+ verified official link.
 If it fails, keep the city as a `mention` on the hub and report what proof is missing. A thin city page hurts the whole site (Google doorway / scaled-content policies).
+
+**Sub-service gate — refuse a `/services/{service}/{sub}/` page unless it has all of these:**
+at least 1 completed job of that sub-service in locations.json, at least 2 company photos of that work, and at least 3 confirmed page-specific FAQs. Without the gate, keep it as a section on the parent page. A page the owner has explicitly confirmed, but that still lacks a recorded job photo, ships with a TODO for the photo and must not invent a job.
 
 ## Step 3 — Build the page from its blueprint
 Read `references/page-blueprints.md` for the section order of the page type. Rules for all pages:

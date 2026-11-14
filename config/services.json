@@ -70,10 +70,10 @@
       "name": "Junk Removal",
       "navLabel": "Junk removal",
       "metaTitle": "Junk Removal in St. Louis, MO — Priced by the Load",
-      "metaDescription": "Junk removal and hauling in St. Louis. Furniture, appliances, hot tubs and household or business junk — priced by how much truck you fill. Book online.",
+      "metaDescription": "Junk removal and hauling in St. Louis, priced by the load from $175 ($125 minimum). Furniture, appliances, hot tubs and more. See prices and book online.",
       "eyebrow": "Junk removal · St. Louis",
       "headline": "If it's in the way, it's on the truck.",
-      "intro": "Furniture, appliances, mattresses, exercise equipment, office clutter, the pile behind the garage. You point, we carry it out, load it and haul it off. You pay for the space it takes up in the truck — nothing else to figure out.",
+      "intro": "We carry junk out from wherever it sits, including a basement, attic or backyard, then load it and haul it. You pay for the truck space it fills, and we're licensed and insured with a $3 million policy.",
       "items": [
         {
           "name": "Residential junk removal",
@@ -117,10 +117,12 @@
       ],
       "faqIds": [
         "pricing",
+        "load-size",
         "furniture",
         "appliances",
         "inside",
-        "not-accepted"
+        "not-accepted",
+        "same-day"
       ]
     },
     {
@@ -184,10 +186,10 @@
       "name": "Demolition",
       "navLabel": "Demolition",
       "metaTitle": "Demolition Contractor in St. Louis — Decks, Sheds, Interiors",
-      "metaDescription": "Light and interior demolition in St. Louis: decks, sheds, hot tubs, kitchens and bathrooms. We tear it out and haul it away in the same job. Get a quote.",
+      "metaDescription": "Demolition contractor in St. Louis for kitchens, bathrooms, interiors, decks and sheds. We tear it out and haul it off in one job. Send photos for a quote.",
       "eyebrow": "Demolition · St. Louis",
       "headline": "We tear it out. Then we haul it off.",
-      "intro": "Most demolition leaves you with a second problem: the debris. We do both halves — from a single shed to a full interior gut — and the mess is loaded on our truck before we leave.",
+      "intro": "We tear it out and haul it off in the same job, from a shed or a bathroom to a full interior gut, a garage, a house or a commercial interior. Labor is quoted per job from photos, and hauling is priced by the load.",
       "items": [
         {
           "name": "Full interior guts",
@@ -210,6 +212,22 @@
           "text": "Tubs, showers, vanities, toilets, tile and subfloor."
         },
         {
+          "name": "Commercial interior demolition",
+          "text": "Offices, retail and other commercial interiors taken back to the studs for the remodel. The debris leaves in the same job."
+        },
+        {
+          "name": "Garage demolition",
+          "text": "A whole garage taken down, then the debris loaded and hauled. Labor is quoted from photos."
+        },
+        {
+          "name": "House demolition",
+          "text": "A whole house taken down and hauled. Labor is quoted per job from photos."
+        },
+        {
+          "name": "Concrete breakout",
+          "text": "Patios and driveways broken out, not only concrete that's already loose. Labor is quoted per job. Hauling the concrete is priced by the load."
+        },
+        {
           "name": "Deck demolition",
           "text": "Boards, framing, railings and stairs, taken down and hauled."
         },
@@ -222,11 +240,11 @@
           "text": "Cut down on-site when that's the only way out."
         }
       ],
-      "howPriced": "Demolition is quoted per job — labor depends on what's coming down and how. Hauling the debris is priced by the load. Send photos and we'll give you a real number.",
+      "howPriced": "Demolition labor is quoted per job, because it depends on what's coming down and how. Hauling the debris is priced by the load. Send photos and we'll give you a real number.",
       "notes": [
         {
-          "title": "Permits handled",
-          "text": "If your job needs a permit, we pull it. You don't have to deal with the city."
+          "title": "Permits",
+          "text": "Permit rules depend on your city and the job. We'll walk you through what permits your job needs. We're licensed, and we don't pull City of St. Louis demolition permits."
         },
         {
           "title": "Tell us what stays",
@@ -239,6 +257,13 @@
       ],
       "faqIds": [
         "demolition",
+        "demo-cost",
+        "demo-what-stays",
+        "demo-utilities",
+        "demo-permit",
+        "demo-asbestos",
+        "demo-debris",
+        "bath-keep-tub",
         "estimates",
         "pricing",
         "construction-debris"
@@ -252,7 +277,7 @@
       "name": "Construction Debris Removal",
       "navLabel": "Construction debris",
       "metaTitle": "Construction Debris Removal & Cleanup in St. Louis",
-      "metaDescription": "Construction debris removal and job-site cleanup in St. Louis. Drywall, lumber, cabinets, flooring and remodel waste loaded and hauled, no dumpster in the driveway.",
+      "metaDescription": "Construction debris removal in St. Louis: drywall, lumber, flooring, remodel waste loaded and hauled, no dumpster. From $175 a quarter load. Book online.",
       "eyebrow": "Construction debris · St. Louis",
       "headline": "No dumpster in the driveway for two weeks.",
       "intro": "For homeowners mid-remodel and contractors between phases. We show up, load the pile, and take it — no permit for a dumpster on the street, no waiting for a swap.",
