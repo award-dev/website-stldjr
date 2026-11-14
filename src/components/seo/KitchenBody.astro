@@ -1,0 +1,76 @@
+---
+import { Image } from 'astro:assets';
+import JobStories from './JobStories.astro';
+import { services, site } from '../../data/site';
+import { loads, pricing } from '../../lib/site';
+import { jobImage, projectFor, fitWidths, PHOTO_QUALITY } from '../../lib/images';
+import { jobsForSubservice } from '../../lib/jobs';
+
+const demo = services.find((s) => s.slug === 'demolition')!;
+const kitchen = demo.scope.find((s) => s.title === 'Kitchen demolition');
+const three = loads.find((l) => l.id === 'three-quarter')!;
+const kitFit = three.fits.find((f) => /kitchen/i.test(f));
+const freon = pricing.conditions.find((c) => /Freon/i.test(c))!;
+const brentwood = jobsForSubservice('kitchen-demolition');
+const unknown = [
+  projectFor('demolition/st-louis-kitchen-demo.jpg'),
+  projectFor('demolition/kitchen-gut.webp'),
+];
+---
+<section class="section-tight" aria-labelledby="tops-h">
+  <div class="shell depth">
+    <h2 id="tops-h" class="display-md">Full kitchen tear-out or just the tops?</h2>
+    <p>Both. {kitchen?.body} A full tear-out takes the cabinets too. A partial one leaves them.</p>
+    <p>Brentwood was the partial kind. We pulled the countertops off the perimeter cabinets and the island, and we took the backsplash down to the studs behind the range. The cabinets, the appliances and the floors stayed, and the floor was covered so the new tops could land on a protected kitchen. That photo is the first one below, and the city page is <a class="link-u accent" href="/service-areas/brentwood/">Brentwood</a>.</p>
+  </div>
+</section>
+
+<section class="section-tight" aria-labelledby="remove-h">
+  <div class="shell depth">
+    <h2 id="remove-h" class="display-md">What we remove</h2>
+    <p>Cabinets, counters, backsplash, flooring and appliances. Appliances with Freon are an extra line on the haul, not a surprise at the truck. {freon}</p>
+    <p>Flooring in a kitchen gut is often the heavy piece: tile, mortar, underlayment. If the tile is already broken out and sitting in a pile, that's <a class="link-u accent" href="/services/construction-debris-removal/">construction debris removal</a>. If it's still on the wall or the floor, it's this page.</p>
+  </div>
+</section>
+
+<section class="section-tight" aria-labelledby="cost-h">
+  <div class="shell depth">
+    <h2 id="cost-h" class="display-md">How much does kitchen demolition cost?</h2>
+    <p>Labor comes from the photos you send. A tops-only visit and a kitchen taken to the studs are different quotes. We don't list a per-square-foot kitchen price.</p>
+    <p>{kitFit ? `"${kitFit}" is one of the examples under a three-quarter load, ${three.priceLine.label} for ${three.yards} cubic yards.` : ''} {pricing.examplesNote} The other load prices, from a quarter truck to a full {pricing.maxCubicYards}-yard truck, are on <a class="link-u accent" href="/pricing/">the pricing page</a>.</p>
+  </div>
+</section>
+
+<section class="section-tight" aria-labelledby="photos-h">
+  <div class="shell depth">
+    <h2 id="photos-h" class="display-md">Where are your kitchen demolition photos from?</h2>
+    <p>The Brentwood photo is a located job. Two other kitchen photos are ours, and the file doesn't say which city or which day. Captions below stay neutral until that's filled in.</p>
+    <!-- TODO(seo): Aaron, where and when were st-louis-kitchen-demo.jpg and kitchen-gut.webp taken? -->
+    <JobStories jobs={brentwood} />
+    <div class="depth__photos">
+      {unknown.map((ph) => (
+        <figure class="media depth__photo">
+          <Image src={jobImage(ph.file)} alt={ph.alt} widths={fitWidths(jobImage(ph.file), [480, 800, 1200])} quality={PHOTO_QUALITY} sizes="(min-width: 800px) 360px, 100vw" loading="lazy" />
+        </figure>
+      ))}
+    </div>
+  </div>
+</section>
+
+<section class="section-tight" aria-labelledby="prep-h">
+  <div class="shell depth">
+    <h2 id="prep-h" class="display-md">Before we start on a kitchen</h2>
+    <p>Gas to the range, water to the sink, and electric to the dishwasher and disposal need to be shut off and capped before we cut. Mark cabinets you are reusing, appliances that stay, and anything structural.</p>
+    <p>A useful quote photo set is simple: the counters, the backsplash, the cabinets you want gone, the floor, and any appliance that has to leave. If only the tops are going, say that in the note so we don't price a full gut. The quote form is free. The load prices on the site are the haul, not the labor.</p>
+    <p>We're based in Florissant and we work kitchens across St. Louis City, St. Louis County and St. Charles County. The only kitchen tear-out with a city on file is Brentwood. The other two frames on this page stay unlabeled until we know where they were shot. Monday through Friday, 7am to 5pm. Licensed, with a $3 million insurance policy, and no City of St. Louis demolition certification.</p>
+    <p>We'll walk you through the permit question for your city. We don't pull City of St. Louis demolition permits. If a backsplash or a floor might contain asbestos, an inspector tests it first. We don't do abatement, and we can't take the material.</p>
+    <p>Whole-room guts that aren't a kitchen live on <a class="link-u accent" href="/services/demolition/interior-demolition/">interior demolition</a>. Baths are on <a class="link-u accent" href="/services/demolition/bathroom-demolition/">bathroom demolition</a>. Call <a class="link-u accent" href={site.phoneHref}>{site.phone}</a> or <a class="link-u accent" href="/quote/?service=demolition">send kitchen photos for a quote</a>.</p>
+  </div>
+</section>
+<style>
+  .depth { display: grid; gap: 16px; max-width: 78ch; }
+  .depth p { max-width: 68ch; }
+  .depth__photos { display: grid; gap: 14px; }
+  @media (min-width: 800px) { .depth__photos { grid-template-columns: 1fr 1fr; } }
+  .depth__photo { aspect-ratio: 3 / 4; }
+</style>

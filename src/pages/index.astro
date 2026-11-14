@@ -16,6 +16,9 @@ import { services, site, primaryAction, secondaryAction, pairTitles } from '../d
 import { content } from '../data/content';
 import { pricing, minimum, loads, faqSchema } from '../lib/site';
 import { googleReviews } from '../lib/reviews';
+import JobStories from '../components/seo/JobStories.astro';
+import { allJobs } from '../lib/jobs';
+import { subservices, subPath } from '../data/subservices';
 
 const h = content.home;
 const wall = await galleryPhotos(h.wall.map(projectFor));
@@ -27,6 +30,17 @@ const g = await googleReviews();
 const googleLine = g?.rating && g.count ? `${g.rating.toFixed(1)} stars on Google (${g.count} reviews)` : '';
 const trust = [googleLine, site.credentials, h.areaLine].filter(Boolean).join(' · ');
 const fromPrice = loads[0]?.priceLine.amount;
+const quarter = loads.find((l) => l.id === 'quarter');
+const half = loads.find((l) => l.id === 'half');
+const threeQ = loads.find((l) => l.id === 'three-quarter');
+const fullLoad = loads.find((l) => l.id === 'full');
+const homeLead = `We do junk removal, demolition and cleanouts across St. Louis City, St. Louis County and St. Charles County, from our base in ${site.city}. You pay by the load, from ${quarter?.priceLine.amount}, with a ${minimum?.priceLine.amount} minimum pickup, and we confirm the price before anything is loaded.`;
+const recentJobs = [
+  ['webster-groves', '2026-10-29'],
+  ['ladue', '2026-10-14'],
+  ['florissant', '2026-09-30'],
+  ['ballwin', '2026-09-25'],
+].map(([city, date]) => allJobs().find((j) => j.citySlug === city && j.date === date)).filter((j) => !!j);
 const arrow = '<svg class="arrow" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg>';
 ---
 <Base description={h.description} ogImage={h.heroPhoto} schema={h.faqs.length ? [faqSchema(h.faqs)] : []}>
@@ -38,11 +52,9 @@ const arrow = '<svg class="arrow" viewBox="0 0 24 24" aria-hidden="true" fill="n
     <div class="shell hero__grid">
       <div class="hero__copy">
         {trust && <p class="tag"><span class="dot"></span>{trust}</p>}
-        <h1 id="hero-h" class="hero__h1">
-          <span class="hero__kicker">{h.kicker}</span>
-          <span class="display-xl hero__big">{h.headline}<br /><span class="accent">{h.headlineAccent}</span></span>
-        </h1>
-        <p class="lead">{h.lead}</p>
+        <h1 id="hero-h" class="hero__kicker">Junk removal &amp; demolition in St. Louis, MO</h1>
+        <p class="display-xl hero__big">{h.headline}<br /><span class="accent">{h.headlineAccent}</span></p>
+        <p class="lead">{homeLead}</p>
         <div class="btn-row">
           <a href={primaryAction.href} class="btn btn-accent" data-track="cta_click" data-track-cta="book" data-track-location="hero">{primaryAction.label}<Fragment set:html={arrow} /></a>
           <a href={secondaryAction.href} class="btn btn-ghost" data-track="cta_click" data-track-cta="quote" data-track-location="hero">{secondaryAction.label}</a>
@@ -78,7 +90,7 @@ const arrow = '<svg class="arrow" viewBox="0 0 24 24" aria-hidden="true" fill="n
       <div class="head-row">
         <div class="head" data-reveal>
           <h2 id="svc-h" class="display-lg">Two trades. One truck.</h2>
-          <p class="lead">Hauling and demolition from one crew, so a tear-out and its debris leave in the same visit.</p>
+          <p class="lead">Hauling and demolition from one crew, so a tear-out and its debris leave in the same visit. See <a class="link-u accent" href="/services/junk-removal/">everything we haul</a>.</p>
         </div>
         <a href="/services/" class="link-arrow" data-reveal>All services<Fragment set:html={arrow} /></a>
       </div>
@@ -91,8 +103,12 @@ const arrow = '<svg class="arrow" viewBox="0 0 24 24" aria-hidden="true" fill="n
       <div class="shell">
         <div class="head-row">
           <div class="head" data-reveal>
-            <h2 id="ba-h" class="display-lg">Before &amp; after</h2>
-            <p class="lead">A bathroom we tore out in Webster Groves. Drag the handle to see it before and after our demolition.</p>
+            <h2 id="ba-h" class="display-lg">Demolition in St. Louis: kitchens, bathrooms and interiors</h2>
+            <p class="lead">One crew tears it out and hauls it. Kitchens, bathrooms, whole interiors and commercial interiors each have a page. This pair is a Webster Groves bathroom. Drag the handle.</p>
+            <p class="lead">
+              {subservices.map((s, i) => <>{i > 0 && ' · '}<a class="link-u accent" href={subPath(s)}>{s.name}</a></>)}
+              {' · '}<a class="link-u accent" href="/services/demolition/">Demolition contractor</a>
+            </p>
           </div>
           <a href="/service-areas/webster-groves/" class="link-arrow" data-reveal>More about Webster Groves<Fragment set:html={arrow} /></a>
         </div>
@@ -143,8 +159,8 @@ const arrow = '<svg class="arrow" viewBox="0 0 24 24" aria-hidden="true" fill="n
     <div class="shell">
       <div class="head-row">
         <div class="head" data-reveal>
-          <h2 id="guide-h" class="display-lg">Not sure what size you need?</h2>
-          <p class="lead">Everything is priced by how much of our {pricing.maxCubicYards}-cubic-yard truck it fills. Guess wrong and we'll tell you before we load, not after.</p>
+          <h2 id="guide-h" class="display-lg">How much does junk removal cost in St. Louis?</h2>
+          <p class="lead">A quarter load starts at {quarter?.priceLine.amount} ({quarter?.yards} cubic yards), a half starts at {half?.priceLine.amount}, three quarters starts at {threeQ?.priceLine.amount}, and a full {pricing.maxCubicYards}-yard truck starts at {fullLoad?.priceLine.amount}. The minimum pickup is {minimum?.priceLine.amount}. Guess the wrong size and we'll tell you before we load, not after.</p>
         </div>
         <a href="/pricing/" class="link-arrow" data-reveal>Full pricing<Fragment set:html={arrow} /></a>
       </div>
@@ -167,6 +183,16 @@ const arrow = '<svg class="arrow" viewBox="0 0 24 24" aria-hidden="true" fill="n
       </div>
     </section>
   )}
+
+  <section class="section-tight" aria-labelledby="recent-h">
+    <div class="shell">
+      <div class="head" data-reveal>
+        <h2 id="recent-h" class="display-lg">Recent jobs around St. Louis</h2>
+        <p class="lead">Four dated jobs from the record: a Webster Groves bathroom, a Ladue shower, a Florissant furniture haul and a Ballwin cabinet move. Each city link goes to that city's page.</p>
+      </div>
+      <JobStories jobs={recentJobs} />
+    </div>
+  </section>
 
   <section class="section-tight" aria-labelledby="area-h">
     <div class="shell">

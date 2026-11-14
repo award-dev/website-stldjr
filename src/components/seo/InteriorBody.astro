@@ -1,0 +1,86 @@
+---
+import JobStories from './JobStories.astro';
+import { services, site } from '../../data/site';
+import { loads, pricing, business } from '../../lib/site';
+import { jobsForSubservice } from '../../lib/jobs';
+
+const demo = services.find((s) => s.slug === 'demolition')!;
+const item = (title: string) => demo.scope.find((s) => s.title === title);
+const gut = item('Full interior guts');
+const selective = item('Selective deconstruction');
+const interior = item('Interior demolition');
+const quarter = loads.find((l) => l.id === 'quarter')!;
+const half = loads.find((l) => l.id === 'half')!;
+const three = loads.find((l) => l.id === 'three-quarter')!;
+const full = loads.find((l) => l.id === 'full')!;
+const heavy = pricing.conditions.find((c) => c.startsWith('Heavy material'))!;
+const utilities = demo.notes.find((n) => n.title === 'Utilities first')!;
+const stays = demo.notes.find((n) => n.title === 'Tell us what stays')!;
+const ferguson = jobsForSubservice('interior-demolition');
+---
+<section class="section-tight" aria-labelledby="gut-h">
+  <div class="shell depth">
+    <h2 id="gut-h" class="display-md">Full gut or selective demolition?</h2>
+    <p>{gut?.title}: {gut?.body} That is the whole interior of a house or a commercial space, opened up so the next contractor can build.</p>
+    <p>{selective?.title}: {selective?.body} A wall between two rooms, a drop ceiling, or one floor of carpet can come out while the rest of the building stays. You mark the line. We stay on our side of it.</p>
+    <p>Both are interior demolition. Neither one is a promise about how long the day runs. Send photos and we quote the labor from what is actually coming down.</p>
+  </div>
+</section>
+
+<section class="section-tight" aria-labelledby="out-h">
+  <div class="shell depth">
+    <h2 id="out-h" class="display-md">What we take out</h2>
+    <p>{interior?.body} On a full gut that list grows to cabinets, tile, carpet and pad. The truck takes the pile in the same job, so you are not left living with a room of drywall and nails.</p>
+    <p>Carpet and pad we have already pulled in an O'Fallon house, down to the subfloor in the living room and bedrooms. That was a junk-removal visit, and the same haul rules apply when carpet comes out as part of a gut. See <a class="link-u accent" href="/service-areas/ofallon/">the O'Fallon carpet pull</a>.</p>
+  </div>
+</section>
+
+<section class="section-tight" aria-labelledby="who-h">
+  <div class="shell depth">
+    <h2 id="who-h" class="display-md">Houses and commercial interiors</h2>
+    <p>A house gut and a commercial interior are the same trade: finishes and partitions out, structure that is staying left alone, debris on our truck. Offices, shops and other commercial interiors have their own page, <a class="link-u accent" href="/services/demolition/commercial-interior-demolition/">commercial interior demolition in St. Louis</a>.</p>
+    <p>Homeowners mid-remodel use us between the demo and the next trade. Contractors who would rather not babysit a pile can <a class="link-u accent" href="/services/construction-debris-removal/">set up debris pickups</a>. Landlords use the same crew on rental turnovers. Property cleanouts already cover rentals; a tear-out is the demolition half of that visit.</p>
+    <p>Kitchens and bathrooms are the rooms people ask for by name. The write-ups, with the job photos, are on <a class="link-u accent" href="/services/demolition/kitchen-demolition/">kitchen demolition</a> and <a class="link-u accent" href="/services/demolition/bathroom-demolition/">bathroom demolition</a>.</p>
+  </div>
+</section>
+
+<section class="section-tight" aria-labelledby="before-h">
+  <div class="shell depth">
+    <h2 id="before-h" class="display-md">Before demo day</h2>
+    <p>{utilities.text}</p>
+    <p>{stays.text}</p>
+    <p>Permit rules are different in every city we work. We'll walk you through what your address needs. We are a licensed company. We do not pull City of St. Louis demolition permits, and we are not a City of St. Louis certified demolition contractor.</p>
+    <p>We can't haul asbestos. If a material might be asbestos, an inspector tests it before we start. We don't do abatement. The rest of what we refuse is the same list as junk removal: tires, batteries, liquid paint, and hazardous materials such as chemicals, solvents, fuel and medical waste.</p>
+  </div>
+</section>
+
+<section class="section-tight" aria-labelledby="cost-h">
+  <div class="shell depth">
+    <h2 id="cost-h" class="display-md">How much does interior demolition cost in St. Louis?</h2>
+    <p>Labor is quoted per job from photos, because a single wall and a full gut are not the same day of work. There is no per-square-foot price on this site.</p>
+    <p>Hauling the debris is separate and published. A quarter load starts at {quarter.priceLine.amount} ({quarter.yards} cubic yards). A half starts at {half.priceLine.amount}. Three quarters starts at {three.priceLine.amount}. A full {pricing.maxCubicYards}-yard truck starts at {full.priceLine.amount}. {heavy} <a class="link-u accent" href="/pricing/">The full price breakdown</a> lists every load and every add-on. {pricing.examplesNote}</p>
+  </div>
+</section>
+
+<section class="section-tight" aria-labelledby="jobs-h">
+  <div class="shell depth">
+    <h2 id="jobs-h" class="display-md">An interior demolition job in Ferguson</h2>
+    <p>The recorded interior job, the one that was a wall removal rather than a kitchen or a bath, is in Ferguson. The photo is the room after the walls came out and the floor was cleaned up.</p>
+    <JobStories jobs={ferguson} />
+    <p>Bathroom tear-outs in <a class="link-u accent" href="/service-areas/webster-groves/">Webster Groves</a>, <a class="link-u accent" href="/service-areas/manchester/">Manchester</a>, <a class="link-u accent" href="/service-areas/ladue/">Ladue</a> and <a class="link-u accent" href="/service-areas/st-charles/">St. Charles</a> are the same kind of strip-out, told on the bathroom page so this one doesn't repeat them. The Brentwood visit was countertops and backsplash only. It's on the <a class="link-u accent" href="/service-areas/brentwood/">Brentwood</a> page and the kitchen page.</p>
+  </div>
+</section>
+
+<section class="section-tight">
+  <div class="shell depth">
+    <!-- TODO(seo): need a second interior-demolition photo. The only recorded one is ferguson-room-demo.jpg. Do not reuse a kitchen or bathroom photo as a second interior job. -->
+    <h2 id="ferguson-photo-h" class="display-md">What does an interior demolition in Ferguson look like?</h2>
+    <p>The Ferguson frame is the room after the walls came down. You can see the ceiling and the floor marked where those walls stood, and the floor swept. That mark is the useful part: it shows a wall removal, not a full gut of every finish in the house. If your job is one wall, photograph the wall from both rooms and say what is on the other side.</p>
+    <p>A full gut photo set is different. We want each room, the floor, the ceiling, and a note about what the contractor is keeping. Labor is quoted from that set. There is no square-foot rate. Call <a class="link-u accent" href={site.phoneHref}>{site.phone}</a> or <a class="link-u accent" href="/quote/?service=demolition">send photos for a quote</a>. We're based in {site.city}. Hours are Monday through Friday, 7am to 5pm. Licensed and insured ({business.trust.insuranceDetails}). Not a City of St. Louis certified demolition contractor.</p>
+  </div>
+</section>
+
+<style>
+  .depth { display: grid; gap: 16px; max-width: 78ch; }
+  .depth p { max-width: 68ch; }
+</style>
