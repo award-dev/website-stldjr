@@ -21,11 +21,11 @@ const { l } = Astro.props;
 
 const place = `${l.name}, ${l.region}`;
 const longTitle = `Junk Removal & Demolition in ${place}`;
-// The audit's title limit is 60 characters including " | STL Demolition" (18), so the page part gets 42.
+// The audit's title limit is 60 characters including " | STL Demolition" (17), so the page part gets 43.
 // Prefer "Junk Removal & Demolition in {City}, MO"; if that is too long, the same words without "in" and the
 // comma still fit for most cities; only the longest names fall back to "Junk Removal in {City}, MO".
 const altTitle = `Junk Removal & Demolition, ${l.name} ${l.region}`;
-const title = longTitle.length <= 42 ? longTitle : altTitle.length <= 42 ? altTitle : `Junk Removal in ${place}`;
+const title = longTitle.length <= 43 ? longTitle : altTitle.length <= 43 ? altTitle : `Junk Removal in ${place}`;
 const where = l.kind === 'unincorporated' ? `${l.name} and the rest of unincorporated ${l.county}` : l.name;
 const hoods = l.neighborhoods.slice(0, 2);
 const description = `Junk removal, cleanouts and demolition in ${place}${l.zips.length ? ` (${l.zips.slice(0, 2).join(', ')})` : ''}. Priced by the load from ${minimum?.priceLine.amount ?? '$125'}. Book online or call ${business.phoneDisplay}.`;
@@ -101,7 +101,7 @@ const arrow = '<svg class="arrow" viewBox="0 0 24 24" aria-hidden="true" fill="n
         <section aria-labelledby="jobs-h" class="block">
           <h2 id="jobs-h" class="display-md">Our recent work in {l.name}</h2>
           {jobGroups.map((g) => (
-          <div class="job-group" aria-labelledby={`jobs-${g.slug}-h`}>
+          <section class="job-group" aria-labelledby={`jobs-${g.slug}-h`}>
           <h3 id={`jobs-${g.slug}-h`} class="job-group__h">{g.heading}</h3>
           {g.jobs.map((j) => (
             <article class="job">
@@ -109,7 +109,7 @@ const arrow = '<svg class="arrow" viewBox="0 0 24 24" aria-hidden="true" fill="n
               <p class="job__text">{j.summary}</p>
               {(() => {
                 const sub = subservices.find((s) => s.jobSubservice && s.jobSubservice === j.subservice);
-                return sub ? <p><a class="link-u accent" href={subPath(sub)}>{sub.name} in {l.name}</a></p> : null;
+                return sub ? <p><a class="link-u accent" href={subPath(sub)}>How our {sub.name.toLowerCase()} works</a></p> : null;
               })()}
               {j.sliders.length > 0 && (
                 <div class="job__pairs">
@@ -128,7 +128,7 @@ const arrow = '<svg class="arrow" viewBox="0 0 24 24" aria-hidden="true" fill="n
             </article>
           ))}
           {g.more && <p class="job-group__more"><a class="link-arrow" href={`/services/${g.slug}/`}>{g.more}<Fragment set:html={arrow} /></a></p>}
-          </div>
+          </section>
           ))}
         </section>
       )}
@@ -181,7 +181,7 @@ const arrow = '<svg class="arrow" viewBox="0 0 24 24" aria-hidden="true" fill="n
 
       {l.unique_faqs.length > 0 && (
         <section aria-labelledby="faq-h" class="block">
-          <h2 id="faq-h" class="display-md">{l.name} junk removal questions</h2>
+          <h2 id="faq-h" class="display-md">{l.unique_faqs.every((f) => /permit|demoli|tear down/i.test(f.q)) ? `${l.name} demolition permit questions` : `${l.name} junk removal questions`}</h2>
           <Faq items={l.unique_faqs} />
         </section>
       )}

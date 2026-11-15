@@ -43,10 +43,6 @@
       ],
       "other": [
         {
-          "fact": "Florissant requires a city Container Permit for storage units, dumpsters and pods, applied for through the My Florissant MO portal.",
-          "source": "https://www.florissantmo.com/282/Permits"
-        },
-        {
           "fact": "Residents can drop off unwanted chemicals and paint through the countywide household hazardous waste program (www.hhwstl.com, 314-615-8989).",
           "source": "https://www.florissantmo.com/279/Health-Division"
         }
@@ -150,10 +146,6 @@
         }
       ],
       "other": [
-        {
-          "fact": "A roll-off dumpster needs Municipal Zoning Approval in Chesterfield. It must sit on a paved surface on your property, like a driveway, not on the street or in the yard, and approval lasts 30 days with no fee.",
-          "source": "https://www.chesterfield.mo.us/building-permits"
-        },
         {
           "fact": "The city points residents to Habitat ReStore at 2117 Sams Dr. in Des Peres for reusable appliances and furniture.",
           "source": "https://www.chesterfield.mo.us/recycling-opportunities"
@@ -371,10 +363,6 @@
         }
       ],
       "other": [
-        {
-          "fact": "The city rents 30-cubic-yard roll-off dumpsters for $300 per pickup, including a $50 right-of-way permit fee. Dumpsters may be placed on public streets only, not on driveways.",
-          "source": "https://ucitymo.org/706/Solid-Waste-Special-Collection-Programs"
-        },
         {
           "fact": "Special bulk pickups don't take construction debris, roofing shingles, concrete, bricks, landscaping stones, tree stumps or limbs, and your trash bill must be current to use any bulk program.",
           "source": "https://ucitymo.org/706/Solid-Waste-Special-Collection-Programs"
@@ -1261,11 +1249,11 @@
       "trash": [],
       "permits": [
         {
-          "fact": "The City of Clayton issues its own permits through Planning and Development Services at 10 North Bemiston Avenue. Applications go through the Clayton Permit Portal.",
+          "fact": "Yes. Clayton requires its own demolition permit, separate from building, plumbing and mechanical permits. The city does not issue combined permits.",
           "source": "https://www5.citizenserve.com/Documents/213/Planning%20and%20Development%20Fee%20Schedule%20Effective%20May%202025.pdf"
         },
         {
-          "fact": "Clayton does not issue combined permits. Building, plumbing, mechanical and demolition work each need their own permit.",
+          "fact": "Permits come from the City of Clayton Planning and Development Services at 10 North Bemiston Avenue. Applications can be filed through the Clayton Permit Portal, by phone or by email.",
           "source": "https://www5.citizenserve.com/Documents/213/Planning%20and%20Development%20Fee%20Schedule%20Effective%20May%202025.pdf"
         },
         {
@@ -1301,7 +1289,7 @@
     "unique_faqs": [
       {
         "q": "Who issues demolition permits in Clayton?",
-        "a": "The City of Clayton does, through Planning and Development Services at 10 North Bemiston Avenue and the Clayton Permit Portal. Demolition is its own permit; Clayton does not combine it with building, plumbing or mechanical permits."
+        "a": "The City of Clayton does, through Planning and Development Services at 10 North Bemiston Avenue. Applications can be filed through the Clayton Permit Portal, by phone or by email. Demolition is its own permit; Clayton does not combine it with building, plumbing or mechanical permits."
       },
       {
         "q": "Is there a deposit to tear down a building in Clayton?",

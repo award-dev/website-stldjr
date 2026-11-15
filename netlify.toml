@@ -580,11 +580,11 @@
   status = 301
 [[redirects]]
   from = "/service-areas/clayton-junk-removal"
-  to = "/service-areas/"
+  to = "/service-areas/clayton/"
   status = 301
 [[redirects]]
   from = "/service-areas/clayton-junk-removal/"
-  to = "/service-areas/"
+  to = "/service-areas/clayton/"
   status = 301
 [[redirects]]
   from = "/service-areas/arnold-junk-removal"
