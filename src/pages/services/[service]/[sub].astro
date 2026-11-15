@@ -1,0 +1,92 @@
+---
+// Demolition sub-pages (/services/demolition/<slug>/), driven by site-data/subservices.json.
+// Text only for now: no job photos yet (see the TODO comment on each page). FAQs only from confirmed items.
+import Base from '../../../layouts/Base.astro';
+import PageHero from '../../../components/PageHero.astro';
+import Faq from '../../../components/Faq.astro';
+import SubServiceBody from '../../../components/SubServiceBody.astro';
+import { subservices, subPath, type SubService } from '../../../data/subservices';
+import { site } from '../../../data/site';
+import { faqItems, faqSchema, business } from '../../../lib/site';
+import { locations, cityHref } from '../../../lib/locations';
+
+export function getStaticPaths() {
+  return subservices.map((sub) => ({ params: { service: sub.parent, sub: sub.slug }, props: { sub } }));
+}
+interface Props { sub: SubService }
+const { sub } = Astro.props;
+const url = `${site.url}${subPath(sub)}`;
+const crumbs = [
+  { name: 'Home', href: '/' },
+  { name: 'Services', href: '/services/' },
+  { name: 'Demolition', href: `/services/${sub.parent}/` },
+  { name: sub.name, href: subPath(sub) },
+];
+const faqs = faqItems(sub.faqIds);
+const related = sub.related.map((slug) => subservices.find((s) => s.slug === slug)).filter((s): s is SubService => !!s);
+// Recorded jobs of this kind (text only), linked to the city page where the job is shown with its photos.
+const re = sub.jobMatch ? new RegExp(sub.jobMatch, 'i') : null;
+const jobs = re
+  ? locations.filter((l) => l.tier !== 'mention').flatMap((l) => l.jobs.filter((j) => re.test(j.summary)).map((j) => ({ l, j })))
+  : [];
+const intro = sub.intro.replace('{insured}', business.trust.insured ? `licensed and insured with a ${business.trust.insuranceDetails}` : 'licensed');
+const serviceSchema = {
+  '@type': 'Service',
+  '@id': `${url}#service`,
+  name: sub.name,
+  serviceType: sub.serviceType,
+  description: intro,
+  url,
+  provider: { '@id': `${site.url}/#business` },
+  areaServed: site.serviceArea.map((a) => ({ '@type': a.type, name: `${a.name}, ${site.region}` })),
+  isRelatedTo: { '@id': `${site.url}/services/${sub.parent}/#service` },
+};
+const arrow = '<svg class="arrow" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg>';
+---
+<Base title={sub.metaTitle} description={sub.metaDescription} breadcrumbs={crumbs} schema={[serviceSchema, ...(faqs.length ? [faqSchema(faqs)] : [])]}>
+  <PageHero title={sub.h1} lead={intro} crumbs={crumbs}>
+    <div class="btn-row">
+      <a href="/quote/?service=demolition" class="btn btn-accent" data-track="cta_click" data-track-cta="quote" data-track-location={`sub-${sub.slug}`}>Send photos for a quote<Fragment set:html={arrow} /></a>
+      <a href={site.phoneHref} class="btn btn-ghost" data-track="phone_click" data-track-location={`sub-${sub.slug}`}>Call {site.phone}</a>
+    </div>
+  </PageHero>
+  <Fragment set:html={`<!-- TODO(seo): need a ${sub.name.toLowerCase()} job photo with the town and date -->`} />
+  <SubServiceBody sub={sub} />
+
+  {jobs.length > 0 && (
+    <section class="section-tight" aria-labelledby="jobs-h">
+      <div class="shell sub-more">
+        <h2 id="jobs-h" class="display-md">{sub.name} jobs we've done</h2>
+        <ul class="sub-jobs">
+          {jobs.map(({ l, j }) => <li><p>{j.summary}</p><a class="link-u accent" href={cityHref(l)}>See the {l.name} job</a></li>)}
+        </ul>
+      </div>
+    </section>
+  )}
+
+  {faqs.length > 0 && (
+    <section class="section-tight" aria-labelledby="faq-h">
+      <div class="shell sub-more">
+        <h2 id="faq-h" class="display-md">{sub.name} questions</h2>
+        <Faq items={faqs} />
+      </div>
+    </section>
+  )}
+
+  <section class="section-tight" aria-labelledby="related-h">
+    <div class="shell sub-more">
+      <h2 id="related-h" class="display-md">Related demolition work</h2>
+      <ul class="sub-related">
+        <li><a class="link-u accent" href={`/services/${sub.parent}/`}>All demolition services in St. Louis</a></li>
+        {related.map((r) => <li><a class="link-u accent" href={subPath(r)}>{r.h1}</a></li>)}
+        <li><a class="link-u accent" href="/pricing/">Hauling prices by the load</a></li>
+      </ul>
+    </div>
+  </section>
+</Base>
+<style>
+  .sub-more { display: grid; gap: 16px; max-width: 72ch; }
+  .sub-jobs { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; }
+  .sub-jobs li { display: grid; gap: 6px; padding: 18px 20px; border-radius: var(--radius-md); background: var(--color-card); box-shadow: inset 0 0 0 1px var(--color-line); }
+  .sub-related { margin: 0; padding-left: 1.1em; display: grid; gap: 8px; }
+</style>
