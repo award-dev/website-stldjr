@@ -21,7 +21,11 @@ const { l } = Astro.props;
 
 const place = `${l.name}, ${l.region}`;
 const longTitle = `Junk Removal & Demolition in ${place}`;
-const title = longTitle.length <= 43 ? longTitle : `Junk Removal in ${place}`;
+// The audit's title limit is 60 characters including " | STL Demolition" (18), so the page part gets 42.
+// Prefer "Junk Removal & Demolition in {City}, MO"; if that is too long, the same words without "in" and the
+// comma still fit for most cities; only the longest names fall back to "Junk Removal in {City}, MO".
+const altTitle = `Junk Removal & Demolition, ${l.name} ${l.region}`;
+const title = longTitle.length <= 42 ? longTitle : altTitle.length <= 42 ? altTitle : `Junk Removal in ${place}`;
 const where = l.kind === 'unincorporated' ? `${l.name} and the rest of unincorporated ${l.county}` : l.name;
 const hoods = l.neighborhoods.slice(0, 2);
 const description = `Junk removal, cleanouts and demolition in ${place}${l.zips.length ? ` (${l.zips.slice(0, 2).join(', ')})` : ''}. Priced by the load from ${minimum?.priceLine.amount ?? '$125'}. Book online or call ${business.phoneDisplay}.`;
@@ -40,6 +44,21 @@ const jobs = await Promise.all(l.jobs.map(async (j) => ({
     return p ? { key, title: pairTitles[key] ?? 'Before and after', ...(await pairImages(p.before, p.after)) } : null;
   })).then((xs) => xs.filter((x) => x !== null)),
 })));
+// One subsection per service a recorded job actually was, in the order the jobs are listed.
+const serviceHeading: Record<string, string> = {
+  'junk-removal': `Junk removal in ${l.name}`,
+  cleanouts: `Cleanouts in ${l.name}`,
+  demolition: `Demolition in ${l.name}`,
+  'construction-debris-removal': `Construction debris removal in ${l.name}`,
+};
+const serviceMore: Record<string, string> = {
+  'junk-removal': 'How our junk removal and hauling works',
+  cleanouts: 'How our garage, basement and estate cleanouts work',
+  demolition: 'How our demolition service works',
+  'construction-debris-removal': 'How we haul construction and remodel debris',
+};
+const jobGroups = [...new Set(jobs.map((j) => j.service?.slug).filter((x): x is string => !!x))]
+  .map((slug) => ({ slug, heading: serviceHeading[slug] ?? `Our work in ${l.name}`, more: serviceMore[slug], jobs: jobs.filter((j) => j.service?.slug === slug) }));
 const hasDemo = l.local_facts.permits.some((f) => /demoli|wrecking|tear/i.test(f.fact));
 const insured = business.trust.licensed && business.trust.insured;
 const host = (u: string) => new URL(u).hostname.replace(/^www\./, '');
@@ -81,9 +100,12 @@ const arrow = '<svg class="arrow" viewBox="0 0 24 24" aria-hidden="true" fill="n
       {jobs.length > 0 && (
         <section aria-labelledby="jobs-h" class="block">
           <h2 id="jobs-h" class="display-md">Our recent work in {l.name}</h2>
-          {jobs.map((j) => (
+          {jobGroups.map((g) => (
+          <div class="job-group" aria-labelledby={`jobs-${g.slug}-h`}>
+          <h3 id={`jobs-${g.slug}-h`} class="job-group__h">{g.heading}</h3>
+          {g.jobs.map((j) => (
             <article class="job">
-              <p class="job__meta">{j.when && <>{j.when} · </>}{j.service && <a class="link-u accent" href={`/services/${j.service.slug}/`}>{j.service.title}</a>}</p>
+              {j.when && <p class="job__meta">{j.when}</p>}
               <p class="job__text">{j.summary}</p>
               {(() => {
                 const sub = subservices.find((s) => s.jobSubservice && s.jobSubservice === j.subservice);
@@ -104,6 +126,9 @@ const arrow = '<svg class="arrow" viewBox="0 0 24 24" aria-hidden="true" fill="n
                 </div>
               )}
             </article>
+          ))}
+          {g.more && <p class="job-group__more"><a class="link-arrow" href={`/services/${g.slug}/`}>{g.more}<Fragment set:html={arrow} /></a></p>}
+          </div>
           ))}
         </section>
       )}
@@ -195,6 +220,10 @@ const arrow = '<svg class="arrow" viewBox="0 0 24 24" aria-hidden="true" fill="n
   .block { display: grid; gap: 18px; }
   .block h2 { font-size: clamp(1.6rem, 1.2rem + 1.4vw, 2.3rem); }
   .body { color: #d6cfc6; max-width: 66ch; }
+  .job-group { display: grid; gap: 18px; }
+  .job-group + .job-group { margin-top: 12px; }
+  .job-group__h { font-size: 1.3rem; font-weight: 700; }
+  .job-group__more { margin-top: -4px; }
   .job { display: grid; gap: 14px; }
   .job__meta { font-size: 14px; color: var(--color-muted); }
   .job__text { font-size: 1.1rem; color: #e3ddd5; max-width: 62ch; }
