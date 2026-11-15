@@ -1,8 +1,8 @@
 ---
 import LegalPage from "../components/LegalPage.astro";
-import { pricing, booking } from "../lib/site";
+import { business, pricing, booking } from "../lib/site";
 ---
-<LegalPage title="Terms of Service" description="Terms for booking junk removal, cleanouts and demolition with STL Demolition & Junk Removal. Covers arrival windows, load prices and items we can't take." path="/terms/">
+<LegalPage title="Terms of Service" description={`Terms for booking junk removal, cleanouts and demolition with ${business.name}.`} path="/terms/">
   <h2>Bookings</h2>
   <p>An online booking reserves an arrival window. The crew arrives within that window; the job itself may run past it.</p>
   <h2>Pricing</h2>

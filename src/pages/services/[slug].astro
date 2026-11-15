@@ -11,8 +11,7 @@ import { jobImage, pairs, projectFor, fitWidths, PHOTO_QUALITY } from '../../lib
 import { reelVideos, videoSchema, galleryPhotos, pairImages } from '../../lib/media';
 import { projects } from '../../data/projects';
 import { services, site, pairTitles, type Service } from '../../data/site';
-import { loads, pricing, minimum, faqSchema } from '../../lib/site';
-import ServiceDepth from '../../components/seo/ServiceDepth.astro';
+import { loads, faqSchema } from '../../lib/site';
 
 export function getStaticPaths() {
   return services.map((s) => ({ params: { slug: s.slug }, props: { service: s } }));
@@ -38,7 +37,7 @@ const serviceSchema = {
   '@id': `${url}#service`,
   name: s.title,
   serviceType: s.title,
-  description: s.intro,
+  description: s.metaDescription,
   url,
   provider: { '@id': `${site.url}/#business` },
   areaServed: site.serviceArea.map((a) => ({ '@type': a.type, name: `${a.name}, ${site.region}` })),
@@ -49,12 +48,6 @@ const serviceSchema = {
   },
 };
 const load = loads.find((l) => l.id === s.suggestedLoad);
-const quarter = loads.find((l) => l.id === 'quarter');
-const fullLoad = loads.find((l) => l.id === 'full');
-const priceFirst: Record<string, string> = {
-  demolition: `Labor is quoted per job, because it depends on what's coming down and how. Hauling the debris starts at ${quarter?.priceLine.amount} for a quarter load and ${fullLoad?.priceLine.amount} for a full ${pricing.maxCubicYards}-yard truck.`,
-  cleanouts: `A cleanout is priced by the load, from ${quarter?.priceLine.amount} for a quarter to ${fullLoad?.priceLine.amount} for a full truck. A second load is priced the same way. The minimum pickup is ${minimum?.priceLine.amount}.`,
-};
 const bookHref = `/book/?service=${s.bookingService}${load ? `&load=${load.id}` : ''}`;
 const quoteHref = `/quote/?service=${s.bookingService}`;
 const arrow = '<svg class="arrow" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg>';
@@ -91,9 +84,8 @@ const arrow = '<svg class="arrow" viewBox="0 0 24 24" aria-hidden="true" fill="n
   <section class="section-tight" aria-labelledby="price-h">
     <div class="shell price">
       <div class="price__card" data-reveal>
-        <p class="tag"><span class="dot"></span>{s.headline}</p>
-        <h2 id="price-h" class="display-md">{s.priceHeading}</h2>
-        {priceFirst[s.slug] && <p class="lead">{priceFirst[s.slug]}</p>}
+        <p class="tag"><span class="dot"></span>How it's priced</p>
+        <h2 id="price-h" class="display-md">{s.headline}</h2>
         <p class="lead">{s.howPriced}</p>
         <div class="btn-row">
           <a href="/pricing/" class="btn btn-ghost">See load prices</a>
@@ -109,8 +101,6 @@ const arrow = '<svg class="arrow" viewBox="0 0 24 24" aria-hidden="true" fill="n
       )}
     </div>
   </section>
-
-  <ServiceDepth service={s} />
 
   {pairImgs && pair && (
     <section class="section-tight" aria-labelledby="ba-h">
@@ -148,14 +138,12 @@ const arrow = '<svg class="arrow" viewBox="0 0 24 24" aria-hidden="true" fill="n
     </section>
   )}
 
-  {s.faqs.length > 0 && (
-    <section class="section-tight" aria-labelledby="faq-h">
-      <div class="shell faq-split">
-        <div class="head" data-reveal><h2 id="faq-h" class="display-md">{s.title} questions</h2></div>
-        <div data-reveal style="--d:80ms"><Faq items={s.faqs} /></div>
-      </div>
-    </section>
-  )}
+  <section class="section-tight" aria-labelledby="faq-h">
+    <div class="shell faq-split">
+      <div class="head" data-reveal><h2 id="faq-h" class="display-md">{s.title} questions</h2></div>
+      <div data-reveal style="--d:80ms"><Faq items={s.faqs} /></div>
+    </div>
+  </section>
 
   <section class="section-tight" aria-labelledby="more-h">
     <div class="shell">

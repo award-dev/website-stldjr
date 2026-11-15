@@ -9,7 +9,6 @@ import Footer from '../components/Footer.astro';
 import MobileBar from '../components/MobileBar.astro';
 import { business as cfg, booking, openingHoursSchema, anyPrice } from '../lib/site';
 import { site, services } from '../data/site';
-import { subservices, subPath } from '../data/subservices';
 import { locations, cityHref } from '../lib/locations';
 import { content } from '../data/content';
 import { jobImage } from '../lib/images';
@@ -96,20 +95,14 @@ const business = {
     ...locations.map((l) => ({ '@type': l.kind === 'city' ? 'City' : 'Place', name: `${l.name}, ${l.region}`, ...(l.tier === 'page' ? { url: `${site.url}${cityHref(l)}` } : {}) })),
   ],
   sameAs: [...new Set([...site.sameAs, site.facebook].filter(Boolean))],
-  knowsAbout: [...services.map((s) => s.title), ...subservices.map((s) => s.name)],
+  knowsAbout: services.map((s) => s.title),
   hasOfferCatalog: {
     '@type': 'OfferCatalog',
     name: `${site.name} services`,
-    itemListElement: [
-      ...services.map((s) => ({
-        '@type': 'Offer',
-        itemOffered: { '@type': 'Service', name: s.title, url: `${site.url}/services/${s.slug}/` },
-      })),
-      ...subservices.map((s) => ({
-        '@type': 'Offer',
-        itemOffered: { '@type': 'Service', name: s.name, url: `${site.url}${subPath(s)}` },
-      })),
-    ],
+    itemListElement: services.map((s) => ({
+      '@type': 'Offer',
+      itemOffered: { '@type': 'Service', name: s.title, url: `${site.url}/services/${s.slug}/` },
+    })),
   },
 };
 const website = { '@type': 'WebSite', '@id': `${site.url}/#website`, url: `${site.url}/`, name: site.name, publisher: { '@id': businessId } };

@@ -3,8 +3,8 @@
 import Base from "../../layouts/Base.astro";
 import PageHero from "../../components/PageHero.astro";
 import ServiceAreaBlock from "../../components/ServiceAreaBlock.astro";
-import { areas, business, telHref, minimum } from "../../lib/site";
-import { cityPages, cityHref, groups, placeHref } from "../../lib/locations";
+import { business, telHref } from "../../lib/site";
+import { cityPages, cityHref, groups } from "../../lib/locations";
 import { site } from "../../data/site";
 
 const crumbs = [{ name: "Home", href: "/" }, { name: "Service areas", href: "/service-areas/" }];
@@ -18,23 +18,7 @@ const list = {
 };
 ---
 <Base title="Areas We Serve in St. Louis & St. Charles" breadcrumbs={crumbs} schema={[list]} description="Junk removal, cleanouts and demolition across St. Louis City and County and St. Charles County, from Florissant to O'Fallon. Pick your city or check your ZIP.">
-  <PageHero title="Areas We Serve" lead={`We're based in Florissant and work across St. Louis City, St. Louis County and St. Charles County. Pick your city for local pickup rules, permit offices and ZIP codes, or check your ZIP below. Hauling starts at ${minimum?.priceLine.amount} for a minimum pickup.`} crumbs={crumbs} photo="crew/truck.webp" />
-  <section class="section-tight">
-    <div class="shell regions">
-      <h2 class="display-md">Where each city sits</h2>
-      <p class="lead">The list below is every place we serve. A name with a link has its own page: pickup rules, permit office and the jobs we've recorded there. A name without a link is still in the service area. We just don't have a sourced city page for it yet.</p>
-      {areas.regions.map((r) => (
-        <section class="region" aria-labelledby={`hub-${r.id}`}>
-          <h3 id={`hub-${r.id}`} class="title">{r.name}</h3>
-          <p>{r.blurb} {r.places.map((p, i) => {
-            const href = placeHref(p);
-            return <>{i > 0 && ', '}{href ? <a class="link-u accent" href={href}>{p}</a> : p}</>;
-          })}.</p>
-        </section>
-      ))}
-      <p>St. Louis City doesn't have its own city page. The neighborhoods in that region are covered from the home page, which is the St. Louis page. County and St. Charles cities with enough local proof have pages of their own.</p>
-    </div>
-  </section>
+  <PageHero title="Areas We Serve" lead={`We're based in Florissant and work across St. Louis City, St. Louis County and St. Charles County. Pick your city for local pickup rules, permit offices and ZIP codes, or check your ZIP below.`} crumbs={crumbs} photo="crew/truck.webp" />
   <section class="section-tight" aria-labelledby="places-h">
     <div class="shell">
       <h2 id="places-h" class="display-md places-h">Cities and areas we serve</h2>
@@ -51,7 +35,6 @@ const list = {
   </section>
 </Base>
 <style>
-  .edge, .regions { display: grid; gap: 12px; max-width: 760px; }
-  .region { display: grid; gap: 6px; }
+  .edge { display: grid; gap: 12px; max-width: 720px; }
   .places-h { margin-bottom: 28px; }
 </style>

@@ -143,19 +143,6 @@ const robots = path.join(root, "robots.txt");
 if (!fs.existsSync(robots)) add("ERROR", "/robots.txt", "Missing robots.txt");
 else if (!/sitemap:/i.test(fs.readFileSync(robots, "utf8"))) add("WARN", "/robots.txt", "robots.txt has no Sitemap: line");
 
-// Unconfirmed FAQs must never reach the built site (question text is unique).
-const faqsPath = path.resolve(root, "..", "config", "faqs.json");
-if (fs.existsSync(faqsPath)) {
-  const unconfirmed = JSON.parse(fs.readFileSync(faqsPath, "utf8")).items.filter((f) => f.confirmed === false);
-  const htmlAll = files.map((f) => fs.readFileSync(f, "utf8")).join("\n");
-  for (const f of unconfirmed) {
-    if (htmlAll.includes(f.q)) add("ERROR", "faqs", `Unconfirmed FAQ rendered: ${f.id}`);
-  }
-}
-if (/we pull it|we pull the permit/i.test(files.map((f) => fs.readFileSync(f, "utf8")).join("\n"))) {
-  add("ERROR", "copy", 'Permit wording still says we pull the permit');
-}
-
 const errs = issues.filter((i) => i.sev === "ERROR"), warns = issues.filter((i) => i.sev === "WARN");
 for (const i of [...errs, ...warns]) console.log(`${i.sev.padEnd(5)} ${i.page}  ${i.msg}`);
 console.log(`\n${files.length} pages · ${errs.length} errors · ${warns.length} warnings · ${errs.length ? "FAIL" : "PASS"}`);

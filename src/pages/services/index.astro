@@ -4,19 +4,13 @@ import PageHero from '../../components/PageHero.astro';
 import ServiceCards from '../../components/ServiceCards.astro';
 import { services, site, primaryAction, secondaryAction } from '../../data/site';
 import { content } from '../../data/content';
-import { loads, minimum, pricing } from '../../lib/site';
-import { subservices, subPath } from '../../data/subservices';
-import StCharlesCounty from '../../components/seo/StCharlesCounty.astro';
 const pg = content.pages.services;
 
 const crumbs = [{ name: 'Home', href: '/' }, { name: 'Services', href: '/services/' }];
 const list = {
   '@type': 'ItemList',
   name: `${site.name} services`,
-  itemListElement: [
-    ...services.map((s) => ({ name: s.title, url: `${site.url}/services/${s.slug}/` })),
-    ...subservices.map((s) => ({ name: s.name, url: `${site.url}${subPath(s)}` })),
-  ].map((s, i) => ({ '@type': 'ListItem', position: i + 1, ...s })),
+  itemListElement: services.map((s, i) => ({ '@type': 'ListItem', position: i + 1, name: s.title, url: `${site.url}/services/${s.slug}/` })),
 };
 ---
 <Base
@@ -49,31 +43,16 @@ const list = {
       <ul class="pick__list">
         <li><h3 class="title">A few big things, or a room's worth</h3><p class="muted">That's <a class="link-u accent" href="/services/junk-removal/">junk removal</a>: furniture, appliances, mattresses, hot tubs, the pile behind the garage. Priced by how much of the truck it fills.</p></li>
         <li><h3 class="title">A whole garage, basement or house</h3><p class="muted">That's a <a class="link-u accent" href="/services/cleanouts/">cleanout</a>: one crew, one appointment, and the space is swept when we leave. Estates and move-outs too.</p></li>
-        <li><h3 class="title">Something has to come down first</h3><p class="muted">That's <a class="link-u accent" href="/services/demolition/">demolition</a>: kitchens, bathrooms, interiors, garages, houses, commercial interiors, concrete patios and driveways, plus decks, sheds and hot tubs. Torn out and hauled in the same job. We'll walk you through what permits the job needs. We don't pull City of St. Louis demolition permits.</p>
-          <p class="muted">{subservices.map((s, i) => <>{i > 0 && ' · '}<a class="link-u accent" href={subPath(s)}>{s.name}</a></>)}</p>
-        </li>
+        <li><h3 class="title">Something has to come down first</h3><p class="muted">That's <a class="link-u accent" href="/services/demolition/">demolition</a>: decks, sheds, kitchens, bathrooms and full interior guts, torn out and hauled in the same job. We pull the permit when one is needed.</p></li>
         <li><h3 class="title">A remodel left a pile</h3><p class="muted">That's <a class="link-u accent" href="/services/construction-debris-removal/">construction debris removal</a>: drywall, lumber, flooring and fixtures, gone without a dumpster sitting in the driveway.</p></li>
       </ul>
-      <h2 id="price-h" class="display-md">What a load costs</h2>
-      <p class="lead">Hauling is priced by how much of the {pricing.maxCubicYards}-yard truck you fill. Demolition labor is quoted from photos, on top of the haul. {pricing.examplesNote}</p>
-      <table class="ptable">
-        <caption class="sr-only">Load prices</caption>
-        <thead><tr><th scope="col">Load</th><th scope="col">Price</th></tr></thead>
-        <tbody>
-          {minimum && <tr><th scope="row">{minimum.label}</th><td>{minimum.priceLine.label}</td></tr>}
-          {loads.map((l) => <tr><th scope="row">{l.label} · {l.yards} yd³</th><td>{l.priceLine.label}</td></tr>)}
-        </tbody>
-      </table>
-      <p class="muted">We work across St. Louis City, St. Louis County and St. Charles County. <a class="link-u accent" href="/service-areas/">See every area we serve</a> or <a class="link-u accent" href="/pricing/">the full price breakdown</a>. Heavy material adds about $75 per quarter load. Anything with Freon is $25 per item.</p>
+      <p class="muted">We work across St. Louis City, St. Louis County and St. Charles County. <a class="link-u accent" href="/service-areas/">See every area we serve</a> or <a class="link-u accent" href="/pricing/">check load prices</a>.</p>
     </div>
   </section>
-  <StCharlesCounty />
 </Base>
 <style>
   .pick { display: grid; gap: 28px; }
   .pick__list { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; }
   @media (min-width: 900px) { .pick__list { grid-template-columns: 1fr 1fr; } }
   .pick__list li { display: grid; gap: 10px; padding: 24px 26px; border-radius: var(--radius-lg); background: var(--color-card); box-shadow: inset 0 0 0 1px var(--color-line); }
-  .ptable { width: 100%; max-width: 520px; border-collapse: collapse; }
-  .ptable th, .ptable td { text-align: left; padding: 12px 8px 12px 0; border-bottom: 1px solid var(--color-line); }
 </style>
