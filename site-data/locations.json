@@ -1243,16 +1243,37 @@
     "region": "MO",
     "county": "St. Louis County",
     "kind": "city",
-    "tier": "mention",
-    "why_a_page": "Not enough verified local proof yet (0 facts). claytonmo.gov blocked automated fetches (403).",
-    "verified": "2026-11-10",
+    "tier": "page",
+    "why_a_page": "5 verified local permit facts from the City of Clayton fee schedule (effective May 1, 2025; re-checked 2026-11-15), 2 official links, 2 FAQs built from those facts. Trash/bulky pickup unverified: claytonmo.gov returns 403 to automated fetches.",
+    "verified": "2026-11-15",
     "official_site": {
       "label": "City of Clayton",
       "url": "https://www.claytonmo.gov/"
     },
     "local_facts": {
       "trash": [],
-      "permits": [],
+      "permits": [
+        {
+          "fact": "Yes. Clayton requires its own demolition permit, separate from building, plumbing and mechanical permits. The city does not issue combined permits.",
+          "source": "https://www5.citizenserve.com/Documents/213/Planning%20and%20Development%20Fee%20Schedule%20Effective%20May%202025.pdf"
+        },
+        {
+          "fact": "Permits come from the City of Clayton Planning and Development Services at 10 North Bemiston Avenue. Applications can be filed through the Clayton Permit Portal, by phone or by email.",
+          "source": "https://www5.citizenserve.com/Documents/213/Planning%20and%20Development%20Fee%20Schedule%20Effective%20May%202025.pdf"
+        },
+        {
+          "fact": "Electrical permits and inspections for work in Clayton go through St. Louis County, not the city.",
+          "source": "https://www5.citizenserve.com/Documents/213/Planning%20and%20Development%20Fee%20Schedule%20Effective%20May%202025.pdf"
+        },
+        {
+          "fact": "Under the fee schedule effective May 1, 2025, a demolition permit is a $35 processing fee plus a $125 minimum, with $10 more per 1,000 square feet for demolitions over 5,000 gross square feet.",
+          "source": "https://www5.citizenserve.com/Documents/213/Planning%20and%20Development%20Fee%20Schedule%20Effective%20May%202025.pdf"
+        },
+        {
+          "fact": "Tearing down a whole structure also takes a $1,000 refundable cash deposit. Minor structures, such as small sheds, are the exception.",
+          "source": "https://www5.citizenserve.com/Documents/213/Planning%20and%20Development%20Fee%20Schedule%20Effective%20May%202025.pdf"
+        }
+      ],
       "other": []
     },
     "neighborhoods": [
@@ -1270,8 +1291,26 @@
     },
     "jobs": [],
     "review_ids": [],
-    "unique_faqs": [],
-    "official_links": [],
+    "unique_faqs": [
+      {
+        "q": "Who issues demolition permits in Clayton?",
+        "a": "The City of Clayton does, through Planning and Development Services at 10 North Bemiston Avenue. Applications can be filed through the Clayton Permit Portal, by phone or by email. Demolition is its own permit; Clayton does not combine it with building, plumbing or mechanical permits."
+      },
+      {
+        "q": "Is there a deposit to tear down a building in Clayton?",
+        "a": "Yes. Total demolition of a structure takes a $1,000 refundable cash deposit on top of the permit fee. Minor structures, such as small sheds, are the exception."
+      }
+    ],
+    "official_links": [
+      {
+        "label": "Clayton Permit Portal",
+        "url": "https://www5.citizenserve.com/Portal/PortalController?Action=showHomePage&ctzPagePrefix=Portal_&installationID=213"
+      },
+      {
+        "label": "Clayton permit fee schedule (PDF, effective May 2025)",
+        "url": "https://www5.citizenserve.com/Documents/213/Planning%20and%20Development%20Fee%20Schedule%20Effective%20May%202025.pdf"
+      }
+    ],
     "nearby": [
       "richmond-heights",
       "university-city",
