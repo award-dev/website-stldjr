@@ -23,7 +23,9 @@ const longTitle = `Junk Removal & Demolition in ${place}`;
 const title = longTitle.length <= 43 ? longTitle : `Junk Removal in ${place}`;
 const where = l.kind === 'unincorporated' ? `${l.name} and the rest of unincorporated ${l.county}` : l.name;
 const hoods = l.neighborhoods.slice(0, 2);
-const description = `Junk removal, cleanouts and demolition in ${place}${l.zips.length ? ` (${l.zips.slice(0, 2).join(', ')})` : ''}. Priced by the load from ${minimum?.priceLine.amount ?? '$125'}. Book online or call ${business.phoneDisplay}.`;
+const descFor = (confirm: boolean) => `Junk removal, cleanouts and demolition in ${place}${l.zips.length ? ` (${l.zips.slice(0, 2).join(', ')})` : ''}. Priced by the load from ${minimum?.priceLine.amount ?? '$125'}${confirm ? ', confirmed before we load' : ''}. Book online or call ${business.phoneDisplay}.`;
+// Add the "confirmed before we load" differentiator only when it still fits the 155-character target.
+const description = descFor(true).length <= 155 ? descFor(true) : descFor(false);
 const url = `${site.url}${cityHref(l)}`;
 const crumbs = [{ name: 'Home', href: '/' }, { name: 'Service areas', href: '/service-areas/' }, { name: l.name, href: cityHref(l) }];
 const near = nearbyPages(l).slice(0, 4);
@@ -105,7 +107,7 @@ const arrow = '<svg class="arrow" viewBox="0 0 24 24" aria-hidden="true" fill="n
 
       {l.local_facts.trash.length > 0 && (
         <section aria-labelledby="trash-h" class="block">
-          <h2 id="trash-h" class="display-md">How bulky-item pickup works in {l.name}</h2>
+          <h2 id="trash-h" class="display-md">{l.local_facts.trash.some((f) => /bulk|large item|big item/i.test(f.fact)) ? `How bulky-item pickup works in ${l.name}` : `Who picks up trash in ${l.name}`}</h2>
           <ul class="facts">
             {l.local_facts.trash.map((f) => <li><p>{f.fact}</p><a class="src" href={f.source} target="_blank" rel="noopener">Source: {host(f.source)}<span class="sr-only"> (opens in a new tab)</span></a></li>)}
           </ul>
@@ -151,7 +153,7 @@ const arrow = '<svg class="arrow" viewBox="0 0 24 24" aria-hidden="true" fill="n
 
       {l.unique_faqs.length > 0 && (
         <section aria-labelledby="faq-h" class="block">
-          <h2 id="faq-h" class="display-md">{l.unique_faqs.every((f) => /permit|demoli|tear down/i.test(f.q)) ? `${l.name} demolition permit questions` : `${l.name} junk removal questions`}</h2>
+          <h2 id="faq-h" class="display-md">{l.unique_faqs.every((f) => /demoli|tear down|wrecking/i.test(f.q)) ? `${l.name} demolition permit questions` : `${l.name} junk removal questions`}</h2>
           <Faq items={l.unique_faqs} />
         </section>
       )}

@@ -70,7 +70,7 @@ const schema = [
 
     {areas.map((a) => (
       <section id={a.slug} aria-labelledby={`${a.slug}-h`} class="block area">
-        <h2 id={`${a.slug}-h`} class="display-md">Junk removal in {a.name}</h2>
+        <h2 id={`${a.slug}-h`} class="display-md">{a.name}</h2>
         {a.neighborhoods.length > 0 && <p class="meta-line">Also called {a.neighborhoods.join(', ')}</p>}
         <ul class="facts">
           {own(a).map((f) => <li><p>{f.fact}</p><a class="src" href={f.source} target="_blank" rel="noopener">Source: {host(f.source)}<span class="sr-only"> (opens in a new tab)</span></a></li>)}

@@ -1300,12 +1300,7 @@
       ],
       "other": []
     },
-    "neighborhoods": [
-      "DeMun",
-      "Davis Place",
-      "Clayshire",
-      "Moorlands"
-    ],
+    "neighborhoods": [],
     "zips": [
       "63105"
     ],
@@ -2725,16 +2720,30 @@
     "region": "MO",
     "county": "St. Louis County",
     "kind": "unincorporated",
-    "tier": "mention",
-    "why_a_page": "Not enough verified local proof yet (0 facts). County site blocked agent; trash district/hauler and permits unverified. Waste Connections county contract fact is generic, not confirmed for Spanish Lake.",
-    "verified": "2026-11-10",
+    "tier": "page",
+    "why_a_page": "Passes the city gate: 3 local facts (county trash-district map, unincorporated bulk-pickup rule, county permits), 1 official link, 2 FAQs, 1 recorded job with a photo (verified 2026-11-15).",
+    "verified": "2026-11-15",
     "official_site": {
       "label": "St. Louis County Services Portal (permits)",
       "url": "https://stlouiscountymo.gov/"
     },
     "local_facts": {
-      "trash": [],
-      "permits": [],
+      "trash": [
+        {
+          "fact": "St. Louis County's trash-district map (updated March 2026) puts Spanish Lake in Trash District 2, served by Republic Services (636-947-5959).",
+          "source": "https://services2.arcgis.com/w657bnjzrjguNyOy/arcgis/rest/services/Trash_Collection_Districts_Updated_March_2026/FeatureServer/45/query?geometry=-90.20778,38.78833&geometryType=esriGeometryPoint&inSR=4326&spatialRel=esriSpatialRelIntersects&outFields=TRASH_DISTRICT,Hauler,Hauler_Phone&returnGeometry=false&f=json"
+        },
+        {
+          "fact": "Since April 2022, the haulers that serve unincorporated St. Louis County's trash districts provide a monthly bulk pickup. Call your hauler to schedule it and to ask about size and weight limits.",
+          "source": "https://www.wasteconnections.com/st-louis/st-louis-county"
+        }
+      ],
+      "permits": [
+        {
+          "fact": "Spanish Lake is unincorporated, so permits go through St. Louis County, not a city. The St. Louis County Services Portal lets you start a permit application, check its status, pay fees and schedule an inspection online.",
+          "source": "https://aca-prod.accela.com/SLC/Default.aspx"
+        }
+      ],
       "other": []
     },
     "neighborhoods": [
@@ -2758,8 +2767,22 @@
       }
     ],
     "review_ids": [],
-    "unique_faqs": [],
-    "official_links": [],
+    "unique_faqs": [
+      {
+        "q": "Which trash district is Spanish Lake in?",
+        "a": "St. Louis County's trash-district map puts Spanish Lake in Trash District 2, served by Republic Services (636-947-5959). Districts follow map lines, so check your address if you're near the edge."
+      },
+      {
+        "q": "Will the trash hauler in Spanish Lake take a couch or other big items?",
+        "a": "Haulers in unincorporated St. Louis County provide a monthly bulk pickup. Call Republic Services to schedule it and to ask about size and weight limits. More than they'll take is what we haul."
+      }
+    ],
+    "official_links": [
+      {
+        "label": "St. Louis County Services Portal (permits)",
+        "url": "https://aca-prod.accela.com/SLC/Default.aspx"
+      }
+    ],
     "nearby": [
       "black-jack",
       "jennings",
@@ -3308,8 +3331,8 @@
     "region": "MO",
     "county": "St. Charles County",
     "kind": "city",
-    "tier": "page",
-    "why_a_page": "3 verified local facts from official city pages (2026-11-15), 3 official links, 2 city FAQ(s).",
+    "tier": "mention",
+    "why_a_page": "Back to mention 2026-11-15 (seo-auditor): its official site blocks direct fetches, so facts could not be re-verified; the 2022 fee fact could not be traced. Needs a check in a browser.",
     "verified": "2026-11-15",
     "official_site": {
       "label": "City of Dardenne Prairie",
@@ -3487,8 +3510,8 @@
     "region": "MO",
     "county": "St. Charles County",
     "kind": "city",
-    "tier": "page",
-    "why_a_page": "2 verified local facts from official city pages (2026-11-15), 3 official links, 1 city FAQ(s). Trash/bulky pickup: no official source found.",
+    "tier": "mention",
+    "why_a_page": "Back to mention 2026-11-15 (seo-auditor): only 2 verified permit facts and no trash source; too thin for its own page.",
     "verified": "2026-11-15",
     "official_site": {
       "label": "City of Weldon Spring",
@@ -3677,20 +3700,20 @@
       ],
       "permits": [
         {
-          "fact": "Fenton permits are applied for online through the City's Permit Portal, and questions go to the Community Development Department.",
-          "source": "https://www.fentonmo.org/488/Applications-Permits"
+          "fact": "Yes. On Fenton's demolition checklist (Oct 2012), the City of Fenton gives zoning approval first, then you take the signed documents to St. Louis County, which issues the demolition permit.",
+          "source": "https://fentonmo.org/DocumentCenter/View/3309"
+        },
+        {
+          "fact": "If the structure has water, sewer, gas or electric service, the demolition permit needs proof that those utilities are disconnected. For detached structures like a shed, that's only the utilities that serve it.",
+          "source": "https://fentonmo.org/DocumentCenter/View/3309"
         },
         {
           "fact": "Accessory buildings over 120 square feet also need a St. Louis County building permit; those 120 square feet and under need Fenton inspections.",
           "source": "https://fentonmo.org/DocumentCenter/View/3301"
         },
         {
-          "fact": "For interior finish work and additions, Fenton approves the plans and returns them to you to submit to St. Louis County for the building permit.",
-          "source": "https://fentonmo.org/DocumentCenter/View/3314"
-        },
-        {
-          "fact": "A demolition permit requires copies certifying that water, sewer, gas and electricity have been properly disconnected from the structure.",
-          "source": "https://fentonmo.org/DocumentCenter/View/3309"
+          "fact": "Fenton permit applications are filed online through the City's Permit Portal, and questions go to the Community Development Department.",
+          "source": "https://www.fentonmo.org/488/Applications-Permits"
         }
       ],
       "other": []
@@ -3712,11 +3735,11 @@
       },
       {
         "q": "Can I put concrete or old electronics in my Fenton trash?",
-        "a": "No. Concrete, dirt and rocks, electronics and TVs, tires, paint and household hazardous waste aren't accepted in residential trash. We can haul concrete and electronics; we can't take tires or paint."
+        "a": "No. Concrete, dirt and rocks, electronics and TVs, tires, paint and household hazardous waste aren't accepted in residential trash. We can haul concrete and old TVs; we can't take tires or paint."
       },
       {
         "q": "Do I need a permit to tear down a shed in Fenton?",
-        "a": "A demolition permit needs proof that water, sewer, gas and electricity are disconnected from the structure. For building a shed, accessory buildings over 120 square feet also need a St. Louis County permit. Check with Fenton's Community Development Department for your project."
+        "a": "Fenton's demolition checklist has the City give zoning approval first, then St. Louis County issues the demolition permit. If the shed has water, sewer, gas or electric service, you need proof those are disconnected."
       }
     ],
     "official_links": [
@@ -3774,12 +3797,12 @@
       ],
       "permits": [
         {
-          "fact": "Since April 15, 2009, Black Jack has contracted with St. Louis County Public Works to issue building permits.",
-          "source": "https://cityofblackjack.com/149/Forms-Permits-Applications"
-        },
-        {
           "fact": "A building permit is required to construct, alter, repair, move, remove or demolish a structure, including decks, fences, retaining walls over 24 inches and storage sheds over 100 square feet.",
           "source": "https://www.cityofblackjack.com/FAQ.aspx"
+        },
+        {
+          "fact": "Since April 15, 2009, Black Jack has contracted with St. Louis County Public Works to issue building permits.",
+          "source": "https://cityofblackjack.com/149/Forms-Permits-Applications"
         }
       ],
       "other": []
@@ -3872,7 +3895,7 @@
       ],
       "permits": [
         {
-          "fact": "In the City of St. Louis, demolition permits must be obtained by a demolition contractor certified by the City.",
+          "fact": "A demolition contractor pulling a City of St. Louis demolition permit must be certified by the City. An owner can get their own permit for a garage, a shed, or a small building (no more than 1½ stories or 15 feet tall, under 1,000 square feet, with no basement).",
           "source": "https://www.stlouis-mo.gov/government/departments/public-safety/building/permits/demolition-permits.cfm"
         },
         {
@@ -3901,11 +3924,11 @@
     "unique_faqs": [
       {
         "q": "Will the City of St. Louis pick up a couch or an old refrigerator?",
-        "a": "Yes, through monthly bulk pickup: up to three items, set out by 6:00 a.m. on the Monday of your collection week, at the curb or in the alley where your trash is collected. Refrigerator doors must be removed. Anything over three items is a job for a hauler."
+        "a": "Yes, through monthly bulk pickup: up to three items, set out by 6:00 a.m. on the Monday of your collection week, at the curb or in the alley where your trash is collected. Refrigerator doors must be removed. For more than three items, City residents can take up to 12 loads a year to the City transfer station, or have it hauled."
       },
       {
         "q": "Who pulls a demolition permit in the City of St. Louis?",
-        "a": "The City requires demolition permits to be obtained by a City-certified demolition contractor. We don't pull City of St. Louis demolition permits; ask us how that works for your job. Interior tear-outs that remove partitions need a building permit."
+        "a": "Contractors must be City-certified to pull demolition permits; owners can pull their own for a garage, a shed or a small building. We don't pull City of St. Louis demolition permits; ask us how that works for your job. Interior tear-outs that remove partitions need a building permit."
       }
     ],
     "official_links": [
@@ -3923,14 +3946,12 @@
       }
     ],
     "nearby": [
-      "downtown",
-      "soulard",
-      "tower-grove-east",
-      "central-west-end",
-      "tower-grove-south",
-      "the-hill",
-      "bevo-mill",
-      "dogtown"
+      "clayton",
+      "maplewood",
+      "richmond-heights",
+      "brentwood",
+      "webster-groves",
+      "university-city"
     ]
   },
   {
@@ -3948,7 +3969,7 @@
       "permits": [],
       "other": [
         {
-          "fact": "The City defines Downtown as running from Cole St. on the north to Chouteau Ave. on the south, between Tucker Blvd. on the west and Leonor K. Sullivan Blvd. on the east. It falls in Wards 8 and 14.",
+          "fact": "Downtown generally runs from Cole St. on the north to Chouteau Ave. on the south, between Tucker Blvd. on the west and Leonor K. Sullivan Blvd. on the east.",
           "source": "https://www.stlouis-mo.gov/live-work/community/neighborhoods/downtown/index.cfm"
         }
       ]
@@ -3989,11 +4010,11 @@
       "permits": [],
       "other": [
         {
-          "fact": "Soulard's triangular boundaries are 7th Street and Broadway to the southeast and I-55 to the west and north. It is in Ward 8.",
+          "fact": "Soulard's triangular boundaries are 7th Street and Broadway to the southeast and I-55 to the west and north.",
           "source": "https://www.stlouis-mo.gov/live-work/community/neighborhoods/soulard/index.cfm"
         },
         {
-          "fact": "It is one of the City's Certified Local Historic Districts, so exterior changes to buildings are reviewed against the district's standards by the Cultural Resources Office.",
+          "fact": "Part or all of Soulard is one of the City's Certified Local Historic Districts. In most cases, exterior changes to buildings there are reviewed against the district's standards by the Cultural Resources Office.",
           "source": "https://stlouis-mo.gov/government/departments/planning/cultural-resources/reviews/City-Historic-Districts.cfm"
         }
       ]
@@ -4034,7 +4055,7 @@
       "permits": [],
       "other": [
         {
-          "fact": "Tower Grove South is bounded by Arsenal on the north, South Grand on the east, Chippewa on the south and South Kingshighway on the west. It is in Ward 6.",
+          "fact": "Tower Grove South is bounded by Arsenal on the north, South Grand on the east, Chippewa on the south and South Kingshighway on the west.",
           "source": "https://www.stlouis-mo.gov/live-work/community/neighborhoods/tower-grove-south/index.cfm"
         }
       ]
@@ -4075,7 +4096,7 @@
       "permits": [],
       "other": [
         {
-          "fact": "Tower Grove East is bounded by Shenandoah Ave. on the north, Nebraska Ave. on the east, Gravois Ave. on the south and South Grand Blvd. on the west. It is in Ward 7.",
+          "fact": "Tower Grove East is bounded by Shenandoah Ave. on the north, Nebraska Ave. on the east, Gravois Ave. on the south and South Grand Blvd. on the west.",
           "source": "https://www.stlouis-mo.gov/live-work/community/neighborhoods/tower-grove-east/index.cfm"
         },
         {
@@ -4120,7 +4141,7 @@
       "permits": [],
       "other": [
         {
-          "fact": "The Hill is generally defined by Manchester on the north, Southwest Avenue and Columbia on the south, Kingshighway on the east and Hampton on the west. It is in Ward 5.",
+          "fact": "The Hill is generally defined by Manchester on the north, Southwest Avenue and Columbia on the south, Kingshighway on the east and Hampton on the west.",
           "source": "https://www.stlouis-mo.gov/live-work/community/neighborhoods/the-hill/index.cfm"
         }
       ]
@@ -4161,7 +4182,7 @@
       "permits": [],
       "other": [
         {
-          "fact": "Southampton is bounded by Chippewa on the north, South Kingshighway on the east, Eichelberger on the south and Hampton on the west. It is in Ward 5.",
+          "fact": "Southampton is bounded by Chippewa on the north, South Kingshighway on the east, Eichelberger on the south and Hampton on the west.",
           "source": "https://www.stlouis-mo.gov/live-work/community/neighborhoods/southampton/index.cfm"
         }
       ]
@@ -4202,11 +4223,11 @@
       "permits": [],
       "other": [
         {
-          "fact": "The City defines the Central West End as running from Delmar Blvd. on the north to I-64 on the south, between Vandeventer Ave. on the east and Union Blvd. on the west. It is in Ward 9.",
+          "fact": "The Central West End generally runs from Delmar Blvd. on the north to I-64 on the south, between Vandeventer Ave. on the east and Union Blvd. on the west.",
           "source": "https://www.stlouis-mo.gov/live-work/community/neighborhoods/central-west-end/index.cfm"
         },
         {
-          "fact": "It is one of the City's Certified Local Historic Districts, so exterior changes to buildings are reviewed against the district's standards by the Cultural Resources Office.",
+          "fact": "Part or all of the Central West End is one of the City's Certified Local Historic Districts. In most cases, exterior changes to buildings there are reviewed against the district's standards by the Cultural Resources Office.",
           "source": "https://stlouis-mo.gov/government/departments/planning/cultural-resources/reviews/City-Historic-Districts.cfm"
         }
       ]
@@ -4290,7 +4311,7 @@
       "permits": [],
       "other": [
         {
-          "fact": "Bevo Mill runs from Chippewa St. on the north to Holly Hills Blvd. on the south, with the Missouri Pacific Railroad on the east. It is in Wards 1 and 2.",
+          "fact": "Bevo Mill runs from Chippewa St. on the north to Holly Hills Blvd. on the south, with the Missouri Pacific Railroad on the east.",
           "source": "https://www.stlouis-mo.gov/live-work/community/neighborhoods/bevo-mill/index.cfm"
         }
       ]
