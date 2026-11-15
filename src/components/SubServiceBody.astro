@@ -1,0 +1,45 @@
+---
+/**
+ * Body copy for a demolition sub-page. Tokens are filled from config, never typed into the copy:
+ *   {quarter} {half} {threeQuarter} {full} {maxYards} {heavy} {examplesNote} {insured}
+ *   {fit:<load id>:<words>} -> the matching load example from config/pricing.json, or nothing.
+ * Links are written [text](/path/).
+ */
+import type { SubService } from '../data/subservices';
+import { loads, pricing, business } from '../lib/site';
+
+interface Props { sub: SubService }
+const { sub } = Astro.props;
+const byId = (id: string) => loads.find((l) => l.id === id);
+const tokens: Record<string, string> = {
+  quarter: byId('quarter')?.priceLine.amount ?? '',
+  half: byId('half')?.priceLine.amount ?? '',
+  threeQuarter: byId('three-quarter')?.priceLine.amount ?? '',
+  full: byId('full')?.priceLine.amount ?? '',
+  maxYards: String(pricing.maxCubicYards),
+  heavy: pricing.conditions.find((c) => /heavy material/i.test(c)) ?? '',
+  examplesNote: pricing.examplesNote,
+  insured: business.trust.insured ? `licensed and insured${business.trust.insuranceDetails ? ` with a ${business.trust.insuranceDetails}` : ''}` : 'licensed',
+};
+const esc = (s: string) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+function fill(s: string) {
+  let out = s.replace(/\{fit:([a-z-]+):([^}]+)\}/g, (_, id: string, words: string) => {
+    const l = byId(id);
+    const f = l?.fits.find((x) => new RegExp(words, 'i').test(x));
+    return f && l ? `"${f}" is one of our examples for a ${l.label.toLowerCase()}, from ${l.priceLine.amount}.` : '';
+  });
+  return out.replace(/\{(\w+)\}/g, (m, k: string) => (k in tokens ? tokens[k] : m));
+}
+const html = (s: string) => esc(fill(s)).replace(/\[([^\]]+)\]\((\/[^)\s]*)\)/g, '<a class="link-u accent" href="$2">$1</a>');
+---
+{sub.sections.map((sec) => (
+  <section class="section-tight" aria-labelledby={`${sec.id}-h`}>
+    <div class="shell sub-body">
+      <h2 id={`${sec.id}-h`} class="display-md">{sec.h2}</h2>
+      {sec.body.map((p) => <p set:html={html(p)} />)}
+    </div>
+  </section>
+))}
+<style>
+  .sub-body { display: grid; gap: 16px; max-width: 72ch; }
+</style>

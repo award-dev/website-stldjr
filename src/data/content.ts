@@ -92,7 +92,7 @@ export const content = {
         'More than 1,000 jobs later, that’s still the whole idea: clear the mess, lighten the load, and help keep St. Louis clean, one truck at a time.',
       ],
       cards: [
-        ['Hauling and demolition, one crew', 'Most messes come in two parts: the thing that has to come out, and the pile it leaves behind. We do both in one visit, on one bill. If a job needs a permit, we pull it.'],
+        ['Hauling and demolition, one crew', 'Most messes come in two parts: the thing that has to come out, and the pile it leaves behind. We do both in one visit, on one bill. If a job needs a permit, we will walk you through it.'],
         ['Priced by the load', 'It’s the fairest way I know. You can see what a quarter, half, three-quarter or full truck costs before you ever call.'],
       ] as [string, string][],
     },

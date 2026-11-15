@@ -1,0 +1,447 @@
+[
+  {
+    "slug": "interior-demolition",
+    "scopeItem": "Interior demolition",
+    "name": "Interior Demolition",
+    "serviceType": "Interior demolition",
+    "h1": "Interior demolition in St. Louis, MO",
+    "metaTitle": "Interior Demolition in St. Louis, MO",
+    "metaDescription": "Interior demolition in St. Louis: walls, drywall, flooring, ceilings and fixtures torn out to the studs and hauled in the same job. Get a photo quote.",
+    "intro": "We take out walls, drywall, flooring, ceilings and fixtures, from one room to a full gut down to the studs and subfloor, and the debris leaves on our truck in the same job. Houses and commercial interiors are both in scope, across St. Louis City, St. Louis County and St. Charles County.",
+    "jobMatch": "interior demolition|walls taken out",
+    "faqIds": [
+      "demolition"
+    ],
+    "related": [
+      "kitchen-demolition",
+      "bathroom-demolition",
+      "house-demolition"
+    ],
+    "sections": [
+      {
+        "id": "gut",
+        "h2": "A full gut or just part of a room",
+        "body": [
+          "A full interior gut takes a space back to the framing so your contractor starts clean. Selective deconstruction is the careful version: we take out only what's going and work around what's staying, like a wall you're keeping, a staircase or the cabinets in the next room.",
+          "Tell us which walls are load-bearing, what you're reusing, and which rooms are off-limits. Mark it on the walls if that's easier. We plan the tear-out around it."
+        ]
+      },
+      {
+        "id": "cost",
+        "h2": "How much does interior demolition cost in St. Louis?",
+        "body": [
+          "The tear-out is labor, and we quote it per job from your photos. One bedroom and a whole floor are different jobs, so we don't publish a flat rate or a price per square foot.",
+          "The debris is hauled by the load: {quarter} for a quarter of the truck, {half} for a half, {threeQuarter} for three quarters and {full} for the full {maxYards}-yard truck. Plaster, tile and other heavy material can add to it. {heavy}"
+        ]
+      },
+      {
+        "id": "before",
+        "h2": "Before the walls come down",
+        "body": [
+          "Water, gas and electric to the area have to be shut off and capped first. Permit rules depend on your city and the job, and we'll walk you through what yours needs. We don't pull City of St. Louis demolition permits.",
+          "We don't do asbestos testing or abatement, and we can't haul asbestos. If an inspector hasn't cleared the material, we don't start that part of the job."
+        ]
+      }
+    ],
+    "parent": "demolition"
+  },
+  {
+    "slug": "kitchen-demolition",
+    "scopeItem": "Kitchen demolition",
+    "name": "Kitchen Demolition",
+    "serviceType": "Kitchen demolition",
+    "h1": "Kitchen demolition in St. Louis, MO",
+    "metaTitle": "Kitchen Demolition in St. Louis, MO",
+    "metaDescription": "Kitchen demolition in St. Louis: cabinets, countertops, backsplash, flooring and appliances torn out and hauled so the room is ready for your remodel.",
+    "intro": "We take out cabinets, countertops, backsplash, flooring and appliances and haul them away, so the kitchen is ready for the remodel. The work covers St. Louis City, St. Louis County and St. Charles County, the labor is quoted from photos, and the haul is priced by the load.",
+    "jobMatch": "kitchen",
+    "faqIds": [
+      "construction-debris"
+    ],
+    "related": [
+      "bathroom-demolition",
+      "interior-demolition"
+    ],
+    "sections": [
+      {
+        "id": "scope",
+        "h2": "All of it, or just the tops",
+        "body": [
+          "Some kitchens come out to the studs: upper and lower cabinets, the tops, the backsplash, the soffits and the floor. Others keep the cabinets and lose only the countertops and backsplash so new tops can go on. Both are kitchen demolition, and we quote the one you need.",
+          "If you're keeping the cabinets, the floor or an appliance, say so up front. We protect what stays and take out what goes."
+        ]
+      },
+      {
+        "id": "cost",
+        "h2": "How much does kitchen demolition cost?",
+        "body": [
+          "Taking the kitchen apart is labor, quoted per job from photos. The haul is by the load, from {quarter} for a quarter of the truck to {full} for a full one. {fit:three-quarter:kitchen} {examplesNote}",
+          "Stone or tile countertops and a tiled floor are heavy. {heavy} Old appliances can go on the same truck; anything with Freon, like a refrigerator, is $25 per item."
+        ]
+      },
+      {
+        "id": "prep",
+        "h2": "Getting ready for a kitchen tear-out",
+        "body": [
+          "Shut off and cap the water and gas to the kitchen, and the electric to the circuits we're cutting. Empty the cabinets and the pantry. Send photos of each wall, the floor and the ceiling, and tell us what the remodel is keeping. Permit rules depend on your city and the job, and we'll walk you through what yours needs. We don't pull City of St. Louis demolition permits."
+        ]
+      }
+    ],
+    "parent": "demolition"
+  },
+  {
+    "slug": "bathroom-demolition",
+    "scopeItem": "Bathroom demolition",
+    "name": "Bathroom Demolition",
+    "serviceType": "Bathroom demolition",
+    "h1": "Bathroom demolition in St. Louis, MO",
+    "metaTitle": "Bathroom Demolition in St. Louis, MO",
+    "metaDescription": "Bathroom demolition in St. Louis: tubs, showers, vanities, toilets, tile and subfloor torn out to the studs and hauled the same job. Get a photo quote.",
+    "intro": "We tear out tubs, showers, vanities, toilets, tile and subfloor, and the debris leaves on our truck in the same job. We work across St. Louis City, St. Louis County and St. Charles County. Send photos and we quote the labor; the haul is priced by how much of the truck it fills.",
+    "jobMatch": "bathroom|shower",
+    "faqIds": [
+      "estimates"
+    ],
+    "related": [
+      "kitchen-demolition",
+      "interior-demolition"
+    ],
+    "sections": [
+      {
+        "id": "scope",
+        "h2": "Down to the studs, or around the tub",
+        "body": [
+          "A full bathroom tear-out takes the room to bare studs and subfloor: tile walls, the shower or tub surround, the vanity, the toilet, the mirror and the floor. If the tub is staying, or a tiled wall you like, we work around it.",
+          "Tile over mortar beds and cast-iron tubs are the heavy part of most bathrooms. Tell us what's in there so we bring the right crew."
+        ]
+      },
+      {
+        "id": "cost",
+        "h2": "How much does bathroom demolition cost in St. Louis?",
+        "body": [
+          "The tear-out is labor, quoted per job from photos. The haul is by the load, {quarter} to {full}. {fit:half:bathroom} {examplesNote} Tile and mortar count as heavy material. {heavy}"
+        ]
+      },
+      {
+        "id": "prep",
+        "h2": "Before we start",
+        "body": [
+          "Water to the bathroom has to be shut off and capped, and the electric to any circuit we're opening. Clear out the cabinets and the linen closet. Permit rules depend on your city and the job, and we'll walk you through what yours needs. We don't pull City of St. Louis demolition permits."
+        ]
+      }
+    ],
+    "parent": "demolition"
+  },
+  {
+    "slug": "commercial-interior-demolition",
+    "scopeItem": "Commercial interior demolition",
+    "name": "Commercial Interior Demolition",
+    "serviceType": "Commercial interior demolition",
+    "h1": "Commercial interior demolition in St. Louis, MO",
+    "metaTitle": "Commercial Interior Demolition, St. Louis",
+    "metaDescription": "Commercial interior demolition in St. Louis for offices, shops and other commercial spaces, torn out and hauled the same job. Licensed and insured.",
+    "intro": "We demolish commercial interiors: walls, ceilings, flooring, fixtures and finishes inside offices, shops and other commercial spaces, hauled away in the same job. All of our demolition except wrecking is open to businesses, across St. Louis City, St. Louis County and St. Charles County. We're {insured}.",
+    "jobMatch": "",
+    "faqIds": [
+      "insured"
+    ],
+    "related": [
+      "interior-demolition",
+      "concrete-removal",
+      "garage-demolition"
+    ],
+    "sections": [
+      {
+        "id": "scope",
+        "h2": "What commercial demolition we do",
+        "body": [
+          "The build-out inside the space is the usual job: partition walls, drop ceilings, flooring, restroom fixtures, counters and built-ins your remodel is replacing. A whole suite can be cleared to a bare shell, or just one area while the rest of the business stays open.",
+          "Outside the building, a concrete slab or patio, a detached garage, a shed or a deck at a commercial property is quoted the same way. We don't do wrecking, implosion, high-rise or heavy industrial work."
+        ]
+      },
+      {
+        "id": "cost",
+        "h2": "How commercial demolition is priced",
+        "body": [
+          "Labor is quoted per job from photos and a look at what's coming down. We don't publish a price per square foot. The debris is hauled by the load, from {quarter} for a quarter of the truck to {full} for the full {maxYards}-yard truck, and a bigger job is simply more loads. {heavy}"
+        ]
+      },
+      {
+        "id": "plan",
+        "h2": "Planning around a business",
+        "body": [
+          "Tell us whether the space is empty or still operating, which utilities are shared with another suite, and where the truck can load. The landlord or building manager usually knows which panel and shutoffs serve your suite; they have to be off before we cut. Ask us about permits for your building. An inspector clears any suspect material before that part comes out."
+        ]
+      }
+    ],
+    "parent": "demolition"
+  },
+  {
+    "slug": "concrete-removal",
+    "scopeItem": "Concrete breakout",
+    "name": "Concrete Removal",
+    "serviceType": "Concrete breakout and removal",
+    "h1": "Concrete removal in St. Louis, MO",
+    "metaTitle": "Concrete Removal in St. Louis, MO",
+    "metaDescription": "Concrete removal in St. Louis: we break out patios, driveways and slabs and haul the pieces away. Labor quoted from photos, haul priced by the load.",
+    "intro": "Yes, we break up concrete and haul it away. Patios, driveways and slabs get broken out on site and the pieces leave on our truck in the same job, along with any concrete that's already loose. We work across St. Louis City, St. Louis County and St. Charles County.",
+    "jobMatch": "",
+    "faqIds": [
+      "construction-debris"
+    ],
+    "related": [
+      "garage-demolition",
+      "deck-demolition"
+    ],
+    "sections": [
+      {
+        "id": "what",
+        "h2": "Patios, driveways and slabs",
+        "body": [
+          "The concrete doesn't have to be broken up before we show up. We break out patios, driveways, walkways and slabs that are still in place, load the pieces and take them.",
+          "Already in pieces? A busted-up slab piled in the yard is a haul only, priced like any other [construction debris removal](/services/construction-debris-removal/)."
+        ]
+      },
+      {
+        "id": "cost",
+        "h2": "How much does concrete removal cost?",
+        "body": [
+          "Two parts. Breaking the concrete out is labor, quoted per job from photos, because a small patio and a long driveway aren't the same work. Hauling it is by how much of the truck it fills: {quarter} for a quarter load up to {full} for the full {maxYards}-yard truck.",
+          "Concrete is heavy, so it carries an add-on. {heavy} We confirm the number before anything is loaded."
+        ]
+      },
+      {
+        "id": "send",
+        "h2": "What to send for a concrete quote",
+        "body": [
+          "Photos of the whole slab from a couple of angles, and a rough size if you have a tape measure handy. Tell us how close the truck can get. Point out anything that has to stay, like a drain or a fence post. A slab often sits under a [garage](/services/demolition/garage-demolition/) or a [deck](/services/demolition/deck-demolition/), and one crew can take out both."
+        ]
+      }
+    ],
+    "parent": "demolition"
+  },
+  {
+    "slug": "garage-demolition",
+    "scopeItem": "Garage demolition",
+    "name": "Garage Demolition",
+    "serviceType": "Garage demolition",
+    "h1": "Garage demolition in St. Louis, MO",
+    "metaTitle": "Garage Demolition in St. Louis, MO",
+    "metaDescription": "Garage demolition in St. Louis: we take the whole garage down, load the debris and haul it away. Labor quoted from photos, haul priced by the load.",
+    "intro": "Yes, we take down whole garages. The garage comes down, the debris gets loaded and hauled, and you're left with a cleared spot. We work across St. Louis City, St. Louis County and St. Charles County, with labor quoted from photos.",
+    "jobMatch": "",
+    "faqIds": [
+      "recycling"
+    ],
+    "related": [
+      "concrete-removal",
+      "house-demolition"
+    ],
+    "sections": [
+      {
+        "id": "what",
+        "h2": "The whole garage, start to finish",
+        "body": [
+          "Roof, walls, doors and framing, taken down and hauled. Whatever's still stored inside can go on the same truck; tell us what you're keeping first.",
+          "Detached garages are the usual call. If the garage shares a wall with the house, say so up front, because that changes how it comes down."
+        ]
+      },
+      {
+        "id": "slab",
+        "h2": "Does the slab stay or go?",
+        "body": [
+          "Say which in your quote request. If the floor slab goes, breaking it out is [concrete removal](/services/demolition/concrete-removal/), and concrete carries the heavy-material charge on the haul. If it stays, we leave it in place for your next project."
+        ]
+      },
+      {
+        "id": "cost",
+        "h2": "How much does garage demolition cost?",
+        "body": [
+          "Taking the garage down is labor, quoted per job from photos. The debris is hauled by the load, from {quarter} for a quarter of the truck to {full} for a full {maxYards}-yard truck, and a bigger garage can take more than one load. Each load is priced the same way."
+        ]
+      },
+      {
+        "id": "before",
+        "h2": "Before a garage comes down",
+        "body": [
+          "Shut off and cap the power, gas and water that run to the garage before demo day. Whether you need a permit depends on your city; ask and we'll walk you through it. We don't test for asbestos or remove it, so if the siding or roofing might contain it, an inspector checks first."
+        ]
+      }
+    ],
+    "parent": "demolition"
+  },
+  {
+    "slug": "house-demolition",
+    "scopeItem": "House demolition",
+    "name": "House Demolition",
+    "serviceType": "House demolition",
+    "h1": "House demolition in St. Louis, MO",
+    "metaTitle": "House Demolition in St. Louis, MO",
+    "metaDescription": "House demolition in St. Louis: a whole house taken down and hauled away by one crew. Labor quoted per job from photos, debris hauled by the load.",
+    "intro": "Yes, we demolish whole houses. The house comes down and the debris is hauled away by the same crew, across St. Louis City, St. Louis County and St. Charles County. Labor is quoted per job from photos, and the debris is hauled by the load.",
+    "jobMatch": "",
+    "faqIds": [
+      "not-accepted"
+    ],
+    "related": [
+      "interior-demolition",
+      "garage-demolition"
+    ],
+    "sections": [
+      {
+        "id": "what",
+        "h2": "Whole-house demolition, not wrecking",
+        "body": [
+          "This is taking down a house and hauling it away. We don't do wrecking-ball or implosion work, high-rises or heavy industrial teardowns.",
+          "Only need the inside out with the walls left standing? That's [interior demolition](/services/demolition/interior-demolition/). A detached garage or outbuilding is [garage demolition](/services/demolition/garage-demolition/)."
+        ]
+      },
+      {
+        "id": "before",
+        "h2": "What happens before a house comes down",
+        "body": [
+          "Every utility has to be shut off and capped: water, gas, electric and sewer. Permit rules depend on your city and the job, and we'll walk you through what yours needs. We don't pull City of St. Louis demolition permits.",
+          "We don't do asbestos testing or abatement, and we can't haul asbestos. An inspector clears the house first, and we don't start any part an inspector hasn't cleared. Tell us about the basement or slab, and anything on the lot that stays, like a fence, a driveway or trees."
+        ]
+      },
+      {
+        "id": "cost",
+        "h2": "How much does house demolition cost?",
+        "body": [
+          "Labor is quoted per job from photos and a look at what's coming down; there's no price per square foot. Hauling is by the load, from {quarter} for a quarter of the truck to {full} for the full {maxYards}-yard truck, and a house takes more than one load. {heavy} One crew does the demolition and the hauling, and we're {insured}."
+        ]
+      }
+    ],
+    "parent": "demolition"
+  },
+  {
+    "slug": "deck-demolition",
+    "scopeItem": "Deck demolition",
+    "name": "Deck Demolition",
+    "serviceType": "Deck demolition",
+    "h1": "Deck demolition and removal in St. Louis, MO",
+    "metaTitle": "Deck Demolition & Removal in St. Louis, MO",
+    "metaDescription": "Deck demolition in St. Louis: boards, framing, railings and stairs torn out and hauled away in one job. Labor quoted from photos, haul by the load.",
+    "intro": "We tear out decks: boards, framing, railings and stairs, and haul it all away in the same job. It covers St. Louis City, St. Louis County and St. Charles County. Labor is quoted from photos, and the haul is priced by the load.",
+    "jobMatch": "",
+    "faqIds": [
+      "load-size"
+    ],
+    "related": [
+      "hot-tub-removal",
+      "shed-demolition"
+    ],
+    "sections": [
+      {
+        "id": "what",
+        "h2": "What comes out with the deck",
+        "body": [
+          "The decking, joists, beams, railings and stairs. Building a new deck? Tell us what stays: the ledger board, the posts or the footings, and we work around them.",
+          "Want only the boards off and the frame left for your builder? That's a partial tear-out, quoted the same way."
+        ]
+      },
+      {
+        "id": "cost",
+        "h2": "How much does deck removal cost?",
+        "body": [
+          "The tear-out is labor, quoted per job from photos. The haul is by the load: {quarter} for a quarter of the truck, {half} for a half, {threeQuarter} for three quarters and {full} for the whole truck. {fit:full:deck} {examplesNote}"
+        ]
+      },
+      {
+        "id": "send",
+        "h2": "What to send for a deck quote",
+        "body": [
+          "A photo of the whole deck, one of the stairs and one from underneath. Tell us how high it sits and whether it's attached to the house. If a hot tub sits on it, it comes off first; that's [hot tub removal](/services/demolition/hot-tub-removal/), and we can do both in one visit. A concrete patio underneath is [concrete removal](/services/demolition/concrete-removal/)."
+        ]
+      }
+    ],
+    "parent": "demolition"
+  },
+  {
+    "slug": "shed-demolition",
+    "scopeItem": "Shed demolition",
+    "name": "Shed Demolition",
+    "serviceType": "Shed demolition",
+    "h1": "Shed demolition and removal in St. Louis, MO",
+    "metaTitle": "Shed Demolition & Removal in St. Louis, MO",
+    "metaDescription": "Shed demolition in St. Louis: wood and metal sheds taken apart and hauled away with what's inside. Labor quoted from photos, haul priced by the load.",
+    "intro": "We take down wood and metal sheds and haul them away, contents included, across St. Louis City, St. Louis County and St. Charles County. You send photos, we quote the labor, and the haul is priced by how much of the truck the shed fills.",
+    "jobMatch": "",
+    "faqIds": [
+      "not-accepted"
+    ],
+    "related": [
+      "deck-demolition",
+      "concrete-removal"
+    ],
+    "sections": [
+      {
+        "id": "what",
+        "h2": "The shed and what's in it",
+        "body": [
+          "Walls, roof, door and floor come apart, and everything gets loaded and hauled. Whatever's still inside can go on the same truck: old mowers, lumber, broken tools, boxes. Tell us if anything in there is staying.",
+          "Sheds collect things we can't take, like liquid paint, gasoline and chemicals. Pull those out before we come."
+        ]
+      },
+      {
+        "id": "cost",
+        "h2": "How much does shed removal cost?",
+        "body": [
+          "Taking the shed down is labor, quoted from photos. The haul is by the load, from {quarter} for a quarter of the truck to {full} for the whole {maxYards}-yard truck. {fit:three-quarter:shed} {examplesNote}",
+          "If the shed sits on a slab you want gone too, breaking it out is [concrete removal](/services/demolition/concrete-removal/), with the heavy-material charge on the concrete."
+        ]
+      },
+      {
+        "id": "prep",
+        "h2": "Before the shed comes down",
+        "body": [
+          "If the shed has power, the circuit has to be shut off and disconnected first. Send photos of the outside, the inside and the floor, and tell us how close the truck can get. Behind a fence or down a slope is fine; we plan the carry."
+        ]
+      }
+    ],
+    "parent": "demolition"
+  },
+  {
+    "slug": "hot-tub-removal",
+    "scopeItem": "Hot tub removal",
+    "name": "Hot Tub Removal",
+    "serviceType": "Hot tub removal",
+    "h1": "Hot tub removal in St. Louis, MO",
+    "metaTitle": "Hot Tub Removal & Haul-Away, St. Louis MO",
+    "metaDescription": "Hot tub removal in St. Louis: we cut it down on site when it won't come out whole, then haul it away. Labor quoted from photos, haul priced by the load.",
+    "intro": "We take out old hot tubs and haul them away across St. Louis City, St. Louis County and St. Charles County. When a tub can't come out in one piece, we cut it down on site. The cut-down is quoted from photos, and the haul is priced by the load.",
+    "jobMatch": "",
+    "faqIds": [
+      "pricing"
+    ],
+    "related": [
+      "deck-demolition",
+      "shed-demolition"
+    ],
+    "sections": [
+      {
+        "id": "how",
+        "h2": "Whole, or cut down on site",
+        "body": [
+          "If the tub fits through the gate and down the path, it leaves whole. If it's boxed in by a fence, a deck or a narrow side yard, we cut it down where it sits and carry it out in pieces. The cover, steps and skirt go too."
+        ]
+      },
+      {
+        "id": "cost",
+        "h2": "How much does hot tub removal cost?",
+        "body": [
+          "The cut-down is labor, quoted per job from photos. The haul is by the load, from {quarter} for a quarter of the truck to {full} for the whole {maxYards}-yard truck. There's no hot tub line in our load examples, so we won't guess at one; send photos and we'll tell you before we start."
+        ]
+      },
+      {
+        "id": "prep",
+        "h2": "Before we take it out",
+        "body": [
+          "The tub's electrical has to be shut off and disconnected first. Tell us if it still has water in it. Send a photo of the tub, the path to the street and the gate.",
+          "If the deck under it is coming out too, that's [deck demolition](/services/demolition/deck-demolition/), and we can do both in one visit."
+        ]
+      }
+    ],
+    "parent": "demolition"
+  }
+]
