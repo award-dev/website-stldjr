@@ -8,7 +8,9 @@ export interface Location {
   name: string;
   region: string;
   county: string;
-  kind: 'city' | 'unincorporated';
+  kind: 'city' | 'unincorporated' | 'neighborhood';
+  /** The citywide entry of a combined page (its facts apply to every section), e.g. the City of St. Louis. */
+  citywide?: boolean;
   /** page: its own URL. group: a section of a combined page (see `group`). mention: listed on the hub only. */
   tier: 'page' | 'group' | 'mention';
   group?: string;
@@ -30,12 +32,13 @@ export interface Location {
 export const locations = (data as unknown as Location[]);
 export const cityPages = locations.filter((l) => l.tier === 'page');
 export const bySlug = (slug: string) => locations.find((l) => l.slug === slug);
-export const groupMembers = (group: string) => locations.filter((l) => l.tier === 'group' && l.group === group);
+export const groupMembers = (group: string) => locations.filter((l) => l.tier === 'group' && l.group === group && !l.citywide);
+export const groupRoot = (group: string) => locations.find((l) => l.group === group && l.citywide);
 export const cityHref = (l: Location) => (l.tier === 'group' && l.group ? `/service-areas/${l.group}/#${l.slug}` : `/service-areas/${l.slug}/`);
 
 /** The page URL for a place name from config/service-areas.json, if that place has a page. */
 export function placeHref(name: string) {
-  const l = locations.find((c) => c.tier !== 'mention' && c.name.toLowerCase() === name.toLowerCase());
+  const l = locations.find((c) => c.tier !== 'mention' && !c.citywide && c.name.toLowerCase() === name.toLowerCase());
   return l ? cityHref(l) : null;
 }
 
@@ -43,4 +46,4 @@ export function placeHref(name: string) {
 export const nearbyPages = (l: Location) => l.nearby.map(bySlug).filter((n): n is Location => !!n && n.tier === 'page');
 
 /** Combined area pages (one per `group`), e.g. unincorporated South County. */
-export const groups = [{ slug: 'south-county', name: 'South St. Louis County' }].filter((g) => groupMembers(g.slug).length > 0);
+export const groups = [{ slug: 'south-county', name: 'South St. Louis County' }, { slug: 'st-louis-city', name: 'St. Louis City' }].filter((g) => groupMembers(g.slug).length > 0);

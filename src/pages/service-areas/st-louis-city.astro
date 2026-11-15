@@ -1,0 +1,138 @@
+---
+// St. Louis City: one page for the City neighborhoods we list (local-seo kit: they share every City rule, so one
+// page with a section per neighborhood instead of near-identical pages). Citywide facts come from the
+// citywide entry in site-data/locations.json; each neighborhood section shows only its own verified facts.
+// Text only for now: no job photos.
+import Base from '../../layouts/Base.astro';
+import PageHero from '../../components/PageHero.astro';
+import Faq from '../../components/Faq.astro';
+import { groupMembers, groupRoot, cityHref, nearbyPages } from '../../lib/locations';
+import { site } from '../../data/site';
+import { loads, minimum, telHref, business, faqSchema } from '../../lib/site';
+
+const root = groupRoot('st-louis-city')!;
+const areas = groupMembers('st-louis-city');
+const names = areas.map((a) => a.name);
+const nameList = `${names.slice(0, -1).join(', ')} and ${names.at(-1)}`;
+const own = (a: (typeof areas)[number]) => [...a.local_facts.trash, ...a.local_facts.permits, ...a.local_facts.other];
+const faqs = root.unique_faqs;
+const near = nearbyPages(root).slice(0, 4);
+const full = loads.find((x) => x.id === 'full');
+const host = (u: string) => new URL(u).hostname.replace(/^www\./, '');
+const url = `${site.url}/service-areas/st-louis-city/`;
+const crumbs = [{ name: 'Home', href: '/' }, { name: 'Service areas', href: '/service-areas/' }, { name: 'St. Louis City', href: '/service-areas/st-louis-city/' }];
+const description = `Junk removal and demolition in the City of St. Louis: Soulard, Tower Grove, The Hill, CWE and more. Priced by the load from ${minimum?.priceLine.amount}. Call ${business.phoneDisplay}.`;
+const schema = [
+  {
+    '@type': 'Service',
+    '@id': `${url}#service`,
+    name: 'Junk removal and demolition in the City of St. Louis',
+    serviceType: 'Junk removal',
+    provider: { '@id': `${site.url}/#business` },
+    areaServed: [{ '@type': 'City', name: 'St. Louis, MO' }, ...areas.map((a) => ({ '@type': 'Place', name: `${a.name}, St. Louis, MO` }))],
+    description,
+  },
+  ...(faqs.length ? [faqSchema(faqs)] : []),
+];
+---
+<Base title="Junk Removal & Demolition in St. Louis City" description={description} breadcrumbs={crumbs} schema={schema}>
+  <PageHero
+    title="Junk Removal & Demolition in St. Louis City"
+    lead={`Junk hauling, cleanouts and tear-outs across the City of St. Louis, including ${nameList}. Priced by the load, with the price confirmed before anything is loaded.`}
+    crumbs={crumbs}
+  >
+    <div class="btn-row">
+      <a href="/book/" class="btn btn-accent" data-track="cta_click" data-track-cta="book" data-track-location="city-st-louis-city">Book a pickup</a>
+      <a href={telHref} class="btn btn-ghost" data-track="phone_click" data-track-location="city-st-louis-city">Call {business.phoneDisplay}</a>
+    </div>
+    <nav class="jump" aria-label="Neighborhoods on this page">
+      {areas.map((a) => <a href={`#${a.slug}`} class="chip">{a.name}</a>)}
+    </nav>
+  </PageHero>
+  <Fragment set:html="<!-- TODO(seo): need St. Louis City job photos with the neighborhood and date -->" />
+
+  <div class="shell sc">
+    <section aria-labelledby="bulk-h" class="block">
+      <h2 id="bulk-h" class="display-md">How City bulk pickup works</h2>
+      <ul class="facts">
+        {root.local_facts.trash.map((f) => <li><p>{f.fact}</p><a class="src" href={f.source} target="_blank" rel="noopener">Source: {host(f.source)}<span class="sr-only"> (opens in a new tab)</span></a></li>)}
+      </ul>
+      <p class="body">More than three items, or stuff that can't wait for your bulk week? That's what we haul, from {minimum?.priceLine.amount} for a few small items to {full?.priceLine.amount} for a full truck. <a class="link-u accent" href="/services/junk-removal/">How our junk removal works</a>.</p>
+    </section>
+
+    <section aria-labelledby="permit-h" class="block">
+      <h2 id="permit-h" class="display-md">Demolition and building permits in the City</h2>
+      <ul class="facts">
+        {root.local_facts.permits.map((f) => <li><p>{f.fact}</p><a class="src" href={f.source} target="_blank" rel="noopener">Source: {host(f.source)}<span class="sr-only"> (opens in a new tab)</span></a></li>)}
+      </ul>
+      <p class="body">We don't pull City of St. Louis demolition permits. Tell us what's coming down and we'll talk through how your job works. See <a class="link-u accent" href="/services/demolition/interior-demolition/">interior demolition</a> for tear-outs inside the house.</p>
+    </section>
+
+    {areas.map((a) => (
+      <section id={a.slug} aria-labelledby={`${a.slug}-h`} class="block area">
+        <h2 id={`${a.slug}-h`} class="display-md">Junk removal in {a.name}</h2>
+        {a.neighborhoods.length > 0 && <p class="meta-line">Also called {a.neighborhoods.join(', ')}</p>}
+        <ul class="facts">
+          {own(a).map((f) => <li><p>{f.fact}</p><a class="src" href={f.source} target="_blank" rel="noopener">Source: {host(f.source)}<span class="sr-only"> (opens in a new tab)</span></a></li>)}
+        </ul>
+      </section>
+    ))}
+
+    <section aria-labelledby="svc-h" class="block">
+      <h2 id="svc-h" class="display-md">What we do in St. Louis City</h2>
+      <p class="body">Priced by the load, from {minimum?.priceLine.amount} to {full?.priceLine.amount}. <a class="link-u accent" href="/pricing/">See load sizes</a>.</p>
+      <ul class="svc">
+        <li><a href="/services/junk-removal/" class="svc__link">Junk removal in St. Louis City</a></li>
+        <li><a href="/services/cleanouts/" class="svc__link">House, basement and estate cleanouts in the City</a></li>
+        <li><a href="/services/demolition/" class="svc__link">Kitchen, bath and interior demolition in the City</a></li>
+        <li><a href="/services/construction-debris-removal/" class="svc__link">Remodel debris hauling in the City</a></li>
+      </ul>
+    </section>
+
+    {faqs.length > 0 && (
+      <section aria-labelledby="faq-h" class="block">
+        <h2 id="faq-h" class="display-md">St. Louis City pickup and permit questions</h2>
+        <Faq items={faqs} />
+      </section>
+    )}
+
+    <section aria-labelledby="more-h" class="block side">
+      <h2 id="more-h" class="display-md">Resources and nearby areas</h2>
+      <ul class="side-list">
+        {root.official_links.map((o) => <li><a href={o.url} target="_blank" rel="noopener" class="link-u">{o.label}<span class="sr-only"> (opens in a new tab)</span></a></li>)}
+        {near.map((n) => <li><a href={cityHref(n)} class="link-u">Junk removal in {n.name}</a></li>)}
+        <li><a href="/service-areas/" class="link-u">Every area we serve</a></li>
+      </ul>
+      <p class="checked muted">St. Louis City details checked {new Date(root.verified).toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}. City rules change; follow the source links for the current version.</p>
+    </section>
+  </div>
+</Base>
+
+<style>
+  .sc { display: grid; gap: clamp(48px, 6vw, 72px); padding-bottom: clamp(48px, 6vw, 96px); max-width: 960px; }
+  .jump { display: flex; flex-wrap: wrap; gap: 8px; }
+  .chip { padding: 8px 14px; border-radius: 999px; font-size: 14px; background: rgb(255 255 255 / .07); box-shadow: inset 0 0 0 1px rgb(255 255 255 / .14); }
+  .chip:hover { background: rgb(255 255 255 / .13); }
+  .block { display: grid; gap: 18px; scroll-margin-top: calc(var(--nav-h) + 16px); }
+  .block h2 { font-size: clamp(1.6rem, 1.2rem + 1.4vw, 2.3rem); }
+  .body { color: #d6cfc6; max-width: 66ch; }
+  .meta-line { color: var(--color-muted); font-size: 15px; }
+  .facts { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
+  .facts li { display: grid; gap: 8px; padding: 20px 22px; border-radius: var(--radius-md); background: var(--color-card); box-shadow: inset 0 0 0 1px var(--color-line); }
+  .facts p { color: #e3ddd5; }
+  .src { font-size: 13px; color: var(--color-muted); text-decoration: underline; text-decoration-color: rgb(255 255 255 / .2); overflow-wrap: anywhere; }
+  .svc { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
+  @media (min-width: 640px) { .svc { grid-template-columns: 1fr 1fr; } }
+  .svc__link { display: block; height: 100%; padding: 18px 22px; border-radius: var(--radius-md); background: var(--color-card); box-shadow: inset 0 0 0 1px var(--color-line); font-weight: 600; color: var(--color-accent-ink); }
+  .svc__link:hover { background: var(--color-card-2); }
+  .side-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+  .checked { font-size: 13px; }
+  .job { display: grid; gap: 12px; margin-top: 8px; }
+  .job__h { font-size: 1.15rem; font-weight: 700; }
+  .job__meta { font-size: 14px; color: var(--color-muted); }
+  .job__text { font-size: 1.05rem; color: #e3ddd5; max-width: 62ch; }
+  .job__photos { display: grid; gap: 14px; }
+  @media (min-width: 640px) { .job__photos { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  .job__photo { aspect-ratio: 3 / 4; max-width: 520px; }
+  .job__photo--wide { aspect-ratio: 4 / 3; grid-column: 1 / -1; max-width: 760px; }
+</style>
