@@ -546,8 +546,8 @@
     "county": "St. Louis County",
     "kind": "city",
     "tier": "mention",
-    "why_a_page": "Not enough verified local proof yet (0 facts). kirkwoodmo.org returned 403 to automated fetches; nothing verified.",
-    "verified": "2026-11-10",
+    "why_a_page": "Gate failed again on 2026-11-15: every kirkwoodmo.org page (homepage, sanitation, building division) returned 403 to automated fetches, so no Kirkwood trash or permit facts could be verified. Needs a manual check in a browser.",
+    "verified": "2026-11-15",
     "official_site": {
       "label": "City of Kirkwood",
       "url": "https://www.kirkwoodmo.org"
@@ -1250,16 +1250,37 @@
     "region": "MO",
     "county": "St. Louis County",
     "kind": "city",
-    "tier": "mention",
-    "why_a_page": "Not enough verified local proof yet (0 facts). claytonmo.gov blocked automated fetches (403).",
-    "verified": "2026-11-10",
+    "tier": "page",
+    "why_a_page": "5 verified local permit facts from the City of Clayton fee schedule (effective May 1, 2025), 2 official links (Clayton Permit Portal, fee schedule PDF), 2 city FAQs built from those facts. Trash/bulky pickup unverified: claytonmo.gov returns 403 to automated fetches.",
+    "verified": "2026-11-15",
     "official_site": {
       "label": "City of Clayton",
       "url": "https://www.claytonmo.gov/"
     },
     "local_facts": {
       "trash": [],
-      "permits": [],
+      "permits": [
+        {
+          "fact": "The City of Clayton issues its own permits through Planning and Development Services at 10 North Bemiston Avenue. Applications go through the Clayton Permit Portal.",
+          "source": "https://www5.citizenserve.com/Documents/213/Planning%20and%20Development%20Fee%20Schedule%20Effective%20May%202025.pdf"
+        },
+        {
+          "fact": "Clayton does not issue combined permits. Building, plumbing, mechanical and demolition work each need their own permit.",
+          "source": "https://www5.citizenserve.com/Documents/213/Planning%20and%20Development%20Fee%20Schedule%20Effective%20May%202025.pdf"
+        },
+        {
+          "fact": "Electrical permits and inspections for work in Clayton go through St. Louis County, not the city.",
+          "source": "https://www5.citizenserve.com/Documents/213/Planning%20and%20Development%20Fee%20Schedule%20Effective%20May%202025.pdf"
+        },
+        {
+          "fact": "Under the fee schedule effective May 1, 2025, a demolition permit is a $35 processing fee plus a $125 minimum, with $10 more per 1,000 square feet for demolitions over 5,000 gross square feet.",
+          "source": "https://www5.citizenserve.com/Documents/213/Planning%20and%20Development%20Fee%20Schedule%20Effective%20May%202025.pdf"
+        },
+        {
+          "fact": "Tearing down a whole structure also takes a $1,000 refundable cash deposit. Minor structures, such as small sheds, are the exception.",
+          "source": "https://www5.citizenserve.com/Documents/213/Planning%20and%20Development%20Fee%20Schedule%20Effective%20May%202025.pdf"
+        }
+      ],
       "other": []
     },
     "neighborhoods": [
@@ -1277,8 +1298,26 @@
     },
     "jobs": [],
     "review_ids": [],
-    "unique_faqs": [],
-    "official_links": [],
+    "unique_faqs": [
+      {
+        "q": "Who issues demolition permits in Clayton?",
+        "a": "The City of Clayton does, through Planning and Development Services at 10 North Bemiston Avenue and the Clayton Permit Portal. Demolition is its own permit; Clayton does not combine it with building, plumbing or mechanical permits."
+      },
+      {
+        "q": "Is there a deposit to tear down a building in Clayton?",
+        "a": "Yes. Total demolition of a structure takes a $1,000 refundable cash deposit on top of the permit fee. Minor structures, such as small sheds, are the exception."
+      }
+    ],
+    "official_links": [
+      {
+        "label": "Clayton Permit Portal",
+        "url": "https://www5.citizenserve.com/Portal/PortalController?Action=showHomePage&ctzPagePrefix=Portal_&installationID=213"
+      },
+      {
+        "label": "Clayton permit fee schedule (PDF, effective May 2025)",
+        "url": "https://www5.citizenserve.com/Documents/213/Planning%20and%20Development%20Fee%20Schedule%20Effective%20May%202025.pdf"
+      }
+    ],
     "nearby": [
       "richmond-heights",
       "university-city",
@@ -2641,8 +2680,8 @@
     "county": "St. Louis County",
     "kind": "unincorporated",
     "tier": "mention",
-    "why_a_page": "Not enough verified local proof yet (0 facts). County site blocked agent; trash district/hauler and permits unverified. Waste Connections county contract fact is generic, not confirmed for Spanish Lake.",
-    "verified": "2026-11-10",
+    "why_a_page": "Gate failed again on 2026-11-15: stlouiscountymo.gov returned 403 and no loaded official page ties a trash district, hauler or permit rule to Spanish Lake or 63138. Has 1 job with a photo (in the gallery). Needs the county trash-district map checked in a browser.",
+    "verified": "2026-11-15",
     "official_site": {
       "label": "St. Louis County Services Portal (permits)",
       "url": "https://stlouiscountymo.gov/"
@@ -2990,8 +3029,8 @@
     "county": "St. Charles County",
     "kind": "city",
     "tier": "mention",
-    "why_a_page": "Not enough verified local proof yet (0 facts). stpetersmo.net blocked automated fetches.",
-    "verified": "2026-11-10",
+    "why_a_page": "Gate failed again on 2026-11-15: every stpetersmo.net page returned 403 to automated fetches. St. Charles County pages loaded but do not say their trash or permit rules apply inside St. Peters. Needs a manual check in a browser.",
+    "verified": "2026-11-15",
     "official_site": {
       "label": "City of St. Peters",
       "url": "https://www.stpetersmo.net/"
