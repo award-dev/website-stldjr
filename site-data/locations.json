@@ -70,7 +70,6 @@
       {
         "date": "2026-09-30",
         "service": "junk-removal",
-        "subservice": "furniture-removal",
         "summary": "Furniture removal at a Florissant home, including a solid wood sleigh bed carried out to the truck.",
         "photos": [
           "junk-removal/florissant-sleigh-bed-removal.jpg"
@@ -177,7 +176,6 @@
       {
         "date": "",
         "service": "junk-removal",
-        "subservice": "furniture-removal",
         "summary": "Curbside pickup in Chesterfield: a taken-apart dresser and its drawers, a desk, a metal bed frame, a mirror and framed art set out by the sidewalk and loaded onto our truck.",
         "photos": [
           "junk-removal/chesterfield-curbside-pickup.jpg"
@@ -485,7 +483,6 @@
       {
         "date": "2026-09-25",
         "service": "junk-removal",
-        "subservice": "furniture-removal",
         "summary": "Removed a pair of oak display cabinets from the basement and an armoire from the garage.",
         "photos": [
           "junk-removal/ballwin-display-cabinets.jpg",
@@ -635,7 +632,6 @@
       {
         "date": "",
         "service": "cleanouts",
-        "subservice": "appliance-removal",
         "summary": "Full garage cleanout in Maryland Heights. We hauled out a washer and dryer, a utility sink, old carpet pad, boxes, scrap lumber and bagged junk and left it empty down to the concrete.",
         "pairs": [
           "maryland-heights-garage"
@@ -871,7 +867,6 @@
       {
         "date": "2026-10-29",
         "service": "demolition",
-        "subservice": "bathroom-demolition",
         "summary": "Bathroom tear-out: the double vanity, mirror, tile floor, walk-in shower and drywall came out, down to the studs and subfloor.",
         "pairs": [
           "webster-groves-bathroom",
@@ -1087,7 +1082,6 @@
       {
         "date": "",
         "service": "demolition",
-        "subservice": "interior-demolition",
         "summary": "Interior demolition: walls taken out to open the room up, then the debris hauled away and the floor cleaned up.",
         "photos": [
           "demolition/ferguson-room-demo.jpg"
@@ -1190,7 +1184,6 @@
       {
         "date": "",
         "service": "demolition",
-        "subservice": "bathroom-demolition",
         "summary": "Bathroom demolition in Manchester. We took out the vanity, fixtures, flooring and drywall, opening the walls to the studs and insulation and leaving the floor down to the subfloor with the plumbing exposed for the remodel.",
         "photos": [
           "demolition/manchester-bathroom-vanity-wall.jpg",
@@ -2173,7 +2166,6 @@
       {
         "date": "2026-10-14",
         "service": "demolition",
-        "subservice": "bathroom-demolition",
         "summary": "Curved walk-in shower demolished down to the framing, with the tile, walls and ceiling taken out around the plumbing and windows.",
         "photos": [
           "demolition/ladue-curved-shower-demo.jpg"
@@ -2268,7 +2260,6 @@
       {
         "date": "",
         "service": "demolition",
-        "subservice": "kitchen-demolition",
         "summary": "Kitchen countertop and backsplash demolition in Brentwood. We pulled the countertops off the perimeter cabinets and the island and took the backsplash down to the studs, while the cabinets, appliances and floors stayed protected for the new tops.",
         "photos": [
           "demolition/brentwood-kitchen-countertop-backsplash-demo.jpg"
@@ -2511,7 +2502,6 @@
       {
         "date": "",
         "service": "construction-debris-removal",
-        "subservice": "appliance-removal",
         "summary": "Remodel debris haul-off in Affton: broken-out green wall tile with its wire mesh and mortar, scrap trim and lumber, an old washer and a trash can, loaded into our truck.",
         "photos": [
           "construction-debris/affton-remodel-debris-load.jpg"
@@ -2938,7 +2928,6 @@
       {
         "date": "",
         "service": "demolition",
-        "subservice": "bathroom-demolition",
         "summary": "Bathroom demolition in St. Charles. We tore out the old yellow wall tile, the vanity, the toilet and the flooring, taking the walls down to the original framing and brick with the cast-iron drain stack exposed. The tub stayed in place for the remodel.",
         "pairs": [
           "st-charles-bathroom"

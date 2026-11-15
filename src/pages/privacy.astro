@@ -2,7 +2,7 @@
 import LegalPage from "../components/LegalPage.astro";
 import { business, mailHref, telHref } from "../lib/site";
 ---
-<LegalPage title="Privacy Policy" description="How STL Demolition & Junk Removal uses your name, phone, email, job address and photos when you book or request a quote. We don't sell your information." path="/privacy/">
+<LegalPage title="Privacy Policy" description={`How ${business.name} collects and uses information from this website.`} path="/privacy/">
   <h2>What we collect</h2>
   <p>When you book or request a quote, we collect what you give us: your name, phone number, email, the job address, a description of the job, and any photos you upload. We use it to schedule, price and do the job, and to contact you about it.</p>
   <h2>Where it goes</h2>

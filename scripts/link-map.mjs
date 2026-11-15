@@ -7,7 +7,6 @@ import { readFileSync, writeFileSync } from "node:fs";
 const read = (f) => JSON.parse(readFileSync(new URL(`../${f}`, import.meta.url), "utf8"));
 const groups = read("config/services.json").groups;
 const locations = read("site-data/locations.json");
-const subservices = read("site-data/subservices.json");
 
 const servicePath = (g) => `${g.path.replace(/\/?$/, "/")}`; // config paths are /services/<slug>/
 const cities = locations.filter((l) => l.tier === "page");
@@ -36,29 +35,6 @@ for (const l of cities) {
 // 4. Hub -> every city page.
 add(hub, ...cities.map(cityPath), ...groupPages);
 for (const gp of groupPages) add(gp, ...groups.map(servicePath), hub, "/pricing/");
-// 5. Sub-service pages: parent ↔ child, child ↔ siblings, child ↔ cities with a job of that sub-service.
-const subPath = (s) => `/services/${s.parent}/${s.slug}/`;
-for (const s of subservices) {
-  const path = subPath(s);
-  const parent = `/services/${s.parent}/`;
-  const siblings = subservices.filter((o) => o.parent === s.parent && o.slug !== s.slug).map(subPath);
-  const withJobs = s.jobSubservice
-    ? cities.filter((l) => (l.jobs || []).some((j) => j.subservice === s.jobSubservice))
-    : [];
-  add(parent, path);
-  add("/", path);
-  add("/services/", path);
-  add(path, parent, ...siblings, "/services/construction-debris-removal/", "/pricing/", "/quote/", "/service-areas/", ...withJobs.map(cityPath));
-  for (const l of withJobs) add(cityPath(l), path);
-}
-add("/services/", ...groups.map(servicePath), "/pricing/", hub);
-add("/pricing/", ...groups.map(servicePath), ...subservices.map(subPath));
-// St. Charles County cities that already have pages. Mention-tier towns get no URL.
-const stCharlesPages = locations.filter((l) => l.county === "St. Charles County" && l.tier === "page").map(cityPath);
-for (const g of groups) add(servicePath(g), ...stCharlesPages);
-for (const s of subservices) add(subPath(s), ...stCharlesPages);
-add("/services/", ...stCharlesPages);
-add(hub, ...stCharlesPages);
 // 6. Every page links to Contact and booking (header/footer), plus click-to-call.
 for (const k of Object.keys(map)) add(k, ...always);
 

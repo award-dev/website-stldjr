@@ -10,7 +10,6 @@ import { jobImage, projectFor, pairs, fitWidths, PHOTO_QUALITY } from '../../lib
 import { pairImages } from '../../lib/media';
 import { cityPages, cityHref, nearbyPages, type Location } from '../../lib/locations';
 import { services, site, pairTitles } from '../../data/site';
-import { subservices, subPath } from '../../data/subservices';
 import { loads, minimum, pricing, telHref, business, faqSchema } from '../../lib/site';
 
 export function getStaticPaths() {
@@ -85,10 +84,6 @@ const arrow = '<svg class="arrow" viewBox="0 0 24 24" aria-hidden="true" fill="n
             <article class="job">
               <p class="job__meta">{j.when && <>{j.when} · </>}{j.service && <a class="link-u accent" href={`/services/${j.service.slug}/`}>{j.service.title}</a>}</p>
               <p class="job__text">{j.summary}</p>
-              {(() => {
-                const sub = subservices.find((s) => s.jobSubservice && s.jobSubservice === j.subservice);
-                return sub ? <p><a class="link-u accent" href={subPath(sub)}>{sub.name} in {l.name}</a></p> : null;
-              })()}
               {j.sliders.length > 0 && (
                 <div class="job__pairs">
                   {j.sliders.map((s) => <BeforeAfter client:visible before={s.before} after={s.after} title={s.title} />)}

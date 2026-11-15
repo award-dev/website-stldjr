@@ -49,7 +49,7 @@ const arrow = '<svg class="arrow" viewBox="0 0 24 24" aria-hidden="true" fill="n
       <ul>
         {nav.map((n) => <li><a class="link-u" href={n.href}>{n.label}</a></li>)}
         <li><a class="link-u" href="/faq/">FAQ</a></li>
-        {site.profiles.map((p) => <li><a class="link-u" href={p.href} rel="noopener" target="_blank">{p.label}<span class="sr-only"> (opens in a new tab)</span></a></li>)}
+        {site.facebook && <li><a class="link-u" href={site.facebook} rel="noopener" target="_blank">Facebook<span class="sr-only"> (opens in a new tab)</span></a></li>}
       </ul>
     </div>
     <div>
