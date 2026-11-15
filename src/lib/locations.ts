@@ -43,7 +43,16 @@ export function placeHref(name: string) {
 }
 
 /** Nearby cities that have pages, in the order given in the data (nearest first). */
-export const nearbyPages = (l: Location) => l.nearby.map(bySlug).filter((n): n is Location => !!n && n.tier === 'page');
+export const nearbyPages = (l: Location) => {
+  const seen = new Set<string>();
+  return l.nearby.map(bySlug).filter((n): n is Location => {
+    if (!n || n.citywide || n.tier === 'mention') return false;
+    const href = n.tier === 'group' && n.group ? `/service-areas/${n.group}/` : `/service-areas/${n.slug}/`;
+    if (seen.has(href)) return false;
+    seen.add(href);
+    return true;
+  });
+};
 
 /** Combined area pages (one per `group`), e.g. unincorporated South County. */
 export const groups = [{ slug: 'south-county', name: 'South St. Louis County' }, { slug: 'st-louis-city', name: 'St. Louis City' }].filter((g) => groupMembers(g.slug).length > 0);
