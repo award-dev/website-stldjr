@@ -54,7 +54,7 @@ const extra: Record<string, Pick<Service, 'slug' | 'category' | 'label' | 'noun'
   },
   demolition: {
     slug: 'demolition', category: 'demolition', label: 'Demolition', noun: 'Demolition',
-    h1: 'Demolition in St. Louis, MO', metaTitle: 'Demolition in St. Louis: Decks, Sheds, Guts',
+    h1: 'Demolition in St. Louis, MO', metaTitle: 'Demolition Contractor in St. Louis, MO',
     short: 'Interior guts, kitchens, baths, decks and sheds, torn out and hauled.', cover: 'demolition/kitchen-gut.webp', pair: 'webster-groves-bathroom',
   },
   'construction-debris': {
