@@ -95,7 +95,7 @@ const business = {
     ...site.serviceArea.map((a) => ({ '@type': a.type, name: `${a.name}, ${site.region}`, ...(a.wiki ? { sameAs: a.wiki } : {}) })),
     ...locations.map((l) => ({ '@type': l.kind === 'city' ? 'City' : 'Place', name: `${l.name}, ${l.region}`, ...(l.tier === 'page' ? { url: `${site.url}${cityHref(l)}` } : {}) })),
   ],
-  sameAs: [...new Set([...site.sameAs, site.facebook].filter(Boolean))],
+  sameAs: site.sameAs,
   knowsAbout: [...services.map((s) => s.title), ...subservices.map((s) => s.name)],
   hasOfferCatalog: {
     '@type': 'OfferCatalog',
