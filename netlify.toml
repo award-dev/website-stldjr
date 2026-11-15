@@ -40,6 +40,24 @@
     X-Robots-Tag = "noindex"
     Referrer-Policy = "no-referrer"
 
+# Canonical host is https://stlouishjr.com. These rules only match the non-canonical
+# hosts, so the apex itself is not redirected.
+[[redirects]]
+  from = "http://stlouishjr.com/*"
+  to = "https://stlouishjr.com/:splat"
+  status = 301
+  force = true
+[[redirects]]
+  from = "http://www.stlouishjr.com/*"
+  to = "https://stlouishjr.com/:splat"
+  status = 301
+  force = true
+[[redirects]]
+  from = "https://www.stlouishjr.com/*"
+  to = "https://stlouishjr.com/:splat"
+  status = 301
+  force = true
+
 # Service pages moved under /services/ in the rebuild
 [[redirects]]
   from = "/junk-removal/"
@@ -364,4 +382,288 @@
 [[redirects]]
   from = "/terms-of-service/"
   to = "/terms/"
+  status = 301
+
+# Old WordPress URLs (Rank Math sitemaps archived 2025-09-02, plus Google site: results).
+# Only paths that currently 404. Live 200 URLs are not listed.
+[[redirects]]
+  from = "/top-5-benefits-of-junk-removal-for-property-managers"
+  to = "/services/junk-removal/"
+  status = 301
+[[redirects]]
+  from = "/top-5-benefits-of-junk-removal-for-property-managers/"
+  to = "/services/junk-removal/"
+  status = 301
+[[redirects]]
+  from = "/the-importance-of-industrial-junk-removal-keeping-our-city-clean-and-safe"
+  to = "/services/junk-removal/"
+  status = 301
+[[redirects]]
+  from = "/the-importance-of-industrial-junk-removal-keeping-our-city-clean-and-safe/"
+  to = "/services/junk-removal/"
+  status = 301
+[[redirects]]
+  from = "/why-real-estate-agents-need-a-trusted-junk-removal-partner"
+  to = "/services/cleanouts/"
+  status = 301
+[[redirects]]
+  from = "/why-real-estate-agents-need-a-trusted-junk-removal-partner/"
+  to = "/services/cleanouts/"
+  status = 301
+[[redirects]]
+  from = "/blog"
+  to = "/"
+  status = 301
+[[redirects]]
+  from = "/blog/"
+  to = "/"
+  status = 301
+[[redirects]]
+  from = "/about-us"
+  to = "/about/"
+  status = 301
+[[redirects]]
+  from = "/about-us/"
+  to = "/about/"
+  status = 301
+[[redirects]]
+  from = "/contact-us"
+  to = "/contact/"
+  status = 301
+[[redirects]]
+  from = "/contact-us/"
+  to = "/contact/"
+  status = 301
+[[redirects]]
+  from = "/faqs"
+  to = "/faq/"
+  status = 301
+[[redirects]]
+  from = "/faqs/"
+  to = "/faq/"
+  status = 301
+[[redirects]]
+  from = "/testimonials"
+  to = "/about/"
+  status = 301
+[[redirects]]
+  from = "/testimonials/"
+  to = "/about/"
+  status = 301
+[[redirects]]
+  from = "/service-areas/jennings-junk-removal"
+  to = "/service-areas/jennings/"
+  status = 301
+[[redirects]]
+  from = "/service-areas/jennings-junk-removal/"
+  to = "/service-areas/jennings/"
+  status = 301
+[[redirects]]
+  from = "/service-areas/hazelwood-junk-removal"
+  to = "/service-areas/hazelwood/"
+  status = 301
+[[redirects]]
+  from = "/service-areas/hazelwood-junk-removal/"
+  to = "/service-areas/hazelwood/"
+  status = 301
+[[redirects]]
+  from = "/service-areas/florissant-junk-removal"
+  to = "/service-areas/florissant/"
+  status = 301
+[[redirects]]
+  from = "/service-areas/florissant-junk-removal/"
+  to = "/service-areas/florissant/"
+  status = 301
+[[redirects]]
+  from = "/service-areas/ferguson-junk-removal"
+  to = "/service-areas/ferguson/"
+  status = 301
+[[redirects]]
+  from = "/service-areas/ferguson-junk-removal/"
+  to = "/service-areas/ferguson/"
+  status = 301
+[[redirects]]
+  from = "/service-areas/creve-coeur-junk-removal"
+  to = "/service-areas/creve-coeur/"
+  status = 301
+[[redirects]]
+  from = "/service-areas/creve-coeur-junk-removal/"
+  to = "/service-areas/creve-coeur/"
+  status = 301
+[[redirects]]
+  from = "/service-areas/chesterfield-junk-removal"
+  to = "/service-areas/chesterfield/"
+  status = 301
+[[redirects]]
+  from = "/service-areas/chesterfield-junk-removal/"
+  to = "/service-areas/chesterfield/"
+  status = 301
+[[redirects]]
+  from = "/service-areas/ballwin-junk-removal"
+  to = "/service-areas/ballwin/"
+  status = 301
+[[redirects]]
+  from = "/service-areas/ballwin-junk-removal/"
+  to = "/service-areas/ballwin/"
+  status = 301
+[[redirects]]
+  from = "/service-areas/bridgeton-junk-removal"
+  to = "/service-areas/bridgeton/"
+  status = 301
+[[redirects]]
+  from = "/service-areas/bridgeton-junk-removal/"
+  to = "/service-areas/bridgeton/"
+  status = 301
+[[redirects]]
+  from = "/service-areas/wentzville-junk-removal"
+  to = "/service-areas/wentzville/"
+  status = 301
+[[redirects]]
+  from = "/service-areas/wentzville-junk-removal/"
+  to = "/service-areas/wentzville/"
+  status = 301
+[[redirects]]
+  from = "/service-areas/st-charles-junk-removal"
+  to = "/service-areas/st-charles/"
+  status = 301
+[[redirects]]
+  from = "/service-areas/st-charles-junk-removal/"
+  to = "/service-areas/st-charles/"
+  status = 301
+[[redirects]]
+  from = "/service-areas/ofallon-junk-removal"
+  to = "/service-areas/ofallon/"
+  status = 301
+[[redirects]]
+  from = "/service-areas/ofallon-junk-removal/"
+  to = "/service-areas/ofallon/"
+  status = 301
+[[redirects]]
+  from = "/service-areas/maryland-heights-junk-removal"
+  to = "/service-areas/maryland-heights/"
+  status = 301
+[[redirects]]
+  from = "/service-areas/maryland-heights-junk-removal/"
+  to = "/service-areas/maryland-heights/"
+  status = 301
+[[redirects]]
+  from = "/service-areas/ladue-junk-removal"
+  to = "/service-areas/ladue/"
+  status = 301
+[[redirects]]
+  from = "/service-areas/ladue-junk-removal/"
+  to = "/service-areas/ladue/"
+  status = 301
+[[redirects]]
+  from = "/service-areas/house-springs-junk-removal"
+  to = "/service-areas/"
+  status = 301
+[[redirects]]
+  from = "/service-areas/house-springs-junk-removal/"
+  to = "/service-areas/"
+  status = 301
+[[redirects]]
+  from = "/service-areas/imperial-junk-removal"
+  to = "/service-areas/"
+  status = 301
+[[redirects]]
+  from = "/service-areas/imperial-junk-removal/"
+  to = "/service-areas/"
+  status = 301
+[[redirects]]
+  from = "/service-areas/eureka-junk-removal"
+  to = "/service-areas/"
+  status = 301
+[[redirects]]
+  from = "/service-areas/eureka-junk-removal/"
+  to = "/service-areas/"
+  status = 301
+[[redirects]]
+  from = "/service-areas/clayton-junk-removal"
+  to = "/service-areas/"
+  status = 301
+[[redirects]]
+  from = "/service-areas/clayton-junk-removal/"
+  to = "/service-areas/"
+  status = 301
+[[redirects]]
+  from = "/service-areas/arnold-junk-removal"
+  to = "/service-areas/"
+  status = 301
+[[redirects]]
+  from = "/service-areas/arnold-junk-removal/"
+  to = "/service-areas/"
+  status = 301
+[[redirects]]
+  from = "/service-areas/kirkwood-junk-removal"
+  to = "/service-areas/"
+  status = 301
+[[redirects]]
+  from = "/service-areas/kirkwood-junk-removal/"
+  to = "/service-areas/"
+  status = 301
+[[redirects]]
+  from = "/service-areas/st-peters-junk-removal"
+  to = "/service-areas/"
+  status = 301
+[[redirects]]
+  from = "/service-areas/st-peters-junk-removal/"
+  to = "/service-areas/"
+  status = 301
+[[redirects]]
+  from = "/service-areas/spanish-lake-junk-removal"
+  to = "/service-areas/"
+  status = 301
+[[redirects]]
+  from = "/service-areas/spanish-lake-junk-removal/"
+  to = "/service-areas/"
+  status = 301
+# Category archives: specific ones first, then any other /category/ path.
+[[redirects]]
+  from = "/category/moving-and-relocation"
+  to = "/services/cleanouts/"
+  status = 301
+[[redirects]]
+  from = "/category/moving-and-relocation/"
+  to = "/services/cleanouts/"
+  status = 301
+[[redirects]]
+  from = "/category/moving-and-relocation/*"
+  to = "/services/cleanouts/"
+  status = 301
+[[redirects]]
+  from = "/category/industrial-junk-removal"
+  to = "/services/junk-removal/"
+  status = 301
+[[redirects]]
+  from = "/category/industrial-junk-removal/"
+  to = "/services/junk-removal/"
+  status = 301
+[[redirects]]
+  from = "/category/industrial-junk-removal/*"
+  to = "/services/junk-removal/"
+  status = 301
+[[redirects]]
+  from = "/category"
+  to = "/"
+  status = 301
+[[redirects]]
+  from = "/category/"
+  to = "/"
+  status = 301
+[[redirects]]
+  from = "/category/*"
+  to = "/"
+  status = 301
+[[redirects]]
+  from = "/tag"
+  to = "/"
+  status = 301
+[[redirects]]
+  from = "/tag/"
+  to = "/"
+  status = 301
+[[redirects]]
+  from = "/tag/*"
+  to = "/"
   status = 301
