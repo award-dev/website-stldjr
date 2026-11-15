@@ -27,23 +27,8 @@ export const site = {
     { name: 'St. Louis County', type: 'AdministrativeArea', wiki: 'https://en.wikipedia.org/wiki/St._Louis_County,_Missouri' },
     { name: 'St. Charles County', type: 'AdministrativeArea', wiki: 'https://en.wikipedia.org/wiki/St._Charles_County,_Missouri' },
   ] as { name: string; type: 'City' | 'AdministrativeArea'; wiki?: string }[],
-  sameAs: [
-    links.googleBusinessProfile,
-    links.facebook,
-    links.instagram,
-    links.nextdoor,
-    links.bbb,
-    links.greaterNorthCountyChamber,
-    links.buyersClubInterview,
-  ].filter((url): url is string => typeof url === 'string' && url.length > 0),
+  sameAs: [links.googleBusinessProfile, links.instagram, links.nextdoor].filter(Boolean) as string[],
   facebook: links.facebook ?? '',
-  /** Profile links that also appear in JSON-LD sameAs. YouTube stays on the About page. */
-  profiles: [
-    { label: 'Facebook', href: links.facebook },
-    { label: 'Nextdoor', href: links.nextdoor },
-    { label: 'BBB', href: links.bbb },
-    { label: 'Greater North County Chamber', href: links.greaterNorthCountyChamber },
-  ].filter((p): p is { label: string; href: string } => typeof p.href === 'string' && p.href.length > 0),
   /** Confirmed by the owner (config/business.json trust). */
   credentials: t.licensed && t.insured ? 'Licensed & insured' : t.insured ? 'Insured' : '',
   rating: '',
