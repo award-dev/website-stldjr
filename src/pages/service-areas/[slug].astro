@@ -151,7 +151,7 @@ const arrow = '<svg class="arrow" viewBox="0 0 24 24" aria-hidden="true" fill="n
 
       {l.unique_faqs.length > 0 && (
         <section aria-labelledby="faq-h" class="block">
-          <h2 id="faq-h" class="display-md">{l.name} junk removal questions</h2>
+          <h2 id="faq-h" class="display-md">{l.unique_faqs.every((f) => /permit|demoli|tear down/i.test(f.q)) ? `${l.name} demolition permit questions` : `${l.name} junk removal questions`}</h2>
           <Faq items={l.unique_faqs} />
         </section>
       )}

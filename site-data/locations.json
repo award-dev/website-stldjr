@@ -99,11 +99,13 @@
     ],
     "nearby": [
       "hazelwood",
+      "black-jack",
       "ferguson",
       "bridgeton",
       "jennings",
       "spanish-lake",
-      "overland"
+      "overland",
+      "university-city"
     ]
   },
   {
@@ -217,7 +219,9 @@
       "weldon-spring",
       "town-and-country",
       "manchester",
-      "maryland-heights"
+      "maryland-heights",
+      "wildwood",
+      "creve-coeur"
     ]
   },
   {
@@ -319,7 +323,9 @@
       "chesterfield",
       "manchester",
       "weldon-spring",
-      "town-and-country"
+      "town-and-country",
+      "cottleville",
+      "des-peres"
     ]
   },
   {
@@ -422,7 +428,9 @@
       "overland",
       "ladue",
       "brentwood",
-      "jennings"
+      "dogtown",
+      "maplewood",
+      "the-hill"
     ]
   },
   {
@@ -533,7 +541,9 @@
       "town-and-country",
       "chesterfield",
       "des-peres",
-      "wildwood"
+      "wildwood",
+      "kirkwood",
+      "fenton"
     ]
   },
   {
@@ -572,8 +582,10 @@
       "crestwood",
       "sunset-hills",
       "webster-groves",
+      "fenton",
       "ladue",
-      "manchester"
+      "manchester",
+      "brentwood"
     ]
   },
   {
@@ -673,7 +685,9 @@
       "st-charles",
       "overland",
       "town-and-country",
-      "chesterfield"
+      "chesterfield",
+      "ladue",
+      "hazelwood"
     ]
   },
   {
@@ -780,9 +794,11 @@
       "florissant",
       "bridgeton",
       "ferguson",
+      "black-jack",
       "overland",
       "jennings",
-      "maryland-heights"
+      "maryland-heights",
+      "university-city"
     ]
   },
   {
@@ -905,10 +921,12 @@
     ],
     "nearby": [
       "brentwood",
+      "maplewood",
       "crestwood",
       "affton",
       "richmond-heights",
       "kirkwood",
+      "southampton",
       "ladue"
     ]
   },
@@ -1014,7 +1032,9 @@
       "maryland-heights",
       "des-peres",
       "overland",
-      "kirkwood"
+      "kirkwood",
+      "brentwood",
+      "university-city"
     ]
   },
   {
@@ -1121,9 +1141,11 @@
       "jennings",
       "hazelwood",
       "florissant",
+      "black-jack",
       "overland",
       "university-city",
-      "spanish-lake"
+      "spanish-lake",
+      "bridgeton"
     ]
   },
   {
@@ -1234,7 +1256,9 @@
       "town-and-country",
       "ellisville",
       "kirkwood",
-      "sunset-hills"
+      "fenton",
+      "sunset-hills",
+      "creve-coeur"
     ]
   },
   {
@@ -1243,16 +1267,37 @@
     "region": "MO",
     "county": "St. Louis County",
     "kind": "city",
-    "tier": "mention",
-    "why_a_page": "Not enough verified local proof yet (0 facts). claytonmo.gov blocked automated fetches (403).",
-    "verified": "2026-11-10",
+    "tier": "page",
+    "why_a_page": "5 verified local permit facts from the City of Clayton fee schedule (effective May 1, 2025; re-checked 2026-11-15), 2 official links, 2 FAQs built from those facts. Trash/bulky pickup unverified: claytonmo.gov returns 403 to automated fetches.",
+    "verified": "2026-11-15",
     "official_site": {
       "label": "City of Clayton",
       "url": "https://www.claytonmo.gov/"
     },
     "local_facts": {
       "trash": [],
-      "permits": [],
+      "permits": [
+        {
+          "fact": "Yes. Clayton requires its own demolition permit, separate from building, plumbing and mechanical permits. The city does not issue combined permits.",
+          "source": "https://www5.citizenserve.com/Documents/213/Planning%20and%20Development%20Fee%20Schedule%20Effective%20May%202025.pdf"
+        },
+        {
+          "fact": "Permits come from the City of Clayton Planning and Development Services at 10 North Bemiston Avenue. Applications can be filed through the Clayton Permit Portal, by phone or by email.",
+          "source": "https://www5.citizenserve.com/Documents/213/Planning%20and%20Development%20Fee%20Schedule%20Effective%20May%202025.pdf"
+        },
+        {
+          "fact": "Electrical permits and inspections for work in Clayton go through St. Louis County, not the city.",
+          "source": "https://www5.citizenserve.com/Documents/213/Planning%20and%20Development%20Fee%20Schedule%20Effective%20May%202025.pdf"
+        },
+        {
+          "fact": "Under the fee schedule effective May 1, 2025, a demolition permit is a $35 processing fee plus a $125 minimum, with $10 more per 1,000 square feet for demolitions over 5,000 gross square feet.",
+          "source": "https://www5.citizenserve.com/Documents/213/Planning%20and%20Development%20Fee%20Schedule%20Effective%20May%202025.pdf"
+        },
+        {
+          "fact": "Tearing down a whole structure also takes a $1,000 refundable cash deposit. Minor structures, such as small sheds, are the exception.",
+          "source": "https://www5.citizenserve.com/Documents/213/Planning%20and%20Development%20Fee%20Schedule%20Effective%20May%202025.pdf"
+        }
+      ],
       "other": []
     },
     "neighborhoods": [
@@ -1270,15 +1315,35 @@
     },
     "jobs": [],
     "review_ids": [],
-    "unique_faqs": [],
-    "official_links": [],
+    "unique_faqs": [
+      {
+        "q": "Who issues demolition permits in Clayton?",
+        "a": "The City of Clayton does, through Planning and Development Services at 10 North Bemiston Avenue. Applications can be filed through the Clayton Permit Portal, by phone or by email. Demolition is its own permit; Clayton does not combine it with building, plumbing or mechanical permits."
+      },
+      {
+        "q": "Is there a deposit to tear down a building in Clayton?",
+        "a": "Yes. Total demolition of a structure takes a $1,000 refundable cash deposit on top of the permit fee. Minor structures, such as small sheds, are the exception."
+      }
+    ],
+    "official_links": [
+      {
+        "label": "Clayton Permit Portal",
+        "url": "https://www5.citizenserve.com/Portal/PortalController?Action=showHomePage&ctzPagePrefix=Portal_&installationID=213"
+      },
+      {
+        "label": "Clayton permit fee schedule (PDF, effective May 2025)",
+        "url": "https://www5.citizenserve.com/Documents/213/Planning%20and%20Development%20Fee%20Schedule%20Effective%20May%202025.pdf"
+      }
+    ],
     "nearby": [
       "richmond-heights",
       "university-city",
       "brentwood",
+      "maplewood",
+      "dogtown",
       "ladue",
-      "webster-groves",
-      "overland"
+      "the-hill",
+      "central-west-end"
     ]
   },
   {
@@ -1365,7 +1430,9 @@
       "clayton",
       "ferguson",
       "creve-coeur",
-      "bridgeton"
+      "bridgeton",
+      "richmond-heights",
+      "brentwood"
     ]
   },
   {
@@ -1457,8 +1524,10 @@
     ],
     "nearby": [
       "ferguson",
+      "black-jack",
       "university-city",
       "spanish-lake",
+      "central-west-end",
       "overland",
       "florissant",
       "hazelwood"
@@ -1557,7 +1626,9 @@
       "kirkwood",
       "affton",
       "concord",
-      "brentwood"
+      "fenton",
+      "brentwood",
+      "des-peres"
     ]
   },
   {
@@ -1646,7 +1717,9 @@
       "manchester",
       "ballwin",
       "kirkwood",
-      "ladue"
+      "ladue",
+      "chesterfield",
+      "maryland-heights"
     ]
   },
   {
@@ -1744,7 +1817,9 @@
       "overland",
       "st-charles",
       "florissant",
-      "ferguson"
+      "ferguson",
+      "creve-coeur",
+      "university-city"
     ]
   },
   {
@@ -1838,7 +1913,9 @@
       "wildwood",
       "chesterfield",
       "town-and-country",
-      "des-peres"
+      "des-peres",
+      "fenton",
+      "kirkwood"
     ]
   },
   {
@@ -1922,11 +1999,13 @@
     ],
     "nearby": [
       "clayton",
+      "maplewood",
       "brentwood",
+      "dogtown",
       "university-city",
+      "the-hill",
       "ladue",
-      "webster-groves",
-      "overland"
+      "webster-groves"
     ]
   },
   {
@@ -2022,7 +2101,9 @@
       "manchester",
       "creve-coeur",
       "ladue",
-      "crestwood"
+      "crestwood",
+      "fenton",
+      "sunset-hills"
     ]
   },
   {
@@ -2101,12 +2182,14 @@
       }
     ],
     "nearby": [
+      "fenton",
       "crestwood",
       "concord",
       "kirkwood",
       "affton",
       "webster-groves",
-      "des-peres"
+      "des-peres",
+      "mehlville"
     ]
   },
   {
@@ -2198,8 +2281,10 @@
       "clayton",
       "richmond-heights",
       "university-city",
+      "maplewood",
       "creve-coeur",
-      "webster-groves"
+      "webster-groves",
+      "overland"
     ]
   },
   {
@@ -2297,11 +2382,13 @@
     ],
     "nearby": [
       "richmond-heights",
+      "maplewood",
       "clayton",
       "ladue",
       "webster-groves",
+      "dogtown",
       "university-city",
-      "crestwood"
+      "the-hill"
     ]
   },
   {
@@ -2377,7 +2464,9 @@
       "lemay",
       "affton",
       "sunset-hills",
-      "crestwood"
+      "crestwood",
+      "fenton",
+      "bevo-mill"
     ]
   },
   {
@@ -2454,7 +2543,9 @@
       "concord",
       "oakville",
       "crestwood",
-      "sunset-hills"
+      "sunset-hills",
+      "bevo-mill",
+      "southampton"
     ]
   },
   {
@@ -2534,8 +2625,10 @@
       "crestwood",
       "webster-groves",
       "mehlville",
+      "southampton",
+      "bevo-mill",
       "concord",
-      "sunset-hills"
+      "maplewood"
     ]
   },
   {
@@ -2619,9 +2712,11 @@
       "sunset-hills",
       "mehlville",
       "crestwood",
+      "fenton",
       "affton",
       "oakville",
-      "lemay"
+      "lemay",
+      "kirkwood"
     ]
   },
   {
@@ -2666,10 +2761,12 @@
     "unique_faqs": [],
     "official_links": [],
     "nearby": [
+      "black-jack",
       "jennings",
       "ferguson",
       "florissant",
       "hazelwood",
+      "central-west-end",
       "overland",
       "university-city"
     ]
@@ -2749,10 +2846,12 @@
     "nearby": [
       "affton",
       "mehlville",
+      "bevo-mill",
+      "southampton",
+      "tower-grove-south",
       "webster-groves",
       "crestwood",
-      "concord",
-      "oakville"
+      "concord"
     ]
   },
   {
@@ -2855,7 +2954,9 @@
       "cottleville",
       "weldon-spring",
       "st-peters",
-      "wentzville"
+      "wentzville",
+      "st-charles",
+      "chesterfield"
     ]
   },
   {
@@ -2969,7 +3070,9 @@
       "bridgeton",
       "cottleville",
       "hazelwood",
-      "weldon-spring"
+      "weldon-spring",
+      "creve-coeur",
+      "chesterfield"
     ]
   },
   {
@@ -3008,7 +3111,9 @@
       "weldon-spring",
       "ofallon",
       "dardenne-prairie",
-      "maryland-heights"
+      "maryland-heights",
+      "chesterfield",
+      "lake-saint-louis"
     ]
   },
   {
@@ -3100,7 +3205,9 @@
       "dardenne-prairie",
       "cottleville",
       "weldon-spring",
-      "st-peters"
+      "st-peters",
+      "chesterfield",
+      "st-charles"
     ]
   },
   {
@@ -3190,7 +3297,9 @@
       "wentzville",
       "cottleville",
       "weldon-spring",
-      "st-peters"
+      "st-peters",
+      "chesterfield",
+      "st-charles"
     ]
   },
   {
@@ -3199,9 +3308,9 @@
     "region": "MO",
     "county": "St. Charles County",
     "kind": "city",
-    "tier": "mention",
-    "why_a_page": "Not enough verified local proof yet (3 facts). Official site could not be confirmed or lists little.",
-    "verified": "2026-11-10",
+    "tier": "page",
+    "why_a_page": "3 verified local facts from official city pages (2026-11-15), 3 official links, 2 city FAQ(s).",
+    "verified": "2026-11-15",
     "official_site": {
       "label": "City of Dardenne Prairie",
       "url": "https://www.dardenneprairie.gov/"
@@ -3209,18 +3318,18 @@
     "local_facts": {
       "trash": [
         {
-          "fact": "The city's utilities page lists Grace Hauling (636-398-8060) as the trash, yard waste and recycling provider, and notes that your address determines which company serves you.",
+          "fact": "The City of Dardenne Prairie lists Grace Hauling (636-398-8060) for trash, yard waste and recycling service.",
           "source": "https://www.dardenneprairie.gov/community/utilities.php"
         }
       ],
       "permits": [
         {
-          "fact": "The Dardenne Prairie Building Division issues residential construction permits and does on-site inspections (Building Inspector 636-755-5305, 2032 Hanley Road).",
+          "fact": "Dardenne Prairie's own Building & Code Enforcement Department issues residential and commercial construction permits and does the on-site inspections.",
           "source": "https://www.dardenneprairie.gov/department/building_code_enforcement/index.php"
         },
         {
-          "fact": "The city's permit list includes room additions, accessory buildings and garages, basement finishes, porches and decks, fences, and retaining walls 4 feet or higher.",
-          "source": "https://www.dardenneprairie.gov/business/permits_licenses.php"
+          "fact": "The city's residential permit application (revised July 28, 2022) lists a $150 fee for a basement finish and $150 for a deck or porch, and says to check with the fire district for its permit requirement.",
+          "source": "https://www.dardenneprairie.gov/Documents/Business/Residential%20Updates%207-28-2022.pdf"
         }
       ],
       "other": []
@@ -3235,15 +3344,39 @@
     },
     "jobs": [],
     "review_ids": [],
-    "unique_faqs": [],
-    "official_links": [],
+    "unique_faqs": [
+      {
+        "q": "Who picks up trash in Dardenne Prairie?",
+        "a": "The city lists Grace Hauling (636-398-8060) for trash, yard waste and recycling."
+      },
+      {
+        "q": "Who issues building permits in Dardenne Prairie?",
+        "a": "The city's own Building & Code Enforcement Department issues residential construction permits and does the inspections. A deck or porch permit is $150 on the city's 2022 application; check with your fire district too."
+      }
+    ],
+    "official_links": [
+      {
+        "label": "City of Dardenne Prairie",
+        "url": "https://www.dardenneprairie.gov/"
+      },
+      {
+        "label": "Dardenne Prairie utilities (trash)",
+        "url": "https://www.dardenneprairie.gov/community/utilities.php"
+      },
+      {
+        "label": "Dardenne Prairie Building & Code Enforcement",
+        "url": "https://www.dardenneprairie.gov/department/building_code_enforcement/index.php"
+      }
+    ],
     "nearby": [
       "ofallon",
       "lake-saint-louis",
       "cottleville",
       "weldon-spring",
       "st-peters",
-      "wentzville"
+      "wentzville",
+      "chesterfield",
+      "st-charles"
     ]
   },
   {
@@ -3343,7 +3476,9 @@
       "dardenne-prairie",
       "ofallon",
       "lake-saint-louis",
-      "chesterfield"
+      "chesterfield",
+      "st-charles",
+      "maryland-heights"
     ]
   },
   {
@@ -3352,9 +3487,9 @@
     "region": "MO",
     "county": "St. Charles County",
     "kind": "city",
-    "tier": "mention",
-    "why_a_page": "Not enough verified local proof yet (2 facts). Official site could not be confirmed or lists little.",
-    "verified": "2026-11-10",
+    "tier": "page",
+    "why_a_page": "2 verified local facts from official city pages (2026-11-15), 3 official links, 1 city FAQ(s). Trash/bulky pickup: no official source found.",
+    "verified": "2026-11-15",
     "official_site": {
       "label": "City of Weldon Spring",
       "url": "https://weldonspring.gov/"
@@ -3363,8 +3498,12 @@
       "trash": [],
       "permits": [
         {
-          "fact": "Weldon Spring doesn't issue its own building permits. The city contracts with the St. Charles County Building and Code Enforcement Division to issue permits for projects in the city.",
+          "fact": "The City of Weldon Spring contracts with the St. Charles County Building and Code Enforcement Division to issue building permits for projects in the city.",
           "source": "https://weldonspring.gov/codeenforcement"
+        },
+        {
+          "fact": "To apply for a building permit you also use the city's Multipurpose Land Use Permit: $250 for a residential house and $150 for an accessory building or structure, paid at City Hall.",
+          "source": "https://weldonspring.gov/cityplanner"
         }
       ],
       "other": []
@@ -3379,15 +3518,802 @@
     },
     "jobs": [],
     "review_ids": [],
-    "unique_faqs": [],
-    "official_links": [],
+    "unique_faqs": [
+      {
+        "q": "Who issues building permits in Weldon Spring?",
+        "a": "St. Charles County's Building and Code Enforcement Division, under a contract with the city. You also file the city's Multipurpose Land Use Permit: $250 for a house, $150 for an accessory building or structure."
+      }
+    ],
+    "official_links": [
+      {
+        "label": "City of Weldon Spring",
+        "url": "https://weldonspring.gov/"
+      },
+      {
+        "label": "Weldon Spring code enforcement (building permits)",
+        "url": "https://weldonspring.gov/codeenforcement"
+      },
+      {
+        "label": "Weldon Spring city planner (land use permit)",
+        "url": "https://weldonspring.gov/cityplanner"
+      }
+    ],
     "nearby": [
       "cottleville",
       "st-peters",
       "dardenne-prairie",
       "chesterfield",
       "ofallon",
-      "lake-saint-louis"
+      "lake-saint-louis",
+      "st-charles",
+      "ellisville"
+    ]
+  },
+  {
+    "slug": "maplewood",
+    "name": "Maplewood",
+    "region": "MO",
+    "county": "St. Louis County",
+    "kind": "city",
+    "tier": "page",
+    "why_a_page": "7 verified local facts from official city pages (2026-11-15), 3 official links, 3 city FAQs.",
+    "verified": "2026-11-15",
+    "official_site": {
+      "label": "City of Maplewood",
+      "url": "https://www.maplewoodmo.gov/"
+    },
+    "local_facts": {
+      "trash": [
+        {
+          "fact": "Trash for single-family homes, duplexes and four-family buildings in Maplewood is collected by Republic Services.",
+          "source": "https://www.maplewoodmo.gov/government/departments/public_works/programs___resources/refuse_recycling_collection.php"
+        },
+        {
+          "fact": "Large items are picked up when you call Republic Services at 636-947-5959 to schedule it.",
+          "source": "https://www.maplewoodmo.gov/government/departments/public_works/programs___resources/refuse_recycling_collection.php"
+        },
+        {
+          "fact": "Wednesday is collection day. Trash and bulky items go to the curb after 5:00 p.m. on Tuesday, and containers come back in by midnight Wednesday.",
+          "source": "https://www.maplewoodmo.gov/government/departments/public_works/programs___resources/refuse_recycling_collection.php"
+        }
+      ],
+      "permits": [
+        {
+          "fact": "A Maplewood building permit is required for all general contracting work, including carpentry, accessory structures, partial demolitions, remodeling, fences, patios and decks.",
+          "source": "https://www.maplewoodmo.gov/services/permit_applications_and_online_payments.php"
+        },
+        {
+          "fact": "Electrical, plumbing and mechanical permits go through St. Louis County, not the city.",
+          "source": "https://www.maplewoodmo.gov/services/permit_applications_and_online_payments.php"
+        }
+      ],
+      "other": [
+        {
+          "fact": "Anyone moving into Maplewood needs an occupancy permit, issued only after the property passes an inspection.",
+          "source": "https://www.maplewoodmo.gov/services/permit_applications_and_online_payments.php"
+        },
+        {
+          "fact": "Yard waste needs a city yard waste tag, sold for $4.85 at City Hall, the Maplewood Public Library and Scheidt True Value Hardware (2026 prices).",
+          "source": "https://www.maplewoodmo.gov/government/departments/public_works/programs___resources/refuse_recycling_collection.php"
+        }
+      ]
+    },
+    "neighborhoods": [],
+    "zips": [
+      "63143"
+    ],
+    "coords": {
+      "lat": 38.61222,
+      "lng": -90.32389
+    },
+    "jobs": [],
+    "review_ids": [],
+    "unique_faqs": [
+      {
+        "q": "Who picks up trash in Maplewood?",
+        "a": "Republic Services, for single-family homes, duplexes and four-family buildings. Wednesday is collection day."
+      },
+      {
+        "q": "Will the trash company in Maplewood take a couch or other big items?",
+        "a": "Large items are picked up when you call Republic Services at 636-947-5959 to schedule it. Bulky items go to the curb after 5:00 p.m. on Tuesday."
+      },
+      {
+        "q": "Do I need a permit to tear out a deck or do a partial demolition in Maplewood?",
+        "a": "Yes. Maplewood requires a city building permit for general contracting work, including partial demolitions, remodeling, accessory structures and decks. Electrical, plumbing and mechanical permits go through St. Louis County."
+      }
+    ],
+    "official_links": [
+      {
+        "label": "City of Maplewood",
+        "url": "https://www.maplewoodmo.gov/"
+      },
+      {
+        "label": "Maplewood trash and bulky pickup",
+        "url": "https://www.maplewoodmo.gov/government/departments/public_works/programs___resources/refuse_recycling_collection.php"
+      },
+      {
+        "label": "Maplewood building permits",
+        "url": "https://www.maplewoodmo.gov/services/permit_applications_and_online_payments.php"
+      }
+    ],
+    "nearby": [
+      "richmond-heights",
+      "brentwood",
+      "dogtown",
+      "clayton",
+      "webster-groves",
+      "the-hill",
+      "southampton",
+      "ladue"
+    ]
+  },
+  {
+    "slug": "fenton",
+    "name": "Fenton",
+    "region": "MO",
+    "county": "St. Louis County",
+    "kind": "city",
+    "tier": "page",
+    "why_a_page": "7 verified local facts from official city pages (2026-11-15), 3 official links, 3 city FAQs.",
+    "verified": "2026-11-15",
+    "official_site": {
+      "label": "City of Fenton",
+      "url": "https://www.fentonmo.org/"
+    },
+    "local_facts": {
+      "trash": [
+        {
+          "fact": "Fenton's trash and recycling are collected by Waste Connections. For a bulk item pickup, contact Waste Connections at 636-321-2100.",
+          "source": "https://www.fentonmo.org/1169/Trash-Recycle-Information"
+        },
+        {
+          "fact": "Residential trash collection starts between 6 and 6:30 a.m., Monday through Wednesday depending on your route.",
+          "source": "https://www.fentonmo.org/1169/Trash-Recycle-Information"
+        },
+        {
+          "fact": "Concrete, dirt and rocks, electronics and TVs, tires, paint, propane tanks, household hazardous waste and yard waste are not accepted in residential trash.",
+          "source": "https://www.fentonmo.org/1169/Trash-Recycle-Information"
+        }
+      ],
+      "permits": [
+        {
+          "fact": "Fenton permits are applied for online through the City's Permit Portal, and questions go to the Community Development Department.",
+          "source": "https://www.fentonmo.org/488/Applications-Permits"
+        },
+        {
+          "fact": "Accessory buildings over 120 square feet also need a St. Louis County building permit; those 120 square feet and under need Fenton inspections.",
+          "source": "https://fentonmo.org/DocumentCenter/View/3301"
+        },
+        {
+          "fact": "For interior finish work and additions, Fenton approves the plans and returns them to you to submit to St. Louis County for the building permit.",
+          "source": "https://fentonmo.org/DocumentCenter/View/3314"
+        },
+        {
+          "fact": "A demolition permit requires copies certifying that water, sewer, gas and electricity have been properly disconnected from the structure.",
+          "source": "https://fentonmo.org/DocumentCenter/View/3309"
+        }
+      ],
+      "other": []
+    },
+    "neighborhoods": [],
+    "zips": [
+      "63026"
+    ],
+    "coords": {
+      "lat": 38.5275,
+      "lng": -90.44861
+    },
+    "jobs": [],
+    "review_ids": [],
+    "unique_faqs": [
+      {
+        "q": "Who picks up trash in Fenton?",
+        "a": "Waste Connections collects trash and recycling. For a bulk item pickup, contact Waste Connections at 636-321-2100."
+      },
+      {
+        "q": "Can I put concrete or old electronics in my Fenton trash?",
+        "a": "No. Concrete, dirt and rocks, electronics and TVs, tires, paint and household hazardous waste aren't accepted in residential trash. We can haul concrete and electronics; we can't take tires or paint."
+      },
+      {
+        "q": "Do I need a permit to tear down a shed in Fenton?",
+        "a": "A demolition permit needs proof that water, sewer, gas and electricity are disconnected from the structure. For building a shed, accessory buildings over 120 square feet also need a St. Louis County permit. Check with Fenton's Community Development Department for your project."
+      }
+    ],
+    "official_links": [
+      {
+        "label": "City of Fenton",
+        "url": "https://www.fentonmo.org/"
+      },
+      {
+        "label": "Fenton trash and recycling",
+        "url": "https://www.fentonmo.org/1169/Trash-Recycle-Information"
+      },
+      {
+        "label": "Fenton applications and permits",
+        "url": "https://www.fentonmo.org/488/Applications-Permits"
+      }
+    ],
+    "nearby": [
+      "sunset-hills",
+      "kirkwood",
+      "concord",
+      "crestwood",
+      "des-peres",
+      "manchester",
+      "webster-groves",
+      "affton"
+    ]
+  },
+  {
+    "slug": "black-jack",
+    "name": "Black Jack",
+    "region": "MO",
+    "county": "St. Louis County",
+    "kind": "city",
+    "tier": "page",
+    "why_a_page": "5 verified local facts from official city pages (2026-11-15), 3 official links, 2 city FAQs.",
+    "verified": "2026-11-15",
+    "official_site": {
+      "label": "City of Black Jack",
+      "url": "https://cityofblackjack.com/"
+    },
+    "local_facts": {
+      "trash": [
+        {
+          "fact": "The City of Black Jack lists Republic Services (636-947-5959) as the trash provider.",
+          "source": "https://cityofblackjack.com/DocumentCenter/View/1015/Welcome-Packet-Updated-2026"
+        },
+        {
+          "fact": "Trash goes curbside no earlier than 6 p.m. the day before pickup, in containers with watertight, close-fitting lids.",
+          "source": "https://cityofblackjack.com/138/Code-Enforcement"
+        },
+        {
+          "fact": "Yards must be kept free of any accumulation of trash, junk, lumber, woodpiles or tires.",
+          "source": "https://cityofblackjack.com/138/Code-Enforcement"
+        }
+      ],
+      "permits": [
+        {
+          "fact": "Since April 15, 2009, Black Jack has contracted with St. Louis County Public Works to issue building permits.",
+          "source": "https://cityofblackjack.com/149/Forms-Permits-Applications"
+        },
+        {
+          "fact": "A building permit is required to construct, alter, repair, move, remove or demolish a structure, including decks, fences, retaining walls over 24 inches and storage sheds over 100 square feet.",
+          "source": "https://www.cityofblackjack.com/FAQ.aspx"
+        }
+      ],
+      "other": []
+    },
+    "neighborhoods": [
+      "Trailwoods",
+      "Whitney Chase"
+    ],
+    "zips": [
+      "63033"
+    ],
+    "coords": {
+      "lat": 38.79917,
+      "lng": -90.26417
+    },
+    "jobs": [],
+    "review_ids": [],
+    "unique_faqs": [
+      {
+        "q": "Who picks up trash in Black Jack?",
+        "a": "The City of Black Jack lists Republic Services (636-947-5959) as the trash provider. Trash goes curbside no earlier than 6 p.m. the day before pickup."
+      },
+      {
+        "q": "Do I need a permit to tear down a deck or shed in Black Jack?",
+        "a": "Yes. Black Jack requires a building permit to remove or demolish a structure, including decks, fences, retaining walls over 24 inches and storage sheds over 100 square feet. Building permits are issued through St. Louis County Public Works under the city's contract."
+      }
+    ],
+    "official_links": [
+      {
+        "label": "City of Black Jack",
+        "url": "https://cityofblackjack.com/"
+      },
+      {
+        "label": "Black Jack permit FAQ",
+        "url": "https://www.cityofblackjack.com/FAQ.aspx"
+      },
+      {
+        "label": "Black Jack forms and permits",
+        "url": "https://cityofblackjack.com/149/Forms-Permits-Applications"
+      }
+    ],
+    "nearby": [
+      "spanish-lake",
+      "florissant",
+      "ferguson",
+      "hazelwood",
+      "jennings",
+      "bridgeton",
+      "overland",
+      "university-city"
+    ]
+  },
+  {
+    "slug": "st-louis",
+    "name": "St. Louis",
+    "region": "MO",
+    "county": "City of St. Louis",
+    "kind": "city",
+    "tier": "group",
+    "group": "st-louis-city",
+    "citywide": true,
+    "why_a_page": "Citywide facts for the St. Louis City page, all from stlouis-mo.gov (verified 2026-11-15).",
+    "verified": "2026-11-15",
+    "official_site": {
+      "label": "City of St. Louis",
+      "url": "https://www.stlouis-mo.gov/"
+    },
+    "local_facts": {
+      "trash": [
+        {
+          "fact": "City bulk pickup takes up to three items, including household furniture and appliances, once a month. Set them out by 6:00 a.m. on the Monday of your collection week.",
+          "source": "https://www.stlouis-mo.gov/government/departments/street/refuse/resident-collection/bulky-boat-items.cfm"
+        },
+        {
+          "fact": "Bulk items go where your trash is collected: at the curb for curbside service, or in the alley behind your home for alley service. Collectors can't pick up items on private property.",
+          "source": "https://www.stlouis-mo.gov/government/departments/street/refuse/resident-collection/bulky-boat-items.cfm"
+        },
+        {
+          "fact": "No container or bundle may weigh over 100 pounds or be over 6 feet long, refrigerator doors must be removed, and railroad ties are not accepted.",
+          "source": "https://www.stlouis-mo.gov/government/departments/street/refuse/resident-collection/bulky-boat-items.cfm"
+        },
+        {
+          "fact": "Bulk pickup is included in the solid waste services fee ($14 a month per unit), billed quarterly on the water bill.",
+          "source": "https://www.stlouis-mo.gov/government/departments/street/refuse/resident-collection/bulky-boat-items.cfm"
+        },
+        {
+          "fact": "City residents can bring up to 12 loads a year of trash, yard waste and bulk items to the City Transfer Station. Commercial trucks are not allowed.",
+          "source": "https://www.stlouis-mo.gov/government/departments/street/refuse/documents/transfer-stations-map.cfm"
+        }
+      ],
+      "permits": [
+        {
+          "fact": "In the City of St. Louis, demolition permits must be obtained by a demolition contractor certified by the City.",
+          "source": "https://www.stlouis-mo.gov/government/departments/public-safety/building/permits/demolition-permits.cfm"
+        },
+        {
+          "fact": "A demolition permit for a garage or shed is $25, and the permit is good for 30 days.",
+          "source": "https://www.stlouis-mo.gov/government/departments/public-safety/building/permits/demolition-permits.cfm"
+        },
+        {
+          "fact": "Any demolition application in a Preservation Review District is referred to the Cultural Resources Office, and no demolition permit may be issued without its approval.",
+          "source": "https://www.stlouis-mo.gov/government/departments/planning/cultural-resources/reviews/Preservation-Review-Districts.cfm"
+        },
+        {
+          "fact": "A building permit is required for any structural change or major alteration, including removing or installing a partition in a habitable space.",
+          "source": "https://www.stlouis-mo.gov/government/departments/public-safety/building/permits/building-permits/residential-permit-criteria.cfm"
+        }
+      ],
+      "other": []
+    },
+    "neighborhoods": [],
+    "zips": [],
+    "coords": {
+      "lat": 38.627,
+      "lng": -90.1994
+    },
+    "jobs": [],
+    "review_ids": [],
+    "unique_faqs": [
+      {
+        "q": "Will the City of St. Louis pick up a couch or an old refrigerator?",
+        "a": "Yes, through monthly bulk pickup: up to three items, set out by 6:00 a.m. on the Monday of your collection week, at the curb or in the alley where your trash is collected. Refrigerator doors must be removed. Anything over three items is a job for a hauler."
+      },
+      {
+        "q": "Who pulls a demolition permit in the City of St. Louis?",
+        "a": "The City requires demolition permits to be obtained by a City-certified demolition contractor. We don't pull City of St. Louis demolition permits; ask us how that works for your job. Interior tear-outs that remove partitions need a building permit."
+      }
+    ],
+    "official_links": [
+      {
+        "label": "City bulk pickup",
+        "url": "https://www.stlouis-mo.gov/government/departments/street/refuse/resident-collection/bulky-boat-items.cfm"
+      },
+      {
+        "label": "City transfer stations (resident drop-off)",
+        "url": "https://www.stlouis-mo.gov/government/departments/street/refuse/documents/transfer-stations-map.cfm"
+      },
+      {
+        "label": "City demolition permits",
+        "url": "https://www.stlouis-mo.gov/government/departments/public-safety/building/permits/demolition-permits.cfm"
+      }
+    ],
+    "nearby": [
+      "downtown",
+      "soulard",
+      "tower-grove-east",
+      "central-west-end",
+      "tower-grove-south",
+      "the-hill",
+      "bevo-mill",
+      "dogtown"
+    ]
+  },
+  {
+    "slug": "downtown",
+    "name": "Downtown",
+    "region": "MO",
+    "county": "City of St. Louis",
+    "kind": "neighborhood",
+    "tier": "group",
+    "group": "st-louis-city",
+    "why_a_page": "Neighborhood section of the St. Louis City page: boundaries and historic-district status from stlouis-mo.gov (2026-11-15); shares the citywide refuse and permit rules.",
+    "verified": "2026-11-15",
+    "local_facts": {
+      "trash": [],
+      "permits": [],
+      "other": [
+        {
+          "fact": "The City defines Downtown as running from Cole St. on the north to Chouteau Ave. on the south, between Tucker Blvd. on the west and Leonor K. Sullivan Blvd. on the east. It falls in Wards 8 and 14.",
+          "source": "https://www.stlouis-mo.gov/live-work/community/neighborhoods/downtown/index.cfm"
+        }
+      ]
+    },
+    "neighborhoods": [],
+    "zips": [],
+    "coords": {
+      "lat": 38.626,
+      "lng": -90.1922
+    },
+    "jobs": [],
+    "review_ids": [],
+    "unique_faqs": [],
+    "official_links": [],
+    "nearby": [
+      "soulard",
+      "tower-grove-east",
+      "central-west-end",
+      "tower-grove-south",
+      "the-hill",
+      "bevo-mill",
+      "dogtown",
+      "southampton"
+    ]
+  },
+  {
+    "slug": "soulard",
+    "name": "Soulard",
+    "region": "MO",
+    "county": "City of St. Louis",
+    "kind": "neighborhood",
+    "tier": "group",
+    "group": "st-louis-city",
+    "why_a_page": "Neighborhood section of the St. Louis City page: boundaries and historic-district status from stlouis-mo.gov (2026-11-15); shares the citywide refuse and permit rules.",
+    "verified": "2026-11-15",
+    "local_facts": {
+      "trash": [],
+      "permits": [],
+      "other": [
+        {
+          "fact": "Soulard's triangular boundaries are 7th Street and Broadway to the southeast and I-55 to the west and north. It is in Ward 8.",
+          "source": "https://www.stlouis-mo.gov/live-work/community/neighborhoods/soulard/index.cfm"
+        },
+        {
+          "fact": "It is one of the City's Certified Local Historic Districts, so exterior changes to buildings are reviewed against the district's standards by the Cultural Resources Office.",
+          "source": "https://stlouis-mo.gov/government/departments/planning/cultural-resources/reviews/City-Historic-Districts.cfm"
+        }
+      ]
+    },
+    "neighborhoods": [],
+    "zips": [],
+    "coords": {
+      "lat": 38.6053,
+      "lng": -90.2086
+    },
+    "jobs": [],
+    "review_ids": [],
+    "unique_faqs": [],
+    "official_links": [],
+    "nearby": [
+      "tower-grove-east",
+      "downtown",
+      "tower-grove-south",
+      "central-west-end",
+      "bevo-mill",
+      "the-hill",
+      "southampton",
+      "dogtown"
+    ]
+  },
+  {
+    "slug": "tower-grove-south",
+    "name": "Tower Grove South",
+    "region": "MO",
+    "county": "City of St. Louis",
+    "kind": "neighborhood",
+    "tier": "group",
+    "group": "st-louis-city",
+    "why_a_page": "Neighborhood section of the St. Louis City page: boundaries and historic-district status from stlouis-mo.gov (2026-11-15); shares the citywide refuse and permit rules.",
+    "verified": "2026-11-15",
+    "local_facts": {
+      "trash": [],
+      "permits": [],
+      "other": [
+        {
+          "fact": "Tower Grove South is bounded by Arsenal on the north, South Grand on the east, Chippewa on the south and South Kingshighway on the west. It is in Ward 6.",
+          "source": "https://www.stlouis-mo.gov/live-work/community/neighborhoods/tower-grove-south/index.cfm"
+        }
+      ]
+    },
+    "neighborhoods": [],
+    "zips": [],
+    "coords": {
+      "lat": 38.5967,
+      "lng": -90.2575
+    },
+    "jobs": [],
+    "review_ids": [],
+    "unique_faqs": [],
+    "official_links": [],
+    "nearby": [
+      "bevo-mill",
+      "tower-grove-east",
+      "southampton",
+      "the-hill",
+      "soulard",
+      "dogtown",
+      "central-west-end",
+      "maplewood"
+    ]
+  },
+  {
+    "slug": "tower-grove-east",
+    "name": "Tower Grove East",
+    "region": "MO",
+    "county": "City of St. Louis",
+    "kind": "neighborhood",
+    "tier": "group",
+    "group": "st-louis-city",
+    "why_a_page": "Neighborhood section of the St. Louis City page: boundaries and historic-district status from stlouis-mo.gov (2026-11-15); shares the citywide refuse and permit rules.",
+    "verified": "2026-11-15",
+    "local_facts": {
+      "trash": [],
+      "permits": [],
+      "other": [
+        {
+          "fact": "Tower Grove East is bounded by Shenandoah Ave. on the north, Nebraska Ave. on the east, Gravois Ave. on the south and South Grand Blvd. on the west. It is in Ward 7.",
+          "source": "https://www.stlouis-mo.gov/live-work/community/neighborhoods/tower-grove-east/index.cfm"
+        },
+        {
+          "fact": "Tower Grove East is a City Historic District, but an unusual one: its standards regulate only new construction and additions to existing buildings.",
+          "source": "https://stlouis-mo.gov/government/departments/planning/cultural-resources/tower-grove-east-historic-district.cfm"
+        }
+      ]
+    },
+    "neighborhoods": [],
+    "zips": [],
+    "coords": {
+      "lat": 38.6029,
+      "lng": -90.2364
+    },
+    "jobs": [],
+    "review_ids": [],
+    "unique_faqs": [],
+    "official_links": [],
+    "nearby": [
+      "tower-grove-south",
+      "soulard",
+      "bevo-mill",
+      "the-hill",
+      "central-west-end",
+      "southampton",
+      "downtown",
+      "dogtown"
+    ]
+  },
+  {
+    "slug": "the-hill",
+    "name": "The Hill",
+    "region": "MO",
+    "county": "City of St. Louis",
+    "kind": "neighborhood",
+    "tier": "group",
+    "group": "st-louis-city",
+    "why_a_page": "Neighborhood section of the St. Louis City page: boundaries and historic-district status from stlouis-mo.gov (2026-11-15); shares the citywide refuse and permit rules.",
+    "verified": "2026-11-15",
+    "local_facts": {
+      "trash": [],
+      "permits": [],
+      "other": [
+        {
+          "fact": "The Hill is generally defined by Manchester on the north, Southwest Avenue and Columbia on the south, Kingshighway on the east and Hampton on the west. It is in Ward 5.",
+          "source": "https://www.stlouis-mo.gov/live-work/community/neighborhoods/the-hill/index.cfm"
+        }
+      ]
+    },
+    "neighborhoods": [],
+    "zips": [],
+    "coords": {
+      "lat": 38.617,
+      "lng": -90.278
+    },
+    "jobs": [],
+    "review_ids": [],
+    "unique_faqs": [],
+    "official_links": [],
+    "nearby": [
+      "dogtown",
+      "tower-grove-south",
+      "central-west-end",
+      "southampton",
+      "tower-grove-east",
+      "maplewood",
+      "bevo-mill",
+      "richmond-heights"
+    ]
+  },
+  {
+    "slug": "southampton",
+    "name": "Southampton",
+    "region": "MO",
+    "county": "City of St. Louis",
+    "kind": "neighborhood",
+    "tier": "group",
+    "group": "st-louis-city",
+    "why_a_page": "Neighborhood section of the St. Louis City page: boundaries and historic-district status from stlouis-mo.gov (2026-11-15); shares the citywide refuse and permit rules.",
+    "verified": "2026-11-15",
+    "local_facts": {
+      "trash": [],
+      "permits": [],
+      "other": [
+        {
+          "fact": "Southampton is bounded by Chippewa on the north, South Kingshighway on the east, Eichelberger on the south and Hampton on the west. It is in Ward 5.",
+          "source": "https://www.stlouis-mo.gov/live-work/community/neighborhoods/southampton/index.cfm"
+        }
+      ]
+    },
+    "neighborhoods": [],
+    "zips": [],
+    "coords": {
+      "lat": 38.5869,
+      "lng": -90.2842
+    },
+    "jobs": [],
+    "review_ids": [],
+    "unique_faqs": [],
+    "official_links": [],
+    "nearby": [
+      "bevo-mill",
+      "tower-grove-south",
+      "the-hill",
+      "dogtown",
+      "maplewood",
+      "tower-grove-east",
+      "affton",
+      "richmond-heights"
+    ]
+  },
+  {
+    "slug": "central-west-end",
+    "name": "Central West End",
+    "region": "MO",
+    "county": "City of St. Louis",
+    "kind": "neighborhood",
+    "tier": "group",
+    "group": "st-louis-city",
+    "why_a_page": "Neighborhood section of the St. Louis City page: boundaries and historic-district status from stlouis-mo.gov (2026-11-15); shares the citywide refuse and permit rules.",
+    "verified": "2026-11-15",
+    "local_facts": {
+      "trash": [],
+      "permits": [],
+      "other": [
+        {
+          "fact": "The City defines the Central West End as running from Delmar Blvd. on the north to I-64 on the south, between Vandeventer Ave. on the east and Union Blvd. on the west. It is in Ward 9.",
+          "source": "https://www.stlouis-mo.gov/live-work/community/neighborhoods/central-west-end/index.cfm"
+        },
+        {
+          "fact": "It is one of the City's Certified Local Historic Districts, so exterior changes to buildings are reviewed against the district's standards by the Cultural Resources Office.",
+          "source": "https://stlouis-mo.gov/government/departments/planning/cultural-resources/reviews/City-Historic-Districts.cfm"
+        }
+      ]
+    },
+    "neighborhoods": [],
+    "zips": [],
+    "coords": {
+      "lat": 38.6403,
+      "lng": -90.2548
+    },
+    "jobs": [],
+    "review_ids": [],
+    "unique_faqs": [],
+    "official_links": [],
+    "nearby": [
+      "the-hill",
+      "dogtown",
+      "tower-grove-east",
+      "tower-grove-south",
+      "soulard",
+      "downtown",
+      "southampton",
+      "richmond-heights"
+    ]
+  },
+  {
+    "slug": "dogtown",
+    "name": "Dogtown",
+    "region": "MO",
+    "county": "City of St. Louis",
+    "kind": "neighborhood",
+    "tier": "group",
+    "group": "st-louis-city",
+    "why_a_page": "Neighborhood section of the St. Louis City page: boundaries and historic-district status from stlouis-mo.gov (2026-11-15); shares the citywide refuse and permit rules.",
+    "verified": "2026-11-15",
+    "local_facts": {
+      "trash": [],
+      "permits": [],
+      "other": [
+        {
+          "fact": "Dogtown is the old name of the City neighborhood now called Clayton-Tamm, which runs from Oakland Ave. on the north to Manchester Ave. and Dale Ave. on the south, between Hampton Ave. and Louisville Ave.",
+          "source": "https://www.stlouis-mo.gov/live-work/community/neighborhoods/clayton-tamm/index.cfm"
+        }
+      ]
+    },
+    "neighborhoods": [
+      "Clayton-Tamm"
+    ],
+    "zips": [],
+    "coords": {
+      "lat": 38.62583,
+      "lng": -90.29333
+    },
+    "jobs": [],
+    "review_ids": [],
+    "unique_faqs": [],
+    "official_links": [],
+    "nearby": [
+      "the-hill",
+      "maplewood",
+      "richmond-heights",
+      "central-west-end",
+      "clayton",
+      "southampton",
+      "tower-grove-south",
+      "brentwood"
+    ]
+  },
+  {
+    "slug": "bevo-mill",
+    "name": "Bevo Mill",
+    "region": "MO",
+    "county": "City of St. Louis",
+    "kind": "neighborhood",
+    "tier": "group",
+    "group": "st-louis-city",
+    "why_a_page": "Neighborhood section of the St. Louis City page: boundaries and historic-district status from stlouis-mo.gov (2026-11-15); shares the citywide refuse and permit rules.",
+    "verified": "2026-11-15",
+    "local_facts": {
+      "trash": [],
+      "permits": [],
+      "other": [
+        {
+          "fact": "Bevo Mill runs from Chippewa St. on the north to Holly Hills Blvd. on the south, with the Missouri Pacific Railroad on the east. It is in Wards 1 and 2.",
+          "source": "https://www.stlouis-mo.gov/live-work/community/neighborhoods/bevo-mill/index.cfm"
+        }
+      ]
+    },
+    "neighborhoods": [],
+    "zips": [],
+    "coords": {
+      "lat": 38.5816,
+      "lng": -90.2672
+    },
+    "jobs": [],
+    "review_ids": [],
+    "unique_faqs": [],
+    "official_links": [],
+    "nearby": [
+      "southampton",
+      "tower-grove-south",
+      "tower-grove-east",
+      "the-hill",
+      "dogtown",
+      "lemay",
+      "soulard",
+      "maplewood"
     ]
   }
 ]
