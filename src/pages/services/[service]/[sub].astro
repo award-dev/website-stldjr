@@ -27,7 +27,7 @@ const related = sub.related.map((slug) => subservices.find((s) => s.slug === slu
 // Recorded jobs of this kind (text only), linked to the city page where the job is shown with its photos.
 const re = sub.jobMatch ? new RegExp(sub.jobMatch, 'i') : null;
 const jobs = re
-  ? locations.filter((l) => l.tier !== 'mention').flatMap((l) => l.jobs.filter((j) => re.test(j.summary)).map((j) => ({ l, j })))
+  ? locations.filter((l) => l.tier !== 'mention').flatMap((l) => l.jobs.filter((j) => j.service === sub.parent && re.test(j.summary)).map((j) => ({ l, j })))
   : [];
 const intro = sub.intro.replace('{insured}', business.trust.insured ? `licensed and insured with a ${business.trust.insuranceDetails}` : 'licensed');
 const serviceSchema = {
@@ -50,13 +50,13 @@ const arrow = '<svg class="arrow" viewBox="0 0 24 24" aria-hidden="true" fill="n
       <a href={site.phoneHref} class="btn btn-ghost" data-track="phone_click" data-track-location={`sub-${sub.slug}`}>Call {site.phone}</a>
     </div>
   </PageHero>
-  <Fragment set:html={`<!-- TODO(seo): need a ${sub.name.toLowerCase()} job photo with the town and date -->`} />
+  <Fragment set:html={`<!-- TODO(seo): need ${/^[aeiou]/i.test(sub.name) ? 'an' : 'a'} ${sub.name.toLowerCase()} job photo with the town and date -->`} />
   <SubServiceBody sub={sub} />
 
   {jobs.length > 0 && (
     <section class="section-tight" aria-labelledby="jobs-h">
       <div class="shell sub-more">
-        <h2 id="jobs-h" class="display-md">{sub.name} jobs we've done</h2>
+        <h2 id="jobs-h" class="display-md">{sub.serviceType} jobs we've done</h2>
         <ul class="sub-jobs">
           {jobs.map(({ l, j }) => <li><p>{j.summary}</p><a class="link-u accent" href={cityHref(l)}>See the {l.name} job</a></li>)}
         </ul>
@@ -67,7 +67,7 @@ const arrow = '<svg class="arrow" viewBox="0 0 24 24" aria-hidden="true" fill="n
   {faqs.length > 0 && (
     <section class="section-tight" aria-labelledby="faq-h">
       <div class="shell sub-more">
-        <h2 id="faq-h" class="display-md">{sub.name} questions</h2>
+        <h2 id="faq-h" class="display-md">{sub.serviceType} questions</h2>
         <Faq items={faqs} />
       </div>
     </section>

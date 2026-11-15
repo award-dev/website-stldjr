@@ -35,6 +35,16 @@ for (const l of cities) {
 // 4. Hub -> every city page.
 add(hub, ...cities.map(cityPath), ...groupPages);
 for (const gp of groupPages) add(gp, ...groups.map(servicePath), hub, "/pricing/");
+// 5. Service sub-pages (site-data/subservices.json): parent <-> sub, sub -> related subs, cities with a
+//    matching recorded job, and pricing.
+const subs = read("site-data/subservices.json");
+const subPath = (s) => `/services/${s.parent}/${s.slug}/`;
+for (const s of subs) {
+  const re = s.jobMatch ? new RegExp(s.jobMatch, "i") : null;
+  const withJobs = re ? locations.filter((l) => l.tier !== "mention" && (l.jobs || []).some((j) => j.service === s.parent && re.test(j.summary))) : [];
+  add(`/services/${s.parent}/`, subPath(s));
+  add(subPath(s), `/services/${s.parent}/`, ...s.related.map((r) => `/services/${s.parent}/${r}/`), ...withJobs.map((l) => (l.tier === "group" ? `/service-areas/${l.group}/` : cityPath(l))), "/pricing/");
+}
 // 6. Every page links to Contact and booking (header/footer), plus click-to-call.
 for (const k of Object.keys(map)) add(k, ...always);
 

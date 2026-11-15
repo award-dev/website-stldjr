@@ -69,7 +69,7 @@ const arrow = '<svg class="arrow" viewBox="0 0 24 24" aria-hidden="true" fill="n
           {s.scope.map((x, i) => (
             <li data-reveal style={`--d:${i * 70}ms`}>
               <span class="scope__n" aria-hidden="true">0{i + 1}</span>
-              <div><h3 class="title">{(() => { const sp = subForItem(x.title === 'Shed removal' ? 'Shed demolition' : x.title); return sp ? <a class="link-u accent" href={subPath(sp)}>{x.title}</a> : x.title; })()}</h3><p class="muted">{x.body}</p></div>
+              <div><h3 class="title">{(() => { const sp = subForItem(x.title); return sp ? <a class="link-u accent" href={subPath(sp)}>{x.title}</a> : x.title; })()}</h3><p class="muted">{x.body}</p></div>
             </li>
           ))}
         </ol>

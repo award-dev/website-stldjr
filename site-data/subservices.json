@@ -31,7 +31,7 @@
         "h2": "How much does interior demolition cost in St. Louis?",
         "body": [
           "The tear-out is labor, and we quote it per job from your photos. One bedroom and a whole floor are different jobs, so we don't publish a flat rate or a price per square foot.",
-          "The debris is hauled by the load: {quarter} for a quarter of the truck, {half} for a half, {threeQuarter} for three quarters and {full} for the full {maxYards}-yard truck. Plaster, tile and other heavy material can add to it. {heavy}"
+          "The debris is hauled by the load: {quarter} for a quarter of the truck, {half} for a half, {threeQuarter} for three quarters and {full} for the full {maxYards}-yard truck. {heavy}"
         ]
       },
       {
@@ -39,7 +39,7 @@
         "h2": "Before the walls come down",
         "body": [
           "Water, gas and electric to the area have to be shut off and capped first. Permit rules depend on your city and the job, and we'll walk you through what yours needs. We don't pull City of St. Louis demolition permits.",
-          "We don't do asbestos testing or abatement, and we can't haul asbestos. If an inspector hasn't cleared the material, we don't start that part of the job."
+          "We don't do asbestos testing or abatement, and we can't haul asbestos. Testing is handled by an inspector before demolition. Leftover remodel debris that's already torn out is a plain haul: [construction debris removal](/services/construction-debris-removal/)."
         ]
       }
     ],
@@ -68,7 +68,7 @@
         "h2": "All of it, or just the tops",
         "body": [
           "Some kitchens come out to the studs: upper and lower cabinets, the tops, the backsplash, the soffits and the floor. Others keep the cabinets and lose only the countertops and backsplash so new tops can go on. Both are kitchen demolition, and we quote the one you need.",
-          "If you're keeping the cabinets, the floor or an appliance, say so up front. We protect what stays and take out what goes."
+          "If you're keeping the cabinets, the floor or an appliance, say so up front. We protect what stays and take out what goes. Taking out walls too? That's [interior demolition](/services/demolition/interior-demolition/)."
         ]
       },
       {
@@ -76,7 +76,7 @@
         "h2": "How much does kitchen demolition cost?",
         "body": [
           "Taking the kitchen apart is labor, quoted per job from photos. The haul is by the load, from {quarter} for a quarter of the truck to {full} for a full one. {fit:three-quarter:kitchen} {examplesNote}",
-          "Stone or tile countertops and a tiled floor are heavy. {heavy} Old appliances can go on the same truck; anything with Freon, like a refrigerator, is $25 per item."
+          "{heavy} Old appliances can go on the same truck. {freon}"
         ]
       },
       {
@@ -112,14 +112,14 @@
         "h2": "Down to the studs, or around the tub",
         "body": [
           "A full bathroom tear-out takes the room to bare studs and subfloor: tile walls, the shower or tub surround, the vanity, the toilet, the mirror and the floor. If the tub is staying, or a tiled wall you like, we work around it.",
-          "Tile over mortar beds and cast-iron tubs are the heavy part of most bathrooms. Tell us what's in there so we bring the right crew."
+          "Tell us what's in there, like a cast-iron tub or tile set in mortar, so we bring the right crew. Opening walls into the next room is [interior demolition](/services/demolition/interior-demolition/)."
         ]
       },
       {
         "id": "cost",
         "h2": "How much does bathroom demolition cost in St. Louis?",
         "body": [
-          "The tear-out is labor, quoted per job from photos. The haul is by the load, {quarter} to {full}. {fit:half:bathroom} {examplesNote} Tile and mortar count as heavy material. {heavy}"
+          "The tear-out is labor, quoted per job from photos. The haul is by the load, from {quarter} for a quarter of the truck to {full} for the full {maxYards}-yard truck. {fit:half:bathroom} {examplesNote} {heavy}"
         ]
       },
       {
@@ -155,22 +155,22 @@
         "id": "scope",
         "h2": "What commercial demolition we do",
         "body": [
-          "The build-out inside the space is the usual job: partition walls, drop ceilings, flooring, restroom fixtures, counters and built-ins your remodel is replacing. A whole suite can be cleared to a bare shell, or just one area while the rest of the business stays open.",
-          "Outside the building, a concrete slab or patio, a detached garage, a shed or a deck at a commercial property is quoted the same way. We don't do wrecking, implosion, high-rise or heavy industrial work."
+          "The build-out inside the space is the usual job: partition walls, drop ceilings, flooring, restroom fixtures, counters and built-ins your remodel is replacing. A whole suite can be cleared to a bare shell, or just part of it.",
+          "Outside the building, a [concrete slab or patio](/services/demolition/concrete-removal/), a detached garage, a shed or a deck at a commercial property is quoted the same way. We don't do wrecking, implosion, high-rise or heavy industrial work."
         ]
       },
       {
         "id": "cost",
         "h2": "How commercial demolition is priced",
         "body": [
-          "Labor is quoted per job from photos and a look at what's coming down. We don't publish a price per square foot. The debris is hauled by the load, from {quarter} for a quarter of the truck to {full} for the full {maxYards}-yard truck, and a bigger job is simply more loads. {heavy}"
+          "Labor is quoted per job from photos. We don't publish a price per square foot. The debris is hauled by the load, from {quarter} for a quarter of the truck to {full} for the full {maxYards}-yard truck, and a bigger job is simply more loads. {heavy}"
         ]
       },
       {
         "id": "plan",
-        "h2": "Planning around a business",
+        "h2": "What to tell us about the space",
         "body": [
-          "Tell us whether the space is empty or still operating, which utilities are shared with another suite, and where the truck can load. The landlord or building manager usually knows which panel and shutoffs serve your suite; they have to be off before we cut. Ask us about permits for your building. An inspector clears any suspect material before that part comes out."
+          "Tell us which utilities are shared with another suite and where the truck can load. Utilities serving the area we're cutting have to be shut off and capped first. Ask us about permits for your building. We don't do asbestos testing or abatement, and we can't haul asbestos. Testing is handled by an inspector before demolition."
         ]
       }
     ],
@@ -198,7 +198,7 @@
         "id": "what",
         "h2": "Patios, driveways and slabs",
         "body": [
-          "The concrete doesn't have to be broken up before we show up. We break out patios, driveways, walkways and slabs that are still in place, load the pieces and take them.",
+          "The concrete doesn't have to be broken up before we show up. We break out patios, driveways and slabs that are still in place, load the pieces and take them.",
           "Already in pieces? A busted-up slab piled in the yard is a haul only, priced like any other [construction debris removal](/services/construction-debris-removal/)."
         ]
       },
@@ -243,7 +243,7 @@
         "h2": "The whole garage, start to finish",
         "body": [
           "Roof, walls, doors and framing, taken down and hauled. Whatever's still stored inside can go on the same truck; tell us what you're keeping first.",
-          "Detached garages are the usual call. If the garage shares a wall with the house, say so up front, because that changes how it comes down."
+          "Tell us if the garage is detached or shares a wall with the house, because that changes how it comes down."
         ]
       },
       {
@@ -264,7 +264,7 @@
         "id": "before",
         "h2": "Before a garage comes down",
         "body": [
-          "Shut off and cap the power, gas and water that run to the garage before demo day. Whether you need a permit depends on your city; ask and we'll walk you through it. We don't test for asbestos or remove it, so if the siding or roofing might contain it, an inspector checks first."
+          "Shut off and cap the power, gas and water that run to the garage before demo day. Whether you need a permit depends on your city; ask and we'll walk you through it. We don't do asbestos testing or abatement, and we can't haul asbestos. Testing is handled by an inspector before demolition."
         ]
       }
     ],
@@ -301,14 +301,14 @@
         "h2": "What happens before a house comes down",
         "body": [
           "Every utility has to be shut off and capped: water, gas, electric and sewer. Permit rules depend on your city and the job, and we'll walk you through what yours needs. We don't pull City of St. Louis demolition permits.",
-          "We don't do asbestos testing or abatement, and we can't haul asbestos. An inspector clears the house first, and we don't start any part an inspector hasn't cleared. Tell us about the basement or slab, and anything on the lot that stays, like a fence, a driveway or trees."
+          "We don't do asbestos testing or abatement, and we can't haul asbestos. Testing is handled by an inspector before demolition. Tell us about the basement or slab, and anything on the lot that stays, like a fence, a driveway or trees."
         ]
       },
       {
         "id": "cost",
         "h2": "How much does house demolition cost?",
         "body": [
-          "Labor is quoted per job from photos and a look at what's coming down; there's no price per square foot. Hauling is by the load, from {quarter} for a quarter of the truck to {full} for the full {maxYards}-yard truck, and a house takes more than one load. {heavy} One crew does the demolition and the hauling, and we're {insured}."
+          "Labor is quoted per job from photos; there's no price per square foot. Hauling is by the load, from {quarter} for a quarter of the truck to {full} for the full {maxYards}-yard truck, and a house takes more than one load. {heavy} One crew does the demolition and the hauling, and we're {insured}."
         ]
       }
     ],
@@ -395,11 +395,14 @@
         "id": "prep",
         "h2": "Before the shed comes down",
         "body": [
-          "If the shed has power, the circuit has to be shut off and disconnected first. Send photos of the outside, the inside and the floor, and tell us how close the truck can get. Behind a fence or down a slope is fine; we plan the carry."
+          "If the shed has power, the circuit has to be shut off and disconnected first. Send photos of the outside, the inside and the floor, and tell us how close the truck can get. Behind a fence or down a slope is fine. A long carry can add labor, and we confirm the price before we load."
         ]
       }
     ],
-    "parent": "demolition"
+    "parent": "demolition",
+    "aliases": [
+      "Shed removal"
+    ]
   },
   {
     "slug": "hot-tub-removal",
@@ -423,14 +426,14 @@
         "id": "how",
         "h2": "Whole, or cut down on site",
         "body": [
-          "If the tub fits through the gate and down the path, it leaves whole. If it's boxed in by a fence, a deck or a narrow side yard, we cut it down where it sits and carry it out in pieces. The cover, steps and skirt go too."
+          "If the tub fits through the gate and down the path, it leaves whole. If it's boxed in by a fence, a deck or a narrow side yard, we cut it down where it sits and carry it out in pieces. The cover, steps and skirt go too. A tub that leaves whole with no cutting is a plain [junk removal](/services/junk-removal/) pickup."
         ]
       },
       {
         "id": "cost",
         "h2": "How much does hot tub removal cost?",
         "body": [
-          "The cut-down is labor, quoted per job from photos. The haul is by the load, from {quarter} for a quarter of the truck to {full} for the whole {maxYards}-yard truck. There's no hot tub line in our load examples, so we won't guess at one; send photos and we'll tell you before we start."
+          "The cut-down is labor, quoted per job from photos. The haul is by the load, from {quarter} for a quarter of the truck to {full} for the whole {maxYards}-yard truck. Send a photo and we'll tell you the load size and the price before we start."
         ]
       },
       {
