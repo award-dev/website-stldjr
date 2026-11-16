@@ -13,8 +13,10 @@ interface Props {
   image?: ImageMetadata;
   imageAlt?: string;
   imagePosition?: string;
+  /** Long headline (e.g. a blog post title): give it a wider measure */
+  longTitle?: boolean;
 }
-const { title, lead, crumbs, photo, image, imageAlt = '', imagePosition = 'center' } = Astro.props;
+const { title, lead, crumbs, photo, image, imageAlt = '', imagePosition = 'center', longTitle = false } = Astro.props;
 const p = photo ? projectFor(photo) : null;
 const meta = image ?? (p ? jobImage(p.file) : null);
 const alt = image ? imageAlt : p?.alt ?? '';
@@ -32,7 +34,7 @@ const backdrop = meta ? await getImage({ src: meta, width: 480, format: 'webp', 
           </ol>
         </nav>
       )}
-      <h1 class="display-lg ph__title">{title}</h1>
+      <h1 class:list={['display-lg ph__title', longTitle && 'ph__title--long']}>{title}</h1>
       {lead && <p class="lead">{lead}</p>}
       <div class="ph__slot"><slot /></div>
     </div>
@@ -52,6 +54,7 @@ const backdrop = meta ? await getImage({ src: meta, width: 480, format: 'webp', 
   @media (min-width: 1024px) { .ph--photo .ph__inner { grid-template-columns: 1.05fr 1fr; } }
   .ph__text { display: grid; gap: 24px; align-content: center; }
   .ph__title { max-width: 14ch; }
+  .ph__title--long { max-width: 22ch; font-size: clamp(2.1rem, 1.4rem + 2.6vw, 3.6rem); }
   .ph__photo { aspect-ratio: 4 / 3; max-width: 640px; width: 100%; justify-self: end; box-shadow: 0 40px 120px -40px rgb(0 0 0 / .9), 0 0 0 1px rgb(255 255 255 / .08); }
   @media (min-width: 1024px) { .ph__photo { aspect-ratio: 1; } }
   .ph__crumbs ol { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; font-size: 14px; color: var(--color-muted); }

@@ -134,6 +134,15 @@ export const content = {
       lead: 'No stock photos here. Just the people and the truck that’ll show up at your door, and the work they do.',
       photo: 'crew/truck.webp',
     },
+    blog: {
+      title: 'St. Louis Junk Removal & Demolition Blog',
+      description: 'Job notes and photos from our St. Louis crew on junk removal, cleanouts and demolition. Priced by the load and confirmed before anything is loaded.',
+      heading: 'St. Louis junk removal & demolition blog',
+      lead: `Job notes, photos and plain answers from ${business.founder ? `${business.founder.split(' ')[0]} and ` : ''}the crew, from real jobs around St. Louis.`,
+      photo: 'crew/team.webp',
+      /** Shown while no post is published (the page is then noindex, out of the sitemap and not linked). */
+      empty: 'Nothing posted yet. Until then, see photos from real jobs or read how each service works.',
+    },
     contact: {
       title: 'Contact Us: Call, Email or Book Online',
       description: 'Call (314) 379-7955 or email STL Demolition & Junk Removal. Book a pickup online, or send photos for a free quote on junk removal, cleanouts and demolition.',

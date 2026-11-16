@@ -1,0 +1,71 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHero from '../../components/PageHero.astro';
+import PostCard from '../../components/PostCard.astro';
+import { getPosts, postHref, isoDay } from '../../lib/blog';
+import { services, site, primaryAction, secondaryAction } from '../../data/site';
+import { content } from '../../data/content';
+const pg = content.pages.blog;
+
+const posts = await getPosts();
+const url = `${site.url}/blog/`;
+const crumbs = [{ name: 'Home', href: '/' }, { name: 'Blog', href: '/blog/' }];
+const blogSchema = {
+  '@type': 'Blog',
+  '@id': `${url}#blog`,
+  name: pg.title,
+  description: pg.description,
+  url,
+  inLanguage: 'en-US',
+  publisher: { '@id': `${site.url}/#business` },
+  mainEntityOfPage: { '@id': `${url}#webpage` },
+  blogPost: posts.map((p) => ({
+    '@type': 'BlogPosting',
+    '@id': `${site.url}${postHref(p)}#article`,
+    headline: p.data.title,
+    url: `${site.url}${postHref(p)}`,
+    datePublished: isoDay(p.data.date),
+  })),
+};
+---
+<Base
+  title={pg.title}
+  description={pg.description}
+  breadcrumbs={crumbs}
+  pageType="CollectionPage"
+  schema={[blogSchema]}
+  noindex={posts.length === 0}
+>
+  <PageHero title={pg.heading} lead={pg.lead} crumbs={crumbs} photo={pg.photo || undefined}>
+    <div class="btn-row">
+      <a href={primaryAction.href} class="btn btn-accent" data-track="cta_click" data-track-cta="book" data-track-location="blog">{primaryAction.label}</a>
+      <a href={secondaryAction.href} class="btn btn-ghost" data-track="cta_click" data-track-cta="quote" data-track-location="blog">{secondaryAction.label}</a>
+    </div>
+  </PageHero>
+
+  <section class="section-tight" aria-labelledby="posts-h">
+    <div class="shell">
+      <h2 id="posts-h" class="sr-only">Latest posts</h2>
+      {posts.length > 0 ? (
+        <ul class="posts">
+          {posts.map((p, i) => <li data-reveal style={`--d:${(i % 3) * 70}ms`}><PostCard post={p} eager={i === 0} /></li>)}
+        </ul>
+      ) : (
+        <div class="empty">
+          <p class="lead">{pg.empty}</p>
+          <ul class="empty__links">
+            <li><a class="link-u accent" href="/projects/">Photos from our jobs</a></li>
+            {services.map((s) => <li><a class="link-u accent" href={`/services/${s.slug}/`}>{s.title}</a></li>)}
+          </ul>
+        </div>
+      )}
+    </div>
+  </section>
+</Base>
+<style>
+  .posts { list-style: none; margin: 0; padding: 0; display: grid; gap: 20px; }
+  @media (min-width: 640px) { .posts { grid-template-columns: 1fr 1fr; } }
+  @media (min-width: 1024px) { .posts { grid-template-columns: repeat(3, 1fr); } }
+  .empty { display: grid; gap: 20px; }
+  .empty__links { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 10px 24px; }
+</style>
