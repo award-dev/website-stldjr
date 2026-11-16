@@ -32,7 +32,7 @@ const arrow = '<svg class="arrow" viewBox="0 0 24 24" aria-hidden="true" fill="n
 <Base description={h.description} ogImage={h.heroPhoto} schema={h.faqs.length ? [faqSchema(h.faqs)] : []}>
   <section class="hero" aria-labelledby="hero-h">
     <div class="hero__bg" aria-hidden="true">
-      <Image src={heroImg} alt="" role="presentation" widths={fitWidths(heroImg, [480, 768, 1080])} quality={45} sizes="100vw" loading="eager" />
+      <Image src={heroImg} alt={projectFor(h.heroPhoto)?.alt ?? ''} widths={fitWidths(heroImg, [480, 768, 1080])} quality={45} sizes="100vw" loading="eager" />
     </div>
     <div class="glow hero__glow" aria-hidden="true"></div>
     <div class="shell hero__grid">

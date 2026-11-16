@@ -65,9 +65,19 @@ const { full = false } = Astro.props;
       }
       const ok = prefixes.some((p) => zip.startsWith(p));
       out.dataset.state = ok ? "yes" : "maybe";
-      out.innerHTML = ok
-        ? "Looks like you're in our area. <a class='link' href='/book/?zip=" + zip + "'>Book a pickup →</a>"
-        : "That's outside our usual area. Call <a class='link' href='" + tel + "'>" + phone + "</a> — we may still be able to help.";
+      // Build the link with DOM calls (not an HTML string) so crawlers don't read the script as a broken link.
+      const a = document.createElement("a");
+      a.className = "link";
+      out.textContent = "";
+      if (ok) {
+        a.setAttribute("href", "/book/?zip=" + zip);
+        a.textContent = "Book a pickup →";
+        out.append("Looks like you're in our area. ", a);
+      } else {
+        a.setAttribute("href", tel);
+        a.textContent = phone;
+        out.append("That's outside our usual area. Call ", a, " — we may still be able to help.");
+      }
       window.stlTrack && window.stlTrack("zip_check", { in_area: ok });
     });
   });
