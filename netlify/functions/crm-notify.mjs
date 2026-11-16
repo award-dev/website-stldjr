@@ -21,6 +21,7 @@ export default async (req) => {
       notifier: createNotifier({ business }),
       business,
       origin: siteUrl(req),
+      agentHook: booking.crm?.agentHook ?? null,
     });
     return json({ status: "ok", ...(await svc.notify({ kind: String(body.kind || ""), id: String(body.id || ""), t: String(body.t || "") })) });
   } catch (err) {
