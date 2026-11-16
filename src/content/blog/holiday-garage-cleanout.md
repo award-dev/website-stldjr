@@ -3,7 +3,7 @@ title: "Clear Your Garage Before Holiday Guests Arrive"
 description: "Holiday guests on the way? Here's how St. Louis homeowners can clear a garage or basement before Thanksgiving and Christmas, with a real before/after."
 date: 2026-11-15
 cover: ../../assets/blog/holiday-garage-cleanout/holiday-garage-cleanout-1.jpg
-coverAlt: "Empty one-car garage with a clear concrete floor after a cleanout"
+coverAlt: "One-car garage packed with black trash bags, cardboard and empty flooring boxes before the cleanout"
 photos:
   - src: ../../assets/blog/holiday-garage-cleanout/holiday-garage-cleanout-2.jpg
     alt: "The same one-car garage after the cleanout, with an empty concrete floor, exposed wall framing and a window on the left wall"
