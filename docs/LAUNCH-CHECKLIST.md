@@ -5,7 +5,7 @@ below is done, set `showOwnerNotes` to `false` in `config/business.json`.
 
 ## Done (entered from the owner's answers)
 
-- [x] Prices: $175 / $340 / $515 / $655, shown as "From $X"
+- [x] Prices: $181 / $362 / $543 / $725 (matched to Haul-off Ops online booking, 2026-11-16), shown as "From $X"
 - [x] Pricing conditions: heavy material ~$75 per quarter load, Freon $25/item,
       no tires, batteries, liquid paint or hazardous materials
 - [x] Hours: Mon–Fri 7am–5pm, closed weekends (matches Google Business Profile)
