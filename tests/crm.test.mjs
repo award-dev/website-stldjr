@@ -18,11 +18,16 @@ function crmBooking(over = {}) {
   };
 }
 
-function setup(booking = crmBooking()) {
+function setup(booking = crmBooking(), agentHook = null) {
   const calls = [];
+  const hooks = [];
   const sent = [];
   let current = booking;
-  const fetchImpl = async (url) => {
+  const fetchImpl = async (url, init) => {
+    if (agentHook && String(url) === agentHook) {
+      hooks.push(JSON.parse(init.body));
+      return new Response("{}", { status: 202 });
+    }
     calls.push(String(url));
     const u = new URL(url);
     if (u.searchParams.get("t") !== "good-token" || !current) return new Response(JSON.stringify({ status: "error", code: "not_found" }), { status: 404 });
@@ -35,8 +40,8 @@ function setup(booking = crmBooking()) {
     },
   };
   const store = memoryStore();
-  const svc = createCrmNotify({ apiBase: BASE, store, notifier, business, origin: "https://stlouishjr.com", fetchImpl });
-  return { svc, calls, sent, setBooking: (b) => (current = b) };
+  const svc = createCrmNotify({ apiBase: BASE, store, notifier, business, origin: "https://stlouishjr.com", agentHook, fetchImpl });
+  return { svc, calls, sent, hooks, setBooking: (b) => (current = b) };
 }
 
 test("confirmed: reads the booking back from the CRM and emails what the CRM says", async () => {
@@ -97,4 +102,21 @@ test("rejects unknown kinds and malformed ids before calling the CRM", async () 
   await assert.rejects(svc.notify({ kind: "spam", id: "BK-ABC123", t: "good-token" }), (e) => e.status === 400);
   await assert.rejects(svc.notify({ kind: "confirmed", id: "../x", t: "good-token" }), (e) => e.status === 400);
   assert.equal(calls.length, 0);
+});
+
+test("a new booking tells the agents once, with only its id and token", async () => {
+  const hook = "https://agents.example/bookings/website";
+  const { svc, hooks, setBooking } = setup(crmBooking(), hook);
+  await svc.notify({ kind: "confirmed", id: "BK-ABC123", t: "good-token" });
+  await svc.notify({ kind: "confirmed", id: "BK-ABC123", t: "good-token" });
+  assert.deepEqual(hooks, [{ id: "BK-ABC123", t: "good-token" }]);
+  setBooking(crmBooking({ date: "2026-10-07" }));
+  await svc.notify({ kind: "rescheduled", id: "BK-ABC123", t: "good-token" });
+  assert.equal(hooks.length, 1); // a reschedule is not a new booking
+});
+
+test("no agent hook configured: nothing extra is sent", async () => {
+  const { svc, calls } = setup();
+  await svc.notify({ kind: "confirmed", id: "BK-ABC123", t: "good-token" });
+  assert.ok(calls.every((u) => u.startsWith(BASE)));
 });

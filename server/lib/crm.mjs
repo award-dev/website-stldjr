@@ -17,7 +17,7 @@ export function crmManageUrl(origin, id, t) {
   return `${origin}/booking/?id=${encodeURIComponent(id)}&t=${encodeURIComponent(t)}`;
 }
 
-export function createCrmNotify({ apiBase, store, notifier, business, origin, fetchImpl = fetch }) {
+export function createCrmNotify({ apiBase, store, notifier, business, origin, agentHook = null, fetchImpl = fetch }) {
   const base = String(apiBase || "").replace(/\/+$/, "");
 
   async function readBooking(id, t) {
@@ -80,6 +80,16 @@ export function createCrmNotify({ apiBase, store, notifier, business, origin, fe
       const effective = kind === "rescheduled" && !prev.sigs.length ? "confirmed" : kind;
 
       const result = await notifier.booking(effective, summaryFor(b, crmManageUrl(origin, b.id, t)));
+      // First confirmation of a new booking: let the agents know so Ava can text a thank-you.
+      // Only the id and token go out; Ava reads the booking back from the CRM herself.
+      if (effective === "confirmed" && !prev.sigs.length && agentHook) {
+        await fetchImpl(agentHook, {
+          method: "POST",
+          headers: { "content-type": "application/json" },
+          body: JSON.stringify({ id: b.id, t: String(t) }),
+          signal: AbortSignal.timeout(4000),
+        }).catch(() => null);
+      }
       if (result.customerEmail.sent || result.companyEmail.sent) {
         await store.setJSON(key, { sigs: [...prev.sigs, sig].slice(-20), at: new Date().toISOString() });
       }

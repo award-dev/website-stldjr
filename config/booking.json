@@ -4,7 +4,9 @@
   "horizonDays": 21,
   "crm": {
     "$comment": "Where online bookings go. apiBase set: the booking flow, manage page and quotes talk to Haul-off Ops (the CRM) at this address, and jobs land on its schedule. null: the site's own engine and Google Calendar (netlify/functions/*). Scheduling rules (windows, days, notice, prices) then live in the CRM: Settings -> Online booking.",
-    "apiBase": "https://www.hauloffops.com/api/book/stldemoandjunkremoval"
+    "apiBase": "https://www.hauloffops.com/api/book/stldemoandjunkremoval",
+    "agentHook": "https://decisive-bullfrog-400.convex.site/bookings/website",
+    "$comment_agentHook": "After the first confirmation of a new booking, the site tells the agents (Ava) its id and manage token so she can text the customer a thank-you. She reads the booking back from the CRM herself. null turns it off."
   },
   "minNoticeHours": 2,
   "sameDay": true,
