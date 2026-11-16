@@ -31,7 +31,7 @@ Every business fact on the site is pulled from these files. They are the single 
 3. Also run the site checks from the business-site-builder skill if available (`check.mjs`, `intro-test.mjs`), `npx astro check` and `npm test`.
 4. Then run the `seo-auditor` agent (`.claude/agents/seo-auditor.md`) for a judgment review and fix what it flags.
 5. End with a short report: pages changed, TODOs, audit results.
-6. Deploying: the Netlify project is not linked to GitHub, so merging does not publish. Deploy only when the owner asks.
+6. Deploying: Netlify builds the `main` branch automatically (production branch set to `main` on 2026-11-16), so merging to `main` publishes the site. Do not merge without the owner's go-ahead. A manual deploy (`netlify deploy --build --prod`) must also be run from `main`.
 
 ## 3. Brand voice
 - Tone: direct, local, plain-spoken, friendly. Faith and family matter to the owner (Aaron Ward); keep it genuine, never preachy.
