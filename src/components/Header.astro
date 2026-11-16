@@ -1,6 +1,8 @@
 ---
 import Wordmark from './Wordmark.astro';
-import { nav, services, site, primaryAction } from '../data/site';
+import { services, site, primaryAction } from '../data/site';
+import { siteNav } from '../lib/blog';
+const nav = await siteNav();
 const path = Astro.url.pathname;
 const isActive = (href: string) => path === href || (href !== '/' && path.startsWith(href));
 ---

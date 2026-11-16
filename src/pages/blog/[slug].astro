@@ -1,0 +1,158 @@
+---
+import { Image, getImage } from 'astro:assets';
+import { render } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import PageHero from '../../components/PageHero.astro';
+import PostCard from '../../components/PostCard.astro';
+import Gallery from '../../components/react/Gallery.tsx';
+import { jobImage, projectFor, fitWidths, PHOTO_QUALITY } from '../../lib/images';
+import { postPhotos } from '../../lib/media';
+import { getPosts, postHref, postService, isoDay, longDate, type Post } from '../../lib/blog';
+import { site, primaryAction, secondaryAction } from '../../data/site';
+import { loads } from '../../lib/site';
+
+export async function getStaticPaths() {
+  const posts = await getPosts();
+  return posts.map((post) => ({ params: { slug: post.id }, props: { post, more: posts.filter((p) => p.id !== post.id).slice(0, 3) } }));
+}
+interface Props { post: Post; more: Post[] }
+const { post, more } = Astro.props;
+const d = post.data;
+const { Content } = await render(post);
+
+const path = postHref(post);
+const url = `${site.url}${path}`;
+const businessId = `${site.url}/#business`;
+const service = postService(d.service);
+const servicePhoto = service ? projectFor(service.cover) : null;
+const photos = d.photos?.length ? await postPhotos(d.photos) : [];
+
+// Same booking deep links as the service pages, so a post about a service pre-selects it.
+const load = service ? loads.find((l) => l.id === service.suggestedLoad) : undefined;
+const bookHref = service ? `/book/?service=${service.bookingService}${load ? `&load=${load.id}` : ''}` : primaryAction.href;
+const quoteHref = service ? `/quote/?service=${service.bookingService}` : secondaryAction.href;
+
+const crumbs = [{ name: 'Home', href: '/' }, { name: 'Blog', href: '/blog/' }, { name: d.title, href: path }];
+const coverW = Math.min(1200, d.cover.width);
+const cover = await getImage({ src: d.cover, width: coverW, format: 'jpg', quality: 82 });
+const posting = {
+  '@type': 'BlogPosting',
+  '@id': `${url}#article`,
+  headline: d.title,
+  description: d.description,
+  url,
+  datePublished: isoDay(d.date),
+  dateModified: isoDay(d.date),
+  inLanguage: 'en-US',
+  image: { '@type': 'ImageObject', url: new URL(cover.src, site.url).href, width: coverW, height: Math.round((coverW * d.cover.height) / d.cover.width), caption: d.coverAlt },
+  author: { '@id': businessId },
+  publisher: { '@id': businessId },
+  mainEntityOfPage: { '@id': `${url}#webpage` },
+  isPartOf: { '@id': `${site.url}/blog/#blog` },
+  ...(service ? { about: { '@id': `${site.url}/services/${service.slug}/#service` } } : {}),
+};
+const arrow = '<svg class="arrow" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg>';
+---
+<Base title={d.title} description={d.description} breadcrumbs={crumbs} schema={[posting]} shareImage={d.cover} ogAlt={d.coverAlt} ogType="article">
+  <PageHero title={d.title} lead={d.description} crumbs={crumbs} image={d.cover} imageAlt={d.coverAlt} longTitle>
+    <p class="meta">
+      <time datetime={isoDay(d.date)}>{longDate(d.date)}</time>
+      <span aria-hidden="true">·</span>
+      <span>{site.name}</span>
+    </p>
+  </PageHero>
+
+  <section class="section-tight post-wrap">
+    <div class="shell post">
+      <article class="post__body" aria-label={d.title}>
+        <Content />
+      </article>
+
+      <aside class="post__aside" aria-label="Book or get a quote">
+        {service && servicePhoto && (
+          <a class="svc zoom" href={`/services/${service.slug}/`}>
+            <div class="media svc__media">
+              <Image src={jobImage(servicePhoto.file)} alt={servicePhoto.alt} widths={fitWidths(jobImage(servicePhoto.file), [320, 640])} quality={PHOTO_QUALITY} sizes="(min-width: 1024px) 340px, 100vw" />
+            </div>
+            <div class="svc__body">
+              <span class="svc__kicker">Related service</span>
+              <span class="title svc__title">{service.title}</span>
+              <span class="muted svc__text">{service.short}</span>
+              <span class="link-arrow svc__go">How {service.title.toLowerCase()} works<Fragment set:html={arrow} /></span>
+            </div>
+          </a>
+        )}
+        <div class="book">
+          <p class="title">Have a job like this?</p>
+          <p class="muted">Pick a load size, see the price and book an arrival window online. Or send photos for a free quote.</p>
+          <div class="btn-row">
+            <a href={bookHref} class="btn btn-accent" data-track="cta_click" data-track-cta="book" data-track-location="blog-post">{primaryAction.label}<Fragment set:html={arrow} /></a>
+            <a href={quoteHref} class="btn btn-ghost" data-track="cta_click" data-track-cta="quote" data-track-location="blog-post">{secondaryAction.label}</a>
+          </div>
+          <a href={site.phoneHref} class="link-arrow" data-track="phone_click" data-track-location="blog-post">Call {site.phone}</a>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  {photos.length > 0 && (
+    <section class="section-tight" aria-labelledby="photos-h">
+      <div class="shell">
+        <div class="head" data-reveal><h2 id="photos-h" class="display-md">Photos from this job</h2></div>
+        <Gallery client:visible photos={photos} />
+      </div>
+    </section>
+  )}
+
+  {more.length > 0 && (
+    <section class="section-tight" aria-labelledby="more-h">
+      <div class="shell">
+        <div class="head-row" data-reveal>
+          <div class="head"><h2 id="more-h" class="display-md">More from the blog</h2></div>
+          <a class="link-arrow" href="/blog/">All blog posts<Fragment set:html={arrow} /></a>
+        </div>
+        <ul class="more">
+          {more.map((p, i) => <li data-reveal style={`--d:${i * 70}ms`}><PostCard post={p} level={3} /></li>)}
+        </ul>
+      </div>
+    </section>
+  )}
+</Base>
+<style>
+  .meta { display: flex; flex-wrap: wrap; gap: 8px; font-size: 15px; color: var(--color-muted); }
+  .post-wrap { padding-top: clamp(16px, 3vw, 40px); }
+  .post { display: grid; gap: 48px 72px; align-items: start; }
+  @media (min-width: 1024px) { .post { grid-template-columns: minmax(0, 1fr) 340px; } .post__aside { position: sticky; top: calc(var(--nav-h) + 24px); } }
+
+  .post__body { max-width: 68ch; font-size: 1.075rem; line-height: 1.7; color: #d6cfc6; }
+  .post__body > :global(* + *) { margin-top: 1.1em; }
+  .post__body :global(h2) { margin-top: 1.8em; font-family: var(--font-display); font-weight: 650; font-size: clamp(1.5rem, 1.2rem + 1vw, 2rem); line-height: 1.15; letter-spacing: -0.025em; color: var(--color-fg); }
+  .post__body :global(h3) { margin-top: 1.5em; font-family: var(--font-display); font-weight: 650; font-size: clamp(1.2rem, 1.1rem + .4vw, 1.4rem); line-height: 1.2; letter-spacing: -0.02em; color: var(--color-fg); }
+  .post__body > :global(:first-child) { margin-top: 0; }
+  .post__body :global(:is(h2, h3) + *) { margin-top: .6em; }
+  .post__body :global(:is(ul, ol)) { padding-left: 1.3em; }
+  .post__body :global(ul) { list-style: disc; }
+  .post__body :global(ol) { list-style: decimal; }
+  .post__body :global(li + li) { margin-top: .4em; }
+  .post__body :global(li::marker) { color: var(--color-accent-ink); }
+  .post__body :global(a) { color: var(--color-accent-ink); text-decoration: underline; text-underline-offset: 3px; }
+  .post__body :global(strong) { color: var(--color-fg); }
+  .post__body :global(blockquote) { margin-inline: 0; padding-left: 20px; border-left: 3px solid var(--color-accent); }
+  .post__body :global(img) { width: 100%; height: auto; border-radius: var(--radius-lg); }
+  .post__body :global(hr) { border: 0; border-top: 1px solid var(--color-line); }
+
+  .post__aside { display: grid; gap: 16px; }
+  .svc { display: grid; border-radius: var(--radius-lg); overflow: hidden; background: var(--color-card); box-shadow: inset 0 0 0 1px var(--color-line); transition: box-shadow .3s; }
+  .svc:hover { box-shadow: inset 0 0 0 1px rgb(var(--accent-rgb) / .5); }
+  .svc__media { aspect-ratio: 16 / 9; border-radius: 0; }
+  .svc__body { display: grid; gap: 8px; padding: 20px 22px 24px; }
+  .svc__kicker { font-size: 13px; font-weight: 600; color: var(--color-muted); }
+  .svc__text { font-size: 15px; }
+  .svc__go { margin-top: 6px; font-size: 15px; }
+  .book { display: grid; gap: 14px; justify-items: start; padding: 24px 22px; border-radius: var(--radius-lg); background: var(--color-card); box-shadow: inset 0 0 0 1px var(--color-line); }
+  .book .btn-row { width: 100%; }
+
+  .more { list-style: none; margin: 0; padding: 0; display: grid; gap: 20px; }
+  @media (min-width: 640px) { .more { grid-template-columns: 1fr 1fr; } }
+  @media (min-width: 1024px) { .more { grid-template-columns: repeat(3, 1fr); } }
+</style>

@@ -4,6 +4,7 @@ import '../styles/media.css';
 import '../styles/intro.css';
 import '../styles/legacy.css';
 import { getImage } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import MobileBar from '../components/MobileBar.astro';
@@ -41,6 +42,12 @@ interface Props {
   hideMobileBar?: boolean;
   /** Play the once-per-visit intro on this page (off for booking flows) */
   intro?: boolean;
+  /** schema.org type of this page's WebPage node (e.g. CollectionPage for the blog index) */
+  pageType?: string;
+  /** Link-preview image for this page (e.g. a blog post's cover), described by ogAlt. Default: the share card. */
+  shareImage?: ImageMetadata;
+  /** Open Graph type: 'article' for blog posts */
+  ogType?: 'website' | 'article';
 }
 const {
   title,
@@ -53,6 +60,9 @@ const {
   cta = true,
   hideMobileBar = false,
   intro = true,
+  pageType = 'WebPage',
+  shareImage,
+  ogType = 'website',
 } = Astro.props;
 const showIntro = content.intro.enabled && intro;
 
@@ -62,12 +72,13 @@ const canonical = new URL(Astro.url.pathname, site.url).href;
 const og = ogImage ? await getImage({ src: jobImage(ogImage), width: 1200, height: 630, fit: 'cover', format: 'jpg', quality: 80 }) : null;
 // Link-preview card: the finished loading screen (logo, "Building your next project"), same on every page.
 const card = await getImage({ src: shareCard, width: 1200, height: 630, format: 'jpg', quality: 88 });
-const cardUrl = new URL(card.src, site.url).href;
-const cardAlt = content.intro.drawing === 'truck'
+const share = shareImage ? await getImage({ src: shareImage, width: 1200, height: 630, fit: 'cover', format: 'jpg', quality: 82 }) : null;
+const cardUrl = new URL((share ?? card).src, site.url).href;
+const cardAlt = share && ogAlt ? ogAlt : content.intro.drawing === 'truck'
   ? `${site.name} logo truck with the words ${content.intro.words.join(' ')}`
   : `${site.name} logo with the words ${content.intro.words.join(' ')}`;
 const analytics = cfg.analytics;
-const ogUrl = og ? new URL(og.src, site.url).href : cardUrl;
+const ogUrl = og ? new URL(og.src, site.url).href : new URL(card.src, site.url).href;
 const introLogo = await getImage({ src: logoMeta, width: 360, format: 'webp', quality: 90 });
 const introTruck = content.intro.drawing === 'truck'
   ? { bed: (await getImage({ src: truckBed, format: 'webp', quality: 90 })).src, base: (await getImage({ src: truckBase, format: 'webp', quality: 90 })).src }
@@ -112,7 +123,7 @@ const crumbs = breadcrumbs && {
   itemListElement: breadcrumbs.map((c, i) => ({ '@type': 'ListItem', position: i + 1, name: c.name, item: new URL(c.href, site.url).href })),
 };
 const webpage = {
-  '@type': 'WebPage',
+  '@type': pageType,
   '@id': `${canonical}#webpage`,
   url: canonical,
   name: fullTitle,
@@ -140,7 +151,7 @@ const graph = { '@context': 'https://schema.org', '@graph': [business, website, 
     <meta name="format-detection" content="telephone=no" />
     <link rel="icon" href="/favicon.ico" sizes="any" />
     <link rel="manifest" href="/site.webmanifest" />
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content={ogType} />
     <meta property="og:site_name" content={site.name} />
     <meta property="og:locale" content="en_US" />
     <meta property="og:title" content={fullTitle} />

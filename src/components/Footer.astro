@@ -1,12 +1,14 @@
 ---
 import { Image } from 'astro:assets';
 import Wordmark from './Wordmark.astro';
-import { nav, services, site, primaryAction, secondaryAction } from '../data/site';
+import { services, site, primaryAction, secondaryAction } from '../data/site';
+import { siteNav } from '../lib/blog';
 import { hoursSummary } from '../lib/site';
 import { content } from '../data/content';
 import { jobImage, fitWidths, PHOTO_QUALITY } from '../lib/images';
 interface Props { cta?: boolean }
 const { cta = true } = Astro.props;
+const nav = await siteNav();
 const year = new Date().getFullYear();
 const f = content.footer;
 const bg = f.ctaPhoto ? jobImage(f.ctaPhoto) : null;

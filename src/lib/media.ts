@@ -104,24 +104,28 @@ export interface GalleryPhoto {
   before?: boolean;
 }
 
+/** One gallery tile (thumbnail srcset + full-size lightbox copy) from any processed image. */
+async function galleryPhoto(meta: ImageMetadata, info: { id: string; category: string; alt: string; before?: boolean }): Promise<GalleryPhoto> {
+  const widths = fitWidths(meta, [400, 640, 960, 1280]);
+  const imgs = await Promise.all(widths.map((w) => getImage({ src: meta, width: w, format: 'webp', quality: PHOTO_QUALITY })));
+  const full = await getImage({ src: meta, width: meta.width, format: 'webp', quality: 90 });
+  return {
+    ...info,
+    thumb: imgs[0].src,
+    srcset: imgs.map((im, i) => `${im.src} ${widths[i]}w`).join(', '),
+    full: full.src,
+    w: meta.width,
+    h: meta.height,
+  };
+}
+
 export async function galleryPhotos(items: Project[]): Promise<GalleryPhoto[]> {
-  return Promise.all(items.map(async (p) => {
-    const meta = jobImage(p.file);
-    const widths = fitWidths(meta, [400, 640, 960, 1280]);
-    const imgs = await Promise.all(widths.map((w) => getImage({ src: meta, width: w, format: 'webp', quality: PHOTO_QUALITY })));
-    const full = await getImage({ src: meta, width: meta.width, format: 'webp', quality: 90 });
-    return {
-      id: p.file,
-      category: p.category,
-      alt: p.alt,
-      thumb: imgs[0].src,
-      srcset: imgs.map((im, i) => `${im.src} ${widths[i]}w`).join(', '),
-      full: full.src,
-      w: meta.width,
-      h: meta.height,
-      before: p.role === 'before',
-    };
-  }));
+  return Promise.all(items.map((p) => galleryPhoto(jobImage(p.file), { id: p.file, category: p.category, alt: p.alt, before: p.role === 'before' })));
+}
+
+/** Gallery tiles for a blog post's `photos` list. */
+export async function postPhotos(list: { src: ImageMetadata; alt: string }[]): Promise<GalleryPhoto[]> {
+  return Promise.all(list.map((p, i) => galleryPhoto(p.src, { id: `${p.src.src}#${i}`, category: 'blog', alt: p.alt })));
 }
 
 export async function pairImages(before: Project, after: Project) {
