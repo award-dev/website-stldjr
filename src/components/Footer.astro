@@ -5,13 +5,14 @@ import { services, site, primaryAction, secondaryAction } from '../data/site';
 import { siteNav } from '../lib/blog';
 import { hoursSummary } from '../lib/site';
 import { content } from '../data/content';
-import { jobImage, fitWidths, PHOTO_QUALITY } from '../lib/images';
+import { jobImage, projectFor, fitWidths, PHOTO_QUALITY } from '../lib/images';
 interface Props { cta?: boolean }
 const { cta = true } = Astro.props;
 const nav = await siteNav();
 const year = new Date().getFullYear();
 const f = content.footer;
 const bg = f.ctaPhoto ? jobImage(f.ctaPhoto) : null;
+const bgAlt = f.ctaPhoto ? projectFor(f.ctaPhoto)?.alt ?? '' : '';
 const trust = [site.credentials, site.rating].filter(Boolean).join(' · ');
 const blurb = f.blurb || `${site.credentials ? site.credentials + ' ' : ''}${site.name} in ${site.city}, ${site.region}.`;
 const arrow = '<svg class="arrow" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg>';
@@ -20,7 +21,7 @@ const arrow = '<svg class="arrow" viewBox="0 0 24 24" aria-hidden="true" fill="n
   {cta && (
     <section class="shell ft__cta" aria-labelledby="cta-h">
       <div class="ft__cta-card" data-reveal>
-        {bg && <Image src={bg} alt="" role="presentation" widths={fitWidths(bg, [640, 1024, 1536])} quality={PHOTO_QUALITY} sizes="(min-width: 1400px) 1360px, 100vw" class="ft__cta-bg" loading="lazy" />}
+        {bg && <Image src={bg} alt={bgAlt} widths={fitWidths(bg, [640, 1024, 1536])} quality={PHOTO_QUALITY} sizes="(min-width: 1400px) 1360px, 100vw" class="ft__cta-bg" loading="lazy" />}
         <div class="ft__cta-shade" aria-hidden="true"></div>
         <div class="ft__cta-body">
           {f.ctaTag && <p class="tag"><span class="dot"></span>{f.ctaTag}</p>}
