@@ -22,6 +22,9 @@ export const site = {
   email: business.email,
   city: business.address.city,
   region: business.address.region,
+  // Street address (NAP). Shown only when address.public is true in config/business.json.
+  street: business.address.public ? (business.address.street ?? '') : '',
+  postalCode: business.address.public ? (business.address.postalCode ?? '') : '',
   serviceArea: [
     { name: 'St. Louis', type: 'City', wiki: 'https://en.wikipedia.org/wiki/St._Louis' },
     { name: 'St. Louis County', type: 'AdministrativeArea', wiki: 'https://en.wikipedia.org/wiki/St._Louis_County,_Missouri' },

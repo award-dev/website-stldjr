@@ -3,7 +3,7 @@ import Base from '../layouts/Base.astro';
 import PageHero from '../components/PageHero.astro';
 import { site } from '../data/site';
 import { content } from '../data/content';
-import { hoursSummary } from '../lib/site';
+import { business, hoursSummary } from '../lib/site';
 const pg = content.pages.contact;
 const crumbs = [{ name: 'Home', href: '/' }, { name: 'Contact', href: '/contact/' }];
 const contactPage = { '@type': 'ContactPage', name: 'Contact', url: `${site.url}/contact/`, about: { '@id': `${site.url}/#business` } };
@@ -22,6 +22,13 @@ const arrow = '<svg class="arrow" viewBox="0 0 24 24" aria-hidden="true" fill="n
         <span class="muted">Email</span>
         <span class="email">{site.email}</span>
       </a>
+      {site.street && (
+        <a class="card" href={business.links.googleBusinessProfile} rel="noopener" target="_blank">
+          <span class="muted">Address</span>
+          <address class="addr">{site.street}<br />{site.city}, {site.region} {site.postalCode}</address>
+          <span class="sr-only"> (opens our Google Business Profile in a new tab)</span>
+        </a>
+      )}
       <div class="card">
         <span class="muted">Hours</span>
         {hoursSummary().map((h) => <span>{h.days} · {h.hours}</span>)}
@@ -64,4 +71,5 @@ const arrow = '<svg class="arrow" viewBox="0 0 24 24" aria-hidden="true" fill="n
   .path { display: grid; gap: 16px; padding: clamp(28px, 4vw, 44px); border-radius: var(--radius-xl); background: radial-gradient(120% 140% at 100% 0%, rgb(var(--accent-rgb) / .14), transparent 60%), var(--color-card); box-shadow: inset 0 0 0 1px var(--color-line); transition: transform .45s var(--ease-out-expo), box-shadow .3s; }
   .path:hover { transform: translateY(-3px); box-shadow: inset 0 0 0 1px rgb(var(--accent-rgb) / .5); }
   .path h2 { font-size: clamp(1.6rem, 1.3rem + 1vw, 2.2rem); }
+  .addr { font-style: normal; }
 </style>

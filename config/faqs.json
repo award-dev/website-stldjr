@@ -9,6 +9,41 @@
       "home": true
     },
     {
+      "id": "minimum",
+      "q": "Is there a minimum charge?",
+      "a": "Yes, $125. That covers just a few small items, like a chair, a TV or a few bags or boxes. Anything more is priced by the load, starting at $181 for a quarter of the truck.",
+      "confirmed": true,
+      "home": false
+    },
+    {
+      "id": "heavy-materials",
+      "q": "Do concrete, brick or roofing shingles cost more?",
+      "a": "Yes. Heavy material (concrete, brick, dirt, roofing shingles) adds about $75 per quarter load. The job's location or equipment needs can add more. We confirm the total before we load anything.",
+      "confirmed": true,
+      "home": false
+    },
+    {
+      "id": "freon",
+      "q": "Do refrigerators, freezers and AC units cost extra?",
+      "a": "Yes. Anything with Freon (refrigerators, freezers, AC units, dehumidifiers) is $25 per item.",
+      "confirmed": true,
+      "home": false
+    },
+    {
+      "id": "access",
+      "q": "Do stairs or long carries cost extra?",
+      "a": "They can. Difficult access, like long carries, several flights of stairs or tight crawlspaces, can add labor. Tell us when you book and it's part of the price we confirm before loading.",
+      "confirmed": true,
+      "home": false
+    },
+    {
+      "id": "demolition-pricing",
+      "q": "Is demolition included in the load price?",
+      "a": "No. Demolition labor is quoted separately from hauling. Hauling the debris is priced by the load. Send a quote request with photos and we'll price the demo work.",
+      "confirmed": true,
+      "home": false
+    },
+    {
       "id": "load-size",
       "q": "What size load do I need?",
       "a": "Rough guide: a couple of small items is our $125 minimum pickup. A few big pieces is a 1/4 load. A one-car garage is often a 1/2. A basement or a remodel's worth of debris is usually 3/4. Whole-house cleanouts and demolition jobs tend to fill the truck. Upload photos when you book and we'll tell you if you're off.",
