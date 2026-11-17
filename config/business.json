@@ -10,11 +10,11 @@
   "phoneDisplay": "(314) 379-7955",
   "email": "award@stlouishjr.com",
   "address": {
-    "public": false,
-    "street": null,
+    "public": true,
+    "street": "1115 Sharon Dr",
     "city": "Florissant",
     "region": "MO",
-    "postalCode": null,
+    "postalCode": "63031",
     "country": "US"
   },
   "timezone": "America/Chicago",
