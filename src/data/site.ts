@@ -30,7 +30,7 @@ export const site = {
     { name: 'St. Louis County', type: 'AdministrativeArea', wiki: 'https://en.wikipedia.org/wiki/St._Louis_County,_Missouri' },
     { name: 'St. Charles County', type: 'AdministrativeArea', wiki: 'https://en.wikipedia.org/wiki/St._Charles_County,_Missouri' },
   ] as { name: string; type: 'City' | 'AdministrativeArea'; wiki?: string }[],
-  sameAs: [links.googleBusinessProfile, links.instagram, links.nextdoor].filter(Boolean) as string[],
+  sameAs: [links.googleBusinessProfile, links.instagram, links.nextdoor, ...(links.directories ?? [])].filter(Boolean) as string[],
   facebook: links.facebook ?? '',
   /** Confirmed by the owner (config/business.json trust). */
   credentials: t.licensed && t.insured ? 'Licensed & insured' : t.insured ? 'Insured' : '',
