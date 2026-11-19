@@ -89,7 +89,7 @@ const arrow = '<svg class="arrow" viewBox="0 0 24 24" aria-hidden="true" fill="n
     <div class="shell sub-more">
       <h2 id="related-h" class="display-md">Related services</h2>
       <ul class="sub-related">
-        <li><a class="link-u accent" href={parentPath}>All {parent.title.toLowerCase()} services in St. Louis</a></li>
+        <li><a class="link-u accent" href={parentPath}>All {parent.slug === 'cleanouts' ? 'cleanout' : parent.title.toLowerCase()} services in St. Louis</a></li>
         {related.map((r) => <li><a class="link-u accent" href={subPath(r)}>{r.name}</a></li>)}
         <li><a class="link-u accent" href="/pricing/">{isDemo ? 'Hauling prices by the load' : 'Junk removal prices by the load'}</a></li>
         <li><a class="link-u accent" href="/service-areas/">Every area we serve</a></li>

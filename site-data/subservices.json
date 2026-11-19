@@ -16,7 +16,8 @@
       "whole-house-gut",
       "drywall-removal",
       "flooring-removal",
-      "kitchen-demolition"
+      "kitchen-demolition",
+      "fireplace-chimney-removal"
     ],
     "sections": [
       {
@@ -65,7 +66,8 @@
     "related": [
       "cabinet-removal",
       "bathroom-demolition",
-      "flooring-removal"
+      "flooring-removal",
+      "refrigerator-removal"
     ],
     "sections": [
       {
@@ -89,7 +91,7 @@
         "h2": "Getting ready for a kitchen tear-out",
         "body": [
           "Shut off and cap the water and gas to the kitchen, and the electric to the circuits we're cutting. Empty the cabinets and the pantry. Send photos of each wall, the floor and the ceiling, and tell us what the remodel is keeping. Permit rules depend on your city and the job, and we'll walk you through what yours needs. We don't pull City of St. Louis demolition permits.",
-          "Older kitchens can have vinyl flooring or adhesive that contains asbestos, so have an inspector test the floor before the tear-out; asbestos testing, removal and hauling aren't something we do. Only replacing the cabinets? See [cabinet removal](/services/demolition/cabinet-removal/)."
+          "Older kitchens can have vinyl flooring or adhesive that contains asbestos, so have an inspector test the floor before the tear-out; asbestos testing, removal and hauling aren't something we do. If the house is from before 1978, test the painted surfaces for lead as well. Only replacing the cabinets? See [cabinet removal](/services/demolition/cabinet-removal/)."
         ]
       }
     ],
@@ -150,7 +152,7 @@
     "h1": "Commercial interior demolition in St. Louis, MO",
     "metaTitle": "Commercial Interior Demolition, St. Louis",
     "metaDescription": "Commercial interior demolition in St. Louis: tenant improvement strip-outs for offices and retail, torn out and hauled the same job. Licensed and insured.",
-    "intro": "We demolish commercial interiors: walls, ceilings, flooring, fixtures and finishes inside offices, shops and other commercial spaces, hauled away in the same job. All of our demolition except wrecking is open to businesses, across St. Louis City, St. Louis County and St. Charles County. We're {insured}.",
+    "intro": "We demolish commercial interiors: walls, ceilings, flooring, fixtures and finishes inside offices, shops and other commercial spaces, hauled away in the same job. Every demolition service we offer is available to businesses, across St. Louis City, St. Louis County and St. Charles County. We're {insured}.",
     "jobMatch": "",
     "faqIds": [
       "insured"
@@ -158,7 +160,8 @@
     "related": [
       "interior-demolition",
       "commercial-cleanout",
-      "concrete-removal"
+      "concrete-removal",
+      "office-junk-removal"
     ],
     "sections": [
       {
@@ -196,7 +199,7 @@
     "h1": "Concrete removal in St. Louis, MO",
     "metaTitle": "Concrete Removal in St. Louis, MO",
     "metaDescription": "Concrete removal in St. Louis: we break out patios, slabs, steps and driveways and haul the pieces away. Labor quoted from photos, haul by the load.",
-    "intro": "Yes, we break up concrete and haul it away. Patios, slabs, steps and driveways get broken out on site and the pieces leave on our truck in the same job, along with any concrete that's already loose. We work across St. Louis City, St. Louis County and St. Charles County.",
+    "intro": "We break up concrete and haul it away. Patios, slabs, steps and driveways get broken out on site and the pieces leave on our truck in the same job, along with any concrete that's already loose. We work across St. Louis City, St. Louis County and St. Charles County.",
     "jobMatch": "",
     "faqIds": [
       "construction-debris"
@@ -242,7 +245,7 @@
     "h1": "Garage demolition in St. Louis, MO",
     "metaTitle": "Garage Demolition in St. Louis, MO",
     "metaDescription": "Garage demolition in St. Louis: we take the whole garage down, load the debris and haul it away. Labor quoted from photos, haul priced by the load.",
-    "intro": "Yes, we take down whole garages. The garage comes down, the debris gets loaded and hauled, and you're left with a cleared spot. We work across St. Louis City, St. Louis County and St. Charles County, with labor quoted from photos.",
+    "intro": "We take down whole garages. The garage comes down, the debris gets loaded and hauled, and you're left with a cleared spot. We work across St. Louis City, St. Louis County and St. Charles County, with labor quoted from photos.",
     "jobMatch": "",
     "faqIds": [
       "recycling"
@@ -265,7 +268,7 @@
         "id": "slab",
         "h2": "Does the slab stay or go?",
         "body": [
-          "Say which in your quote request. If the floor slab goes, breaking it out is [concrete removal](/services/demolition/concrete-removal/), and concrete carries the heavy-material charge on the haul. If it stays, we leave it in place for your next project."
+          "Your call: we can break it out or leave it. Say which in your quote request. If the floor slab goes, breaking it out is [concrete removal](/services/demolition/concrete-removal/), and concrete carries the heavy-material charge on the haul. If it stays, we leave it in place for your next project."
         ]
       },
       {
@@ -279,7 +282,7 @@
         "id": "before",
         "h2": "Before a garage comes down",
         "body": [
-          "Shut off and cap the power, gas and water that run to the garage before demo day. Whether you need a permit depends on your city; ask and we'll walk you through it. We don't do asbestos testing or abatement, and we can't haul asbestos. Testing is handled by an inspector before demolition."
+          "Shut off and cap the power, gas and water that run to the garage before demo day. Whether you need a permit depends on your city; ask and we'll walk you through it. We don't do asbestos testing or abatement, and we can't haul asbestos. Testing is handled by an inspector before demolition. An older garage's paint should be tested for lead, too."
         ]
       }
     ],
@@ -294,14 +297,15 @@
     "h1": "House demolition in St. Louis, MO",
     "metaTitle": "House Demolition in St. Louis, MO",
     "metaDescription": "House demolition in St. Louis: a whole house taken down and hauled away by one crew. Labor quoted per job from photos, debris hauled by the load.",
-    "intro": "Yes, we demolish whole houses. The house comes down and the debris is hauled away by the same crew, across St. Louis City, St. Louis County and St. Charles County. Labor is quoted per job from photos, and the debris is hauled by the load.",
+    "intro": "We demolish whole houses. The house comes down and the debris is hauled away by the same crew, across St. Louis City, St. Louis County and St. Charles County. Labor is quoted per job from photos, and the debris is hauled by the load.",
     "jobMatch": "",
     "faqIds": [
       "not-accepted"
     ],
     "related": [
       "garage-demolition",
-      "mobile-home-demolition"
+      "mobile-home-demolition",
+      "fireplace-chimney-removal"
     ],
     "sections": [
       {
@@ -317,7 +321,7 @@
         "h2": "What happens before a house comes down",
         "body": [
           "Every utility has to be shut off and capped: water, gas, electric and sewer. Permit rules depend on your city and the job, and we'll walk you through what yours needs. We don't pull City of St. Louis demolition permits.",
-          "We don't do asbestos testing or abatement, and we can't haul asbestos. Testing is handled by an inspector before demolition. Tell us about the basement or slab, and anything on the lot that stays, like a fence, a driveway or trees."
+          "We don't do asbestos testing or abatement, and we can't haul asbestos. Testing is handled by an inspector before demolition. Tell us about the basement or slab, and anything on the lot that stays, like a fence, a driveway or trees. Paint in a house built before 1978 can contain lead; have it tested before demo day."
         ]
       },
       {
@@ -391,7 +395,8 @@
     ],
     "related": [
       "deck-demolition",
-      "concrete-removal"
+      "concrete-removal",
+      "mobile-home-demolition"
     ],
     "sections": [
       {
@@ -435,7 +440,7 @@
     "intro": "We take out old hot tubs and haul them away across St. Louis City, St. Louis County and St. Charles County. When a tub can't come out in one piece, we cut it down on site. The cut-down is quoted from photos, and the haul is priced by the load.",
     "jobMatch": "",
     "faqIds": [
-      "pricing"
+      "demolition-pricing"
     ],
     "related": [
       "deck-demolition",
@@ -486,7 +491,8 @@
     "related": [
       "couch-removal",
       "mattress-removal",
-      "appliance-removal"
+      "appliance-removal",
+      "tv-electronics-removal"
     ],
     "sections": [
       {
@@ -509,7 +515,7 @@
         "id": "how",
         "h2": "How furniture pickup works",
         "body": [
-          "Book online, pick a load size and choose an arrival window. Add a few photos if you're not sure what size to pick. When we arrive, we look at what's going and {confirm}",
+          "Book online, pick a load size and choose an arrival window. Add a few photos if you're not sure what size to pick. When we arrive, we look at what's going. {confirm}",
           "You don't need to take anything apart first. If a piece is too big for the doorway, tell us when you book and we'll plan for it."
         ]
       }
@@ -526,14 +532,15 @@
     "h1": "Couch and sofa removal in St. Louis, MO",
     "metaTitle": "Couch & Sofa Removal in St. Louis, MO",
     "metaDescription": "Couch and sofa removal in St. Louis: sectionals, sleeper sofas and recliners carried out from any floor and hauled away. Price confirmed before we load.",
-    "intro": "We pick up old couches, sofas, sectionals and recliners from inside your home and haul them away, across St. Louis City, St. Louis County and St. Charles County. No dragging it to the curb first, and the price is confirmed before it goes on the truck.",
+    "intro": "We pick up old couches, sofas, sectionals and recliners from inside your home and haul them away, anywhere in the St. Louis area. No dragging it to the curb first, and the price is confirmed before it goes on the truck.",
     "jobMatch": "couch|sofa|sectional|recliner",
     "faqIds": [
       "inside"
     ],
     "related": [
       "furniture-removal",
-      "mattress-removal"
+      "mattress-removal",
+      "piano-removal"
     ],
     "sections": [
       {
@@ -548,7 +555,7 @@
         "id": "cost",
         "h2": "How much does couch removal cost?",
         "body": [
-          "A couch is priced by the space it takes in the truck. {fit:quarter:couch} A big sectional with a recliner and a few boxes is often a half load at {half}. {examplesNote}",
+          "A couch is priced by the space it takes in the truck. {fit:quarter:couch} {fit:half:sectional} {examplesNote}",
           "Getting rid of more than the sofa? It's the same trip, so the rest of the room's [furniture removal](/services/junk-removal/furniture-removal/) costs only the extra space it takes."
         ]
       },
@@ -574,7 +581,7 @@
     "metaTitle": "Mattress Removal in St. Louis, MO",
     "metaDescription": "Mattress removal in St. Louis: mattresses, box springs, bed frames and headboards carried out from any room and hauled away. Book an arrival window online.",
     "intro": "We haul away old mattresses and box springs, plus the bed frame and headboard if those are going too, across St. Louis City, St. Louis County and St. Charles County. We carry them out from the bedroom, so you don't have to wrestle a king mattress down the stairs.",
-    "jobMatch": "mattress|bed frame|box spring",
+    "jobMatch": "mattress|box spring",
     "faqIds": [
       "home"
     ],
@@ -595,7 +602,7 @@
         "id": "cost",
         "h2": "How much does mattress removal cost?",
         "body": [
-          "Mattresses are priced by the space they take in the truck. {fit:quarter:mattress} A single mattress on its own is still more than our smallest pickup, so it's usually a quarter load at {quarter}, with room left for other things. {examplesNote}",
+          "Mattresses are priced by the space they take in the truck. {fit:quarter:mattress} Upload a photo when you book and we'll tell you the load size before we start. {examplesNote}",
           "Clearing out a whole bedroom? Add the dresser and nightstands and see [furniture removal](/services/junk-removal/furniture-removal/)."
         ]
       },
@@ -619,7 +626,7 @@
     "h1": "Appliance removal in St. Louis, MO",
     "metaTitle": "Appliance Removal in St. Louis, MO",
     "metaDescription": "Appliance removal in St. Louis: washers, dryers, stoves, dishwashers, fridges and water heaters hauled away, from the basement too. Priced by the load.",
-    "intro": "We remove old appliances and haul them off: washers, dryers, stoves, dishwashers, refrigerators, freezers and water heaters, across St. Louis City, St. Louis County and St. Charles County. We take them from wherever they sit, basement laundry rooms included.",
+    "intro": "We remove old appliances and haul them off: washers, dryers, stoves, dishwashers, refrigerators, freezers and water heaters, anywhere in the St. Louis area. We take them from wherever they sit, basement laundry rooms included.",
     "jobMatch": "washer|dryer|appliance|stove|water heater",
     "faqIds": [
       "appliances"
@@ -696,7 +703,7 @@
         "id": "prep",
         "h2": "Before we pick it up",
         "body": [
-          "Empty it. Old food and liquid can't go on the truck, and a full fridge is a lot heavier on the stairs. Unplug it a day ahead so the freezer can defrost, and shut off and disconnect the water line if it has an ice maker.",
+          "Empty it first; a full fridge is a lot heavier on the stairs. Unplug it a day ahead so the freezer can defrost, and shut off and disconnect the water line if it has an ice maker.",
           "Tape the doors shut or leave them for us. A loose door swinging open on the stairs is how walls get dinged."
         ]
       }
@@ -713,8 +720,8 @@
     "h1": "TV and electronics removal in St. Louis, MO",
     "metaTitle": "TV & Electronics Removal in St. Louis, MO",
     "metaDescription": "TV and electronics removal in St. Louis: old tube TVs, flat screens, computers, printers and stereo equipment hauled away. Small pickups from $125.",
-    "intro": "We haul away old TVs and electronics: tube TVs, flat screens, monitors, computers, printers and stereo equipment, across St. Louis City, St. Louis County and St. Charles County. A single TV fits our smallest pickup, and bigger loads are priced by how much of the truck they fill.",
-    "jobMatch": "TV|television|speaker|electronics",
+    "intro": "We haul away old TVs and electronics: tube TVs, flat screens, monitors, computers, printers and stereo equipment, anywhere in the St. Louis area. A single TV fits our smallest pickup, and bigger loads are priced by how much of the truck they fill.",
+    "jobMatch": "\\bTV\\b|television|electronics",
     "faqIds": [
       "minimum"
     ],
@@ -773,7 +780,7 @@
         "id": "what",
         "h2": "Uprights, spinets and organs",
         "body": [
-          "Most pianos we see are old uprights and spinets that have been in the family for years and can't be tuned anymore. Electric organs and console pianos go the same way.",
+          "Most old pianos people need gone are uprights and spinets that have been in the family for years and won't hold a tune anymore. Electric organs and console pianos go the same way.",
           "This is for getting rid of a piano. If you're moving a piano you want to keep to a new home, a piano mover is the right call."
         ]
       },
@@ -781,7 +788,7 @@
         "id": "cost",
         "h2": "How much does piano removal cost?",
         "body": [
-          "A piano is priced by the space it takes in the truck, like everything else, starting at {quarter} for a quarter load. The weight is the other part: {access} Tell us about steps, turns and the path to the street when you book, and we confirm the full price before we start."
+          "A piano is priced by the space it takes in the truck, like everything else, starting at {quarter} for a quarter load. The weight is the other part. {access} Tell us about steps, turns and the path to the street when you book, and we confirm the full price before we start."
         ]
       },
       {
@@ -805,8 +812,8 @@
     "h1": "Exercise equipment removal in St. Louis, MO",
     "metaTitle": "Exercise Equipment Removal, St. Louis MO",
     "metaDescription": "Exercise equipment removal in St. Louis: treadmills, ellipticals, bikes, home gyms and weight benches taken apart if needed and hauled from any floor.",
-    "intro": "We remove treadmills, ellipticals, exercise bikes, home gyms and weight benches and haul them away, across St. Louis City, St. Louis County and St. Charles County. Most of it lives in basements, so carrying it up the stairs is part of the job.",
-    "jobMatch": "treadmill|elliptical|exercise|weight bench|basketball hoop",
+    "intro": "We remove treadmills, ellipticals, exercise bikes, home gyms and weight benches and haul them away, anywhere in the St. Louis area. Most of it lives in basements, so carrying it up the stairs is part of the job.",
+    "jobMatch": "treadmill|elliptical|exercise|weight bench",
     "faqIds": [
       "load-size"
     ],
@@ -851,7 +858,7 @@
     "h1": "Carpet removal in St. Louis, MO",
     "metaTitle": "Carpet Removal & Haul-Away in St. Louis, MO",
     "metaDescription": "Carpet removal in St. Louis: we pull up carpet and pad, roll it, and haul it away, room by room or the whole house. Priced by the load. Book online.",
-    "intro": "We pull up old carpet and pad, roll it, carry it out and haul it away, across St. Louis City, St. Louis County and St. Charles County. One bedroom or the whole house, it's priced by how much of the truck it fills.",
+    "intro": "We pull up old carpet and pad, roll it, carry it out and haul it away, across St. Louis City, St. Louis County and St. Charles County. One bedroom or the whole house, the haul is priced by how much of the truck it fills.",
     "jobMatch": "carpet",
     "faqIds": [
       "booking"
@@ -873,7 +880,7 @@
         "id": "cost",
         "h2": "How much does carpet removal cost?",
         "body": [
-          "Carpet is bulky, and padding takes up more room than you'd think, so it's priced by the load: {quarter} for a quarter of the truck up to {full} for the full {maxYards}-yard truck.",
+          "Carpet that's already up and rolled is priced by the load: {quarter} for a quarter of the truck up to {full} for the full {maxYards}-yard truck. Padding takes more room than you'd think. If the carpet is still installed, say so when you book, and we confirm the full price before we start.",
           "Taking out tile, hardwood or vinyl too? That's [flooring removal](/services/demolition/flooring-removal/), quoted from photos."
         ]
       },
@@ -897,8 +904,8 @@
     "h1": "Yard waste and brush removal in St. Louis, MO",
     "metaTitle": "Yard Waste & Brush Removal in St. Louis, MO",
     "metaDescription": "Yard waste and brush removal in St. Louis: branches, brush piles, bagged leaves, old timbers and storm debris loaded and hauled away. Priced by the load.",
-    "intro": "We haul away yard waste: brush piles, cut branches, bagged leaves, old landscaping timbers and storm cleanup, across St. Louis City, St. Louis County and St. Charles County. You point at the pile, we load it, and it's priced by how much of the truck it fills.",
-    "jobMatch": "yard|brush|branch|fence boards|backyard",
+    "intro": "We haul away yard waste: brush piles, cut branches, bagged leaves, old landscaping timbers and storm cleanup, anywhere in the St. Louis area. You point at the pile, we load it, and it's priced by how much of the truck it fills.",
+    "jobMatch": "brush|branch|fence boards",
     "faqIds": [
       "same-day"
     ],
@@ -920,7 +927,7 @@
         "h2": "How much does yard waste removal cost?",
         "body": [
           "Priced by the load: {quarter} for a quarter of the truck, {half} for a half and {full} for the full {maxYards}-yard truck. Brush is light but bulky, so it fills space fast.",
-          "{heavy} That covers dirt, rock and sod, so mention them when you book."
+          "{heavy} Dirt counts, so mention it when you book."
         ]
       },
       {
@@ -951,7 +958,8 @@
     ],
     "related": [
       "playset-removal",
-      "above-ground-pool-removal"
+      "above-ground-pool-removal",
+      "yard-waste-removal"
     ],
     "sections": [
       {
@@ -966,7 +974,7 @@
         "id": "cost",
         "h2": "How much does trampoline removal cost?",
         "body": [
-          "A trampoline taken apart takes up a modest part of the truck, so it's usually a quarter load, at {quarter}. If the swing set or the playhouse is going too, they share the same trip.",
+          "A trampoline taken apart doesn't fill much of the truck. Upload a photo when you book and we'll tell you the load size; a quarter load is {quarter}. If the swing set or the playhouse is going too, they share the same trip.",
           "{confirm}"
         ]
       },
@@ -991,10 +999,10 @@
     "h1": "Swing set and playset removal in St. Louis, MO",
     "metaTitle": "Swing Set & Playset Removal, St. Louis MO",
     "metaDescription": "Swing set and playset removal in St. Louis: wooden play forts, metal swing sets, slides and playhouses taken apart in the yard and hauled away.",
-    "intro": "We take apart old swing sets, wooden play forts, slides and playhouses and haul them away, across St. Louis City, St. Louis County and St. Charles County. The kids outgrew it; we take it down where it stands and leave the yard clear.",
+    "intro": "We take apart old swing sets, wooden play forts, slides and playhouses and haul them away, anywhere in the St. Louis area. The kids outgrew it; we take it down where it stands and leave the yard clear.",
     "jobMatch": "swing set|playset|play set|playhouse",
     "faqIds": [
-      "cancel"
+      "areas"
     ],
     "related": [
       "trampoline-removal",
@@ -1006,14 +1014,14 @@
         "h2": "Wood forts, metal sets and playhouses",
         "body": [
           "Wooden playsets with forts, slides, monkey bars and climbing walls are bolted together from heavy lumber. We unbolt or cut them into pieces and carry them out. Metal A-frame swing sets, plastic slides and small playhouses go the same way.",
-          "Legs set in concrete footings come out with the set. Concrete is heavy material. {heavy}"
+          "Legs set in concrete footings come out with the set. {heavy}"
         ]
       },
       {
         "id": "cost",
         "h2": "How much does playset removal cost?",
         "body": [
-          "Priced by the space it takes in the truck once it's apart. A small metal set is usually a quarter load at {quarter}. A big wooden fort with a slide and a tower can fill a half load, at {half}.",
+          "Priced by the space it takes in the truck once it's apart, from {quarter} for a quarter load. A big wooden fort with a tower takes more room than a metal A-frame set, so upload a photo and we'll tell you the size before we start.",
           "{confirm}"
         ]
       },
@@ -1054,14 +1062,14 @@
         "h2": "Walls, liner, frame and deck",
         "body": [
           "Steel and resin above-ground pools, round or oval. The liner is cut out, the top rails and uprights come off, and the wall is cut into pieces that load. The ladder, filter and pump go with it.",
-          "A wooden deck built around the pool comes down in the same visit; tell us about it so we plan the labor. A deck on its own is [deck demolition](/services/demolition/deck-demolition/)."
+          "A wooden deck built around the pool is demolition. {demoLabor} See [deck demolition](/services/demolition/deck-demolition/)."
         ]
       },
       {
         "id": "cost",
         "h2": "How much does above-ground pool removal cost?",
         "body": [
-          "The haul is priced by the load, and most pools land between a quarter load at {quarter} and a half load at {half}, more with a deck around it.",
+          "The haul is priced by the load, from {quarter} for a quarter of the truck. Send photos when you book and we'll tell you the load size before we start.",
           "The sand base is the heavy part. {heavy} Tell us if you want the sand taken too. {confirm}"
         ]
       },
@@ -1086,8 +1094,8 @@
     "h1": "Office junk removal in St. Louis, MO",
     "metaTitle": "Office Junk Removal in St. Louis, MO",
     "metaDescription": "Office junk removal in St. Louis: desks, cubicles, chairs, filing cabinets and old equipment cleared out around your business hours. Priced by the load.",
-    "intro": "We clear out office junk: desks, cubicle panels, chairs, filing cabinets, conference tables and old equipment, across St. Louis City, St. Louis County and St. Charles County. We schedule around your hours, and the job is priced by the load, the same as a house.",
-    "jobMatch": "filing cabinet|office|desk|shelving",
+    "intro": "We clear out office junk: desks, cubicle panels, chairs, filing cabinets, conference tables and old equipment, anywhere in the St. Louis area. We schedule around your hours, and the job is priced by the load, the same as a house.",
+    "jobMatch": "office|cubicle",
     "faqIds": [
       "insured"
     ],
@@ -1145,7 +1153,8 @@
     "related": [
       "basement-cleanout",
       "attic-cleanout",
-      "moving-cleanout"
+      "moving-cleanout",
+      "storage-unit-cleanout"
     ],
     "sections": [
       {
@@ -1187,8 +1196,8 @@
     "serviceType": "Basement cleanout",
     "h1": "Basement cleanouts in St. Louis, MO",
     "metaTitle": "Basement Cleanout in St. Louis, MO",
-    "metaDescription": "Basement cleanouts in St. Louis: furniture, boxes, old storage and water-damaged items carried up the stairs and hauled away in one visit.",
-    "intro": "We clear out basements: old furniture, boxes, shelving, exercise equipment and years of storage, carried up the stairs and hauled away, across St. Louis City, St. Louis County and St. Charles County. You don't lift anything, and the price is confirmed before we load.",
+    "metaDescription": "Basement cleanouts in St. Louis: furniture, boxes, old storage and water-damaged items carried up the stairs and hauled away in a single visit.",
+    "intro": "We clear out basements: old furniture, boxes, shelving, exercise equipment and years of storage, carried up the stairs and hauled away, anywhere in the St. Louis area. You don't lift anything, and the price is confirmed before we load.",
     "jobMatch": "basement",
     "faqIds": [
       "inside"
@@ -1243,14 +1252,15 @@
     "related": [
       "hoarder-cleanout",
       "basement-cleanout",
-      "garage-cleanout"
+      "garage-cleanout",
+      "attic-cleanout"
     ],
     "sections": [
       {
         "id": "care",
         "h2": "A lighter touch",
         "body": [
-          "An estate cleanout is rarely just a hauling job. Tell us what's staying, what's going and what's still being sorted, and mark it however works for you: tape, a list or a room we don't touch. Tell us what to watch for, like photos, papers or jewelry, and we'll set it aside if it turns up.",
+          "An estate cleanout is rarely just a hauling job. Tell us what's staying, what's going and what's still being sorted, and mark it however works for you: tape, a list or a room we don't touch. Tell us what to watch for, like photos, papers or jewelry, and we'll keep an eye out.",
           "Family-run and Christian-owned, we know these days are hard. We'll go at your pace."
         ]
       },
@@ -1283,7 +1293,7 @@
     "h1": "Attic cleanouts in St. Louis, MO",
     "metaTitle": "Attic Cleanout in St. Louis, MO",
     "metaDescription": "Attic cleanouts in St. Louis: boxes, old furniture and holiday decorations brought down from the attic and hauled away. Tell us about the access.",
-    "intro": "We clear out attics: boxes, old furniture, holiday decorations, suitcases and whatever went up the pull-down ladder years ago, brought down and hauled away, across St. Louis City, St. Louis County and St. Charles County.",
+    "intro": "We clear out attics: boxes, old furniture, holiday decorations, suitcases and whatever went up the pull-down ladder years ago, brought down and hauled away, anywhere in the St. Louis area.",
     "jobMatch": "attic",
     "faqIds": [
       "access"
@@ -1306,7 +1316,7 @@
         "id": "cost",
         "h2": "How much does an attic cleanout cost?",
         "body": [
-          "By the load. Most attics are a quarter load at {quarter} or a half at {half}, because the space is small even when it's packed.",
+          "By the load. A quarter load is {quarter} and a half is {half}. Upload photos when you book and we'll tell you the size before we start.",
           "Clearing more of the house at once? It's one trip, and only the extra space costs more."
         ]
       },
@@ -1346,14 +1356,14 @@
         "h2": "How we approach it",
         "body": [
           "These jobs take patience. We start with the paths and the rooms that matter most, like the kitchen, a bathroom or a bedroom, and work outward. If the owner wants to go through things as we go, we slow down. If the family needs it done fast, tell us and we'll plan the crew around that.",
-          "Papers, photos, cash and keepsakes turn up in houses like this. Tell us what matters and we'll set it aside when we find it."
+          "Papers, photos and keepsakes turn up in houses like this. Tell us what to watch for and we'll keep an eye out."
         ]
       },
       {
         "id": "cost",
         "h2": "How much does a hoarder cleanout cost?",
         "body": [
-          "Priced by the load, the same as any cleanout. A packed house is usually several full loads at {full} each, and we confirm the price of each load before it's loaded. Send photos of each room when you book and we'll give you a realistic idea of how many trucks it takes."
+          "Priced by the load, the same as any cleanout. A packed house can take more than one full load, at {full} each, and we confirm the price of each load before it's loaded. Send photos of each room when you book and we'll give you a realistic idea of how many trucks it takes."
         ]
       },
       {
@@ -1377,7 +1387,7 @@
     "h1": "Foreclosure and eviction cleanouts in St. Louis, MO",
     "metaTitle": "Foreclosure & Eviction Cleanouts, St. Louis",
     "metaDescription": "Foreclosure and eviction cleanouts in St. Louis: left-behind furniture, trash and belongings cleared so the property can be listed or re-rented.",
-    "intro": "We clear out foreclosed and vacated properties: furniture, trash, clothes and everything left behind, inside and out, across St. Louis City, St. Louis County and St. Charles County. Banks, real estate agents, property managers and landlords call us when a house has to be ready to list or rent.",
+    "intro": "We clear out foreclosed and vacated properties: furniture, trash, clothes and everything left behind, inside and out, anywhere in the St. Louis area. It's built for banks, real estate agents, property managers and landlords who need a house ready to list or rent.",
     "jobMatch": "",
     "faqIds": [
       "home"
@@ -1450,7 +1460,7 @@
         "id": "cost",
         "h2": "How much does a rental cleanout cost?",
         "body": [
-          "By the load. One room of leftovers is often a quarter load at {quarter}; a full apartment can be a half at {half} or more. {freon}",
+          "By the load. A quarter load is {quarter} and a half is {half}; upload photos and we'll tell you which fits. {freon}",
           "Managing several units? Call us and we'll talk through pickups as each one turns over."
         ]
       },
@@ -1475,7 +1485,7 @@
     "h1": "Storage unit cleanouts in St. Louis, MO",
     "metaTitle": "Storage Unit Cleanout in St. Louis, MO",
     "metaDescription": "Storage unit cleanouts in St. Louis: we empty the unit, haul away everything you don't want, and leave it swept so you can stop paying rent on it.",
-    "intro": "We empty storage units and haul away everything you don't want, across St. Louis City, St. Louis County and St. Charles County, so you can stop paying rent on stuff you haven't opened in years. Meet us at the unit, or leave the gate code and tell us what's staying.",
+    "intro": "We empty storage units and haul away everything you don't want, anywhere in the St. Louis area, so you can stop paying rent on stuff you haven't opened in years. Meet us at the unit, or leave the gate code and tell us what's staying.",
     "jobMatch": "storage unit",
     "faqIds": [
       "yards"
@@ -1497,7 +1507,7 @@
         "id": "cost",
         "h2": "How much does a storage unit cleanout cost?",
         "body": [
-          "By the load. A 5x10 unit is usually a quarter or half load, at {quarter} or {half}. A packed 10x20 can fill the whole {maxYards}-yard truck at {full}.",
+          "By the load. Loads run from {quarter} for a quarter of the truck to {full} for the full {maxYards}-yard truck, and a big unit can take more than one. Send photos of the open unit when you book and we'll tell you the load size before we start.",
           "{confirm}"
         ]
       },
@@ -1572,8 +1582,8 @@
     "serviceType": "Commercial cleanout",
     "h1": "Retail and commercial cleanouts in St. Louis, MO",
     "metaTitle": "Retail & Commercial Cleanouts in St. Louis",
-    "metaDescription": "Retail and commercial cleanouts in St. Louis: fixtures, shelving, displays and back-room junk cleared from stores, offices and warehouses. Licensed and insured.",
-    "intro": "We clear out retail stores, offices and warehouses: display fixtures, shelving, counters, furniture and back-room junk, across St. Louis City, St. Louis County and St. Charles County. We work around your hours, and the job is priced by the load, the same way as a house.",
+    "metaDescription": "Retail and commercial cleanouts in St. Louis: fixtures, shelving, displays and back-room junk cleared out of stores, offices and warehouses.",
+    "intro": "We clear out retail stores, offices and warehouses: display fixtures, shelving, counters, furniture and back-room junk, anywhere in the St. Louis area. We work around your hours, and the job is priced by the load, the same way as a house.",
     "jobMatch": "pallets|shelving|warehouse|store",
     "faqIds": [
       "more-than-expected"
@@ -1628,7 +1638,8 @@
     "related": [
       "wall-removal",
       "ceiling-removal",
-      "interior-demolition"
+      "interior-demolition",
+      "fireplace-chimney-removal"
     ],
     "sections": [
       {
@@ -1666,7 +1677,7 @@
     "h1": "Flooring removal in St. Louis, MO",
     "metaTitle": "Flooring Removal in St. Louis, MO",
     "metaDescription": "Flooring removal in St. Louis: tile, hardwood, laminate, vinyl and carpet torn up down to the subfloor and hauled away. Labor quoted from photos.",
-    "intro": "We tear out old flooring, tile, hardwood, laminate, vinyl and carpet, down to the subfloor or slab, and haul it away in the same job, across St. Louis City, St. Louis County and St. Charles County.",
+    "intro": "We tear out old flooring, tile, hardwood, laminate, vinyl and carpet, down to the subfloor or slab, and haul it away in the same job, anywhere in the St. Louis area.",
     "jobMatch": "carpet and pad|flooring removal|floor tile removal",
     "faqIds": [
       "demolition-pricing"
@@ -1689,7 +1700,7 @@
         "id": "cost",
         "h2": "How much does flooring removal cost?",
         "body": [
-          "Pulling up the floor is labor, quoted per job from photos, because a glued-down hardwood floor and a floating laminate aren't the same work. Hauling it is priced by the load, from {quarter}. Tile and mortar beds are heavy. {heavy}"
+          "Pulling up the floor is labor, quoted per job from photos, because a glued-down hardwood floor and a floating laminate aren't the same work. Hauling it is priced by the load, from {quarter}. {heavy}"
         ]
       },
       {
@@ -1715,7 +1726,7 @@
     "serviceType": "Wall removal",
     "h1": "Non-load-bearing wall removal in St. Louis, MO",
     "metaTitle": "Wall Removal in St. Louis, MO",
-    "metaDescription": "Non-load-bearing wall removal in St. Louis: partition walls taken out, studs and all, to open up a room, and the debris hauled the same day.",
+    "metaDescription": "Non-load-bearing wall removal in St. Louis: partition walls taken out, studs and all, to open up a room, with the debris hauled in the same job.",
     "intro": "We take out non-load-bearing walls, drywall or plaster, studs and plates, to open up a kitchen, a living room or a basement, and haul the debris away, across St. Louis City, St. Louis County and St. Charles County. Send photos and we quote the labor; the haul is priced by the load.",
     "jobMatch": "walls taken out|wall removal",
     "faqIds": [
@@ -1724,7 +1735,8 @@
     "related": [
       "drywall-removal",
       "interior-demolition",
-      "whole-house-gut"
+      "whole-house-gut",
+      "staircase-removal"
     ],
     "sections": [
       {
@@ -1739,7 +1751,7 @@
         "id": "bearing",
         "h2": "Is the wall load-bearing?",
         "body": [
-          "This page is about walls that don't hold up the house. If a wall carries the floor or roof above it, the support has to be planned by an engineer or a contractor before it comes out. If you're not sure, have it checked first, and tell us what they found.",
+          "We take out walls that don't hold up the house. If a wall carries the floor or roof above it, the support has to be planned by an engineer or a contractor before it comes out. If you're not sure, have it checked first, and tell us what they found.",
           "Clues worth asking about: a wall that runs across the floor joists above it, sits in the middle of the house, or has another wall stacked on top of it upstairs."
         ]
       },
@@ -1747,7 +1759,8 @@
         "id": "cost",
         "h2": "How much does wall removal cost?",
         "body": [
-          "The wall removal is labor, quoted per job from photos. The debris is hauled by the load, starting at {quarter} for a quarter of the truck. Homes built before 1978 can have lead paint, so have painted surfaces tested before demo day and tell us what the results say. Get it tested before demo day. If it comes back positive, an abatement company handles it; we don't remove or haul asbestos.",
+          "The wall removal is labor, quoted per job from photos. The debris is hauled by the load, starting at {quarter} for a quarter of the truck.",
+          "Homes built before 1978 can have lead paint, and older joint compound can contain asbestos. Have both tested before demo day: we don't test for, remove or haul asbestos.",
           "Taking more than one wall out? See [interior demolition](/services/demolition/interior-demolition/) or a [whole-house gut](/services/demolition/whole-house-gut/)."
         ]
       }
@@ -1758,12 +1771,12 @@
     "slug": "ceiling-removal",
     "scopeItem": "Ceiling removal",
     "name": "Ceiling Removal",
-    "short": "Drywall, plaster, popcorn and drop ceilings taken down.",
+    "short": "Drywall, plaster and drop ceilings taken down; popcorn tested first.",
     "serviceType": "Ceiling removal",
     "h1": "Ceiling removal in St. Louis, MO",
     "metaTitle": "Ceiling Removal in St. Louis, MO",
     "metaDescription": "Ceiling removal in St. Louis: drywall, plaster and lath, drop ceilings and water-damaged ceilings taken down and hauled. Test popcorn ceilings first.",
-    "intro": "We take down ceilings: drywall, plaster and lath, drop-ceiling grids and tiles, and ceilings ruined by a roof or plumbing leak, and haul the debris away, across St. Louis City, St. Louis County and St. Charles County. Ceiling demo is messy, so we plan the dust and the debris before we start.",
+    "intro": "We take down ceilings: drywall, plaster and lath, drop-ceiling grids and tiles, and ceilings ruined by a roof or plumbing leak, and haul the debris away, anywhere in the St. Louis area. Ceiling demo is messy, so we plan the dust and the debris before we start.",
     "jobMatch": "ceiling removal|ceilings? (came|taken) down",
     "faqIds": [
       "recycling"
@@ -1809,7 +1822,7 @@
     "serviceType": "Basement tear-out",
     "h1": "Basement tear-out in St. Louis, MO",
     "metaTitle": "Basement Tear-Out & Demolition in St. Louis",
-    "metaDescription": "Basement tear-out in St. Louis: finished and water-damaged basements taken back to the walls and slab, debris carried up and hauled the same job.",
+    "metaDescription": "Basement tear-out in St. Louis: finished and water-damaged basements taken back to the block walls and slab, with the debris carried up and hauled away.",
     "intro": "We tear out finished basements, drywall, paneling, framing, carpet, drop ceilings and built-ins, back to the foundation walls and slab, and haul it all away, across St. Louis City, St. Louis County and St. Charles County. It's for remodels and for basements that took on water.",
     "jobMatch": "basement tear-out|finished basement",
     "faqIds": [
@@ -1842,7 +1855,7 @@
         "h2": "How much does a basement tear-out cost?",
         "body": [
           "The tear-out itself is quoted per job. Hauling the debris is priced by how much of the truck it fills, from {quarter}.",
-          "Older basements can have floor tile, pipe insulation or other materials that contain asbestos. We don't do asbestos testing or abatement, and we can't haul asbestos. Testing is handled by an inspector before demolition."
+          "Older basements can have floor tile, pipe insulation or other materials that contain asbestos. We don't do asbestos testing or abatement, and we can't haul asbestos. Testing is handled by an inspector before demolition. Painted paneling and trim from before 1978 should be tested for lead, too."
         ]
       }
     ]
@@ -1856,8 +1869,8 @@
     "serviceType": "Damage tear-out",
     "h1": "Fire and water damage tear-out in St. Louis, MO",
     "metaTitle": "Fire & Water Damage Tear-Out, St. Louis MO",
-    "metaDescription": "Fire and water damage tear-out in St. Louis: ruined drywall, flooring, cabinets and contents removed and hauled so the rebuild can start.",
-    "intro": "After a fire, a burst pipe or a roof leak, we tear out what's ruined, drywall, insulation, flooring, cabinets and damaged belongings, and haul it all away, across St. Louis City, St. Louis County and St. Charles County. It clears the way for the drying crew and the rebuild.",
+    "metaDescription": "Fire and water damage tear-out in St. Louis: ruined drywall, flooring, cabinets and contents removed and hauled away so the rebuild can start.",
+    "intro": "After a fire, a burst pipe or a roof leak, we tear out what's ruined, drywall, insulation, flooring, cabinets and damaged belongings, and haul it all away, anywhere in the St. Louis area. It clears the way for the drying crew and the rebuild.",
     "jobMatch": "fire|water damage|flood",
     "faqIds": [
       "home"
@@ -1905,7 +1918,7 @@
     "metaTitle": "Whole-House Gut & Interior Demo, St. Louis",
     "metaDescription": "Whole-house interior guts in St. Louis: every room taken to the studs and subfloor, debris hauled by the load, so the renovation starts with a clean shell.",
     "intro": "We gut whole houses: every room taken back to the studs, joists and subfloor, with the kitchen, bathrooms, flooring, ceilings and trim hauled away, across St. Louis City, St. Louis County and St. Charles County. It's the first step of a full renovation, and one crew does the tear-out and the haul.",
-    "jobMatch": "gut|to the studs",
+    "jobMatch": "whole-house gut|gutted",
     "faqIds": [
       "demolition"
     ],
@@ -1935,7 +1948,7 @@
         "id": "cost",
         "h2": "How much does a whole-house gut cost?",
         "body": [
-          "The tear-out is labor, quoted per job from photos and a walk-through; there's no price per square foot. The debris is hauled by the load at {full} for a full {maxYards}-yard truck, and a whole house takes several loads. {heavy}",
+          "The tear-out is labor, quoted per job from photos; there's no price per square foot. The debris is hauled by the load at {full} for a full {maxYards}-yard truck, and a whole house takes several loads. {heavy}",
           "We're {insured}, and we're glad to coordinate with your general contractor's schedule."
         ]
       }
@@ -1954,14 +1967,15 @@
     "h1": "Cabinet removal in St. Louis, MO",
     "metaTitle": "Cabinet Removal in St. Louis, MO",
     "metaDescription": "Cabinet removal in St. Louis: kitchen, bath, laundry and garage cabinets taken out and hauled, with the walls and floor left for your remodeler.",
-    "intro": "We take out cabinets, uppers, lowers, vanities and built-ins, and haul them away, without tearing out the rest of the room, across St. Louis City, St. Louis County and St. Charles County. It's for remodels where the walls and floor stay and only the cabinets are being replaced.",
-    "jobMatch": "display cabinets|cabinet removal",
+    "intro": "We take out cabinets, uppers, lowers, vanities and built-ins, and haul them away, without tearing out the rest of the room, anywhere in the St. Louis area. It's for remodels where the walls and floor stay and only the cabinets are being replaced.",
+    "jobMatch": "cabinet removal",
     "faqIds": [
       "freon"
     ],
     "related": [
       "kitchen-demolition",
-      "bathroom-demolition"
+      "bathroom-demolition",
+      "refrigerator-removal"
     ],
     "sections": [
       {
@@ -2026,7 +2040,7 @@
         "id": "cost",
         "h2": "How much does fireplace removal cost?",
         "body": [
-          "The tear-out itself is quoted per job. Brick and stone are heavy material. {heavy} The haul starts at {quarter} for a quarter of the truck."
+          "The tear-out itself is quoted per job. {heavy} The haul starts at {quarter} for a quarter of the truck."
         ]
       },
       {
@@ -2034,7 +2048,7 @@
         "h2": "Before the masonry comes down",
         "body": [
           "Gas fireplaces and inserts need the gas line shut off and capped by a plumber first. Have the flue cleaned if it's been used recently. Ask your city whether the job needs a permit, and we'll help you sort out what it takes. We don't pull City of St. Louis demolition permits.",
-          "Older fireplaces and chimneys can have materials that contain asbestos, like old flue pipe, insulation or the panels around an insert. An inspector should test it before we start. We can't test for, remove or haul asbestos."
+          "Older fireplaces and chimneys can have materials that contain asbestos, like old flue pipe, insulation or the panels around an insert. An inspector should test it before we start. We can't test for, remove or haul asbestos. A painted mantel or brick in a pre-1978 house should be tested for lead as well."
         ]
       }
     ]
@@ -2049,10 +2063,10 @@
     "h1": "Staircase removal in St. Louis, MO",
     "metaTitle": "Staircase Removal in St. Louis, MO",
     "metaDescription": "Staircase removal in St. Louis: interior and basement stairs, railings and exterior wood steps torn out and hauled, ready for the new staircase.",
-    "intro": "We take out old staircases, interior stairs, basement stairs, railings and balusters, and wooden exterior steps, and haul the debris away, across St. Louis City, St. Louis County and St. Charles County. It clears the way for your carpenter to build the new set.",
+    "intro": "We take out old staircases, interior stairs, basement stairs, railings and balusters, and wooden exterior steps, and haul the debris away, anywhere in the St. Louis area. It clears the way for your carpenter to build the new set.",
     "jobMatch": "stair",
     "faqIds": [
-      "cancel"
+      "demolition-pricing"
     ],
     "related": [
       "interior-demolition",
@@ -2079,7 +2093,7 @@
         "id": "kinds",
         "h2": "Basement, attic and back-porch stairs",
         "body": [
-          "Basement stairs are the most common job: open wooden treads that have worn, cracked or gotten too steep for comfort. Attic pull-down ladders and narrow back stairways come out the same way. Wooden steps off a back door or a side porch are outside work, but the tear-out is the same idea.",
+          "Basement stairs are a common one: open wooden treads that have worn, cracked or gotten too steep for comfort. Attic pull-down ladders and narrow back stairways come out the same way. Wooden steps off a back door or a side porch are outside work, but the tear-out is the same idea.",
           "Tell us the floor-to-floor height and how wide the opening is, and send a photo from the top and the bottom. That's enough to quote it."
         ]
       },
@@ -2102,11 +2116,11 @@
     "serviceType": "Porch demolition",
     "h1": "Porch demolition in St. Louis, MO",
     "metaTitle": "Porch Demolition & Removal in St. Louis",
-    "metaDescription": "Porch demolition in St. Louis: wood porches, porch roofs, railings, screens and steps torn down and hauled away. Labor quoted from photos.",
+    "metaDescription": "Porch demolition in St. Louis: wood porches, porch roofs, railings, screens and steps torn down and hauled away. Labor is quoted from your photos.",
     "intro": "We tear down old porches: the floor, framing, railings, screens, steps and the porch roof, and haul the debris away, across St. Louis City, St. Louis County and St. Charles County.",
     "jobMatch": "porch",
     "faqIds": [
-      "booking"
+      "recycling"
     ],
     "related": [
       "deck-demolition",
@@ -2148,9 +2162,9 @@
     "serviceType": "Fence removal",
     "h1": "Fence removal in St. Louis, MO",
     "metaTitle": "Fence Removal in St. Louis, MO",
-    "metaDescription": "Fence removal in St. Louis: wood, chain-link and vinyl fencing torn out, posts and concrete footings pulled, and everything hauled away.",
-    "intro": "We tear out old fences: wood privacy fences, chain-link and vinyl, with the posts and their concrete footings, and haul it all away, across St. Louis City, St. Louis County and St. Charles County.",
-    "jobMatch": "fence",
+    "metaDescription": "Fence removal in St. Louis: wood, chain-link and vinyl fencing torn out, posts and concrete footings pulled, and everything hauled away the same job.",
+    "intro": "We tear out old fences: wood privacy fences, chain-link and vinyl, with the posts and their concrete footings, and haul it all away, anywhere in the St. Louis area.",
+    "jobMatch": "fence boards|fence removal|fence posts",
     "faqIds": [
       "areas"
     ],
@@ -2172,7 +2186,7 @@
         "id": "cost",
         "h2": "How much does fence removal cost?",
         "body": [
-          "The tear-out is labor, quoted per job from photos, and it depends mostly on the length and how the posts are set. The haul starts at {quarter} for a quarter of the truck. Concrete footings are heavy material. {heavy}"
+          "The tear-out is labor, quoted per job from photos, and it depends mostly on the length and how the posts are set. The haul starts at {quarter} for a quarter of the truck. {heavy}"
         ]
       },
       {
@@ -2198,7 +2212,7 @@
     "serviceType": "Pool demolition",
     "h1": "Pool demolition in St. Louis, MO",
     "metaTitle": "Pool Demolition & Removal in St. Louis, MO",
-    "metaDescription": "Pool demolition in St. Louis: in-ground pools and the concrete decking around them broken out and hauled. Quoted per job from photos and a site visit.",
+    "metaDescription": "Pool demolition in St. Louis: in-ground pools and the concrete decking around them broken out and hauled away. Quoted per job from your photos.",
     "intro": "We take out old swimming pools: the concrete decking, coping, liner, walls and equipment, and haul the debris away, across St. Louis City, St. Louis County and St. Charles County. Every pool is different, so the work is quoted per job from photos.",
     "jobMatch": "in-ground pool|swimming pool",
     "faqIds": [
@@ -2231,7 +2245,7 @@
         "id": "cost",
         "h2": "How much does pool removal cost?",
         "body": [
-          "The demo work is quoted per job from photos. Concrete decking is heavy material. {heavy} The haul is by the load, at {full} for a full {maxYards}-yard truck, and a pool is usually more than one load.",
+          "The demo work is quoted per job from photos. {heavy} The haul is by the load, at {full} for a full {maxYards}-yard truck, and a pool is usually more than one load.",
           "Deck or hot tub next to it? See [deck demolition](/services/demolition/deck-demolition/) and [hot tub removal](/services/demolition/hot-tub-removal/)."
         ]
       }
@@ -2247,7 +2261,7 @@
     "h1": "Mobile home demolition in St. Louis, MO",
     "metaTitle": "Mobile Home Demolition in St. Louis, MO",
     "metaDescription": "Mobile home demolition in St. Louis: single-wide and double-wide homes, skirting, decks and additions torn down and hauled away. Quoted from photos.",
-    "intro": "We tear down old mobile homes: single-wides and double-wides, with the skirting, porches, decks and add-ons, and haul the debris away, across St. Louis City, St. Louis County and St. Charles County.",
+    "intro": "We tear down old mobile homes: single-wides and double-wides, with the skirting, porches, decks and add-ons, and haul the debris away, anywhere in the St. Louis area.",
     "jobMatch": "mobile home|trailer",
     "faqIds": [
       "insured"
@@ -2262,6 +2276,7 @@
         "h2": "The home and everything attached",
         "body": [
           "Walls, roof, floors, the contents if they're going too, the skirting, steps, porches, carports and decks built onto it. Tell us what stays, like a shed, a fence or the concrete pad.",
+          "A double-wide is two sections joined down the middle, so it's roughly twice the tear-out and twice the debris of a single-wide. Send photos of the outside from each corner, the inside and anything built onto it.",
           "<!-- TODO(seo): owner to confirm how the steel frame and axles are handled and any title or ownership paperwork needed before a mobile home is demolished. -->"
         ]
       },
@@ -2278,7 +2293,7 @@
         "h2": "How much does mobile home demolition cost?",
         "body": [
           "We quote the demolition from your photos. The haul is by the load at {full} for a full {maxYards}-yard truck, and a mobile home is usually several loads.",
-          "Full of belongings first? The contents can be cleared the same week: see [estate cleanouts](/services/cleanouts/estate-cleanout/). For a site-built house, see [house demolition](/services/demolition/house-demolition/)."
+          "Full of belongings first? The contents can be cleared first: see [estate cleanouts](/services/cleanouts/estate-cleanout/). For a site-built house, see [house demolition](/services/demolition/house-demolition/)."
         ]
       }
     ]

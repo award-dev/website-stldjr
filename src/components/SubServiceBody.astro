@@ -36,7 +36,8 @@ function fill(s: string) {
     const l = byId(id);
     const f = l?.fits.find((x) => new RegExp(words, 'i').test(x));
     if (!f || !l) return '';
-    return id === 'minimum' ? `"${f}" is the kind of pickup our ${l.label.toLowerCase()} covers, at ${l.priceLine.amount}.` : `"${f}" is one of our examples for a ${l.label.toLowerCase()}, from ${l.priceLine.amount}.`;
+    const what = f.replace(/^about /i, '').replace(/^./, (c) => c.toLowerCase());
+    return id === 'minimum' ? `Our ${l.priceLine.amount} minimum pickup covers things like ${what}.` : `Our ${l.label.toLowerCase()} (from ${l.priceLine.amount}) fits about ${what}.`;
   });
   return out.replace(/\{(\w+)\}/g, (m, k: string) => (k in tokens ? tokens[k] : m));
 }
