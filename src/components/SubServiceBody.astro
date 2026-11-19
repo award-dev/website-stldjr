@@ -1,24 +1,32 @@
 ---
 /**
  * Body copy for a demolition sub-page. Tokens are filled from config, never typed into the copy:
- *   {quarter} {half} {threeQuarter} {full} {maxYards} {heavy} {freon} {examplesNote} {insured}
- *   {fit:<load id>:<words>} -> the matching load example from config/pricing.json, or nothing.
+ *   {minimum} {quarter} {half} {threeQuarter} {full} {maxYards} {heavy} {freon} {access} {minimumRule}
+ *   {notAccepted} {confirm} {demoLabor} {examplesNote} {insured}
+ *   {fit:<load id>:<words>} -> the matching load example from config/pricing.json ("minimum" included), or nothing.
  * Links are written [text](/path/).
  */
 import type { SubService } from '../data/subservices';
-import { loads, pricing, business } from '../lib/site';
+import { loads, minimum, pricing, business } from '../lib/site';
 
 interface Props { sub: SubService }
 const { sub } = Astro.props;
-const byId = (id: string) => loads.find((l) => l.id === id);
+const byId = (id: string) => (id === 'minimum' ? minimum : loads.find((l) => l.id === id));
+const cond = (re: RegExp) => pricing.conditions.find((c: string) => re.test(c)) ?? '';
 const tokens: Record<string, string> = {
   quarter: byId('quarter')?.priceLine.amount ?? '',
   half: byId('half')?.priceLine.amount ?? '',
   threeQuarter: byId('three-quarter')?.priceLine.amount ?? '',
   full: byId('full')?.priceLine.amount ?? '',
   maxYards: String(pricing.maxCubicYards),
-  heavy: pricing.conditions.find((c) => /heavy material/i.test(c)) ?? '',
-  freon: pricing.conditions.find((c) => /freon/i.test(c)) ?? '',
+  minimum: minimum?.priceLine.amount ?? '',
+  heavy: cond(/heavy material/i),
+  freon: cond(/freon/i),
+  access: cond(/difficult access/i),
+  minimumRule: cond(/minimum pickup/i),
+  notAccepted: cond(/can't take/i),
+  confirm: cond(/confirm the final price/i),
+  demoLabor: cond(/demolition labor/i),
   examplesNote: pricing.examplesNote,
   insured: business.trust.insured ? `licensed and insured${business.trust.insuranceDetails ? ` with a ${business.trust.insuranceDetails}` : ''}` : 'licensed',
 };
@@ -27,7 +35,8 @@ function fill(s: string) {
   let out = s.replace(/\{fit:([a-z-]+):([^}]+)\}/g, (_, id: string, words: string) => {
     const l = byId(id);
     const f = l?.fits.find((x) => new RegExp(words, 'i').test(x));
-    return f && l ? `"${f}" is one of our examples for a ${l.label.toLowerCase()}, from ${l.priceLine.amount}.` : '';
+    if (!f || !l) return '';
+    return id === 'minimum' ? `"${f}" is the kind of pickup our ${l.label.toLowerCase()} covers, at ${l.priceLine.amount}.` : `"${f}" is one of our examples for a ${l.label.toLowerCase()}, from ${l.priceLine.amount}.`;
   });
   return out.replace(/\{(\w+)\}/g, (m, k: string) => (k in tokens ? tokens[k] : m));
 }
@@ -37,7 +46,7 @@ const html = (s: string) => esc(fill(s)).replace(/\[([^\]]+)\]\((\/[^)\s]*)\)/g,
   <section class="section-tight" aria-labelledby={`${sec.id}-h`}>
     <div class="shell sub-body">
       <h2 id={`${sec.id}-h`} class="display-md">{sec.h2}</h2>
-      {sec.body.map((p) => <p set:html={html(p)} />)}
+      {sec.body.map((p) => (p.startsWith('<!-- TODO(seo)') ? <Fragment set:html={p} /> : <p set:html={html(p)} />))}
     </div>
   </section>
 ))}

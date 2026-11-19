@@ -1,13 +1,14 @@
 ---
-// Demolition sub-pages (/services/demolition/<slug>/), driven by site-data/subservices.json.
+// Service sub-pages (/services/<parent>/<slug>/) for junk removal, cleanouts and demolition, driven by
+// site-data/subservices.json.
 // Text only for now: no job photos yet (see the TODO comment on each page). FAQs only from confirmed items.
 import Base from '../../../layouts/Base.astro';
 import PageHero from '../../../components/PageHero.astro';
 import Faq from '../../../components/Faq.astro';
 import SubServiceBody from '../../../components/SubServiceBody.astro';
 import { subservices, subPath, type SubService } from '../../../data/subservices';
-import { site } from '../../../data/site';
-import { faqItems, faqSchema, business } from '../../../lib/site';
+import { site, services } from '../../../data/site';
+import { faqItems, faqSchema, business, loads } from '../../../lib/site';
 import { locations, cityHref } from '../../../lib/locations';
 
 export function getStaticPaths() {
@@ -16,18 +17,25 @@ export function getStaticPaths() {
 interface Props { sub: SubService }
 const { sub } = Astro.props;
 const url = `${site.url}${subPath(sub)}`;
+const parent = services.find((p) => p.slug === sub.parent)!;
+const parentPath = `/services/${parent.slug}/`;
+const isDemo = parent.slug === 'demolition';
+const load = loads.find((l) => l.id === (sub.load ?? parent.suggestedLoad));
+const bookHref = `/book/?service=${parent.bookingService}${load ? `&load=${load.id}` : ''}`;
+const quoteHref = `/quote/?service=${parent.bookingService}`;
 const crumbs = [
   { name: 'Home', href: '/' },
   { name: 'Services', href: '/services/' },
-  { name: 'Demolition', href: `/services/${sub.parent}/` },
+  { name: parent.title, href: parentPath },
   { name: sub.name, href: subPath(sub) },
 ];
 const faqs = faqItems(sub.faqIds);
 const related = sub.related.map((slug) => subservices.find((s) => s.slug === slug)).filter((s): s is SubService => !!s);
 // Recorded jobs of this kind (text only), linked to the city page where the job is shown with its photos.
 const re = sub.jobMatch ? new RegExp(sub.jobMatch, 'i') : null;
+const jobServices = sub.jobServices ?? [sub.parent];
 const jobs = re
-  ? locations.filter((l) => l.tier !== 'mention').flatMap((l) => l.jobs.filter((j) => j.service === sub.parent && re.test(j.summary)).map((j) => ({ l, j })))
+  ? locations.filter((l) => l.tier !== 'mention').flatMap((l) => l.jobs.filter((j) => jobServices.includes(j.service) && re.test(j.summary)).map((j) => ({ l, j })))
   : [];
 const intro = sub.intro.replace('{insured}', business.trust.insured ? `licensed and insured with a ${business.trust.insuranceDetails}` : 'licensed');
 const serviceSchema = {
@@ -39,14 +47,18 @@ const serviceSchema = {
   url,
   provider: { '@id': `${site.url}/#business` },
   areaServed: site.serviceArea.map((a) => ({ '@type': a.type, name: `${a.name}, ${site.region}` })),
-  isRelatedTo: { '@id': `${site.url}/services/${sub.parent}/#service` },
+  isRelatedTo: { '@id': `${site.url}${parentPath}#service` },
 };
 const arrow = '<svg class="arrow" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg>';
 ---
 <Base title={sub.metaTitle} description={sub.metaDescription} breadcrumbs={crumbs} schema={[serviceSchema, ...(faqs.length ? [faqSchema(faqs)] : [])]}>
   <PageHero title={sub.h1} lead={intro} crumbs={crumbs}>
     <div class="btn-row">
-      <a href="/quote/?service=demolition" class="btn btn-accent" data-track="cta_click" data-track-cta="quote" data-track-location={`sub-${sub.slug}`}>Send photos for a quote<Fragment set:html={arrow} /></a>
+      {isDemo ? (
+        <a href={quoteHref} class="btn btn-accent" data-track="cta_click" data-track-cta="quote" data-track-location={`sub-${sub.slug}`}>Send photos for a quote<Fragment set:html={arrow} /></a>
+      ) : (
+        <a href={bookHref} class="btn btn-accent" data-track="cta_click" data-track-cta="book" data-track-location={`sub-${sub.slug}`}>Book online<Fragment set:html={arrow} /></a>
+      )}
       <a href={site.phoneHref} class="btn btn-ghost" data-track="phone_click" data-track-location={`sub-${sub.slug}`}>Call {site.phone}</a>
     </div>
   </PageHero>
@@ -75,14 +87,16 @@ const arrow = '<svg class="arrow" viewBox="0 0 24 24" aria-hidden="true" fill="n
 
   <section class="section-tight" aria-labelledby="related-h">
     <div class="shell sub-more">
-      <h2 id="related-h" class="display-md">Related demolition work</h2>
+      <h2 id="related-h" class="display-md">Related services</h2>
       <ul class="sub-related">
-        <li><a class="link-u accent" href={`/services/${sub.parent}/`}>All demolition services in St. Louis</a></li>
-        {related.map((r) => <li><a class="link-u accent" href={subPath(r)}>{r.h1}</a></li>)}
-        <li><a class="link-u accent" href="/pricing/">Hauling prices by the load</a></li>
+        <li><a class="link-u accent" href={parentPath}>All {parent.title.toLowerCase()} services in St. Louis</a></li>
+        {related.map((r) => <li><a class="link-u accent" href={subPath(r)}>{r.name}</a></li>)}
+        <li><a class="link-u accent" href="/pricing/">{isDemo ? 'Hauling prices by the load' : 'Junk removal prices by the load'}</a></li>
+        <li><a class="link-u accent" href="/service-areas/">Every area we serve</a></li>
       </ul>
     </div>
   </section>
+
 </Base>
 <style>
   .sub-more { display: grid; gap: 16px; max-width: 72ch; }

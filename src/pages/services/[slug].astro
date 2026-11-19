@@ -2,7 +2,7 @@
 import { Image } from 'astro:assets';
 import Base from '../../layouts/Base.astro';
 import PageHero from '../../components/PageHero.astro';
-import { subForItem, subPath } from '../../data/subservices';
+import { subForItem, subPath, subsOf } from '../../data/subservices';
 import ServiceCards from '../../components/ServiceCards.astro';
 import Faq from '../../components/Faq.astro';
 import Reels from '../../components/react/Reels.tsx';
@@ -48,6 +48,14 @@ const serviceSchema = {
     itemListElement: s.scope.map((x) => ({ '@type': 'Offer', itemOffered: { '@type': 'Service', name: x.title, description: x.body } })),
   },
 };
+// Sub-pages not already linked from the scope list above, listed so every one is a click from here.
+const linked = new Set(s.scope.map((x) => subForItem(x.title)?.slug).filter(Boolean));
+const moreSubs = subsOf(s.slug).filter((x) => !linked.has(x.slug));
+const moreHeading: Record<string, string> = {
+  'junk-removal': 'What we haul, item by item',
+  cleanouts: 'Cleanouts by type',
+  demolition: 'More demolition services',
+};
 const load = loads.find((l) => l.id === s.suggestedLoad);
 const bookHref = `/book/?service=${s.bookingService}${load ? `&load=${load.id}` : ''}`;
 const quoteHref = `/quote/?service=${s.bookingService}`;
@@ -81,6 +89,19 @@ const arrow = '<svg class="arrow" viewBox="0 0 24 24" aria-hidden="true" fill="n
       )}
     </div>
   </section>
+
+  {moreSubs.length > 0 && (
+    <section class="section-tight" aria-labelledby="subs-h">
+      <div class="shell">
+        <div class="head" data-reveal><h2 id="subs-h" class="display-md">{moreHeading[s.slug] ?? `More ${s.title.toLowerCase()} services`}</h2></div>
+        <ul class="subs">
+          {moreSubs.map((x) => (
+            <li><h3 class="title"><a class="link-u accent" href={subPath(x)}>{x.name}</a></h3><p class="muted">{x.short}</p></li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  )}
 
   <section class="section-tight" aria-labelledby="price-h">
     <div class="shell price">
@@ -165,6 +186,9 @@ const arrow = '<svg class="arrow" viewBox="0 0 24 24" aria-hidden="true" fill="n
   .scope__n { font-family: var(--font-display); font-weight: 700; font-size: 1.4rem; color: var(--color-accent-ink); }
   .scope__photo { aspect-ratio: 4 / 5; }
   @media (min-width: 1024px) { .scope__photo { position: sticky; top: calc(var(--nav-h) + 24px); } }
+  .subs { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px 40px; border-top: 1px solid var(--color-line); }
+  @media (min-width: 768px) { .subs { grid-template-columns: 1fr 1fr; } }
+  .subs li { display: grid; gap: 4px; padding: 18px 0; border-bottom: 1px solid var(--color-line); }
   .ba-wrap { max-width: 980px; }
   .price { display: grid; gap: 16px; }
   @media (min-width: 1024px) { .price { grid-template-columns: 7fr 5fr; } }

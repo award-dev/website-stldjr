@@ -1,5 +1,6 @@
 /**
- * Demolition sub-pages (/services/<parent>/<slug>/). Copy lives in site-data/subservices.json; prices and
+ * Service sub-pages (/services/<parent>/<slug>/): one page per item, cleanout type or demolition job, under
+ * the junk removal, cleanouts and demolition service pages. Copy lives in site-data/subservices.json; prices and
  * business facts are filled in from config at build time (see SubServiceBody.astro). No photos yet: each page
  * carries a TODO comment for the job photo it still needs.
  */
@@ -13,7 +14,13 @@ export interface SubService {
   /** Other scope item names that should link here (e.g. junk removal's "Shed removal"). */
   aliases?: string[];
   name: string;
+  /** One line for the list on the parent service page. */
+  short: string;
   serviceType: string;
+  /** Booking load to suggest ("quarter", "half", ...); defaults to the parent service's. */
+  load?: string;
+  /** Job services in site-data/locations.json to match jobMatch against; defaults to [parent]. */
+  jobServices?: string[];
   h1: string;
   metaTitle: string;
   metaDescription: string;
@@ -32,3 +39,5 @@ export const subForItem = (name: string) => {
   const n = name.toLowerCase();
   return subservices.find((s) => s.scopeItem.toLowerCase() === n || (s.aliases ?? []).some((a) => a.toLowerCase() === n));
 };
+/** Every sub-page under a service page, in file order. */
+export const subsOf = (parent: string) => subservices.filter((s) => s.parent === parent);
