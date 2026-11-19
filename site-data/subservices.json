@@ -747,7 +747,7 @@
         ]
       },
       {
-        "id": "where",
+        "id": "destination",
         "h2": "Where do old electronics go?",
         "body": [
           "Our loads go to a landfill facility that sorts and separates materials, so what can be recycled is pulled out instead of buried. If you'd rather drop working electronics at a donation center or an electronics recycling event yourself, that's a good option for things in working order."
@@ -880,7 +880,7 @@
         "id": "cost",
         "h2": "How much does carpet removal cost?",
         "body": [
-          "Carpet that's already up and rolled is priced by the load: {quarter} for a quarter of the truck up to {full} for the full {maxYards}-yard truck. Padding takes more room than you'd think. If the carpet is still installed, say so when you book, and we confirm the full price before we start.",
+          "Carpet that's already up and rolled is priced by the load: {quarter} for a quarter of the truck up to {full} for the full {maxYards}-yard truck. Padding takes more room than you'd think. If the carpet is still installed, pulling it up is priced separately from the haul. Say so when you book, and we confirm the full price before we start.",
           "Taking out tile, hardwood or vinyl too? That's [flooring removal](/services/demolition/flooring-removal/), quoted from photos."
         ]
       },
@@ -928,6 +928,13 @@
         "body": [
           "Priced by the load: {quarter} for a quarter of the truck, {half} for a half and {full} for the full {maxYards}-yard truck. Brush is light but bulky, so it fills space fast.",
           "{heavy} Dirt counts, so mention it when you book."
+        ]
+      },
+      {
+        "id": "destination",
+        "h2": "Where does yard waste go?",
+        "body": [
+          "Not to the landfill. Brush, branches and yard waste go to Fick Supply off Missouri Bottoms Road. Keep lumber, trash and old fencing in a separate pile if you can, so the yard waste stays clean."
         ]
       },
       {
@@ -2212,8 +2219,8 @@
     "serviceType": "Pool demolition",
     "h1": "Pool demolition in St. Louis, MO",
     "metaTitle": "Pool Demolition & Removal in St. Louis, MO",
-    "metaDescription": "Pool demolition in St. Louis: in-ground pools and the concrete decking around them broken out and hauled away. Quoted per job from your photos.",
-    "intro": "We take out old swimming pools: the concrete decking, coping, liner, walls and equipment, and haul the debris away, across St. Louis City, St. Louis County and St. Charles County. Every pool is different, so the work is quoted per job from photos.",
+    "metaDescription": "Pool demolition in St. Louis: in-ground pools, concrete shells and the decking around them broken out, hauled away and the hole backfilled after.",
+    "intro": "We take out old in-ground swimming pools, concrete shells included, haul the debris away and backfill the hole, across St. Louis City, St. Louis County and St. Charles County. Every pool is different, so the work is quoted per job from photos.",
     "jobMatch": "in-ground pool|swimming pool",
     "faqIds": [
       "yards"
@@ -2228,8 +2235,7 @@
         "id": "what",
         "h2": "In-ground pools and the deck around them",
         "body": [
-          "Vinyl-liner pools with steel or polymer walls, and the concrete patio and coping around them. The pump, filter, heater, diving board, ladders and fencing go too. Tell us the pool type, the size and how a truck can reach the backyard.",
-          "<!-- TODO(seo): owner to confirm the in-ground pool scope: gunite/concrete shells, backfill and compaction, and any equipment access limits. -->",
+          "Concrete and gunite pools, and vinyl-liner pools with steel or polymer walls. We break out the shell or the walls, the coping and the concrete patio around them. The pump, filter, heater, diving board, ladders and fencing go too. Tell us the pool type, the size and how a truck can reach the backyard.",
           "An above-ground pool is a simpler job: [above-ground pool removal](/services/junk-removal/above-ground-pool-removal/)."
         ]
       },
@@ -2238,14 +2244,14 @@
         "h2": "Before a pool comes out",
         "body": [
           "Drain the pool. Have the electrical to the pump and lights shut off and disconnected, and the gas to any heater capped. Call Missouri One Call (811) so buried lines are marked. Many cities require a permit to remove a pool; ask yours, and we'll walk you through what the job needs.",
-          "Ask us what happens to the hole afterward, and plan with your landscaper or contractor for fill dirt and grading."
+          "When the pool is out, we backfill the hole. Tell us what's going in that spot next, like grass, a patio or a garden bed."
         ]
       },
       {
         "id": "cost",
         "h2": "How much does pool removal cost?",
         "body": [
-          "The demo work is quoted per job from photos. {heavy} The haul is by the load, at {full} for a full {maxYards}-yard truck, and a pool is usually more than one load.",
+          "The demolition and the backfill are quoted per job from photos. {heavy} The haul is by the load, at {full} for a full {maxYards}-yard truck, and a pool can take more than one load.",
           "Deck or hot tub next to it? See [deck demolition](/services/demolition/deck-demolition/) and [hot tub removal](/services/demolition/hot-tub-removal/)."
         ]
       }
@@ -2277,14 +2283,14 @@
         "body": [
           "Walls, roof, floors, the contents if they're going too, the skirting, steps, porches, carports and decks built onto it. Tell us what stays, like a shed, a fence or the concrete pad.",
           "A double-wide is two sections joined down the middle, so it's roughly twice the tear-out and twice the debris of a single-wide. Send photos of the outside from each corner, the inside and anything built onto it.",
-          "<!-- TODO(seo): owner to confirm how the steel frame and axles are handled and any title or ownership paperwork needed before a mobile home is demolished. -->"
+          "The steel frame and axles get cut up on site and hauled away with the rest."
         ]
       },
       {
         "id": "before",
         "h2": "Before a mobile home comes down",
         "body": [
-          "Every utility has to be disconnected and capped: power at the pole or pedestal, water, sewer or septic, and gas or propane. Remove any propane tanks yourself or through your supplier. Permit rules depend on your city and the job, and we'll walk you through what yours needs. We don't pull City of St. Louis demolition permits.",
+          "Every utility has to be disconnected and capped: power at the pole or pedestal, water, sewer or septic, and gas or propane. Remove any propane tanks yourself or through your supplier. We prefer to have the title in hand before a mobile home comes down, so have it ready if you can. Permit rules depend on your city and the job, and we'll walk you through what yours needs. We don't pull City of St. Louis demolition permits.",
           "Older mobile homes can contain asbestos in flooring, ceilings, siding or insulation, and lead paint. An inspector should test it before we start. We can't test for, remove or haul asbestos."
         ]
       },

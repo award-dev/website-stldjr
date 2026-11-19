@@ -37,6 +37,12 @@ const jobServices = sub.jobServices ?? [sub.parent];
 const jobs = re
   ? locations.filter((l) => l.tier !== 'mention').flatMap((l) => l.jobs.filter((j) => jobServices.includes(j.service) && re.test(j.summary)).map((j) => ({ l, j })))
   : [];
+// Where we've done it: towns from the matching jobs first, then a few towns where the parent service was
+// done, picked per page so sibling pages don't all show the same list.
+const jobTowns = [...new Map(jobs.map(({ l }) => [l.slug, l])).values()];
+const pool = locations.filter((l) => l.tier !== 'mention' && !jobTowns.some((t) => t.slug === l.slug) && l.jobs.some((j) => jobServices.includes(j.service)));
+const seed = [...sub.slug].reduce((n, c) => n + c.charCodeAt(0), 0);
+const moreTowns = jobTowns.length >= 2 ? [] : pool.map((l, i) => ({ l, k: (i * 7 + seed) % pool.length })).sort((x, y) => x.k - y.k).slice(0, 4 - jobTowns.length).map((x) => x.l);
 const intro = sub.intro.replace('{insured}', business.trust.insured ? `licensed and insured with a ${business.trust.insuranceDetails}` : 'licensed');
 const serviceSchema = {
   '@type': 'Service',
@@ -65,13 +71,22 @@ const arrow = '<svg class="arrow" viewBox="0 0 24 24" aria-hidden="true" fill="n
   <Fragment set:html={`<!-- TODO(seo): need ${/^[aeiou]/i.test(sub.name) ? 'an' : 'a'} ${sub.name.toLowerCase()} job photo with the town and date -->`} />
   <SubServiceBody sub={sub} />
 
-  {jobs.length > 0 && (
-    <section class="section-tight" aria-labelledby="jobs-h">
+  {(jobs.length > 0 || moreTowns.length > 0) && (
+    <section class="section-tight" aria-labelledby="where-h">
       <div class="shell sub-more">
-        <h2 id="jobs-h" class="display-md">{sub.serviceType} jobs we've done</h2>
-        <ul class="sub-jobs">
-          {jobs.map(({ l, j }) => <li><p>{j.summary}</p><a class="link-u accent" href={cityHref(l)}>See the {l.name} job</a></li>)}
-        </ul>
+        <h2 id="where-h" class="display-md">{jobs.length ? `Where we've done ${sub.serviceType.toLowerCase()}` : 'Where we work nearby'}</h2>
+        {jobs.length > 0 && (
+          <ul class="sub-jobs">
+            {jobs.map(({ l, j }) => <li><p>{j.summary}</p><a class="link-u accent" href={cityHref(l)}>{sub.serviceType} in {l.name}</a></li>)}
+          </ul>
+        )}
+        {moreTowns.length > 0 && (
+          <p>
+            {jobs.length ? `More ${parent.title.toLowerCase()} jobs nearby: ` : `${parent.title.charAt(0)}${parent.title.slice(1).toLowerCase()} jobs we've done nearby: `}
+            {moreTowns.map((l, i) => <Fragment>{i > 0 && (i === moreTowns.length - 1 ? ' and ' : ', ')}<a class="link-u accent" href={cityHref(l)}>{l.name}</a></Fragment>)}.
+          </p>
+        )}
+        <p><a class="link-u accent" href="/service-areas/">Every area we serve</a></p>
       </div>
     </section>
   )}
@@ -92,7 +107,6 @@ const arrow = '<svg class="arrow" viewBox="0 0 24 24" aria-hidden="true" fill="n
         <li><a class="link-u accent" href={parentPath}>All {parent.slug === 'cleanouts' ? 'cleanout' : parent.title.toLowerCase()} services in St. Louis</a></li>
         {related.map((r) => <li><a class="link-u accent" href={subPath(r)}>{r.name}</a></li>)}
         <li><a class="link-u accent" href="/pricing/">{isDemo ? 'Hauling prices by the load' : 'Junk removal prices by the load'}</a></li>
-        <li><a class="link-u accent" href="/service-areas/">Every area we serve</a></li>
       </ul>
     </div>
   </section>
