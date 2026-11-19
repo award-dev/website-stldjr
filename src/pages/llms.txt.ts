@@ -1,6 +1,7 @@
 import type { APIRoute } from 'astro';
 import { getCollection } from 'astro:content';
 import { business, services, areas, faqs, hoursSummary, loads, minimum, pricing } from '../lib/site';
+import { subservices, subPath } from '../data/subservices';
 
 /**
  * /llms.txt: a plain-text summary of the business for AI search tools
@@ -40,7 +41,10 @@ export const GET: APIRoute = async ({ site }) => {
     ...facts.map((f) => `- ${f}`),
     '',
     '## Services',
-    ...groups.map((g) => `- [${g.name}](${origin}${g.path}): ${g.intro}${g.howPriced ? ` Pricing: ${g.howPriced}` : ''}`),
+    ...groups.flatMap((g) => [
+      `- [${g.name}](${origin}${g.path}): ${g.intro}${g.howPriced ? ` Pricing: ${g.howPriced}` : ''}`,
+      ...subservices.filter((x) => `/services/${x.parent}/` === g.path).map((x) => `  - [${x.name}](${origin}${subPath(x)}): ${x.short}`),
+    ]),
     '',
     '## Pricing (junk removal, by the load)',
     ...(minimum ? [`- ${minimum.label}: $${minimum.price}. ${minimum.summary}`] : []),

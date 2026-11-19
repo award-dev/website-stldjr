@@ -56,6 +56,20 @@
     "/service-areas/ofallon/",
     "/service-areas/cottleville/",
     "/service-areas/",
+    "/services/junk-removal/furniture-removal/",
+    "/services/junk-removal/couch-removal/",
+    "/services/junk-removal/mattress-removal/",
+    "/services/junk-removal/appliance-removal/",
+    "/services/junk-removal/refrigerator-removal/",
+    "/services/junk-removal/tv-electronics-removal/",
+    "/services/junk-removal/piano-removal/",
+    "/services/junk-removal/exercise-equipment-removal/",
+    "/services/junk-removal/carpet-removal/",
+    "/services/junk-removal/yard-waste-removal/",
+    "/services/junk-removal/trampoline-removal/",
+    "/services/junk-removal/playset-removal/",
+    "/services/junk-removal/above-ground-pool-removal/",
+    "/services/junk-removal/office-junk-removal/",
     "/contact/",
     "/book/"
   ],
@@ -66,6 +80,16 @@
     "/service-areas/maryland-heights/",
     "/service-areas/manchester/",
     "/service-areas/",
+    "/services/cleanouts/garage-cleanout/",
+    "/services/cleanouts/basement-cleanout/",
+    "/services/cleanouts/estate-cleanout/",
+    "/services/cleanouts/attic-cleanout/",
+    "/services/cleanouts/hoarder-cleanout/",
+    "/services/cleanouts/foreclosure-cleanout/",
+    "/services/cleanouts/rental-turnover-cleanout/",
+    "/services/cleanouts/storage-unit-cleanout/",
+    "/services/cleanouts/moving-cleanout/",
+    "/services/cleanouts/commercial-cleanout/",
     "/contact/",
     "/book/"
   ],
@@ -90,6 +114,20 @@
     "/services/demolition/deck-demolition/",
     "/services/demolition/shed-demolition/",
     "/services/demolition/hot-tub-removal/",
+    "/services/demolition/drywall-removal/",
+    "/services/demolition/flooring-removal/",
+    "/services/demolition/wall-removal/",
+    "/services/demolition/ceiling-removal/",
+    "/services/demolition/basement-tear-out/",
+    "/services/demolition/fire-water-damage-tear-out/",
+    "/services/demolition/whole-house-gut/",
+    "/services/demolition/cabinet-removal/",
+    "/services/demolition/fireplace-chimney-removal/",
+    "/services/demolition/staircase-removal/",
+    "/services/demolition/porch-demolition/",
+    "/services/demolition/fence-removal/",
+    "/services/demolition/pool-demolition/",
+    "/services/demolition/mobile-home-demolition/",
     "/contact/",
     "/book/"
   ],
@@ -611,9 +649,11 @@
   ],
   "/services/demolition/interior-demolition/": [
     "/services/demolition/",
+    "/services/demolition/whole-house-gut/",
+    "/services/demolition/drywall-removal/",
+    "/services/demolition/flooring-removal/",
     "/services/demolition/kitchen-demolition/",
-    "/services/demolition/bathroom-demolition/",
-    "/services/demolition/house-demolition/",
+    "/services/demolition/fireplace-chimney-removal/",
     "/service-areas/ferguson/",
     "/pricing/",
     "/contact/",
@@ -621,8 +661,10 @@
   ],
   "/services/demolition/kitchen-demolition/": [
     "/services/demolition/",
+    "/services/demolition/cabinet-removal/",
     "/services/demolition/bathroom-demolition/",
-    "/services/demolition/interior-demolition/",
+    "/services/demolition/flooring-removal/",
+    "/services/demolition/refrigerator-removal/",
     "/service-areas/brentwood/",
     "/pricing/",
     "/contact/",
@@ -631,6 +673,7 @@
   "/services/demolition/bathroom-demolition/": [
     "/services/demolition/",
     "/services/demolition/kitchen-demolition/",
+    "/services/demolition/flooring-removal/",
     "/services/demolition/interior-demolition/",
     "/service-areas/webster-groves/",
     "/service-areas/manchester/",
@@ -643,16 +686,18 @@
   "/services/demolition/commercial-interior-demolition/": [
     "/services/demolition/",
     "/services/demolition/interior-demolition/",
+    "/services/demolition/commercial-cleanout/",
     "/services/demolition/concrete-removal/",
-    "/services/demolition/garage-demolition/",
+    "/services/demolition/office-junk-removal/",
     "/pricing/",
     "/contact/",
     "/book/"
   ],
   "/services/demolition/concrete-removal/": [
     "/services/demolition/",
+    "/services/demolition/porch-demolition/",
     "/services/demolition/garage-demolition/",
-    "/services/demolition/deck-demolition/",
+    "/services/demolition/pool-demolition/",
     "/pricing/",
     "/contact/",
     "/book/"
@@ -660,6 +705,7 @@
   "/services/demolition/garage-demolition/": [
     "/services/demolition/",
     "/services/demolition/concrete-removal/",
+    "/services/demolition/shed-demolition/",
     "/services/demolition/house-demolition/",
     "/pricing/",
     "/contact/",
@@ -667,16 +713,18 @@
   ],
   "/services/demolition/house-demolition/": [
     "/services/demolition/",
-    "/services/demolition/interior-demolition/",
     "/services/demolition/garage-demolition/",
+    "/services/demolition/mobile-home-demolition/",
+    "/services/demolition/fireplace-chimney-removal/",
     "/pricing/",
     "/contact/",
     "/book/"
   ],
   "/services/demolition/deck-demolition/": [
     "/services/demolition/",
+    "/services/demolition/porch-demolition/",
     "/services/demolition/hot-tub-removal/",
-    "/services/demolition/shed-demolition/",
+    "/services/demolition/fence-removal/",
     "/pricing/",
     "/contact/",
     "/book/"
@@ -685,6 +733,7 @@
     "/services/demolition/",
     "/services/demolition/deck-demolition/",
     "/services/demolition/concrete-removal/",
+    "/services/demolition/mobile-home-demolition/",
     "/pricing/",
     "/contact/",
     "/book/"
@@ -692,6 +741,345 @@
   "/services/demolition/hot-tub-removal/": [
     "/services/demolition/",
     "/services/demolition/deck-demolition/",
+    "/services/demolition/shed-demolition/",
+    "/pricing/",
+    "/contact/",
+    "/book/"
+  ],
+  "/services/junk-removal/furniture-removal/": [
+    "/services/junk-removal/",
+    "/services/junk-removal/couch-removal/",
+    "/services/junk-removal/mattress-removal/",
+    "/services/junk-removal/appliance-removal/",
+    "/services/junk-removal/tv-electronics-removal/",
+    "/service-areas/florissant/",
+    "/service-areas/chesterfield/",
+    "/service-areas/ballwin/",
+    "/pricing/",
+    "/contact/",
+    "/book/"
+  ],
+  "/services/junk-removal/couch-removal/": [
+    "/services/junk-removal/",
+    "/services/junk-removal/furniture-removal/",
+    "/services/junk-removal/mattress-removal/",
+    "/services/junk-removal/piano-removal/",
+    "/pricing/",
+    "/contact/",
+    "/book/"
+  ],
+  "/services/junk-removal/mattress-removal/": [
+    "/services/junk-removal/",
+    "/services/junk-removal/furniture-removal/",
+    "/services/junk-removal/couch-removal/",
+    "/pricing/",
+    "/contact/",
+    "/book/"
+  ],
+  "/services/junk-removal/appliance-removal/": [
+    "/services/junk-removal/",
+    "/services/junk-removal/refrigerator-removal/",
+    "/services/junk-removal/furniture-removal/",
+    "/pricing/",
+    "/contact/",
+    "/book/"
+  ],
+  "/services/junk-removal/refrigerator-removal/": [
+    "/services/junk-removal/",
+    "/services/junk-removal/appliance-removal/",
+    "/services/junk-removal/furniture-removal/",
+    "/pricing/",
+    "/contact/",
+    "/book/"
+  ],
+  "/services/junk-removal/tv-electronics-removal/": [
+    "/services/junk-removal/",
+    "/services/junk-removal/furniture-removal/",
+    "/services/junk-removal/office-junk-removal/",
+    "/pricing/",
+    "/contact/",
+    "/book/"
+  ],
+  "/services/junk-removal/piano-removal/": [
+    "/services/junk-removal/",
+    "/services/junk-removal/furniture-removal/",
+    "/services/junk-removal/exercise-equipment-removal/",
+    "/pricing/",
+    "/contact/",
+    "/book/"
+  ],
+  "/services/junk-removal/exercise-equipment-removal/": [
+    "/services/junk-removal/",
+    "/services/junk-removal/piano-removal/",
+    "/services/junk-removal/furniture-removal/",
+    "/pricing/",
+    "/contact/",
+    "/book/"
+  ],
+  "/services/junk-removal/carpet-removal/": [
+    "/services/junk-removal/",
+    "/services/junk-removal/flooring-removal/",
+    "/services/junk-removal/furniture-removal/",
+    "/service-areas/ofallon/",
+    "/pricing/",
+    "/contact/",
+    "/book/"
+  ],
+  "/services/junk-removal/yard-waste-removal/": [
+    "/services/junk-removal/",
+    "/services/junk-removal/fence-removal/",
+    "/services/junk-removal/playset-removal/",
+    "/service-areas/cottleville/",
+    "/pricing/",
+    "/contact/",
+    "/book/"
+  ],
+  "/services/junk-removal/trampoline-removal/": [
+    "/services/junk-removal/",
+    "/services/junk-removal/playset-removal/",
+    "/services/junk-removal/above-ground-pool-removal/",
+    "/services/junk-removal/yard-waste-removal/",
+    "/pricing/",
+    "/contact/",
+    "/book/"
+  ],
+  "/services/junk-removal/playset-removal/": [
+    "/services/junk-removal/",
+    "/services/junk-removal/trampoline-removal/",
+    "/services/junk-removal/above-ground-pool-removal/",
+    "/pricing/",
+    "/contact/",
+    "/book/"
+  ],
+  "/services/junk-removal/above-ground-pool-removal/": [
+    "/services/junk-removal/",
+    "/services/junk-removal/pool-demolition/",
+    "/services/junk-removal/trampoline-removal/",
+    "/services/junk-removal/playset-removal/",
+    "/pricing/",
+    "/contact/",
+    "/book/"
+  ],
+  "/services/junk-removal/office-junk-removal/": [
+    "/services/junk-removal/",
+    "/services/junk-removal/commercial-cleanout/",
+    "/services/junk-removal/tv-electronics-removal/",
+    "/services/junk-removal/furniture-removal/",
+    "/pricing/",
+    "/contact/",
+    "/book/"
+  ],
+  "/services/cleanouts/garage-cleanout/": [
+    "/services/cleanouts/",
+    "/services/cleanouts/basement-cleanout/",
+    "/services/cleanouts/attic-cleanout/",
+    "/services/cleanouts/moving-cleanout/",
+    "/services/cleanouts/storage-unit-cleanout/",
+    "/service-areas/maryland-heights/",
+    "/pricing/",
+    "/contact/",
+    "/book/"
+  ],
+  "/services/cleanouts/basement-cleanout/": [
+    "/services/cleanouts/",
+    "/services/cleanouts/garage-cleanout/",
+    "/services/cleanouts/basement-tear-out/",
+    "/services/cleanouts/estate-cleanout/",
+    "/pricing/",
+    "/contact/",
+    "/book/"
+  ],
+  "/services/cleanouts/estate-cleanout/": [
+    "/services/cleanouts/",
+    "/services/cleanouts/hoarder-cleanout/",
+    "/services/cleanouts/basement-cleanout/",
+    "/services/cleanouts/garage-cleanout/",
+    "/services/cleanouts/attic-cleanout/",
+    "/pricing/",
+    "/contact/",
+    "/book/"
+  ],
+  "/services/cleanouts/attic-cleanout/": [
+    "/services/cleanouts/",
+    "/services/cleanouts/garage-cleanout/",
+    "/services/cleanouts/basement-cleanout/",
+    "/services/cleanouts/estate-cleanout/",
+    "/pricing/",
+    "/contact/",
+    "/book/"
+  ],
+  "/services/cleanouts/hoarder-cleanout/": [
+    "/services/cleanouts/",
+    "/services/cleanouts/estate-cleanout/",
+    "/services/cleanouts/foreclosure-cleanout/",
+    "/pricing/",
+    "/contact/",
+    "/book/"
+  ],
+  "/services/cleanouts/foreclosure-cleanout/": [
+    "/services/cleanouts/",
+    "/services/cleanouts/rental-turnover-cleanout/",
+    "/services/cleanouts/moving-cleanout/",
+    "/services/cleanouts/hoarder-cleanout/",
+    "/pricing/",
+    "/contact/",
+    "/book/"
+  ],
+  "/services/cleanouts/rental-turnover-cleanout/": [
+    "/services/cleanouts/",
+    "/services/cleanouts/foreclosure-cleanout/",
+    "/services/cleanouts/moving-cleanout/",
+    "/pricing/",
+    "/contact/",
+    "/book/"
+  ],
+  "/services/cleanouts/storage-unit-cleanout/": [
+    "/services/cleanouts/",
+    "/services/cleanouts/moving-cleanout/",
+    "/services/cleanouts/garage-cleanout/",
+    "/service-areas/manchester/",
+    "/pricing/",
+    "/contact/",
+    "/book/"
+  ],
+  "/services/cleanouts/moving-cleanout/": [
+    "/services/cleanouts/",
+    "/services/cleanouts/storage-unit-cleanout/",
+    "/services/cleanouts/rental-turnover-cleanout/",
+    "/services/cleanouts/estate-cleanout/",
+    "/pricing/",
+    "/contact/",
+    "/book/"
+  ],
+  "/services/cleanouts/commercial-cleanout/": [
+    "/services/cleanouts/",
+    "/services/cleanouts/office-junk-removal/",
+    "/services/cleanouts/commercial-interior-demolition/",
+    "/pricing/",
+    "/contact/",
+    "/book/"
+  ],
+  "/services/demolition/drywall-removal/": [
+    "/services/demolition/",
+    "/services/demolition/wall-removal/",
+    "/services/demolition/ceiling-removal/",
+    "/services/demolition/interior-demolition/",
+    "/services/demolition/fireplace-chimney-removal/",
+    "/pricing/",
+    "/contact/",
+    "/book/"
+  ],
+  "/services/demolition/flooring-removal/": [
+    "/services/demolition/",
+    "/services/demolition/carpet-removal/",
+    "/services/demolition/kitchen-demolition/",
+    "/services/demolition/bathroom-demolition/",
+    "/pricing/",
+    "/contact/",
+    "/book/"
+  ],
+  "/services/demolition/wall-removal/": [
+    "/services/demolition/",
+    "/services/demolition/drywall-removal/",
+    "/services/demolition/interior-demolition/",
+    "/services/demolition/whole-house-gut/",
+    "/services/demolition/staircase-removal/",
+    "/service-areas/ferguson/",
+    "/pricing/",
+    "/contact/",
+    "/book/"
+  ],
+  "/services/demolition/ceiling-removal/": [
+    "/services/demolition/",
+    "/services/demolition/drywall-removal/",
+    "/services/demolition/fire-water-damage-tear-out/",
+    "/services/demolition/interior-demolition/",
+    "/pricing/",
+    "/contact/",
+    "/book/"
+  ],
+  "/services/demolition/basement-tear-out/": [
+    "/services/demolition/",
+    "/services/demolition/basement-cleanout/",
+    "/services/demolition/fire-water-damage-tear-out/",
+    "/services/demolition/flooring-removal/",
+    "/pricing/",
+    "/contact/",
+    "/book/"
+  ],
+  "/services/demolition/fire-water-damage-tear-out/": [
+    "/services/demolition/",
+    "/services/demolition/basement-tear-out/",
+    "/services/demolition/ceiling-removal/",
+    "/services/demolition/whole-house-gut/",
+    "/pricing/",
+    "/contact/",
+    "/book/"
+  ],
+  "/services/demolition/whole-house-gut/": [
+    "/services/demolition/",
+    "/services/demolition/interior-demolition/",
+    "/services/demolition/house-demolition/",
+    "/services/demolition/drywall-removal/",
+    "/pricing/",
+    "/contact/",
+    "/book/"
+  ],
+  "/services/demolition/cabinet-removal/": [
+    "/services/demolition/",
+    "/services/demolition/kitchen-demolition/",
+    "/services/demolition/bathroom-demolition/",
+    "/services/demolition/refrigerator-removal/",
+    "/pricing/",
+    "/contact/",
+    "/book/"
+  ],
+  "/services/demolition/fireplace-chimney-removal/": [
+    "/services/demolition/",
+    "/services/demolition/interior-demolition/",
+    "/services/demolition/drywall-removal/",
+    "/pricing/",
+    "/contact/",
+    "/book/"
+  ],
+  "/services/demolition/staircase-removal/": [
+    "/services/demolition/",
+    "/services/demolition/interior-demolition/",
+    "/services/demolition/porch-demolition/",
+    "/pricing/",
+    "/contact/",
+    "/book/"
+  ],
+  "/services/demolition/porch-demolition/": [
+    "/services/demolition/",
+    "/services/demolition/deck-demolition/",
+    "/services/demolition/concrete-removal/",
+    "/services/demolition/staircase-removal/",
+    "/pricing/",
+    "/contact/",
+    "/book/"
+  ],
+  "/services/demolition/fence-removal/": [
+    "/services/demolition/",
+    "/services/demolition/shed-demolition/",
+    "/services/demolition/deck-demolition/",
+    "/services/demolition/yard-waste-removal/",
+    "/pricing/",
+    "/contact/",
+    "/book/"
+  ],
+  "/services/demolition/pool-demolition/": [
+    "/services/demolition/",
+    "/services/demolition/above-ground-pool-removal/",
+    "/services/demolition/concrete-removal/",
+    "/services/demolition/deck-demolition/",
+    "/pricing/",
+    "/contact/",
+    "/book/"
+  ],
+  "/services/demolition/mobile-home-demolition/": [
+    "/services/demolition/",
+    "/services/demolition/house-demolition/",
     "/services/demolition/shed-demolition/",
     "/pricing/",
     "/contact/",
