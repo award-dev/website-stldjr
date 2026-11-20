@@ -1,11 +1,13 @@
 ---
 // Service Areas hub (local-seo kit): lists every place we serve, linking each one that has a city page.
+// Everything below is read from config/service-areas.json, site-data/locations.json, config/services.json
+// and config/pricing.json; this page adds no facts of its own.
 import Base from "../../layouts/Base.astro";
 import PageHero from "../../components/PageHero.astro";
 import ServiceAreaBlock from "../../components/ServiceAreaBlock.astro";
-import { business, telHref } from "../../lib/site";
-import { cityPages, cityHref, groups } from "../../lib/locations";
-import { site } from "../../data/site";
+import { business, telHref, areas, minimum, maxYards } from "../../lib/site";
+import { locations, cityPages, cityHref, groups } from "../../lib/locations";
+import { site, services } from "../../data/site";
 
 const crumbs = [{ name: "Home", href: "/" }, { name: "Service areas", href: "/service-areas/" }];
 const list = {
@@ -16,15 +18,86 @@ const list = {
     ...groups.map((g) => ({ name: `${g.name}, MO`, url: `${site.url}/service-areas/${g.slug}/` })),
   ].map((x, i) => ({ "@type": "ListItem", position: i + 1, ...x })),
 };
+
+const linkable = (l: (typeof locations)[number]) => l.tier !== "mention" && !l.citywide;
+const minPrice = minimum?.priceLine.amount ?? null;
+
+// Recent jobs from locations.json, newest dated first, each linked to its city page and its service page.
+const jobs = locations
+  .flatMap((l) => l.jobs.map((j) => ({ ...j, place: l, svc: services.find((s) => s.slug === j.service) })))
+  .sort((a, b) => (b.date || "").localeCompare(a.date || ""))
+  .map((j) => ({ ...j, when: j.date ? new Date(`${j.date}T12:00:00`).toLocaleDateString("en-US", { month: "long", year: "numeric" }) : "" }));
+
+// ZIP codes by county, from locations.json (places without ZIPs on file are left out of the table).
+const counties = [...new Set(locations.filter((l) => l.zips.length).map((l) => l.county))].map((county) => ({
+  county,
+  rows: locations.filter((l) => l.county === county && l.zips.length).sort((a, b) => a.name.localeCompare(b.name)),
+}));
+const cityRoot = groups.find((g) => g.slug === "st-louis-city");
+const prefixes = areas.zipPrefixes;
+const prefixText = prefixes.length > 1 ? `${prefixes.slice(0, -1).join(", ")} or ${prefixes[prefixes.length - 1]}` : prefixes[0];
 ---
-<Base title="Areas We Serve in St. Louis & St. Charles" breadcrumbs={crumbs} schema={[list]} description="Junk removal, cleanouts and demolition across St. Louis City and County and St. Charles County, from Florissant to O'Fallon. Pick your city or check your ZIP.">
-  <PageHero title="Areas We Serve" lead={`We're based in Florissant and work across St. Louis City, St. Louis County and St. Charles County. Pick your city for local pickup rules, permit offices and ZIP codes, or check your ZIP below.`} crumbs={crumbs} photo="crew/truck.webp" />
+<Base title="Junk Removal Service Areas Around St. Louis" breadcrumbs={crumbs} schema={[list]} description="Junk removal, cleanouts and demolition across St. Louis City and County and St. Charles County, from Florissant to O'Fallon. Pick your city or check your ZIP.">
+  <PageHero title="Junk Removal Service Areas Around St. Louis" lead={`We haul junk, clean out homes and garages, and handle demolition across St. Louis City, St. Louis County and St. Charles County from our base in ${business.address.city}. Every job is priced by the load${minPrice ? `, with a ${minPrice} minimum pickup` : ""} up to a full ${maxYards}-yard truck, and we confirm the price before anything is loaded.`} crumbs={crumbs} photo="crew/truck.webp" />
   <section class="section-tight" aria-labelledby="places-h">
     <div class="shell">
       <h2 id="places-h" class="display-md places-h">Cities and areas we serve</h2>
       <ServiceAreaBlock full />
     </div>
   </section>
+
+  <section class="section-tight" aria-labelledby="svc-h">
+    <div class="shell edge">
+      <h2 id="svc-h" class="display-md">What we do in every area</h2>
+      <p class="lead">Every city on this list gets the same crew and the same load-based pricing. Pick a service to see what's included and how it's priced.</p>
+      <ul role="list" class="svc">
+        {services.map((s) => <li><a class="link-u accent" href={`/services/${s.slug}/`}>{s.title}</a><span class="muted"> · {s.short}</span></li>)}
+      </ul>
+    </div>
+  </section>
+
+  {jobs.length > 0 && (
+    <section class="section-tight" aria-labelledby="jobs-h">
+      <div class="shell edge">
+        <h2 id="jobs-h" class="display-md">Recent jobs around St. Louis</h2>
+        <p class="lead">Real jobs from our city pages, newest first, so you can see the kind of work we do near you.</p>
+        <ul role="list" class="jobs">
+          {jobs.map((j) => (
+            <li class="job">
+              <p class="job__meta small">
+                {linkable(j.place) ? <a class="link-u accent" href={cityHref(j.place)}>{j.place.name}</a> : j.place.name}
+                {j.svc && <> · <a class="link-u" href={`/services/${j.svc.slug}/`}>{j.svc.title}</a></>}
+                {j.when && <> · {j.when}</>}
+              </p>
+              <p>{j.summary}</p>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  )}
+
+  <section class="section-tight" aria-labelledby="zip-h">
+    <div class="shell edge">
+      <h2 id="zip-h" class="display-md">Which ZIP codes do you serve?</h2>
+      <p class="lead">If your ZIP code starts with {prefixText}, you're most likely in our usual area. Here are the ZIP codes for the places we list, by county{cityRoot && <>; neighborhoods in the City of St. Louis are on our <a class="link-u accent" href={`/service-areas/${cityRoot.slug}/`}>St. Louis City page</a></>}.</p>
+      {counties.map((c) => (
+        <table class="ztable">
+          <caption>{c.county}</caption>
+          <thead><tr><th scope="col">Place</th><th scope="col">ZIP codes</th></tr></thead>
+          <tbody>
+            {c.rows.map((l) => (
+              <tr>
+                <th scope="row">{linkable(l) ? <a class="link-u" href={cityHref(l)}>{l.name}</a> : l.name}</th>
+                <td>{l.zips.join(", ")}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      ))}
+    </div>
+  </section>
+
   <section class="section-tight">
     <div class="shell edge">
       <h2 class="display-md">How our city pages work</h2>
@@ -37,4 +110,13 @@ const list = {
 <style>
   .edge { display: grid; gap: 12px; max-width: 720px; }
   .places-h { margin-bottom: 28px; }
+  .svc, .jobs { list-style: none; margin: 8px 0 0; padding: 0; display: grid; border-top: 1px solid var(--line); }
+  .svc li, .job { padding: 14px 0; border-bottom: 1px solid var(--line); }
+  .job { display: grid; gap: 4px; }
+  .job__meta { color: var(--ink-3); }
+  .ztable { width: 100%; border-collapse: collapse; margin-top: 16px; font-variant-numeric: tabular-nums; }
+  .ztable caption { text-align: left; font-weight: 600; font-size: var(--step-1); padding-bottom: 6px; }
+  .ztable th, .ztable td { text-align: left; padding: 10px 8px 10px 0; border-bottom: 1px solid var(--line); vertical-align: top; }
+  .ztable thead th { font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-3); font-weight: 500; }
+  .ztable tbody th { font-weight: 560; width: 45%; }
 </style>
