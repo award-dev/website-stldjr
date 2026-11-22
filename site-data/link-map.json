@@ -39,6 +39,12 @@
     "/service-areas/black-jack/",
     "/service-areas/south-county/",
     "/service-areas/st-louis-city/",
+    "/services/demolition/interior-demolition/",
+    "/services/demolition/hot-tub-removal/",
+    "/services/junk-removal/furniture-removal/",
+    "/services/junk-removal/appliance-removal/",
+    "/services/cleanouts/garage-cleanout/",
+    "/services/cleanouts/estate-cleanout/",
     "/contact/",
     "/book/"
   ],

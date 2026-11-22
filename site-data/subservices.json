@@ -48,7 +48,8 @@
       }
     ],
     "parent": "demolition",
-    "short": "Walls, drywall, flooring, ceilings and fixtures, one room or more."
+    "short": "Walls, drywall, flooring, ceilings and fixtures, one room or more.",
+    "featured": true
   },
   {
     "slug": "kitchen-demolition",
@@ -471,7 +472,8 @@
       }
     ],
     "parent": "demolition",
-    "short": "Cut down on site when it won't come out whole."
+    "short": "Cut down on site when it won't come out whole.",
+    "featured": true
   },
   {
     "parent": "junk-removal",
@@ -520,7 +522,8 @@
         ]
       }
     ],
-    "load": "quarter"
+    "load": "quarter",
+    "featured": true
   },
   {
     "parent": "junk-removal",
@@ -661,7 +664,8 @@
         ]
       }
     ],
-    "load": "quarter"
+    "load": "quarter",
+    "featured": true
   },
   {
     "parent": "junk-removal",
@@ -1192,7 +1196,8 @@
     "load": "half",
     "aliases": [
       "Garage cleanout"
-    ]
+    ],
+    "featured": true
   },
   {
     "parent": "cleanouts",
@@ -1288,7 +1293,8 @@
         ]
       }
     ],
-    "load": "full"
+    "load": "full",
+    "featured": true
   },
   {
     "parent": "cleanouts",
