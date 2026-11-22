@@ -19,8 +19,10 @@ const always = ["/contact/", "/book/"];
 const map = {};
 const add = (from, ...to) => { map[from] = [...new Set([...(map[from] || []), ...to.filter((t) => t !== from)])]; };
 
-// 1. Home -> every service page, the hub, and city pages.
-add("/", ...groups.map(servicePath), hub, ...cities.map(cityPath), ...groupPages);
+// 1. Home -> every service page, the hub, city pages, and the featured sub-pages ("featured": true in
+//    site-data/subservices.json: priority services the owner tracks in Keyword rankings).
+const featured = read("site-data/subservices.json").filter((s) => s.featured).map((s) => `/services/${s.parent}/${s.slug}/`);
+add("/", ...groups.map(servicePath), hub, ...cities.map(cityPath), ...groupPages, ...featured);
 // 2. Service -> other services + cities where a job of that service exists + hub.
 for (const g of groups) {
   const slug = servicePath(g).split("/")[2];

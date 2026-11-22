@@ -30,6 +30,8 @@ export interface SubService {
   faqIds: string[];
   related: string[];
   sections: { id: string; h2: string; body: string[] }[];
+  /** Linked from the homepage (priority services the owner tracks in Keyword rankings); see scripts/link-map.mjs rule 1. */
+  featured?: boolean;
 }
 
 export const subservices = raw as SubService[];
@@ -39,5 +41,7 @@ export const subForItem = (name: string) => {
   const n = name.toLowerCase();
   return subservices.find((s) => s.scopeItem.toLowerCase() === n || (s.aliases ?? []).some((a) => a.toLowerCase() === n));
 };
+/** Sub-pages linked from the homepage, in file order. */
+export const featuredSubs = () => subservices.filter((s) => s.featured);
 /** Every sub-page under a service page, in file order. */
 export const subsOf = (parent: string) => subservices.filter((s) => s.parent === parent);
