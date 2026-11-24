@@ -22,7 +22,7 @@ Every business fact on the site is pulled from these files. They are the single 
 - Never invent reviews, ratings, stats, years in business, licenses, prices, addresses, job stories, or URLs.
 - If a page needs a fact that isn't in the data files, insert `<!-- TODO(seo): need X -->` and list it in your end-of-task report. Do not guess.
 - NAP must render character-for-character identical to `config/business.json` everywhere (header, footer, contact page, schema). It must match the Google Business Profile.
-- Only the company's own photos and video. No stock or AI images.
+- Only the company's own photos and video. No stock images. One exception (owner's decision, 2026-11-24): blog posts and Google Business Profile updates that are tips or guides may use AI topic illustrations (made with OpenArt). An illustration is never shown as our work: no job story, no before/after, alt text starting "Illustration:", and blog posts with them set `illustration: true` so the page says so. Pages, service pages, city pages and job posts use only real photos.
 - City pages need verified local proof (see the city gate in `.claude/skills/local-seo/SKILL.md`). Every local fact in `site-data/locations.json` carries the source URL it came from; re-check sources before reusing them, because city rules change.
 
 ## 2. How to build or edit any page
