@@ -7,7 +7,8 @@ import servicesCfg from '../config/services.json';
  * Blog posts. This is a fixed contract: posts are committed by an automated publisher through the GitHub API.
  *
  *   File:    src/content/blog/<slug>.md   (slug = lowercase-hyphenated; it becomes /blog/<slug>/)
- *   Images:  src/assets/blog/<slug>/*.jpg|png|webp   (the company's own photos only, never stock or AI)
+ *   Images:  src/assets/blog/<slug>/*.jpg|png|webp   (the company's own photos, or topic illustrations with
+ *            illustration: true; never stock, and an illustration is never shown as our job)
  *   Body:    plain Markdown (## and ### headings, paragraphs, lists). The page supplies the H1 from `title`.
  *
  *   ---
@@ -20,6 +21,8 @@ import servicesCfg from '../config/services.json';
  *     - src: ../../assets/blog/<slug>/2.jpg
  *       alt: "…"
  *   service: junk-removal                        optional, links the post to that service page
+ *   illustration: true                           optional, the images are topic illustrations (AI), not job photos;
+ *                                                the page says so under the article
  *   draft: true                                  optional, true = the post is not built
  *   ---
  *
@@ -46,6 +49,7 @@ const blog = defineCollection({
       coverAlt: z.string().trim().min(1),
       photos: z.array(z.object({ src: image(), alt: z.string().trim().min(1) })).optional(),
       service: z.enum(serviceKeys).optional(),
+      illustration: z.boolean().optional(),
       draft: z.boolean().optional(),
     }),
 });

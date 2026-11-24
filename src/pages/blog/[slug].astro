@@ -66,6 +66,7 @@ const arrow = '<svg class="arrow" viewBox="0 0 24 24" aria-hidden="true" fill="n
     <div class="shell post">
       <article class="post__body" aria-label={d.title}>
         <Content />
+        {d.illustration && <p class="post__illustration">The images in this post are illustrations, not photos from our jobs.</p>}
       </article>
 
       <aside class="post__aside" aria-label="Book or get a quote">
@@ -155,4 +156,5 @@ const arrow = '<svg class="arrow" viewBox="0 0 24 24" aria-hidden="true" fill="n
   .more { list-style: none; margin: 0; padding: 0; display: grid; gap: 20px; }
   @media (min-width: 640px) { .more { grid-template-columns: 1fr 1fr; } }
   @media (min-width: 1024px) { .more { grid-template-columns: repeat(3, 1fr); } }
+  .post__illustration { margin-top: 2rem; font-size: 0.875rem; color: var(--color-muted, #5b5b5b); }
 </style>
