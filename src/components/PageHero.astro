@@ -15,8 +15,10 @@ interface Props {
   imagePosition?: string;
   /** Long headline (e.g. a blog post title): give it a wider measure */
   longTitle?: boolean;
+  /** A short label above the title (e.g. the slogan on demolition pages). */
+  eyebrow?: string;
 }
-const { title, lead, crumbs, photo, image, imageAlt = '', imagePosition = 'center', longTitle = false } = Astro.props;
+const { title, lead, crumbs, photo, image, imageAlt = '', imagePosition = 'center', longTitle = false, eyebrow } = Astro.props;
 const p = photo ? projectFor(photo) : null;
 const meta = image ?? (p ? jobImage(p.file) : null);
 const alt = image ? imageAlt : p?.alt ?? '';
@@ -34,6 +36,7 @@ const backdrop = meta ? await getImage({ src: meta, width: 480, format: 'webp', 
           </ol>
         </nav>
       )}
+      {eyebrow && <p class="tag ph__eyebrow"><span class="dot"></span>{eyebrow}</p>}
       <h1 class:list={['display-lg ph__title', longTitle && 'ph__title--long']}>{title}</h1>
       {lead && <p class="lead">{lead}</p>}
       <div class="ph__slot"><slot /></div>

@@ -95,7 +95,7 @@ const business = {
   image: ogUrl,
   logo: { '@type': 'ImageObject', url: `${site.url}/logo-512.png`, width: 512, height: 512 },
   ...(site.owner && !site.owner.startsWith('__') ? { founder: { '@type': 'Person', name: site.owner } } : {}),
-  slogan: cfg.tagline,
+  slogan: site.slogan || cfg.tagline,
   address: {
     '@type': 'PostalAddress',
     ...(site.street ? { streetAddress: site.street } : {}),
