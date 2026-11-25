@@ -14,6 +14,8 @@ const f = content.footer;
 const bg = f.ctaPhoto ? jobImage(f.ctaPhoto) : null;
 const bgAlt = f.ctaPhoto ? projectFor(f.ctaPhoto)?.alt ?? '' : '';
 const trust = [site.credentials, site.rating].filter(Boolean).join(' · ');
+// The slogan from config/business.json, its last two words in the accent color.
+const sign = site.slogan.match(/^(.*?)(\S+ \S+)$/) ?? ['', '', site.slogan];
 const blurb = f.blurb || `${site.credentials ? site.credentials + ' ' : ''}${site.name} in ${site.city}, ${site.region}.`;
 const arrow = '<svg class="arrow" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg>';
 ---
@@ -38,7 +40,7 @@ const arrow = '<svg class="arrow" viewBox="0 0 24 24" aria-hidden="true" fill="n
 
   {site.slogan && (
     <div class="shell ft__sign">
-      <p class="display-lg ft__sign-line">{site.slogan.replace(/ Demo Crew$/, '')} <span class="accent">Demo Crew.</span></p>
+      <p class="display-lg ft__sign-line">{sign[1]}<span class="accent">{sign[2]}.</span></p>
     </div>
   )}
 
