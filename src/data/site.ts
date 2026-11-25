@@ -11,6 +11,8 @@ export const site = {
   name: business.name,
   /** Appended to page titles (the full name makes titles too long for search results). */
   shortName: business.shortName,
+  /** The company slogan (config/business.json slogan). */
+  slogan: business.slogan ?? '',
   /** The logo artwork already carries the name, so the header shows the logo only. */
   wordmark: '',
   // Live origin from astro.config.mjs (config/business.json siteUrl, or SITE_URL), no trailing slash.
