@@ -36,6 +36,12 @@ const arrow = '<svg class="arrow" viewBox="0 0 24 24" aria-hidden="true" fill="n
     </section>
   )}
 
+  {site.slogan && (
+    <div class="shell ft__sign">
+      <p class="display-lg ft__sign-line">{site.slogan.replace(/ Demo Crew$/, '')} <span class="accent">Demo Crew.</span></p>
+    </div>
+  )}
+
   <div class="shell ft__grid">
     <div class="ft__brand">
       <a href="/" aria-label={`${site.name}, home`}><Wordmark size="lg" /></a>
@@ -86,6 +92,8 @@ const arrow = '<svg class="arrow" viewBox="0 0 24 24" aria-hidden="true" fill="n
   @media (max-width: 767px) { .ft__cta-shade { background: linear-gradient(to top, rgb(11 10 9 / .97) 45%, rgb(11 10 9 / .5)); } }
   .ft__cta-body { display: grid; gap: 22px; padding: clamp(28px, 5vw, 64px); max-width: 760px; }
   .ft__grid { display: grid; gap: 40px; padding-top: 24px; }
+  .ft__sign { padding-top: 8px; padding-bottom: 36px; margin-bottom: 32px; border-bottom: 1px solid rgb(255 255 255 / .08); }
+  .ft__sign-line { margin: 0; font-family: var(--font-display); font-weight: 700; letter-spacing: -0.04em; color: var(--color-fg); }
   @media (min-width: 640px) { .ft__grid { grid-template-columns: 1fr 1fr; } }
   @media (min-width: 1024px) { .ft__grid { grid-template-columns: 1.4fr 1fr 1fr 1.2fr; gap: 32px; } }
   .ft__brand { display: grid; gap: 18px; align-content: start; max-width: 26rem; color: var(--color-muted); font-size: 15px; }

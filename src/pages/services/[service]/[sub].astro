@@ -58,7 +58,7 @@ const serviceSchema = {
 const arrow = '<svg class="arrow" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg>';
 ---
 <Base title={sub.metaTitle} description={sub.metaDescription} breadcrumbs={crumbs} schema={[serviceSchema, ...(faqs.length ? [faqSchema(faqs)] : [])]}>
-  <PageHero title={sub.h1} lead={intro} crumbs={crumbs}>
+  <PageHero title={sub.h1} lead={intro} crumbs={crumbs} eyebrow={isDemo ? site.slogan : undefined}>
     <div class="btn-row">
       {isDemo ? (
         <a href={quoteHref} class="btn btn-accent" data-track="cta_click" data-track-cta="quote" data-track-location={`sub-${sub.slug}`}>Send photos for a quote<Fragment set:html={arrow} /></a>

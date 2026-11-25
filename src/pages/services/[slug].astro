@@ -67,7 +67,7 @@ const quoteHref = `/quote/?service=${s.bookingService}`;
 const arrow = '<svg class="arrow" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg>';
 ---
 <Base title={s.metaTitle} description={s.metaDescription} ogImage={cover.file} ogAlt={cover.alt} breadcrumbs={crumbs} schema={[serviceSchema, ...vSchema, ...(s.faqs.length ? [faqSchema(s.faqs)] : [])]}>
-  <PageHero title={s.h1} lead={s.intro} crumbs={crumbs} photo={s.cover}>
+  <PageHero title={s.h1} lead={s.intro} crumbs={crumbs} photo={s.cover} eyebrow={s.slug === 'demolition' ? site.slogan : undefined}>
     <div class="btn-row">
       <a href={bookHref} class="btn btn-accent" data-track="cta_click" data-track-cta="book" data-track-location={`service-${s.slug}`}>Book online<Fragment set:html={arrow} /></a>
       <a href={quoteHref} class="btn btn-ghost" data-track="cta_click" data-track-cta="quote" data-track-location={`service-${s.slug}`}>Get a free quote</a>
