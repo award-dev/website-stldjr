@@ -49,7 +49,7 @@ const extra: Record<string, Pick<Service, 'slug' | 'category' | 'label' | 'noun'
   },
   cleanouts: {
     slug: 'cleanouts', category: 'cleanouts', label: 'Cleanouts', noun: 'Cleanout',
-    h1: 'Garage, basement & estate cleanouts in St. Louis', metaTitle: 'Home & Estate Cleanouts in St. Louis, MO',
+    h1: 'Garage, basement & estate cleanouts in St. Louis', metaTitle: 'Cleanout Services in St. Louis, MO',
     short: 'Garages, basements, estates and move-outs in one appointment.', cover: 'cleanouts/sweep.webp', pair: 'maryland-heights-garage',
   },
   demolition: {
