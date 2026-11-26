@@ -69,6 +69,14 @@ export const pairTitles: Record<string, string> = {
   'maryland-heights-garage': 'Garage cleanout in Maryland Heights',
   'st-charles-bathroom': 'Bathroom demolition in St. Charles',
   'manchester-storage-unit': 'Storage unit cleanout in Manchester',
+  'basement-cleanout-1': "Basement cleanout",
+  'basement-cleanout-2': "Basement cleanout, second view",
+  'garage-cleanout-1': "Packed garage cleanout",
+  'room-cleanout': "Room cleanout",
+  'garage-debris': "Garage debris haul",
+  'drywall-demo-debris': "Drywall demo debris removal",
+  'school-classroom': "School building cleanout",
+  'gazebo-removal': "Gazebo tear-down",
 };
 
 export interface Faq { q: string; a: string }

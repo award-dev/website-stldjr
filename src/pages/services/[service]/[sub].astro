@@ -1,7 +1,7 @@
 ---
 // Service sub-pages (/services/<parent>/<slug>/) for junk removal, cleanouts and demolition, driven by
 // site-data/subservices.json.
-// Text only for now: no job photos yet (see the TODO comment on each page). FAQs only from confirmed items.
+// Job photos come from projects.ts entries that list this page in `subs`; pages without any keep a TODO. FAQs only from confirmed items.
 import Base from '../../../layouts/Base.astro';
 import PageHero from '../../../components/PageHero.astro';
 import Faq from '../../../components/Faq.astro';
@@ -10,6 +10,9 @@ import { subservices, subPath, type SubService } from '../../../data/subservices
 import { site, services } from '../../../data/site';
 import { faqItems, faqSchema, business, loads } from '../../../lib/site';
 import { locations, cityHref } from '../../../lib/locations';
+import Gallery from '../../../components/react/Gallery.tsx';
+import { galleryPhotos } from '../../../lib/media';
+import { projects } from '../../../data/projects';
 
 export function getStaticPaths() {
   return subservices.map((sub) => ({ params: { service: sub.parent, sub: sub.slug }, props: { sub } }));
@@ -30,6 +33,7 @@ const crumbs = [
   { name: sub.name, href: subPath(sub) },
 ];
 const faqs = faqItems(sub.faqIds);
+const photos = await galleryPhotos(projects.filter((p) => p.subs?.includes(sub.slug)));
 const related = sub.related.map((slug) => subservices.find((s) => s.slug === slug)).filter((s): s is SubService => !!s);
 // Recorded jobs of this kind (text only), linked to the city page where the job is shown with its photos.
 const re = sub.jobMatch ? new RegExp(sub.jobMatch, 'i') : null;
@@ -68,8 +72,18 @@ const arrow = '<svg class="arrow" viewBox="0 0 24 24" aria-hidden="true" fill="n
       <a href={site.phoneHref} class="btn btn-ghost" data-track="phone_click" data-track-location={`sub-${sub.slug}`}>Call {site.phone}</a>
     </div>
   </PageHero>
-  <Fragment set:html={`<!-- TODO(seo): need ${/^[aeiou]/i.test(sub.name) ? 'an' : 'a'} ${sub.name.toLowerCase()} job photo with the town and date -->`} />
+  {photos.length === 0 && <Fragment set:html={`<!-- TODO(seo): need ${/^[aeiou]/i.test(sub.name) ? 'an' : 'a'} ${sub.name.toLowerCase()} job photo with the town and date -->`} />}
   <SubServiceBody sub={sub} />
+
+  {photos.length > 0 && (
+    <section class="section-tight" aria-labelledby="photos-h">
+      <div class="shell">
+        <h2 id="photos-h" class="display-md">{sub.serviceType} photos from our jobs</h2>
+        <p class="lead">Photos from our own jobs around St. Louis. Tap a photo to enlarge it.</p>
+        <Gallery client:visible photos={photos} />
+      </div>
+    </section>
+  )}
 
   {(jobs.length > 0 || moreTowns.length > 0) && (
     <section class="section-tight" aria-labelledby="where-h">
