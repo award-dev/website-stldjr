@@ -31,12 +31,12 @@ export const content = {
 
   home: {
     title: 'Junk Removal & Demolition in St. Louis, MO',
-    description: 'St. Louis junk removal, demolition and cleanouts, priced by the load. See what a 1/4, 1/2, 3/4 or full 17-yard truck costs and book online in minutes.',
+    description: `St. Louis junk removal, demolition and cleanouts from a ${business.address.city}-based crew, priced by the load. See what each truck size costs and book online.`,
     areaLine: 'St. Louis City, St. Louis County & St. Charles County',
     kicker: 'Junk removal & demolition in St. Louis, MO',
     headline: 'Point at the mess.',
     headlineAccent: "We'll handle the rest.",
-    lead: 'Junk removal, demolition and cleanouts across St. Louis. You pay for how much of the truck you fill: pick a size, see the price, book a time.',
+    lead: `Junk removal, demolition and cleanouts across St. Louis, from our home base in ${business.address.city}. You pay for how much of the truck you fill: pick a size, see the price, book a time.`,
     /** Background photo behind the hero copy. */
     heroPhoto: 'crew/team.webp',
     heroVideos: [] as string[],

@@ -23,7 +23,9 @@ const longTitle = `Junk Removal & Demolition in ${place}`;
 const title = longTitle.length <= 43 ? longTitle : `Junk Removal in ${place}`;
 const where = l.kind === 'unincorporated' ? `${l.name} and the rest of unincorporated ${l.county}` : l.name;
 const hoods = l.neighborhoods.slice(0, 2);
-const descFor = (confirm: boolean) => `Junk removal, cleanouts and demolition in ${place}${l.zips.length ? ` (${l.zips.slice(0, 2).join(', ')})` : ''}. Priced by the load from ${minimum?.priceLine.amount ?? '$125'}${confirm ? ', confirmed before we load' : ''}. Book online or call ${business.phoneDisplay}.`;
+// Our own town (business.json address): the page says we're local here.
+const homeBase = l.name === site.city && l.region === business.address.region;
+const descFor = (confirm: boolean) => `Junk removal, cleanouts and demolition in ${place}${l.zips.length ? ` (${l.zips.slice(0, 2).join(', ')})` : ''}${homeBase ? ' by a local crew' : ''}. Priced by the load from ${minimum?.priceLine.amount ?? '$125'}${confirm ? ', confirmed before we load' : ''}. Book online or call ${business.phoneDisplay}.`;
 // Add the "confirmed before we load" differentiator only when it still fits the 155-character target.
 const description = descFor(true).length <= 155 ? descFor(true) : descFor(false);
 const url = `${site.url}${cityHref(l)}`;
@@ -68,7 +70,7 @@ const arrow = '<svg class="arrow" viewBox="0 0 24 24" aria-hidden="true" fill="n
 <Base title={title} description={description} breadcrumbs={crumbs} schema={schema}>
   <PageHero
     title={`Junk Removal & Demolition in ${place}`}
-    lead={`Junk hauling, cleanouts and tear-outs in ${where}${hoods.length ? `, from ${hoods.join(' to ')}` : ''}${l.zips.length ? ` (${l.zips.join(', ')})` : ''}. Priced by the load from ${minimum?.priceLine.amount}, with the price confirmed before anything is loaded${insured ? ', by a licensed and insured crew' : ''}.`}
+    lead={`Junk hauling, cleanouts and tear-outs in ${where}${hoods.length ? `, from ${hoods.join(' to ')}` : ''}${l.zips.length ? ` (${l.zips.join(', ')})` : ''}. Priced by the load from ${minimum?.priceLine.amount}, with the price confirmed before anything is loaded${insured ? ', by a licensed and insured crew' : ''}${homeBase ? `${insured ? '' : ', by a crew'} based right here in ${l.name}` : ''}.`}
     crumbs={crumbs}
   >
     <div class="btn-row">
