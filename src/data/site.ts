@@ -70,7 +70,6 @@ export const pairTitles: Record<string, string> = {
   'st-charles-bathroom': 'Bathroom demolition in St. Charles',
   'manchester-storage-unit': 'Storage unit cleanout in Manchester',
   'garage-cleanout-1': "Packed garage cleanout",
-  'room-cleanout': "Room cleanout",
   'drywall-demo-debris': "Drywall demo debris removal",
   'school-classroom': "School building cleanout",
 };
