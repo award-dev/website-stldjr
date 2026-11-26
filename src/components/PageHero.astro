@@ -17,15 +17,24 @@ interface Props {
   longTitle?: boolean;
   /** A short label above the title (e.g. the slogan on demolition pages). */
   eyebrow?: string;
+  /** Job photo path (relative to src/assets/jobs) shown full-bleed behind the hero copy, under a dark wash. */
+  background?: string;
 }
-const { title, lead, crumbs, photo, image, imageAlt = '', imagePosition = 'center', longTitle = false, eyebrow } = Astro.props;
+const { title, lead, crumbs, photo, image, imageAlt = '', imagePosition = 'center', longTitle = false, eyebrow, background } = Astro.props;
+const bgP = background ? projectFor(background) : null;
+const bgMeta = bgP ? jobImage(bgP.file) : null;
 const p = photo ? projectFor(photo) : null;
 const meta = image ?? (p ? jobImage(p.file) : null);
 const alt = image ? imageAlt : p?.alt ?? '';
 // The backdrop is intentionally blurred, so a small copy is enough; the framed photo stays sharp at real size.
 const backdrop = meta ? await getImage({ src: meta, width: 480, format: 'webp', quality: 60 }) : null;
 ---
-<section class:list={['ph', meta && 'ph--photo']}>
+<section class:list={['ph', meta && 'ph--photo', bgMeta && 'ph--bg']}>
+  {bgMeta && (
+    <div class="ph__bg">
+      <Image src={bgMeta} alt={bgP!.alt} widths={fitWidths(bgMeta, [960, 1440, 2000])} quality={PHOTO_QUALITY} sizes="100vw" loading="eager" fetchpriority="high" />
+    </div>
+  )}
   {backdrop && <div class="ph__ambient" aria-hidden="true" style={`background-image:url(${backdrop.src})`}></div>}
   <div class="shell ph__inner">
     <div class="ph__text">
@@ -52,6 +61,10 @@ const backdrop = meta ? await getImage({ src: meta, width: 480, format: 'webp', 
   .ph { position: relative; isolation: isolate; overflow: hidden; padding: calc(var(--nav-h) + clamp(48px, 8vw, 112px)) 0 clamp(56px, 7vw, 96px); }
   .ph__ambient { position: absolute; inset: -80px; z-index: -1; background-size: cover; background-position: center; filter: blur(70px) saturate(1.2); opacity: .35; transform: scale(1.1); }
   .ph__ambient::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to bottom, transparent 40%, var(--color-bg) 92%); }
+  .ph--bg { background: var(--color-bg); }
+  .ph__bg { position: absolute; inset: 0; z-index: -1; }
+  .ph__bg img { width: 100%; height: 100%; object-fit: cover; object-position: center 45%; }
+  .ph__bg::after { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, rgb(0 0 0 / .82) 0%, rgb(0 0 0 / .6) 55%, rgb(0 0 0 / .35) 100%), linear-gradient(to bottom, transparent 55%, var(--color-bg) 100%); }
   .ph__inner { display: grid; gap: 40px 64px; align-items: center; }
   .ph--photo .ph__inner { grid-template-columns: 1fr; }
   @media (min-width: 1024px) { .ph--photo .ph__inner { grid-template-columns: 1.05fr 1fr; } }
