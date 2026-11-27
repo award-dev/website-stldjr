@@ -77,8 +77,8 @@
     "provider": "ga4",
     "plausibleDomain": null,
     "ga4MeasurementId": "G-H29WPD0J40",
-    "$callTapsComment": "Elward client portal 'Calls from your site': each tap on a phone link posts the page path (nothing else) here. null turns it off.",
-    "callTapsUrl": "https://animated-lynx-247.convex.site/calls/xkGsZcmoj4bWivMTzTvVHPJL"
+    "$elwardToolsComment": "Elward Command Center Website tools: the client's announcement banner (set in their portal) and 'Calls from your site' (taps on phone links). GA stays the site's own (data-analytics=off). Hours and phone stay in this file so the schema and Google match. null turns it off.",
+    "elwardTools": { "script": "https://animated-lynx-247.convex.site/embed.js", "siteKey": "xkGsZcmoj4bWivMTzTvVHPJL" }
   },
   "founder": "Aaron Ward",
   "notifyEmail": "award@stlouishjr.com"
