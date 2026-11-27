@@ -206,17 +206,6 @@ const graph = { '@context': 'https://schema.org', '@graph': [business, website, 
         </script>
       </>
     )}
-    {analytics.callTapsUrl && (
-      <script is:inline define:vars={{ url: analytics.callTapsUrl }}>
-        // Counts taps on phone links for the Elward client portal. Sends only the page path.
-        document.addEventListener('click', function (e) {
-          var a = e.target && e.target.closest ? e.target.closest('a[href^="tel:"]') : null;
-          if (!a) return;
-          try { if (navigator.sendBeacon && navigator.sendBeacon(url, location.pathname)) return; } catch (x) {}
-          fetch(url, { method: 'POST', body: location.pathname, keepalive: true }).catch(function () {});
-        }, true);
-      </script>
-    )}
   </head>
   <body>
     {showIntro && <Intro truck={introTruck} logo={introLogo.src} words={content.intro.words} stages={content.intro.stages} drawing={content.intro.drawing} />}
@@ -251,5 +240,8 @@ const graph = { '@context': 'https://schema.org', '@graph': [business, website, 
       const fire = () => document.dispatchEvent(new Event('astro:page-load'));
       if (document.readyState === 'complete') fire(); else document.addEventListener('DOMContentLoaded', fire, { once: true });
     </script>
+    {analytics.elwardTools?.siteKey && (
+      <script is:inline async src={analytics.elwardTools.script} data-site={analytics.elwardTools.siteKey} data-analytics="off"></script>
+    )}
   </body>
 </html>
